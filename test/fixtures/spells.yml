@@ -1,0 +1,39 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  page: 1
+  level: 1
+  school_id: 1
+  ritual: false
+  cast_n: 1
+  cast_unit: 1
+  range_n: 1
+  range_unit: 1
+  aoe: MyString
+  components: 1
+  concentration: false
+  duration_n: 1
+  duration_unit: 1
+  effect: MyString
+  higher: MyString
+  reaction: MyString
+
+two:
+  name: MyString
+  page: 1
+  level: 1
+  school_id: 1
+  ritual: false
+  cast_n: 1
+  cast_unit: 1
+  range_n: 1
+  range_unit: 1
+  aoe: MyString
+  components: 1
+  concentration: false
+  duration_n: 1
+  duration_unit: 1
+  effect: MyString
+  higher: MyString
+  reaction: MyString
