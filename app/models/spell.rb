@@ -1,5 +1,13 @@
 class Spell < ActiveRecord::Base
 
+  def level_text
+    (level == 0) ? 'Cantrip' : "Level #{level}"
+  end
+
+  def school_text
+    SpellSchool::to_s school_id
+  end
+
   def reference_text
     "PHB p.#{page}"
   end

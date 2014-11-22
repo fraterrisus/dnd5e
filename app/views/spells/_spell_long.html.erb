@@ -1,0 +1,20 @@
+<!--<h4><%= spell.name %></h4>-->
+<p>
+  <i><%= spell.school_text %> <%= spell.level_text %></i><br />
+  <b>Casting time:</b> <%= spell.casting_time_text %><br />
+<% if rt = spell.reaction %>
+  <b>Reaction trigger:</b><%= rt %><br />
+<% end %>
+  <b>Range:</b> <%= spell.range_text %><br />
+<% if aoe = spell.aoe %>
+  <b>Area of effect:</b> <%= aoe %><br />
+<% end %>
+  <b>Components:</b> <%= spell.components_text %><br />
+  <b>Duration:</b> <%= spell.duration_text %><br />
+</p>
+<p>
+<b>Effect:</b> <%= spell.effect %>
+<% if h = spell.higher %>
+  <br /><b>At higher levels:</b> <%= h %>
+<% end %>
+</p>

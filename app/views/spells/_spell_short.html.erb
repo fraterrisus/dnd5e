@@ -1,0 +1,11 @@
+<% with_level ||= false %>
+<% items = [ ]
+  items << SpellSchool.to_s spell.school_id
+  items << spell.level_text if with_level
+  items << spell.casting_time_text
+  items << spell.range_text
+  items << spell.aoe if spell.aoe
+  items << spell.components_text
+  items << spell.duration_text
+%>
+<b><%= link_to spell.name, edit_spell_path(spell), id: "spell-#{spell.id}" %></b> (<%= spell.school_text %>) <%= safe_join items, ' // ' %>
