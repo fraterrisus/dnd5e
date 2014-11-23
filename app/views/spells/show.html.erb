@@ -2,29 +2,56 @@
   <%= javascript_include_tag 'spells/edit' %>
 <% end %>
 
-<h1>Edit Spell Description</h1>
+<% def edit_confirm_div
+  content_tag(:span, class: 'edit-confirm') do
+    content_tag(:span, bs_glyph('ok'), class: 'btn btn-xs btn-default edit-ok') <<
+    content_tag(:span, bs_glyph('remove'), class: 'btn btn-xs btn-default edit-nope')
+  end
+end %>
+
+<h1>Spell Details</h1>
 <%=
   content_tag(:div, role: 'form') do
     content_tag(:div, class: 'form-group') do
       form_for(@spell, method: 'patch', html: { 'data-dynamic-object' => 'spell' }) do |f|
         f.label(:name) <<
-        content_tag(:span, class: 'edit-confirm', style: 'margin-left: 30px') do
-          content_tag(:span, bs_glyph('ok'), class: 'btn btn-xs btn-default edit-ok') <<
-          content_tag(:span, bs_glyph('remove'), class: 'btn btn-xs btn-default edit-nope')
-        end <<
+        edit_confirm_div <<
         content_tag(:div, class: 'form-control-static') do
           content_tag(:span, @spell.name, 'data-static-attribute' => 'name') <<
           content_tag(:span, '', id: 'spell_name_edit_icon', 'aria-hidden' => true,
                       class: %w( glyphicon glyphicon-pencil edit-icon ))
         end <<
+=begin
         content_tag(:div, class: 'form-control-static') do
           content_tag(:span, @spell.aoe, 'data-static-attribute' => 'aoe') <<
           content_tag(:span, '', id: 'spell_name_edit_icon', 'aria-hidden' => true,
                       class: %w( glyphicon glyphicon-pencil edit-icon ))
         end <<
+=end
         content_tag(:div, class: 'edit-fields', style: "display: none") do
-          f.text_field(:name, class: 'form-control', 'data-dynamic-attribute' => 'name') <<
-          f.text_field(:aoe, class: 'form-control', 'data-dynamic-attribute' => 'aoe')
+          f.text_field(:name, class: 'form-control', 'data-dynamic-attribute' => 'name') # <<
+          #f.text_field(:aoe, class: 'form-control', 'data-dynamic-attribute' => 'aoe')
+        end
+      end
+    end << 
+    content_tag(:div, class: 'form-group') do
+      form_for(@spell, method: 'patch', html: { 'data-dynamic-object' => 'spell' }) do |f|
+        f.label(:school_id) <<
+        edit_confirm_div <<
+        content_tag(:div, class: 'form-control-static') do
+          # Hidden field to hold _id integer
+          content_tag(:span, @spell.school_id, 'data-static-attribute' => 'school_id',
+                      style: 'display: none;', 'aria-hidden' => true) <<
+          # Visible field to hold translated value
+          content_tag(:span, '', 'data-translate-attribute' => 'school_id', 
+                      'data-translate-method' => 'translate_spell_school') <<
+          # cut-n-paste from above
+          content_tag(:span, '', id: 'spell_name_edit_icon', 'aria-hidden' => true,
+                      class: %w( glyphicon glyphicon-pencil edit-icon ))
+        end <<
+        content_tag(:div, class: %w( edit-fields col-xs-2 ), style: 'display: none') do
+          f.select(:school_id, SpellSchool::options_for_select, { }, 
+                   { class: %w( form-control ), 'data-dynamic-attribute' => 'school_id' })
         end
       end
     end

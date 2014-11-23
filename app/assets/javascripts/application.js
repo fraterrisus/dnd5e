@@ -12,3 +12,4 @@
 //
 //= require jquery
 //= require bootstrap-sprockets
+//= require spell_school

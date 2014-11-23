@@ -54,7 +54,7 @@ function edit_mode_save (ev) {
     success: function ( return_data ) {
       $fields.each( function (i) {
         k = $(this).attr( 'data-dynamic-attribute' );
-        $( '[data-static-attribute=' + k + ']', $par ).text( return_data[k] );
+        $( '[data-static-attribute=' + k + ']', $par ).text( return_data[k] ).trigger( 'change' );
       } );
       switch_to_view_mode(ev);
     },
@@ -71,6 +71,7 @@ function edit_mode_revert (ev) {
     v = $( '[data-static-attribute=' + k + ']', $par ).text();
     $(this).val( v );
   } );
+  //$par[0].reset();
   switch_to_view_mode(ev);
 }
 
@@ -98,16 +99,32 @@ function switch_to_edit_mode (ev) {
   $edit.find( 'input[type=text]' ).focus();
 }
 
+function update_dependent_textfield ( ev ) {
+  var $me = $( ev.currentTarget );
+  var attribute = $me.attr( 'data-static-attribute' );
+  var $target = $( '[data-translate-attribute=' + attribute + ']', $me.parent() );
+  var method = window[ $target.attr( 'data-translate-method' ) ];
+  $target.text( method( $me.text() ) );
+}
+
 $( function () {
   $( '#spell_cast_unit' ).on( 'change', spells_edit_disable_reaction_textfield );
 
-  $selects = $( 'select[data-dependent-textfield]' );
+  var $selects = $( 'select[data-dependent-textfield]' );
   $selects.on( 'change', disable_dependent_textfield );
   $selects.trigger( 'change' );
 
-  $depchecks = $( 'input[data-dependent-checkbox]' );
+  var $depchecks = $( 'input[data-dependent-checkbox]' );
   $depchecks.on( 'change', disable_dependent_checkbox );
   $depchecks.trigger( 'change' );
+
+  var $translates = $( '[data-translate-attribute]' );
+  $translates.each( function (idx) {
+    var attribute = $( this ).attr( 'data-translate-attribute' );
+    var $target = $( '[data-static-attribute=' + attribute + ']', $(this).parent() );
+    $target.on( 'change', update_dependent_textfield );
+    $target.trigger( 'change' );
+  });
 
   $( '.edit-confirm' ).hide();
   $( '.form-control-static', 'form[data-dynamic-object]' ).on( 'click', switch_to_edit_mode );
