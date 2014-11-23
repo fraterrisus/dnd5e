@@ -8,6 +8,14 @@ class SpellSchool
   Necromancy = 6
   Transmutation = 7
 
+  def self.options_for_select
+    %w( Abjuration Conjuration Divination Enchantment 
+        Evocation Illusion Necromancy Transmutation ).map do |s|
+      c = self.const_get s
+      [ self.to_s(c), c ]
+    end
+  end
+
   def self.to_s (x)
     case x
     when Abjuration

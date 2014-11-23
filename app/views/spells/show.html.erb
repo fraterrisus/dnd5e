@@ -1,1 +1,32 @@
-<%= render partial: 'spell_long', locals: { spell: @spell } %>
+<% content_for :head do %>
+  <%= javascript_include_tag 'spells/edit' %>
+<% end %>
+
+<h1>Edit Spell Description</h1>
+<%=
+  content_tag(:div, role: 'form') do
+    content_tag(:div, class: 'form-group') do
+      form_for(@spell, method: 'patch', html: { 'data-dynamic-object' => 'spell' }) do |f|
+        f.label(:name) <<
+        content_tag(:span, class: 'edit-confirm', style: 'margin-left: 30px') do
+          content_tag(:span, bs_glyph('ok'), class: 'btn btn-xs btn-default edit-ok') <<
+          content_tag(:span, bs_glyph('remove'), class: 'btn btn-xs btn-default edit-nope')
+        end <<
+        content_tag(:div, class: 'form-control-static') do
+          content_tag(:span, @spell.name, 'data-static-attribute' => 'name') <<
+          content_tag(:span, '', id: 'spell_name_edit_icon', 'aria-hidden' => true,
+                      class: %w( glyphicon glyphicon-pencil edit-icon ))
+        end <<
+        content_tag(:div, class: 'form-control-static') do
+          content_tag(:span, @spell.aoe, 'data-static-attribute' => 'aoe') <<
+          content_tag(:span, '', id: 'spell_name_edit_icon', 'aria-hidden' => true,
+                      class: %w( glyphicon glyphicon-pencil edit-icon ))
+        end <<
+        content_tag(:div, class: 'edit-fields', style: "display: none") do
+          f.text_field(:name, class: 'form-control', 'data-dynamic-attribute' => 'name') <<
+          f.text_field(:aoe, class: 'form-control', 'data-dynamic-attribute' => 'aoe')
+        end
+      end
+    end
+  end
+%>

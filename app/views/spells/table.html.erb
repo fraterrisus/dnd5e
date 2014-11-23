@@ -1,0 +1,29 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Spell Name</th>
+      <th>School</th>
+      <th>Casting Time</th>
+      <th>Target Range</th>
+      <th>Components</th>
+      <th>Duration</th>
+    </tr>
+  </thead>
+  <tbody>
+<% @spells.each do |s| %><%=
+content_tag(:tr, id: "spell-#{s.id}", 
+  'data-toggle' => 'collapse', 'data-target' => "#desc-#{s.id}", 
+  'aria-expanded' => false, 'aria-controls' => "desc-#{s.id}" ) do
+    items = [ s.name, s.school_text, s.casting_time_text, s.range_text, s.components_text, s.duration_text ]
+    safe_join(items.map { |x| content_tag(:td, x) })
+end
+%><%= 
+content_tag(:tr, id: "desc-#{s.id}", class: 'collapse') do
+  content_tag(:td, colspan: 10) do
+    render partial: 'spell_long', locals: { spell: s }
+  end
+end
+%>
+<% end %>
+</tbody>
+</table>

@@ -11,4 +11,4 @@
 // about supported directives.
 //
 //= require jquery
-//= require twitter/bootstrap
+//= require bootstrap-sprockets

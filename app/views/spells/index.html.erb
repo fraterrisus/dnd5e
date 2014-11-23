@@ -1,17 +1,41 @@
+<h1>Spell List (Alphabetical)</h1>
+<% lastlevel = -1 %>
 <% @spells.each do |s|
   items = [ ]
   items << s.school_text
+  items << s.level_text
   items << s.casting_time_text
   items << s.range_text
   items << s.aoe if s.aoe
   items << s.components_text
   items << s.duration_text
+  if s.level != lastlevel %>
+<%# content_tag(:h3, s.level_text) %>
+<%
+    lastlevel = s.level
+  end
 %>
-<div>
-  <%= link_to s.name, '#', 'data-toggle' => 'collapse', 'data-target' => "#spell-#{s.id}-desc", 'aria-expanded' => 'false', 'aria-controls' => "spell-#{s.id}-desc" %>
-<%= safe_join items, ' // ' %>
-<div id="spell-<%= s.id %>-desc" class="collapse">
-  <%= render partial: 'spell_long', locals: { spell: s } %>
-</div>
+<div style="margin-bottom:6px">
+  <% coloring = (s.effect.nil?) ? 'text-warning' : 'text-success' %>
+  <%= link_to 'Detail', spell_path(s), class: 'btn btn-xs btn-default' %>
+  <%= link_to 'Edit', edit_spell_path(s), class: 'btn btn-xs btn-default' %>
+  <%= content_tag(:span, class: coloring,
+                  'data-toggle' => 'collapse', 'data-target' => "#spell-#{s.id}-desc", 
+                  'aria-expanded' => 'false', 'aria-controls' => "spell-#{s.id}-desc") do %>
+    <b><%= s.name %></b> &ndash; <%= safe_join(items, ' &ndash; '.html_safe) %>
+  <% end %>
+  <%= content_tag(:div, id: "spell-#{s.id}-desc", class: 'collapse') do %>
+  <% if aoe = s.aoe %>
+    <b>Area of effect:</b> <%= aoe %><br />
+  <% end %>
+  <% if rt = s.reaction %>
+    <b>Reaction trigger:</b><%= rt %><br />
+  <% end %>
+    <b>Effect:</b> <%= s.effect %><br />
+  <% if h = s.higher %>
+    <b>At higher levels:</b> <%= h %><br />
+  <% end %>
+    <b>Reference:</b> <%= s.reference_text %>
+  <% end %>
 </div>
 <% end %>

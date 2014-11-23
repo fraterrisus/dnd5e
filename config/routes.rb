@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   root 'spells#index'
 
-  resources :spells
-  resources :users
+  match 'spells', via: :get, to: 'spells#index', as: :spells
+  match 'spells/:id/edit', via: :get, to: 'spells#edit', as: :edit_spell
+  match 'spells/:id/edit', via: [ :put, :patch ], to: 'spells#update'
+  match 'spells/:id', via: :get, to: 'spells#show', as: :spell
+  match 'spells/:id', via: [ :put, :patch ], to: 'spells#update'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

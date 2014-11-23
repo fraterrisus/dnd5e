@@ -1,0 +1,15 @@
+//= require_tree .
+//= require_self
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+body {
+  padding-top: 50px;
+  padding-bottom: 30px;
+}
+
+.edit-icon {
+  margin-left: 25px;
+  opacity: 0.4;
+}

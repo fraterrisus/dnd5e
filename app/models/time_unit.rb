@@ -12,6 +12,14 @@ class TimeUnit
   Hours = 12
   Days = 13
 
+  def self.options_for_select
+    %w( Special Action Bonus Reaction Instant
+        Permanent Rounds Minutes Hours Days ).map do |t|
+      c = self.const_get t
+      [ self.to_s(c).capitalize, c ]
+    end
+  end
+
   def self.to_s (u)
     fail ArgumentError unless u.is_a? Fixnum
 

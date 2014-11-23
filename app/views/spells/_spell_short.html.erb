@@ -1,6 +1,5 @@
 <% with_level ||= false %>
 <% items = [ ]
-  items << SpellSchool.to_s spell.school_id
   items << spell.level_text if with_level
   items << spell.casting_time_text
   items << spell.range_text

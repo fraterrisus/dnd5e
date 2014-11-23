@@ -12,6 +12,25 @@ class Spell < ActiveRecord::Base
     "PHB p.#{page}"
   end
 
+  # :nodoc:
+  # Rails handily provides a Fixnum#[] getter method, but no setter.
+  # Hmph.
+  [ [ :verbal, 3 ], [ :somatic, 2 ], [ :material, 1 ], [ :focus, 0 ] ].each do |x|
+    define_method(x[0]) do
+      components[x[1]] == 1
+    end
+
+    define_method("#{x[0]}=") do |o|
+      if value_to_boolean o
+        c = components | (1 << x[1])
+      else
+        c = components & ~(1 << x[1])
+      end
+      self.send(:components=, c)
+    end
+  end
+  # :doc:
+
   # If the spell can be cast as a reaction, returns a description of the
   # reaction. Otherwise returns nil
   def reaction_text
