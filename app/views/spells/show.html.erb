@@ -2,58 +2,51 @@
   <%= javascript_include_tag 'spells/edit' %>
 <% end %>
 
-<% def edit_confirm_div
-  content_tag(:span, class: 'edit-confirm') do
-    content_tag(:span, bs_glyph('ok'), class: 'btn btn-xs btn-default edit-ok') <<
-    content_tag(:span, bs_glyph('remove'), class: 'btn btn-xs btn-default edit-nope')
-  end
-end %>
-
+<%# We make huge use of the SpellHelper to prevent this from getting totally out of hand. %>
+<% level_select_options = 
+[ [ 'Cantrip', 0 ], [ 'Level 1', 1 ], [ 'Level 2', 2 ],
+  [ 'Level 3', 3 ], [ 'Level 4', 4 ], [ 'Level 5', 5 ], 
+  [ 'Level 6', 6 ], [ 'Level 7', 7 ], [ 'Level 8', 8 ], 
+  [ 'Level 9', 9 ], ]
+%>
 <h1>Spell Details</h1>
 <%=
   content_tag(:div, role: 'form') do
-    content_tag(:div, class: 'form-group') do
-      form_for(@spell, method: 'patch', html: { 'data-dynamic-object' => 'spell' }) do |f|
-        f.label(:name) <<
-        edit_confirm_div <<
-        content_tag(:div, class: 'form-control-static') do
-          content_tag(:span, @spell.name, 'data-static-attribute' => 'name') <<
-          content_tag(:span, '', id: 'spell_name_edit_icon', 'aria-hidden' => true,
-                      class: %w( glyphicon glyphicon-pencil edit-icon ))
-        end <<
-=begin
-        content_tag(:div, class: 'form-control-static') do
-          content_tag(:span, @spell.aoe, 'data-static-attribute' => 'aoe') <<
-          content_tag(:span, '', id: 'spell_name_edit_icon', 'aria-hidden' => true,
-                      class: %w( glyphicon glyphicon-pencil edit-icon ))
-        end <<
-=end
-        content_tag(:div, class: 'edit-fields', style: "display: none") do
-          f.text_field(:name, class: 'form-control', 'data-dynamic-attribute' => 'name') # <<
-          #f.text_field(:aoe, class: 'form-control', 'data-dynamic-attribute' => 'aoe')
-        end
+
+    edit_textfield_form(@spell, 'name') <<
+    edit_select_form(@spell, 'school_id', SpellSchool::options_for_select, 'translate_spell_school') <<
+    edit_select_form(@spell, 'level', level_select_options, 'translate_spell_level') <<
+
+    edit_field_form(:cast_n) do |f|
+      edit_redirect_header(@spell, [ :cast_n, :cast_unit, :ritual ], 'translate_spell_casting_time' )
+      # FIXME: figure out edit row
+    end <<
+
+    edit_textfield_form(@spell, 'reaction') <<
+
+    edit_field_form(:range_n) do |f|
+      edit_redirect_header(@spell, [ :range_n, :range_unit ], 'translate_spell_distance' )
+      # FIXME: figure out edit row
+    end <<
+
+    edit_textfield_form(@spell, 'aoe') <<
+
+    edit_field_form(:components) do |f|
+      edit_basic_header(@spell, :components) <<
+      # FIXME: figure out edit row
+      edit_field_row([2, 2, 1]) do
+        f.text_field(:components, class: 'form-control', 'data-dynamic-attribute' => 'components')
       end
-    end << 
-    content_tag(:div, class: 'form-group') do
-      form_for(@spell, method: 'patch', html: { 'data-dynamic-object' => 'spell' }) do |f|
-        f.label(:school_id) <<
-        edit_confirm_div <<
-        content_tag(:div, class: 'form-control-static') do
-          # Hidden field to hold _id integer
-          content_tag(:span, @spell.school_id, 'data-static-attribute' => 'school_id',
-                      style: 'display: none;', 'aria-hidden' => true) <<
-          # Visible field to hold translated value
-          content_tag(:span, '', 'data-translate-attribute' => 'school_id', 
-                      'data-translate-method' => 'translate_spell_school') <<
-          # cut-n-paste from above
-          content_tag(:span, '', id: 'spell_name_edit_icon', 'aria-hidden' => true,
-                      class: %w( glyphicon glyphicon-pencil edit-icon ))
-        end <<
-        content_tag(:div, class: %w( edit-fields col-xs-2 ), style: 'display: none') do
-          f.select(:school_id, SpellSchool::options_for_select, { }, 
-                   { class: %w( form-control ), 'data-dynamic-attribute' => 'school_id' })
-        end
-      end
-    end
+    end <<
+
+    edit_textfield_form(@spell, 'page') <<
+
+    edit_field_form(:duration_n) do |f|
+      edit_redirect_header(@spell, [ :duration_n, :duration_unit, :concentration ], 'translate_spell_duration' )
+      # FIXME: figure out edit row
+    end <<
+
+    edit_textfield_form(@spell, 'effect') <<
+    edit_textfield_form(@spell, 'higher')
   end
 %>

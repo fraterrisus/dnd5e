@@ -54,7 +54,7 @@ function edit_mode_save (ev) {
     success: function ( return_data ) {
       $fields.each( function (i) {
         k = $(this).attr( 'data-dynamic-attribute' );
-        $( '[data-static-attribute=' + k + ']', $par ).text( return_data[k] ).trigger( 'change' );
+        $( '[data-static-attribute=' + k + ']', $par ).text( return_data[k] ).trigger( 'poke' );
       } );
       switch_to_view_mode(ev);
     },
@@ -99,12 +99,27 @@ function switch_to_edit_mode (ev) {
   $edit.find( 'input[type=text]' ).focus();
 }
 
-function update_dependent_textfield ( ev ) {
+function update_dependent_field ( ev ) {
   var $me = $( ev.currentTarget );
   var attribute = $me.attr( 'data-static-attribute' );
+  console.log('poked static field for ' + attribute);
   var $target = $( '[data-translate-attribute=' + attribute + ']', $me.parent() );
-  var method = window[ $target.attr( 'data-translate-method' ) ];
-  $target.text( method( $me.text() ) );
+  $target.trigger( 'poke' );
+}
+
+function update_from_dependent_fields ( ev ) {
+  var $me = $( ev.currentTarget );
+  var $par = $me.parent();
+  var attributes = $me.attr( 'data-translate-attribute' );
+  console.log('updating dependent field for ' + attributes);
+  attributes = attributes.split( ' ' );
+  var parameters = [];
+  for (var i=0; i<attributes.length; i++) {
+    var $target = $( '[data-static-attribute=' + attributes[i] + ']', $par );
+    parameters[i] = $target.text();
+  }
+  var method = window[ $me.attr( 'data-translate-method' ) ];
+  $me.text( method.apply( $me, parameters ) );
 }
 
 $( function () {
@@ -118,13 +133,14 @@ $( function () {
   $depchecks.on( 'change', disable_dependent_checkbox );
   $depchecks.trigger( 'change' );
 
-  var $translates = $( '[data-translate-attribute]' );
-  $translates.each( function (idx) {
-    var attribute = $( this ).attr( 'data-translate-attribute' );
-    var $target = $( '[data-static-attribute=' + attribute + ']', $(this).parent() );
-    $target.on( 'change', update_dependent_textfield );
-    $target.trigger( 'change' );
-  });
+  // When poked, read values from dependent fields and update
+  var $dynfields = $( '[data-translate-attribute]' );
+  $dynfields.on( 'poke', update_from_dependent_fields );
+  $dynfields.trigger( 'poke' );
+  
+  // When poked, poke your dependent field
+  var $statfields = $( '[data-static-attribute]' );
+  $statfields.on( 'poke', update_dependent_field );
 
   $( '.edit-confirm' ).hide();
   $( '.form-control-static', 'form[data-dynamic-object]' ).on( 'click', switch_to_edit_mode );

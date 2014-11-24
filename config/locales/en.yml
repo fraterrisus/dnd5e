@@ -20,4 +20,16 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  helpers:
+    label:
+      spell:
+        aoe: 'Area of Effect'
+        cast_n: 'Casting Time'
+        duration_n: 'Duration'
+        effect: 'Spell Effect'
+        higher: 'At Higher Levels'
+        level: 'Spell Level'
+        page: 'Reference'
+        range_n: 'Range'
+        reaction: 'Reaction Trigger'
+        school_id: 'Magic School'
