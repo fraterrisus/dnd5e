@@ -12,4 +12,4 @@
 //
 //= require jquery
 //= require bootstrap-sprockets
-//= require spell_school
+//= require attribute_translators
