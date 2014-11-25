@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141122213445) do
+ActiveRecord::Schema.define(version: 20141125015950) do
+
+  create_table "combatants", force: true do |t|
+    t.string   "name"
+    t.integer  "count"
+    t.integer  "effect"
+    t.boolean  "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "spells", force: true do |t|
     t.string   "name"
@@ -31,13 +40,6 @@ ActiveRecord::Schema.define(version: 20141122213445) do
     t.string   "effect"
     t.string   "higher"
     t.string   "reaction"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "users", force: true do |t|
-    t.string   "email"
-    t.string   "password"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

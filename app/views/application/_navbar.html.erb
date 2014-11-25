@@ -1,29 +1,43 @@
-<%= 
-content_tag(:nav, class: %w( navbar navbar-inverse navbar-fixed-top ), role: 'navigation') do
-  content_tag(:div, class: %w( container-fluid )) do
-    content_tag(:div, class: %w( navbar-header )) do
-      content_tag(:button, type: 'button', class: %w( navbar-toggle collapsed ),
-                  'data-toggle' => 'collapsed', 'data-target' => '#dnd-navbar' ) do
-        content_tag(:span, 'Toggle navigation', class: 'sr-only') <<
-        content_tag(:span, nil, class: 'icon-bar') <<
-        content_tag(:span, nil, class: 'icon-bar') <<
-        content_tag(:span, nil, class: 'icon-bar')
-      end
-      link_to('D&amp;D5e Reference'.html_safe, root_path, class: %w( navbar-brand ))
-    end <<
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#dnd-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="<%= root_path %>">D&amp;D5e Reference</a>
+    </div>
 
-    content_tag(:div, id: 'dnd-navbar', class: %w( collapse navbar-collapse )) do
-      content_tag(:ul, class: %w( nav navbar-nav )) do
-        bs_nav_link('Spells', spells_path) <<
-        bs_nav_dropdown('Dropdown test') do
-          content_tag(:ul, class: %w( dropdown-menu ), role: 'menu') do
-            bs_nav_link('Link 1', '#') <<
-            bs_nav_divider <<
-            bs_nav_link('Link 2', '#')
-          end
-        end
-      end
-    end
-  end
-end
-%>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="dnd-navbar">
+      <ul class="nav navbar-nav">
+        <li><a href="<%= spells_path %>">Spell list</a></li>
+        <li><a href="<%= combat_path %>">Initiative</a></li>
+      </ul>
+<!--
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+-->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>

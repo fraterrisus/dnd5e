@@ -3,6 +3,8 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
 body {
   padding-top: 50px;
@@ -19,5 +21,13 @@ span.edit-confirm {
 
   span.btn {
     margin-left: 10px;
+  }
+}
+
+#initiative-list {
+  .init-count {
+    display: inline-block;
+    width: 2em;
+    margin-right: 10px;
   }
 }
