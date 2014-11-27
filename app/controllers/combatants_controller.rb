@@ -8,6 +8,9 @@ class CombatantsController < ApplicationController
   end
 
   def create
+    data = params.require(:combatant).permit(:name, :count, :effect, :active)
+    cmb = Combatant.create(data)
+    render json: cmb
   end
 
   def update
@@ -16,6 +19,11 @@ class CombatantsController < ApplicationController
     cmb = Combatant.find(id)
     cmb.update_attributes(data)
     render json: cmb
+  end
+
+  def clear
+    Combatant.destroy_all()
+    render json: nil
   end
 
   def last_update

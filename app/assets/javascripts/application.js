@@ -12,4 +12,23 @@
 //
 //= require jquery
 //= require bootstrap-sprockets
+//= require bootstrapValidator.min
 //= require attribute_translators
+
+function submit_form_via_ajax( selector, successMethod, errorMethod ) {
+  var $form = $( selector );
+  var form_data = $form.serializeArray();
+  var post_data = {};
+  for (var i=0; i<form_data.length; i++) {
+    post_data[ form_data[i].name ] = form_data[i].value;
+  }
+  $.ajax({
+    url: $form.attr('action'),
+    method: $form.attr('method'),
+    dataType: 'json',
+    data: post_data,
+    success: successMethod,
+    error: errorMethod,
+  });
+}
+

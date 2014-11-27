@@ -13,6 +13,7 @@ gem 'turbolinks'
 # Bootstrap https://github.com/twbs/bootstrap-sass
 gem 'bootstrap-sass'
 gem 'font-awesome-sass', '~> 4.2.0'
+gem 'bootstrap-validator-rails', '~> 0.5.3'
 gem 'autoprefixer-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'

@@ -1,18 +1,18 @@
 Rails.application.routes.draw do
   root 'spells#index'
 
-  match 'spells', via: :get, to: 'spells#index', as: :spells
+  match 'spells', via: :get, to: 'spells#index'
   match 'spells/:id/edit', via: :get, to: 'spells#edit', as: :edit_spell
-  match 'spells/:id/edit', via: [ :put, :patch ], to: 'spells#update'
   match 'spells/:id', via: :get, to: 'spells#show', as: :spell
   match 'spells/:id', via: [ :put, :patch ], to: 'spells#update'
 
   match 'combat', via: :get, to: 'combatants#initiative', as: :combat
 
   match 'combatants/last_update', via: :get
-  match 'combatants', via: :get, to: 'combatants#index', as: :combatants
-  match 'combatants/:id', via: :post, to: 'combatants#create'
+  match 'combatants', via: :get, to: 'combatants#index'
+  match 'combatants', via: :post, to: 'combatants#create'
   match 'combatants/:id', via: [ :put, :patch ], to: 'combatants#update'
+  match 'combatants/clear', via: :get, as: 'clear_combatants'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
