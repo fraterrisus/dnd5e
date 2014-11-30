@@ -6,9 +6,9 @@ module SpellHelper
     end
   end 
 
-  def edit_field_form(field_name)
-    content_tag(:div, class: 'form-group') do
-      form_for(@spell, method: 'patch', html: { 'data-dynamic-object' => 'spell' }) do |f|
+  def edit_field_form(object, field_name)
+    form_for(object, method: 'patch', html: { 'data-dynamic-object' => 'spell' }) do |f|
+      content_tag(:div, class: 'form-group') do
         f.label(field_name) << edit_confirm_div << yield(f)
       end
     end
@@ -37,33 +37,59 @@ module SpellHelper
   end
 
   def edit_field_row(widths)
-    prefixes = %w( col-xs- col-sm- col-med- col-xl- )
-    widths.each_with_index do |w,i|
-      widths[i] = "#{prefixes[i]}#{widths[i]}"
+    prefixes = %w( col-xs- col-sm- col-md- col-xl- )
+    if widths.nil?
+      widths = [ ]
+    else
+      widths.each_with_index do |w,i|
+        widths[i] = "#{prefixes[i]}#{widths[i]}"
+      end
     end
-    content_tag(:div, class: 'row') do
+    options = { class: 'row' } if widths.any?
+    content_tag(:div, options) do
       content_tag(:div, class: (widths << 'edit-fields'), style: 'display: none') do
         yield
       end
     end
   end
 
-  def edit_textfield_form(object, field_name)
-    edit_field_form(field_name) do |f|
-      edit_basic_header(object, field_name) <<
-      edit_field_row([12, 12, 12]) do
-        f.text_field(field_name, class: 'form-control', 'data-dynamic-attribute' => field_name)
+  def edit_textfield_row(form_obj, field_name, widths=[])
+    edit_field_row(widths) do
+      form_obj.text_field(field_name, class: 'form-control', 'data-dynamic-attribute' => field_name)
+    end
+  end
+
+  def edit_select_row(form_obj, field_name, options, widths=[], dep_tf=nil)
+    edit_field_row(widths) do
+      html_options = {
+        class: %w( form-control ),
+        'data-dynamic-attribute' => field_name,
+      }
+      html_options['data-dependent-textfield'] = dep_tf if dep_tf
+      form_obj.select(field_name, options, { }, html_options)
+    end
+  end
+
+  def edit_checkbox_row(form_obj, field_name, labeltext, widths=[])
+    edit_field_row(widths) do
+      form_obj.label(field_name, class: 'form-control') do
+        form_obj.check_box(field_name, 'data-dynamic-attribute' => field_name) << 
+        ' '.html_safe << labeltext
       end
     end
   end
 
+  def edit_textfield_form(object, field_name)
+    edit_field_form(object, field_name) do |f|
+      edit_basic_header(object, field_name) <<
+      edit_textfield_row(f, field_name)
+    end
+  end
+
   def edit_select_form(object, field_name, options, translate_method)
-    edit_field_form(field_name) do |f|
+    edit_field_form(object, field_name) do |f|
       edit_redirect_header(@spell, field_name, translate_method) <<
-      edit_field_row([12, 4, 1]) do
-        f.select(field_name, options, { }, 
-                 { class: %w( form-control ), 'data-dynamic-attribute' => field_name })
-      end
+      edit_select_row(f, field_name, options, [12,4,3])
     end
   end
 end

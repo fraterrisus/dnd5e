@@ -11,42 +11,50 @@
 %>
 <h1>Spell Details</h1>
 <%=
-  content_tag(:div, role: 'form') do
+  content_tag(:div, role: 'form') { safe_join([
 
-    edit_textfield_form(@spell, 'name') <<
-    edit_select_form(@spell, 'school_id', SpellSchool::options_for_select, 'translate_spell_school') <<
-    edit_select_form(@spell, 'level', level_select_options, 'translate_spell_level') <<
+    edit_textfield_form(@spell, :name),
 
-    edit_field_form(:cast_n) do |f|
-      edit_redirect_header(@spell, [ :cast_n, :cast_unit, :ritual ], 'translate_spell_casting_time' )
-      # FIXME: figure out edit row
-    end <<
+    edit_select_form(@spell, :school_id, SpellSchool::options_for_select, 'translate_spell_school'),
 
-    edit_textfield_form(@spell, 'reaction') <<
+    edit_select_form(@spell, :level, level_select_options, 'translate_spell_level'),
 
-    edit_field_form(:range_n) do |f|
-      edit_redirect_header(@spell, [ :range_n, :range_unit ], 'translate_spell_distance' )
-      # FIXME: figure out edit row
-    end <<
+    edit_field_form(@spell, :cast_n) { |f| safe_join([
+      edit_redirect_header(@spell, [ :cast_n, :cast_unit, :ritual ], 'translate_spell_casting_time' ),
+      edit_textfield_row(f, :cast_n, [4,2,1]),
+      edit_select_row(f, :cast_unit, TimeUnit::options_for_select, [6,4,2], 'spell_cast_n'),
+      edit_checkbox_row(f, :ritual, 'May be cast as ritual', [9,3]),
+    ])},
 
-    edit_textfield_form(@spell, 'aoe') <<
+    edit_textfield_form(@spell, :reaction),
 
-    edit_field_form(:components) do |f|
+    edit_field_form(@spell, :range_n) { |f| safe_join([
+      edit_redirect_header(@spell, [ :range_n, :range_unit ], 'translate_spell_distance' ),
+      edit_textfield_row(f, :range_n, [4,2,2]),
+      edit_select_row(f, :range_unit, DistanceUnit::options_for_select, [6,4,2], 'spell_range_n'),
+    ])},
+
+    edit_textfield_form(@spell, :aoe),
+
+    edit_field_form(@spell, :components) do |f|
       edit_basic_header(@spell, :components) <<
       # FIXME: figure out edit row
       edit_field_row([2, 2, 1]) do
         f.text_field(:components, class: 'form-control', 'data-dynamic-attribute' => 'components')
       end
-    end <<
+    end,
 
-    edit_textfield_form(@spell, 'page') <<
+    edit_textfield_form(@spell, :page),
 
-    edit_field_form(:duration_n) do |f|
-      edit_redirect_header(@spell, [ :duration_n, :duration_unit, :concentration ], 'translate_spell_duration' )
-      # FIXME: figure out edit row
-    end <<
+    edit_field_form(@spell, :duration_n) { |f| safe_join([
+      edit_redirect_header(@spell, [ :duration_n, :duration_unit, :concentration ], 'translate_spell_duration' ),
+      edit_textfield_row(f, :duration_n, [4,2,1]),
+      edit_select_row(f, :duration_unit, TimeUnit::options_for_select, [6,4,2], 'spell_duration_n'),
+      edit_checkbox_row(f, :concentration, 'Requires concentration', [9,3]),
+    ])},
 
-    edit_textfield_form(@spell, 'effect') <<
-    edit_textfield_form(@spell, 'higher')
-  end
+    edit_textfield_form(@spell, :effect),
+
+    edit_textfield_form(@spell, :higher),
+  ])}
 %>

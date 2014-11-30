@@ -52,10 +52,53 @@ function translate_spell_distance(n, unit) {
   }
 }
 
+function translate_time(n, unit) {
+  var x = '';
+  if (unit === "0") {
+    x = 'special';
+  } else if (unit === "1") {
+    x = '1 action';
+  } else if (unit === "2") {
+    x = 'bonus action';
+  } else if (unit === "3") {
+    x = 'reaction';
+  } else if (unit === "4") {
+    x = 'instantaneous';
+  } else if (unit === "5") {
+    x = 'until dispelled';
+  } else if (unit === "10") {
+    x = n + ' round';
+    if (n != 1) { x = x + 's'; }
+  } else if (unit === "11") {
+    x = n + ' minute';
+    if (n != 1) { x = x + 's'; }
+  } else if (unit === "12") {
+    x = n + ' hour';
+    if (n != 1) { x = x + 's'; }
+  } else if (unit === "13") {
+    x = n + ' day';
+    if (n != 1) { x = x + 's'; }
+  }
+  return x;
+}
+
 function translate_spell_casting_time(n, unit, ritual) {
-  return n + ' ' + unit + ' ' + ritual;
+  var x = uppercase_string( translate_time( n, unit ) );
+  if (ritual === "true") {
+    x = x + ' (ritual)';
+  }
+  return x;
 }
 
 function translate_spell_duration(n, unit, conc) {
-  return n + ' ' + unit + ' ' + conc;
+  var x = translate_time(n, unit);
+  if (conc === "true") {
+    x = 'concentration, up to ' + x;
+  }
+
+  return uppercase_string( x );
+}
+
+function uppercase_string(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
 }

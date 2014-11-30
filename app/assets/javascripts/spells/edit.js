@@ -1,21 +1,21 @@
 function disable_dependent_textfield (ev) {
-  $target = $( ev.target );
-  $dep = $( $target.attr( 'data-dependent-textfield' ) );
-  v = $target.val();
+  var $target = $( ev.target );
+  var $dep = $( '#' + $target.attr( 'data-dependent-textfield' ) );
+  var v = $target.val();
   $dep.attr( 'disabled', (v < 10));
 }
 
 function spells_edit_disable_reaction_textfield (ev) {
-  $target = $( ev.target );
-  $dep = $( '#spell_reaction' );
-  v = $target.val();
+  var $target = $( ev.target );
+  var $dep = $( '#spell_reaction' );
+  var v = $target.val();
   $dep.attr( 'disabled', (v != 3)); // TimeUnit::Reaction
 }
 
 function disable_dependent_checkbox (ev) {
-  $target = $( ev.target );
-  $dep = $( $target.attr( 'data-dependent-checkbox' ) );
-  $par = $dep.parent();
+  var $target = $( ev.target );
+  var $dep = $( '#' + $target.attr( 'data-dependent-checkbox' ) );
+  var $par = $dep.parent();
   if ($target.prop( 'checked' )) {
     $dep.attr( 'disabled', false );
     $par.removeClass( 'disabled' );
@@ -32,21 +32,7 @@ function edit_mode_save (ev) {
   var obj = $par.attr( 'data-dynamic-object' );
   $( '.edit-confirm', $par ).addClass( 'disabled' );
   var $fields = $( '[data-dynamic-attribute]', $par );
-  var post_data = { }, form_data = { };
-  var k, v;
-  $fields.each( function (i) {
-    k = $(this).attr( 'data-dynamic-attribute' );
-    v = $(this).val();
-    form_data[k] = v;
-  } );
-  // Emulating a form submit as much as possible here, including by ripping out
-  // hidden field data and including it with the POST...
-  post_data = {
-    'authenticity_token': $( 'input[name="authenticity_token"]', $par ).val(),
-    'utf8': $( 'input[name="utf8"]', $par ).val(),
-    '_method': $( 'input[name="_method"]', $par ).val()
-  };
-  post_data[obj] = form_data;
+  post_data = $par.serializeArray();
   $.ajax({
     method: 'post',
     url: $par.attr( 'action' ) + '.json',
@@ -101,9 +87,9 @@ function switch_to_edit_mode (ev) {
 
 function update_dependent_field ( ev ) {
   var $me = $( ev.currentTarget );
-  var attribute = $me.attr( 'data-static-attribute' );
-  console.log('poked static field for ' + attribute);
-  var $target = $( '[data-translate-attribute=' + attribute + ']', $me.parent() );
+  //var attribute = $me.attr( 'data-static-attribute' );
+  console.log('poked static field sibling');
+  var $target = $( '[data-translate-attribute]', $me.parent() );
   $target.trigger( 'poke' );
 }
 
