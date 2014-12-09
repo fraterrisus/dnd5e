@@ -14,6 +14,7 @@
 //= require bootstrap-sprockets
 //= require bootstrapValidator.min
 //= require attribute_translators
+//= require spells/index
 
 function submit_form_via_ajax( selector, successMethod, errorMethod ) {
   var $form = $( selector );

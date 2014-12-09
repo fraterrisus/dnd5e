@@ -1,0 +1,49 @@
+<% lastlevel = -1 %>
+<%= 
+safe_join( @spells.map do |s|
+  items = [ ]
+  items << s.school_text
+  items << s.level_text
+  items << s.casting_time_text
+  items << s.range_text
+  items << s.components_text
+  items << s.duration_text 
+
+  if s.level != lastlevel
+    lastlevel = s.level
+    div_classes = %w( new-section )
+  else
+    div_classes = []
+  end
+
+  if s.effect.nil?
+    color_classes = %w( text-warning )
+  else
+    color_classes = []
+  end
+
+  content_tag(:div, class: div_classes) { safe_join([
+    link_to('Detail', spell_path(s), class: %w( btn btn-xs btn-default )),
+    link_to('Edit', edit_spell_path(s), class: %w( btn btn-xs btn-default )),
+    content_tag(:span, class: color_classes,
+                'data-toggle' => 'collapse', 'data-target' => "#spell-#{s.id}-desc", 
+                'aria-expanded' => 'false', 'aria-controls' => "spell-#{s.id}-desc") do
+      safe_join( [ content_tag(:b, s.name) ] + items, ' &ndash; '.html_safe )
+    end,
+    content_tag(:div, id: "spell-#{s.id}-desc", class: 'spell-collapse collapse') do
+      t = ''.html_safe
+      if s.aoe
+        t << content_tag(:span, content_tag(:b, 'Area of effect: ') << s.aoe)
+      end
+      if s.reaction
+        t << content_tag(:span, content_tag(:b, 'Reaction trigger: ') << s.reaction)
+      end
+      t << content_tag(:span, content_tag(:b, 'Effect: ') << s.effect)
+      if s.higher
+        t << content_tag(:span, content_tag(:b, 'At higher levels: ') << s.higher)
+      end
+      t << content_tag(:span, content_tag(:b, 'Reference: ') << s.reference_text)
+    end
+  ], '&nbsp;'.html_safe) }
+end )
+%>

@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root 'spells#index'
 
   match 'spells', via: :get, to: 'spells#index'
+  match 'spells/ajax', via: :get
   match 'spells/:id/edit', via: :get, to: 'spells#edit', as: :edit_spell
   match 'spells/:id', via: :get, to: 'spells#show', as: :spell
   match 'spells/:id', via: [ :put, :patch ], to: 'spells#update'

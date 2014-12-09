@@ -3,7 +3,24 @@ class SpellsController < ApplicationController
   before_filter :load_spell, only: [ :show, :edit, :update ]
 
   def index
-    @spells = Spell.all.order(:name)
+  end
+
+  def ajax
+    searches = params.require('spell').
+      permit([ 'none', 'class_id' => [], 'school_id' => [], 'level' => [], 'cast_unit' => [],
+               'ritual' => [], 'range_unit' => [], 'components' => [], 'duration_unit' => [],
+               'concentration' => [] ])
+    searches.delete('none')
+
+    if searches.has_key? 'components'
+      if searches['components'].include?('1') && ! searches['components'].include?('2')
+        searches['components'] << '2'
+      end
+      searches['components'] = searches['components'].reduce(0) { |x,y| x += y.to_i }
+    end
+
+    @spells = Spell.where(searches).order(:level, :name)
+    render layout: nil
   end
 
   def show

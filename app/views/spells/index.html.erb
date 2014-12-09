@@ -1,40 +1,37 @@
-<h1>Spell List (Alphabetical)</h1>
-<% lastlevel = -1 %>
-<% @spells.each do |s|
-  items = [ ]
-  items << s.school_text
-  items << s.level_text
-  items << s.casting_time_text
-  items << s.range_text
-  items << s.components_text
-  items << s.duration_text
-  if s.level != lastlevel %>
-<%# content_tag(:h3, s.level_text) %>
-<%
-    lastlevel = s.level
-  end
-%>
-<div style="margin-bottom:6px">
-  <% coloring = (s.effect.nil?) ? 'text-warning' : 'text-success' %>
-  <%= link_to 'Detail', spell_path(s), class: 'btn btn-xs btn-default' %>
-  <%= link_to 'Edit', edit_spell_path(s), class: 'btn btn-xs btn-default' %>
-  <%= content_tag(:span, class: coloring,
-                  'data-toggle' => 'collapse', 'data-target' => "#spell-#{s.id}-desc", 
-                  'aria-expanded' => 'false', 'aria-controls' => "spell-#{s.id}-desc") do %>
-    <b><%= s.name %></b> &ndash; <%= safe_join(items, ' &ndash; '.html_safe) %>
-  <% end %>
-  <%= content_tag(:div, id: "spell-#{s.id}-desc", class: 'collapse') do %>
-  <% if aoe = s.aoe %>
-    <b>Area of effect:</b> <%= aoe %><br />
-  <% end %>
-  <% if rt = s.reaction %>
-    <b>Reaction trigger:</b><%= rt %><br />
-  <% end %>
-    <b>Effect:</b> <%= s.effect %><br />
-  <% if h = s.higher %>
-    <b>At higher levels:</b> <%= h %><br />
-  <% end %>
-    <b>Reference:</b> <%= s.reference_text %>
-  <% end %>
-</div>
-<% end %>
+<%= safe_join([
+  content_tag(:h1, 'Spell List'),
+  content_tag(:div, id: 'narrowing') do
+    content_tag(:table) do
+      content_tag(:thead) do
+        content_tag(:tr) do
+          safe_join(
+            [ 'Class', 'School', 'Level', 'Casting Time', 'Ritual?', 'Range', 
+              'Components', 'Duration', 'Concentration?' ].map { |lab| content_tag(:th, lab) }
+          )
+        end
+      end <<
+      content_tag(:tbody) do
+        content_tag(:form, id: 'narrow-select') do
+          hidden_field_tag('spell[none]', 0) <<
+          content_tag(:tr) do
+            safe_join [
+              select_tag('spell[class_id]', options_for_select([ ]), multiple: true),
+              select_tag('spell[school_id]', options_for_select(SpellSchool::options_for_select), multiple: true),
+              select_tag('spell[level]', options_for_select([[ 'Cantrip', 0 ]] + (1..9).zip( (1..9).to_a) ), multiple: true),
+              select_tag('spell[cast_unit]', options_for_select(TimeUnit::options_for_select), multiple: true),
+              select_tag('spell[ritual]', options_for_select([[ 'yes', 't' ], [ 'no', 'f' ]]), multiple: true),
+              select_tag('spell[range_unit]', options_for_select(DistanceUnit::options_for_select), multiple: true),
+              select_tag('spell[components]', options_for_select([
+                [ 'Verbal', 8 ], [ 'Somatic', 4 ], [ 'Material', 2 ], [ 'Focus', 1 ]
+              ]), multiple: true),
+              select_tag('spell[duration_unit]', options_for_select(TimeUnit::options_for_select), multiple: true),
+              select_tag('spell[concentration]', options_for_select([[ 'yes', 't' ], [ 'no', 'f' ]]), multiple: true),
+              button_tag('Fetch', id: 'spell-narrow-fetch', class: 'btn btn-primary', type: 'button')
+            ].map { |x| content_tag(:td, x) }
+          end
+        end
+      end
+    end
+  end,
+  content_tag(:div, nil, id: 'results')
+]) %>
