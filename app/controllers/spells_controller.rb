@@ -7,10 +7,18 @@ class SpellsController < ApplicationController
 
   def ajax_index
     searches = params.require('spell').
-      permit([ 'none', 'caster_class_ids' => [], 'school_id' => [], 'level' => [], 'cast_unit' => [],
-               'ritual' => [], 'range_unit' => [], 'components' => [], 'duration_unit' => [],
-               'concentration' => [] ])
+      permit([ 'none', 'sort_by_level', 'caster_class_ids' => [], 'school_id' => [], 
+               'level' => [], 'cast_unit' => [], 'ritual' => [], 'range_unit' => [], 
+               'components' => [], 'duration_unit' => [], 'concentration' => [] ])
     searches.delete('none')
+
+    bylevel = false
+    sorts = [ :name ]
+    if searches.has_key?('sort_by_level') && searches['sort_by_level'] == '1'
+      searches.delete 'sort_by_level'
+      bylevel = true
+      sorts = [ :level, :name ]
+    end
 
     if searches.has_key? 'components'
       if searches['components'].include?('1') && ! searches['components'].include?('2')
@@ -26,9 +34,9 @@ class SpellsController < ApplicationController
       searches['caster_classes'] = { id: cclass_ids }
     end
 
-    @spells = Spell.includes(habtms).where(searches).order(:level, :name)
+    @spells = Spell.includes(habtms).where(searches).order(sorts)
 
-    render layout: nil
+    render layout: nil, locals: { bylevel: bylevel }
   end
 
   def ajax_caster_edit
