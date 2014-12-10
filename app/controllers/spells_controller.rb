@@ -7,7 +7,7 @@ class SpellsController < ApplicationController
 
   def ajax_index
     searches = params.require('spell').
-      permit([ 'none', 'class_id' => [], 'school_id' => [], 'level' => [], 'cast_unit' => [],
+      permit([ 'none', 'caster_class_ids' => [], 'school_id' => [], 'level' => [], 'cast_unit' => [],
                'ritual' => [], 'range_unit' => [], 'components' => [], 'duration_unit' => [],
                'concentration' => [] ])
     searches.delete('none')
@@ -19,7 +19,15 @@ class SpellsController < ApplicationController
       searches['components'] = searches['components'].reduce(0) { |x,y| x += y.to_i }
     end
 
-    @spells = Spell.where(searches).order(:level, :name)
+    habtms = [ ]
+    cclass_ids = searches.delete 'caster_class_ids'
+    if cclass_ids && cclass_ids.any?
+      habtms << :caster_classes
+      searches['caster_classes'] = { id: cclass_ids }
+    end
+
+    @spells = Spell.includes(habtms).where(searches).order(:level, :name)
+
     render layout: nil
   end
 

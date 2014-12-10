@@ -15,7 +15,7 @@
           hidden_field_tag('spell[none]', 0) <<
           content_tag(:tr) do
             safe_join [
-              select_tag('spell[class_id]', options_for_select([ ]), multiple: true),
+              select_tag('spell[caster_class_ids]', options_from_collection_for_select(CasterClass.order(:name), :id, :name), multiple: true),
               select_tag('spell[school_id]', options_for_select(SpellSchool::options_for_select), multiple: true),
               select_tag('spell[level]', options_for_select([[ 'Cantrip', 0 ]] + (1..9).zip( (1..9).to_a) ), multiple: true),
               select_tag('spell[cast_unit]', options_for_select(TimeUnit::options_for_select), multiple: true),
