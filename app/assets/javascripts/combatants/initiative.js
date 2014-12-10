@@ -133,8 +133,8 @@ $( function () {
 
   // --------------------------------------------
   
-  var $editcomb_form = $( '#editcomb-modal form' )
-  var $editcomb_inputs = $( 'input.form-control', $editcomb_form )
+  var $editcomb_form = $( '#editcomb-modal form' );
+  var $editcomb_inputs = $( 'input.form-control', $editcomb_form );
 
   $( '#editcomb-modal' ).on( 'shown.bs.modal', function () {
     $editcomb_form.bootstrapValidator( 'validate' );
@@ -180,8 +180,8 @@ $( function () {
   });
   // --------------------------------------------
   
-  var $newcomb_form = $( '#newcomb-modal form' )
-  var $newcomb_inputs = $( 'input.form-control', $newcomb_form )
+  var $newcomb_form = $( '#newcomb-modal form' );
+  var $newcomb_inputs = $( 'input.form-control', $newcomb_form );
 
   $( '#newcomb-modal' ).on( 'show.bs.modal', function () {
     $newcomb_inputs.val( '' );

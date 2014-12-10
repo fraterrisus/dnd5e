@@ -1,8 +1,12 @@
 class Spell < ActiveRecord::Base
   has_and_belongs_to_many :caster_classes
 
+  def self.level_to_s (l)
+    (l == 0) ? 'Cantrip' : "Level #{l}"
+  end
+
   def level_text
-    (level == 0) ? 'Cantrip' : "Level #{level}"
+    self.class.level_to_s self.level
   end
 
   def school_text

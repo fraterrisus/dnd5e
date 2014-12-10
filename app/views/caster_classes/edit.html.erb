@@ -1,0 +1,11 @@
+<h1>Edit Caster Class</h1>
+<%= form_for(@cclass, url: edit_caster_class_path(@cclass), 
+             method: :patch, html: { role: 'form' }) { |f| safe_join([
+  f.hidden_field(:id),
+  content_tag(:div, class: %w( form-group )) do
+    f.label(:name) << f.text_field(:name, class: %w( form-control ))
+  end,
+  content_tag(:div, class: %w( form-group )) { f.submit('Update', class: %w( btn btn-success )) },
+  content_tag(:div, nil, class: %w( form-group ), id: 'casterclass-edit-results'),
+  content_tag(:div, class: %w( form-group )) { f.submit('Update', class: %w( btn btn-success )) },
+]) } %>

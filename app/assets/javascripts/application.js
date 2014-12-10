@@ -15,6 +15,8 @@
 //= require bootstrapValidator.min
 //= require attribute_translators
 //= require spells/index
+//= require caster_classes/index
+//= require caster_classes/edit
 
 function submit_form_via_ajax( selector, successMethod, errorMethod ) {
   var $form = $( selector );

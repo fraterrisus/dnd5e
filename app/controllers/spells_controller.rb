@@ -5,7 +5,7 @@ class SpellsController < ApplicationController
   def index
   end
 
-  def ajax
+  def ajax_index
     searches = params.require('spell').
       permit([ 'none', 'class_id' => [], 'school_id' => [], 'level' => [], 'cast_unit' => [],
                'ritual' => [], 'range_unit' => [], 'components' => [], 'duration_unit' => [],
@@ -21,6 +21,16 @@ class SpellsController < ApplicationController
 
     @spells = Spell.where(searches).order(:level, :name)
     render layout: nil
+  end
+
+  def ajax_caster_edit
+    caster_id = params.require :id
+    @caster = CasterClass.find(caster_id)
+    @spells = Spell.order(:level, :name).all
+    respond_to do |fmt|
+      fmt.html { render layout: nil }
+      fmt.json { render json: @spells }
+    end
   end
 
   def show
