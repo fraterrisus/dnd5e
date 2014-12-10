@@ -1,4 +1,5 @@
 class Spell < ActiveRecord::Base
+  has_and_belongs_to_many :caster_classes
 
   def level_text
     (level == 0) ? 'Cantrip' : "Level #{level}"
