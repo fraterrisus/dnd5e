@@ -64,7 +64,10 @@ class Spell < ActiveRecord::Base
   end
 
   def components_text
-    bitfield = components
+    self.class.components_to_s(components)
+  end
+
+  def self.components_to_s (bitfield)
     cmp = []
     cmp << 'V' if bitfield[3] == 1
     cmp << 'S' if bitfield[2] == 1

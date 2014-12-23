@@ -1,4 +1,5 @@
 <% last_value = -1 %>
+<%= render partial: 'spells/filters', locals: { filters: filters } %>
 <%= 
 safe_join( @spells.map do |s|
   items = [ ]

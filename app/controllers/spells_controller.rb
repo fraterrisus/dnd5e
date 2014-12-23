@@ -36,7 +36,7 @@ class SpellsController < ApplicationController
 
     @spells = Spell.includes(habtms).where(searches).order(sorts)
 
-    render layout: nil, locals: { bylevel: bylevel }
+    render layout: nil, locals: { bylevel: bylevel, filters: searches }
   end
 
   def ajax_caster_edit
