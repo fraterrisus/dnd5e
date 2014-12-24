@@ -43,74 +43,32 @@ content_tag(:div, class: %w( panel panel-default )) do
 end
 %>
 
-<%=
-content_tag(:div, id: 'newcomb-modal', class: 'modal fade', 
-            tabindex: '-1', role: 'dialog', 'aria-hidden' => true,
-            'aria-labelledby' => 'newcomb-label') do
-  content_tag(:div, class: %w( modal-dialog )) do
-    form_for(Combatant.new, class: %w( form-inline ), role: 'form') do |f|
-      content_tag(:div, class: %w( modal-content )) do
-        content_tag(:div, class: %w( modal-header )) do
-          button_tag('type' => 'button', 'data-dismiss' => 'modal', class: %w( close )) do
-            content_tag(:span, nil, class: %w( fa fa-close ), 'aria-hidden' => true) <<
-            content_tag(:span, 'close', class: 'sr-only')
-          end <<
-          content_tag(:h4, 'New Combatant', id: 'newcomb-label', class: 'modal-title')
-        end <<
-        content_tag(:div, class: %w( modal-body )) do
-          content_tag(:div, class: %w( form-group row )) do
-            content_tag(:div, class: %w( col-xs-12 col-sm-9 )) do
-              f.label(:name) <<
-              f.text_field(:name, class: 'form-control')
-            end <<
-            content_tag(:div, class: %w( col-xs-4 col-sm-3 )) do
-              f.label(:count) <<
-              f.text_field(:count, class: %w( form-control col-xs-2 ))
-            end
-          end
-        end <<
-        content_tag(:div, class: %w( modal-footer )) do
-          button_tag('Cancel', type: 'button', class: %w( btn btn-default ), 'data-dismiss' => 'modal') <<
-          button_tag('Add', type: 'submit', id: 'newcomb-ok', class: %w( btn btn-primary ))
-        end
-      end
+<%= bootstrap_modal('newcomb', Combatant, 'New Combatant', 
+                    { submit_label: 'Add', inline: false }) do |f|
+  content_tag(:div, class: %w( form-group row )) do
+    content_tag(:div, class: %w( col-xs-12 col-sm-9 )) do
+      f.label(:name) <<
+      f.text_field(:name, class: 'form-control')
+    end <<
+    content_tag(:div, class: %w( col-xs-4 col-sm-3 )) do
+      f.label(:count) <<
+      f.text_field(:count, class: %w( form-control col-xs-2 ))
     end
-  end
+  end 
 end
 %>
 
-<%=
-content_tag(:div, id: 'editcomb-modal', class: 'modal fade', 
-            tabindex: '-1', role: 'dialog', 'aria-hidden' => true,
-            'aria-labelledby' => 'editcomb-label') do
-  content_tag(:div, class: %w( modal-dialog )) do
-    form_for(Combatant.new, method: 'PATCH', html: { class: %w( form-inline ), role: 'form' }) do |f|
-      content_tag(:div, class: %w( modal-content )) do
-        content_tag(:div, class: %w( modal-header )) do
-          button_tag('type' => 'button', 'data-dismiss' => 'modal', class: %w( close )) do
-            content_tag(:span, nil, class: %w( fa fa-close ), 'aria-hidden' => true) <<
-            content_tag(:span, 'close', class: 'sr-only')
-          end <<
-          content_tag(:h4, 'Edit Combatant', id: 'editcomb-label', class: 'modal-title')
-        end <<
-        content_tag(:div, class: %w( modal-body )) do
-          content_tag(:div, class: %w( form-group row )) do
-            content_tag(:div, class: %w( col-xs-12 col-sm-9 )) do
-              f.label(:name) <<
-              f.text_field(:name, class: 'form-control')
-            end <<
-            content_tag(:div, class: %w( col-xs-4 col-sm-3 )) do
-              f.label(:count) <<
-              f.text_field(:count, class: %w( form-control col-xs-2 ))
-            end
-          end
-        end <<
-        content_tag(:div, class: %w( modal-footer )) do
-          button_tag('Cancel', type: 'button', class: %w( btn btn-default ), 'data-dismiss' => 'modal') <<
-          button_tag('Add', type: 'submit', id: 'editcomb-ok', class: %w( btn btn-primary ))
-        end
-      end
+<%= bootstrap_modal('editcomb', Combatant, 'Edit Combatant', 
+                    { form: { method: 'PATCH' }, submit_label: 'Update', inline: false }) do |f|
+  content_tag(:div, class: %w( form-group row )) do
+    content_tag(:div, class: %w( col-xs-12 col-sm-9 )) do
+      f.label(:name) <<
+      f.text_field(:name, class: 'form-control')
+    end <<
+    content_tag(:div, class: %w( col-xs-4 col-sm-3 )) do
+      f.label(:count) <<
+      f.text_field(:count, class: %w( form-control col-xs-2 ))
     end
-  end
+  end 
 end
 %>

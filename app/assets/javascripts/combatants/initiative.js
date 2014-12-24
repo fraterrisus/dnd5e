@@ -14,6 +14,7 @@ function run_auto_update () {
   // Skip this update if the autoupdate button is off
   // or if any modal dialog is currently visible
   if ( ( $( '#autoupdate' ).prop( 'checked' ) )
+      && ( "true" === $( '#editcomb-modal' ).attr( 'aria-hidden' ) )
       && ( "true" === $( '#newcomb-modal' ).attr( 'aria-hidden' ) ) )
     run_update();
 }
@@ -133,7 +134,7 @@ $( function () {
 
   // --------------------------------------------
   
-  var $editcomb_form = $( '#editcomb-modal form' );
+  var $editcomb_form = $( '#editcomb-form' );
   var $editcomb_inputs = $( 'input.form-control', $editcomb_form );
 
   $( '#editcomb-modal' ).on( 'shown.bs.modal', function () {
@@ -167,20 +168,23 @@ $( function () {
     }
   }).on( 'success.form.bv', function (ev) {
     ev.preventDefault();
+    $( '#editcomb-ok' ).removeAttr( 'disabled' );
+  });
 
+  $editcomb_form.on( 'submit', function (ev) {
     submit_form_via_ajax( $editcomb_form,
-      function () {
-        $( '#newcomb-modal' ).modal( 'hide' );
-        run_update();
+      function () { 
+        run_update(); 
+        $( '#editcomb-modal' ).modal( 'hide' ); 
       },
       function () { 
         alert( "Error: Couldn't submit form" ); 
       }
-      );
+    );
   });
   // --------------------------------------------
   
-  var $newcomb_form = $( '#newcomb-modal form' );
+  var $newcomb_form = $( '#newcomb-form' );
   var $newcomb_inputs = $( 'input.form-control', $newcomb_form );
 
   $( '#newcomb-modal' ).on( 'show.bs.modal', function () {
@@ -217,15 +221,19 @@ $( function () {
     }
   }).on( 'success.form.bv', function (ev) {
     ev.preventDefault();
-    submit_form_via_ajax( $newcomb_form,
-      function () {
-        $( '#newcomb-modal' ).modal( 'hide' );
-        run_update();
+    $( '#newcomb-ok' ).removeAttr( 'disabled' );
+  });
+
+  $newcomb_form.on( 'submit', function (ev) {
+    submit_form_via_ajax( $newcomb_form, 
+      function () { 
+        $( '#newcomb-modal' ).modal( 'hide' ); 
+        run_update(); 
       },
       function () { 
         alert( "Error: Couldn't submit form" ); 
       }
-      );
+    );
   });
 
 } );
