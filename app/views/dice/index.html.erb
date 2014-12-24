@@ -1,0 +1,46 @@
+<%= safe_join ([
+  content_tag(:h1, 'Die Roller'),
+  content_tag(:div, id: 'dicebar', class: %w( panel panel-default )) do
+    content_tag(:div, class: %w( panel-body )) do
+      form_tag('#', html: { class: 'form', role: 'form' } ) do
+        content_tag(:div, class: %w( form-group )) do
+          content_tag(:label, class: %w( radio-inline )) do
+            radio_button_tag(:adv, -1) << 'Disadvantage'
+          end <<
+          content_tag(:label, class: %w( radio-inline )) do
+            radio_button_tag(:adv, 0, true) << 'Neither'
+          end <<
+          content_tag(:label, class: %w( radio-inline )) do
+            radio_button_tag(:adv, 1) << 'Advantage'
+          end
+        end <<
+        content_tag(:div, class: %w( form-group row )) do
+          content_tag(:div, class: %w( col-xs-6 col-sm-3 col-md-2 )) do
+            content_tag(:div, class: %w( input-group )) do
+              content_tag(:span, class: %w( input-group-btn )) do
+                button_tag('', type: 'button', id: 'numdice-minone', 
+                           class: %w( btn btn-default glyphicon glyphicon-minus )) 
+              end <<
+              text_field_tag('numdice', '1', class: 'form-control') <<
+              content_tag(:span, class: %w( input-group-btn )) do
+                button_tag('', type: 'button', id: 'numdice-plsone', 
+                           class: %w( btn btn-default glyphicon glyphicon-plus )) 
+              end
+            end
+          end
+        end <<
+        content_tag(:div, class: %w( form-group )) do
+          content_tag(:div, class: %w( btn-group )) do
+            button_tag('d4', type: 'button', id: 'roll-4', class: %w( btn btn-default )) <<
+            button_tag('d6', type: 'button', id: 'roll-6', class: %w( btn btn-default )) <<
+            button_tag('d8', type: 'button', id: 'roll-8', class: %w( btn btn-default )) <<
+            button_tag('d10', type: 'button', id: 'roll-10', class: %w( btn btn-default )) <<
+            button_tag('d12', type: 'button', id: 'roll-12', class: %w( btn btn-default )) <<
+            button_tag('d20', type: 'button', id: 'roll-20', class: %w( btn btn-primary ))
+          end
+        end
+      end
+    end <<
+    content_tag(:div, 'Result:', id: 'dicebar-result', class: %w( panel-footer ))
+  end
+]) %>

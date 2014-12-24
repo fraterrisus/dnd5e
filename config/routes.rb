@@ -24,6 +24,8 @@ Rails.application.routes.draw do
   match 'combatants/clear', via: :get, as: 'clear_combatants'
   match 'combatants/:id', via: [ :put, :patch ], to: 'combatants#update'
 
+  match 'dice', via: :get, to: 'dice#index', as: :dice
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

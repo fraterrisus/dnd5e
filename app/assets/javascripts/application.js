@@ -17,6 +17,11 @@
 //= require spells/index
 //= require caster_classes/index
 //= require caster_classes/edit
+//= require dice/roll
+
+Array.prototype.sortNumbers = function() { 
+  return this.sort( function (a,b) { return a-b; } );
+}
 
 function submit_form_via_ajax( selector, successMethod, errorMethod ) {
   var $form = $( selector );
