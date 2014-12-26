@@ -34,6 +34,7 @@ safe_join( @spells.map do |s|
     end,
     content_tag(:div, id: "spell-#{s.id}-desc", class: 'spell-collapse collapse') do
       t = ''.html_safe
+      t << content_tag(:span, content_tag(:b, 'Casters: ') << s.caster_classes.map(&:name).join(', '))
       if s.aoe
         t << content_tag(:span, content_tag(:b, 'Area of effect: ') << s.aoe)
       end
