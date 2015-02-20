@@ -4,11 +4,16 @@ Rails.application.routes.draw do
   match 'ajax/spells/spell_index', via: :get, to: 'spells#ajax_index'
   match 'ajax/spells/caster_edit/:id', via: :get, to: 'spells#ajax_caster_edit'
   match 'ajax/classes/class_index', via: :get, to: 'caster_classes#ajax_index'
+  match 'ajax/characters/index', via: :get, to: 'characters#ajax_index'
 
   match 'spells', via: :get, to: 'spells#index'
   match 'spells/:id/edit', via: :get, to: 'spells#edit', as: :edit_spell
   match 'spells/:id', via: :get, to: 'spells#show', as: :spell
   match 'spells/:id', via: [ :put, :patch ], to: 'spells#update'
+
+  match 'characters', via: :get, to: 'characters#index'
+  match 'characters', via: :post, to: 'characters#create'
+  match 'characters/:id', via: [ :put, :patch ], to: 'characters#update'
 
   match 'classes', via: :get, to: 'caster_classes#index', as: :caster_classes
   match 'classes', via: :post, to: 'caster_classes#create'

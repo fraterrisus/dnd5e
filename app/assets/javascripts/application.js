@@ -17,6 +17,7 @@
 //= require spells/index
 //= require caster_classes/index
 //= require caster_classes/edit
+//= require characters/index
 //= require dice/roll
 
 Array.prototype.sortNumbers = function() { 

@@ -43,8 +43,8 @@ content_tag(:div, class: %w( panel panel-default )) do
 end
 %>
 
-<%= bootstrap_modal('newcomb', Combatant, 'New Combatant', 
-                    { submit_label: 'Add', inline: false }) do |f|
+<%
+def modal_body(f)
   content_tag(:div, class: %w( form-group row )) do
     content_tag(:div, class: %w( col-xs-12 col-sm-9 )) do
       f.label(:name) <<
@@ -54,21 +54,14 @@ end
       f.label(:count) <<
       f.text_field(:count, class: %w( form-control col-xs-2 ))
     end
-  end 
+  end
 end
 %>
 
+<%= bootstrap_modal('newcomb', Combatant, 'New Combatant', 
+    { submit_label: 'Add', inline: false }) \
+    { |f| modal_body(f) } %>
+
 <%= bootstrap_modal('editcomb', Combatant, 'Edit Combatant', 
-                    { form: { method: 'PATCH' }, submit_label: 'Update', inline: false }) do |f|
-  content_tag(:div, class: %w( form-group row )) do
-    content_tag(:div, class: %w( col-xs-12 col-sm-9 )) do
-      f.label(:name) <<
-      f.text_field(:name, class: 'form-control')
-    end <<
-    content_tag(:div, class: %w( col-xs-4 col-sm-3 )) do
-      f.label(:count) <<
-      f.text_field(:count, class: %w( form-control col-xs-2 ))
-    end
-  end 
-end
-%>
+    { form: { method: 'PATCH' }, submit_label: 'Update', inline: false }) \
+    { |f| modal_body(f) } %>

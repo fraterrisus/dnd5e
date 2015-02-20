@@ -1,0 +1,37 @@
+<%= content_tag(:table, class: 'table') do
+  content_tag(:tr) do
+    safe_join [
+      content_tag(:th, nil),
+      content_tag(:th, 'Name'),
+      content_tag(:th, 'S', { title: 'Strength' }),
+      content_tag(:th, 'D', { title: 'Dexterity' }),
+      content_tag(:th, 'C', { title: 'Constitution' }),
+      content_tag(:th, 'I', { title: 'Intelligence' }),
+      content_tag(:th, 'W', { title: 'Wisdom' }),
+      content_tag(:th, 'C', { title: 'Charisma' }),
+      content_tag(:th, 'Per', { title: 'Perception' }),
+      content_tag(:th, 'Init', { title: 'Initiative' }),
+      content_tag(:th, 'Spd', { title: 'Speed' }),
+      content_tag(:th, 'AC', { title: 'Armor Class' }),
+    ]
+  end <<
+  safe_join( @chars.map do |c|
+    tr_klass = c.highlight ? 'info' : []
+    s = content_tag(:tr, class: tr_klass) do
+      cells = [ content_tag(:td, content_tag(:a, nil, class: %w( glyphicon glyphicon-pencil ))) ]
+      [ :name, :str, :dex, :con, :int, :wis, :chr, :perception, :initiative, :speed, :ac ].each do |k|
+        cells << content_tag(:td, c.send(k))
+      end
+      safe_join(cells, '')
+    end
+    if c.notes && c.notes != ""
+      s += content_tag(:tr, class: tr_klass) do
+        safe_join [
+          content_tag(:td, nil),
+          content_tag(:td, c.notes, { colspan:30 })
+        ]
+      end
+    end
+    s
+  end, '')
+end %>

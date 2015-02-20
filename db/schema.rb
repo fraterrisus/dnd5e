@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141210014657) do
+ActiveRecord::Schema.define(version: 20150220025947) do
 
   create_table "caster_classes", force: true do |t|
     t.string   "name"
@@ -22,6 +22,24 @@ ActiveRecord::Schema.define(version: 20141210014657) do
   create_table "caster_classes_spells", id: false, force: true do |t|
     t.integer "caster_class_id", null: false
     t.integer "spell_id",        null: false
+  end
+
+  create_table "characters", force: true do |t|
+    t.string   "name"
+    t.boolean  "highlight"
+    t.integer  "str"
+    t.integer  "dex"
+    t.integer  "con"
+    t.integer  "int"
+    t.integer  "wis"
+    t.integer  "chr"
+    t.integer  "perception"
+    t.integer  "ac"
+    t.integer  "initiative"
+    t.integer  "speed"
+    t.text     "notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "combatants", force: true do |t|

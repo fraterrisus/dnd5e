@@ -1,0 +1,46 @@
+<h1>Character List</h1>
+<div style="margin-top:12px; margin-bottom:12px;">
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newchar-modal">New Character</button>
+</div>
+<div id="char-results" class="results"></div>
+<%
+def modal_body(f)
+  content_tag(:div, class: %w( form-group row )) do
+    content_tag(:div, class: %w( col-xs-12 col-sm-12 )) do
+      f.label(:name) << f.text_field(:name, class: 'form-control')
+    end
+  end <<
+  content_tag(:div, class: %w( form-group row )) do
+    safe_join( [ :str, :dex, :con, :int, :wis, :chr ].map do |k|
+      content_tag(:div, class: %w( col-xs-2 col-sm-2 )) do
+        f.label(k) << f.text_field(k, class: 'form-control')
+      end
+    end, '')
+  end <<
+  content_tag(:div, class: %w( form-group row )) do
+    safe_join( [ :perception, :initiative, :speed, :ac ].map do |k|
+      content_tag(:div, class: %w( col-xs-3 col-sm-3 )) do
+        f.label(k) << f.text_field(k, class: 'form-control')
+      end
+    end, '')
+  end <<
+  content_tag(:div, class: %w( form-group row )) do
+    content_tag(:div, class: %w( col-xs-12 col-sm-12 )) do
+      f.label(:notes) << f.text_field(:notes, class: 'form-control')
+    end
+  end <<
+  content_tag(:div, class: %w( form-group row )) do
+    content_tag(:div, class: %w( col-xs-12 col-sm-12 )) do
+      f.check_box(:highlight, class: 'form_control') << ' ' << f.label(:highlight)
+    end
+  end
+end
+%>
+
+<%= bootstrap_modal('newchar', Character, 'New Character', 
+    { submit_label: 'Add', inline: false }) \
+    { |f| modal_body(f) } %>
+
+<%= bootstrap_modal('editchar', Character, 'Edit Character', 
+    { form: { method: 'PATCH' }, submit_label: 'Update', inline: false }) \
+    { |f| modal_body(f) } %>

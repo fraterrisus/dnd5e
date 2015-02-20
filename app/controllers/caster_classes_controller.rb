@@ -4,7 +4,7 @@ class CasterClassesController < ApplicationController
 
   def index
     respond_to do |fmt|
-      fmt.json { redirect_to action: :ajax, format: :json }
+      fmt.json { redirect_to action: :ajax_index, format: :json }
       fmt.html {}
     end
   end
