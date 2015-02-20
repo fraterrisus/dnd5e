@@ -77,7 +77,7 @@
             content_tag(:div, class: %w( form-group )) do
               content_tag(:label, class: %w( checkbox-inline )) do
                 hidden_field_tag('spell[sort_by_level]', '0') <<
-                check_box_tag('spell[sort_by_level]', '1', true) << 'Sort by level'
+                check_box_tag('spell[sort_by_level]', '1', false) << 'Sort by level'
               end
             end
           end <<

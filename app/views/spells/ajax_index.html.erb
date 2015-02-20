@@ -1,5 +1,6 @@
 <% last_value = -1 %>
 <%= render partial: 'spells/filters', locals: { filters: filters } %>
+<%= content_tag(:div, "Matched #{@spells.count} spells", style: 'font-style: italic') %>
 <%= 
 safe_join( @spells.map do |s|
   items = [ ]
@@ -25,8 +26,8 @@ safe_join( @spells.map do |s|
   end
 
   content_tag(:div, class: div_classes) { safe_join([
-    link_to('Detail', spell_path(s), class: %w( btn btn-xs btn-default )),
-    link_to('Edit', edit_spell_path(s), class: %w( btn btn-xs btn-default )),
+    link_to('', spell_path(s), class: %w( glyphicon glyphicon-eye-open )),
+    link_to('', edit_spell_path(s), class: %w( glyphicon glyphicon-pencil )),
     content_tag(:span, class: color_classes,
                 'data-toggle' => 'collapse', 'data-target' => "#spell-#{s.id}-desc", 
                 'aria-expanded' => 'false', 'aria-controls' => "spell-#{s.id}-desc") do
