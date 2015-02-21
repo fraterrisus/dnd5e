@@ -10,14 +10,16 @@ function roll_dice(sides) {
     d1 += t1;
     d2 += t2;
   }
-  var s1 = 'Result: ' + d1;
-  var s2 = 'Result: ' + d2;
+  var s1 = '&nbsp;Result: ' + d1;
+  var s2 = '&nbsp;Result: ' + d2;
   //r1.sortNumbers().reverse();
   //r2.sortNumbers().reverse();
   if (numdice > 1) {
-    s1 += '&nbsp;&nbsp;' + r1.join(",");
-    s2 += '&nbsp;&nbsp;' + r2.join(",");
+    s1 += '&nbsp;&nbsp;(' + r1.join(",") + ')';
+    s2 += '&nbsp;&nbsp;(' + r2.join(",") + ')';
   }
+  s1 += '&nbsp;';
+  s2 += '&nbsp;';
   if (advantage === "1") { 
     if (d2 > d1) {
       s = '<strike>' + s1 + '</strike>' + '<br/>' + s2;
