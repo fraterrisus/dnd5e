@@ -1,4 +1,4 @@
-<h1>Character List</h1>
+<h1>Character Notes</h1>
 <div style="margin-top:12px; margin-bottom:12px;">
   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newchar-modal">New Character</button>
 </div>
@@ -31,7 +31,9 @@ def modal_body(f)
   end <<
   content_tag(:div, class: %w( form-group row )) do
     content_tag(:div, class: %w( col-xs-12 col-sm-12 )) do
-      f.check_box(:highlight, class: 'form_control') << ' ' << f.label(:highlight)
+      content_tag(:label, class: %w( checkbox-inline )) do
+        f.check_box(:highlight, class: 'form_control') << 'Highlight?'
+      end
     end
   end
 end

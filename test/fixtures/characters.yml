@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  str: 1
+  dex: 1
+  con: 1
+  int: 1
+  wis: 1
+  chr: 1
+  perception: 1
+  ac: 1
+  initiative: 1
+  speed: 1
+  notes: MyText
+
+two:
+  str: 1
+  dex: 1
+  con: 1
+  int: 1
+  wis: 1
+  chr: 1
+  perception: 1
+  ac: 1
+  initiative: 1
+  speed: 1
+  notes: MyText

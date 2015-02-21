@@ -18,7 +18,7 @@ class CharactersController < ApplicationController
     id = params.require(:id)
     data = params.require(:character) \
       .permit(:name, :str, :dex, :con, :int, :wis, :chr,
-              :perception, :initiative, :speed, :ac, :notes)
+              :perception, :initiative, :speed, :ac, :notes, :highlight)
     char = Character.find id
     char.update_attributes data
     render json: char
@@ -27,7 +27,7 @@ class CharactersController < ApplicationController
   def create
     data = params.require(:character) \
       .permit(:name, :str, :dex, :con, :int, :wis, :chr,
-              :perception, :initiative, :speed, :ac, :notes)
+              :perception, :initiative, :speed, :ac, :notes, :highlight)
     char = Character.create data
     render json: char
   end
