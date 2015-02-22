@@ -60,3 +60,17 @@ span.edit-confirm {
   }
 }
 
+#detail-modal {
+  table {
+    th, td {
+      padding: 2px 5px;
+    }
+
+    tr {
+      border-top: 1px solid silver;
+      border-bottom: 1px solid silver;
+    }
+
+    margin-bottom: 5px;
+  }
+}

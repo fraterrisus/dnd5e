@@ -46,6 +46,22 @@ class SpellsController < ApplicationController
     end
   end
 
+  def ajax_markdown
+    require 'redcarpet'
+
+    filename = params.require :name
+    Rails.logger.debug ""
+    filename = "#{Rails.root}/public/spells/#{filename}.md"
+    begin
+      descrip = File.read(filename)
+    rescue Errno::ENOENT
+      Rails.logger.error "Failed to load #{filename}"
+      render html: "", status: 404
+      return
+    end
+    render md: descrip
+  end
+
   def show
   end
 

@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   root 'spells#index'
 
-  match 'ajax/spells/spell_index', via: :get, to: 'spells#ajax_index'
+  match 'ajax/spells/index', via: :get, to: 'spells#ajax_index'
   match 'ajax/spells/caster_edit/:id', via: :get, to: 'spells#ajax_caster_edit'
+  match 'ajax/spells/detail', via: :get, to: 'spells#ajax_markdown'
   match 'ajax/classes/class_index', via: :get, to: 'caster_classes#ajax_index'
   match 'ajax/characters/index', via: :get, to: 'characters#ajax_index'
 

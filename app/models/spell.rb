@@ -1,6 +1,10 @@
 class Spell < ActiveRecord::Base
   has_and_belongs_to_many :caster_classes
 
+  def to_asset
+    self.name.downcase.gsub(/['\/]/, '').gsub(/\s+/, '_')
+  end
+
   def self.level_to_s (l)
     (l == 0) ? 'Cantrip' : "Level #{l}"
   end

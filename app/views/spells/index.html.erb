@@ -6,6 +6,23 @@
 
   content_tag(:div, nil, id: 'spells-results', class: 'results'),
 
+  content_tag(:div, id: 'detail-modal', class: 'modal fade', 
+              tabindex: '-1', role: 'dialog', 'aria-hidden' => true,
+              'aria-labelledby' => 'detail-label') do
+    content_tag(:div, class: %w( modal-dialog )) do
+      content_tag(:div, class: %w( modal-content )) do
+        content_tag(:div, class: %w( modal-header )) do
+          button_tag('type' => 'button', 'data-dismiss' => 'modal', class: %w( close )) do
+            content_tag(:span, nil, class: %w( fa fa-close ), 'aria-hidden' => true) <<
+            content_tag(:span, 'close', class: 'sr-only')
+          end <<
+          content_tag(:h4, nil, id: 'detail-label', class: 'modal-title')
+        end <<
+        content_tag(:div, nil, id: 'detail-body', class: %w( modal-body ))
+      end
+    end
+  end,
+
   content_tag(:div, id: 'narrowing-modal', class: 'modal fade', 
               tabindex: '-1', role: 'dialog', 'aria-hidden' => true,
               'aria-labelledby' => 'narrowing-label') do
