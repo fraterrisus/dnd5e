@@ -26,15 +26,11 @@
       edit_checkbox_row(f, :ritual, 'May be cast as ritual', [9,3]),
     ])},
 
-    edit_textfield_form(@spell, :reaction),
-
     edit_field_form(@spell, :range_n) { |f| safe_join([
       edit_redirect_header(@spell, [ :range_n, :range_unit ], 'translate_spell_distance' ),
       edit_textfield_row(f, :range_n, [4,2,2]),
       edit_select_row(f, :range_unit, DistanceUnit::options_for_select, [6,4,2], 'spell_range_n'),
     ])},
-
-    edit_textfield_form(@spell, :aoe),
 
     edit_field_form(@spell, :components) do |f|
       edit_basic_header(@spell, :components) <<
@@ -44,17 +40,11 @@
       end
     end,
 
-    edit_textfield_form(@spell, :page),
-
     edit_field_form(@spell, :duration_n) { |f| safe_join([
       edit_redirect_header(@spell, [ :duration_n, :duration_unit, :concentration ], 'translate_spell_duration' ),
       edit_textfield_row(f, :duration_n, [4,2,1]),
       edit_select_row(f, :duration_unit, TimeUnit::options_for_select, [6,4,2], 'spell_duration_n'),
       edit_checkbox_row(f, :concentration, 'Requires concentration', [9,3]),
     ])},
-
-    edit_textfield_form(@spell, :effect),
-
-    edit_textfield_form(@spell, :higher),
   ])}
 %>

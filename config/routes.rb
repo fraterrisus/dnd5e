@@ -4,11 +4,10 @@ Rails.application.routes.draw do
   match 'ajax/spells/index', via: :get, to: 'spells#ajax_index'
   match 'ajax/spells/caster_edit/:id', via: :get, to: 'spells#ajax_caster_edit'
   match 'ajax/spells/detail', via: :get, to: 'spells#ajax_markdown'
-  match 'ajax/classes/class_index', via: :get, to: 'caster_classes#ajax_index'
+  match 'ajax/classes/index', via: :get, to: 'caster_classes#ajax_index'
   match 'ajax/characters/index', via: :get, to: 'characters#ajax_index'
 
   match 'spells', via: :get, to: 'spells#index'
-  match 'spells/:id/edit', via: :get, to: 'spells#edit', as: :edit_spell
   match 'spells/:id', via: :get, to: 'spells#show', as: :spell
   match 'spells/:id', via: [ :put, :patch ], to: 'spells#update'
 

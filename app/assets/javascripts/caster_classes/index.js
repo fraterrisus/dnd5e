@@ -31,7 +31,7 @@ $( function () {
     submit_form_via_ajax( $newclass_form,
       function () {
         $( '#newclass-modal' ).modal( 'hide' );
-        $( '#cclass-results' ).load( '/ajax/classes/class_index.html');
+        $( '#cclass-results' ).load( '/ajax/classes/index.html');
       },
       function () { 
         alert( "Error: Couldn't submit form" ); 
@@ -39,5 +39,5 @@ $( function () {
     );
   });
 
-  $( '#cclass-results' ).load( '/ajax/classes/class_index.html');
+  $( '#cclass-results' ).load( '/ajax/classes/index.html');
 });

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150220025947) do
+ActiveRecord::Schema.define(version: 20150222004949) do
 
   create_table "caster_classes", force: true do |t|
     t.string   "name"
@@ -53,7 +53,6 @@ ActiveRecord::Schema.define(version: 20150220025947) do
 
   create_table "spells", force: true do |t|
     t.string   "name"
-    t.integer  "page"
     t.integer  "level"
     t.integer  "school_id"
     t.boolean  "ritual"
@@ -61,14 +60,10 @@ ActiveRecord::Schema.define(version: 20150220025947) do
     t.integer  "cast_unit"
     t.integer  "range_n"
     t.integer  "range_unit"
-    t.string   "aoe"
     t.integer  "components"
     t.boolean  "concentration"
     t.integer  "duration_n"
     t.integer  "duration_unit"
-    t.string   "effect"
-    t.string   "higher"
-    t.string   "reaction"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
