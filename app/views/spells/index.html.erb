@@ -1,3 +1,7 @@
+<% content_for :head do %>
+  <%= javascript_pack_tag 'spells' %>
+<% end %>
+
 <%= safe_join([
   content_tag(:h1, 'Spell List'),
 
