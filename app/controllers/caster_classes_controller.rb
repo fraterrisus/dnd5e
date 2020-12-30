@@ -1,11 +1,10 @@
 class CasterClassesController < ApplicationController
-
-  before_filter :load_caster_class, only: [ :edit, :update ]
+  before_action :load_caster_class, only: [:edit, :update]
 
   def index
     respond_to do |fmt|
       fmt.json { redirect_to action: :ajax_index, format: :json }
-      fmt.html {}
+      fmt.html
     end
   end
 
@@ -17,8 +16,7 @@ class CasterClassesController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     p = params.require('caster_class').permit('id', 'name', 'spell_ids' => [])

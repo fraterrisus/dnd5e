@@ -2,7 +2,7 @@ class CharactersController < ApplicationController
   def index
     respond_to do |fmt|
       fmt.json { redirect_to action: :ajax_index, format: :json }
-      fmt.html {}
+      fmt.html
     end
   end
 
@@ -16,20 +16,21 @@ class CharactersController < ApplicationController
 
   def update
     id = params.require(:id)
-    data = params.require(:character) \
+    data = params.require(:character)
       .permit(:name, :str, :dex, :con, :int, :wis, :chr,
               :perception, :initiative, :speed, :ac, :notes, :highlight)
     char = Character.find id
-    char.update_attributes data
-    render json: char
+    char.update data
+    # render json: char
+    redirect_to characters_path
   end
 
   def create
-    data = params.require(:character) \
+    data = params.require(:character)
       .permit(:name, :str, :dex, :con, :int, :wis, :chr,
               :perception, :initiative, :speed, :ac, :notes, :highlight)
     char = Character.create data
-    render json: char
+    # render json: char
+    redirect_to characters_path
   end
-
 end

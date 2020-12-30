@@ -1,0 +1,44 @@
+AllCops:
+  NewCops: enable
+
+Layout/ElseAlignment:
+  Enabled: false
+
+Layout/EndAlignment:
+  Enabled: false
+
+Layout/HashAlignment:
+  Enabled: false
+
+Layout/IndentationStyle:
+  EnforcedStyle: spaces
+
+Layout/IndentationWidth:
+  Enabled: false
+
+Layout/MultilineOperationIndentation:
+  Enabled: false
+
+Layout/MultilineMethodCallIndentation:
+  Enabled: false
+
+Layout/FirstArrayElementIndentation:
+  Enabled: false
+
+Metrics:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/PercentLiteralDelimiters:
+  Enabled: false
+
+Style/RegexpLiteral:
+  EnforcedStyle: slashes
+
+Style/SymbolArray:
+  Enabled: false

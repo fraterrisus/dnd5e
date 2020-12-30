@@ -1,18 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>D&amp;D5e Reference</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_pack_tag 'application' %>
+  <%= javascript_pack_tag 'application' %>
   <%= yield :head %>
   <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 </head>
 <body role="document">
 <%= render 'navbar' %>
 
 <div class="container" role="main">
-<%= yield %>
+  <%= yield %>
 </div>
 
 </body>

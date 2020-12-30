@@ -1,0 +1,7997 @@
+---
+- !ruby/object:Spell
+  attributes:
+    id: 1
+    name: Acid Splash
+    page: 211
+    level: 0
+    school_id: 1
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: 1 enemy, or 2 within 5' of each other
+    components: 12
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 1d6 acid, DEX ½
+    higher: "+1d6 acid at 5th, 11th, 17th"
+    reaction: 
+    created_at: 2014-11-25 03:40:02.410033000 Z
+    updated_at: 2014-11-29 20:23:18.417594000 Z
+- !ruby/object:Spell
+  attributes: &1
+    id: 2
+    name: Aid
+    page: 211
+    level: 2
+    school_id: 0
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 30
+    range_unit: 10
+    aoe: 3 targets
+    components: 15
+    concentration: false
+    duration_n: 8
+    duration_unit: 12
+    effect: Grant 5 HP, max HP for duration (this is different than "temporary HP")
+    higher: "+5 HP per level"
+    reaction: 
+    created_at: 2014-11-25 03:40:02.587419000 Z
+    updated_at: 2014-11-29 23:48:24.252062000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 3
+    name: Alarm
+    page: 211
+    level: 1
+    school_id: 0
+    ritual: true
+    cast_n: 1
+    cast_unit: 11
+    range_n: 30
+    range_unit: 10
+    aoe: 20' cube; or one door, window, etc.
+    components: 15
+    concentration: false
+    duration_n: 8
+    duration_unit: 12
+    effect: Audible or mental alarm alerts you if ≥Tiny creature enters area or touches
+      object
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:02.754181000 Z
+    updated_at: 2014-11-29 23:28:39.488850000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 4
+    name: Alter Self
+    page: 211
+    level: 2
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 12
+    concentration: true
+    duration_n: 1
+    duration_unit: 12
+    effect: Become aquatic; change appearance; or gain natural weapons (+1/1d6)
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:02.912899000 Z
+    updated_at: 2014-11-29 20:18:25.001380000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 5
+    name: Animal Friendship
+    page: 212
+    level: 1
+    school_id: 3
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 30
+    range_unit: 10
+    aoe: 1 beast with INT<4 that can hear and see you
+    components: 15
+    concentration: false
+    duration_n: 24
+    duration_unit: 12
+    effect: Charm beast, WIS negates
+    higher: "+1 target per level"
+    reaction: 
+    created_at: 2014-11-25 03:40:03.080253000 Z
+    updated_at: 2014-11-29 20:22:48.710514000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 6
+    name: Animal Messenger
+    page: 212
+    level: 2
+    school_id: 3
+    ritual: true
+    cast_n: 0
+    cast_unit: 1
+    range_n: 30
+    range_unit: 10
+    aoe: 50 (flying) or 25 (non-flying) miles per 24 hours
+    components: 15
+    concentration: false
+    duration_n: 24
+    duration_unit: 12
+    effect: Tiny beast carries 25 word message to location you know and recipient
+      you describe
+    higher: Duration +48 hours per level
+    reaction: 
+    created_at: 2014-11-25 03:40:03.297325000 Z
+    updated_at: 2014-11-29 21:29:09.098627000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 7
+    name: Animal Shapes
+    page: 212
+    level: 8
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 30
+    range_unit: 10
+    aoe: Any number of willing targets
+    components: 12
+    concentration: true
+    duration_n: 24
+    duration_unit: 12
+    effect: Targets are transformed into ≤Large beasts of CR≤4, retaining INT, WIS,
+      CHR
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:03.464473000 Z
+    updated_at: 2014-11-29 23:29:14.446727000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 8
+    name: Animate Dead
+    page: 212
+    level: 3
+    school_id: 6
+    ritual: false
+    cast_n: 1
+    cast_unit: 11
+    range_n: 10
+    range_unit: 10
+    aoe: 1 Small or Medium humanoid corpse or pile of bones; or 4 previously animated
+      undead
+    components: 15
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: Create zombie or skeleton, retain command for 24 hours; or reassert control
+      for +24 hours
+    higher: "+2 undead per level"
+    reaction: 
+    created_at: 2014-11-25 03:40:03.623219000 Z
+    updated_at: 2014-11-29 23:13:18.737398000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 9
+    name: Animate Objects
+    page: 213
+    level: 5
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 120
+    range_unit: 10
+    aoe: 10 nonmagical objects, not worn or carried (Medium=2, Large=4, Huge=8)
+    components: 12
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: Stats are by size; issue command as a bonus action; objects can move,
+      guard area, attack target
+    higher: "+2 objects per level"
+    reaction: 
+    created_at: 2014-11-25 03:40:03.781740000 Z
+    updated_at: 2014-11-29 23:17:39.398681000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 10
+    name: Antilife Shell
+    page: 213
+    level: 5
+    school_id: 0
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 10' radius
+    components: 12
+    concentration: true
+    duration_n: 1
+    duration_unit: 12
+    effect: Creatures other than undead and constructs are pushed out of range (but
+      may still attack at range)
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:03.940461000 Z
+    updated_at: 2014-11-29 23:19:54.153850000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 11
+    name: Antimagic Field
+    page: 213
+    level: 8
+    school_id: 0
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 10' radius sphere
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 12
+    effect: Magic effects are suppressed; see description for specifics
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:04.107727000 Z
+    updated_at: 2014-11-29 23:21:57.158084000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 12
+    name: Antipathy / Sympathy
+    page: 214
+    level: 8
+    school_id: 3
+    ritual: false
+    cast_n: 1
+    cast_unit: 12
+    range_n: 60
+    range_unit: 10
+    aoe: 1 ≤Huge object or 200' cube area, and 1 class of intelligent creature
+    components: 15
+    concentration: false
+    duration_n: 10
+    duration_unit: 13
+    effect: Creatures become frightened by or must move towards target; WIS to suppress
+      or stop (see desc)
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:04.283182000 Z
+    updated_at: 2014-11-29 23:31:37.463848000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 13
+    name: Arcane Eye
+    page: 214
+    level: 4
+    school_id: 2
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 30
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 12
+    effect: Invisible eye has darkvision, 30' base move, must stay in range; can pass
+      through 1" diameter opening
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:04.449650000 Z
+    updated_at: 2014-11-29 23:32:52.000870000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 14
+    name: Arcane Gate
+    page: 214
+    level: 6
+    school_id: 1
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 500
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: Opens two, linked, 10' diameter, vertical portals (one ≤10' away) providing
+      instant movement
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:04.626542000 Z
+    updated_at: 2014-11-29 23:34:33.934176000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 15
+    name: Arcane Lock
+    page: 215
+    level: 2
+    school_id: 0
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 1 door, window, gate, chest, etc.
+    components: 14
+    concentration: false
+    duration_n: 0
+    duration_unit: 5
+    effect: Lock DC+10; suppressed with password (for 1 minute), by known creature,
+      or with Knock (for 10 minutes)
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:04.801857000 Z
+    updated_at: 2014-11-29 23:36:20.003154000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 16
+    name: Armor of Agathys
+    page: 215
+    level: 1
+    school_id: 0
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 14
+    concentration: false
+    duration_n: 1
+    duration_unit: 12
+    effect: Gain 5 temporary HP; any melee attack that hits you does 5 cold to attacker
+    higher: Temporary HP and damage +5 per level
+    reaction: 
+    created_at: 2014-11-25 03:40:04.977057000 Z
+    updated_at: 2014-11-29 23:38:00.833562000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 17
+    name: Arms of Hadar
+    page: 215
+    level: 1
+    school_id: 1
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: All creatures in 10' radius
+    components: 12
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 2d6 necrotic [STR ½] and lose reactions for 1 turn [same save negates]
+    higher: "+1d6 necrotic per level"
+    reaction: 
+    created_at: 2014-11-25 03:40:05.152698000 Z
+    updated_at: 2014-11-29 23:42:44.198653000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 18
+    name: Astral Projection
+    page: 215
+    level: 9
+    school_id: 6
+    ritual: false
+    cast_n: 1
+    cast_unit: 12
+    range_n: 10
+    range_unit: 10
+    aoe: Caster plus 8 willing targets
+    components: 14
+    concentration: false
+    duration_n: 0
+    duration_unit: 0
+    effect: Material body enters suspended animation; Astral body is a separate copy;
+      0HP or Dispell returns you to your material body
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:05.344648000 Z
+    updated_at: 2014-11-29 23:44:56.411152000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 19
+    name: Augury
+    page: 215
+    level: 2
+    school_id: 2
+    ritual: true
+    cast_n: 1
+    cast_unit: 11
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 14
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: Divination ritual returns "Weal", "Woe", "Both", or "Nothing" about 30
+      minutes of future action
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:05.595238000 Z
+    updated_at: 2014-11-29 23:46:14.750757000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 20
+    name: Aura of Life
+    page: 216
+    level: 4
+    school_id: 0
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: All nonhostile creatures in 30' radius
+    components: 8
+    concentration: true
+    duration_n: 10
+    duration_unit: 11
+    effect: Resistance vs necrotic; max HP can't be reduced; heal 1HP if at 0HP at
+      start of turn
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:05.762089000 Z
+    updated_at: 2014-11-29 23:50:26.565073000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 21
+    name: Aura of Purity
+    page: 216
+    level: 4
+    school_id: 0
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: All nonhostile creatures in 30' radius
+    components: 8
+    concentration: true
+    duration_n: 10
+    duration_unit: 11
+    effect: Resistance vs poison; can't be diseased; advantage vs blind, charm, deaf,
+      fright, paralysis, poison, stun
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:05.920786000 Z
+    updated_at: 2014-11-29 23:51:25.725419000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 22
+    name: Aura of Vitality
+    page: 216
+    level: 3
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 30' radius
+    components: 8
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: As bonus action, heal one target 2d6
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:06.096483000 Z
+    updated_at: 2014-11-29 23:52:07.176914000 Z
+- !ruby/object:Spell
+  attributes: &2
+    id: 23
+    name: Awaken
+    page: 216
+    level: 5
+    school_id: 7
+    ritual: false
+    cast_n: 8
+    cast_unit: 12
+    range_n: 0
+    range_unit: 1
+    aoe: 1 ≤Huge beast or plant with no INT or INT≤3
+    components: 14
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: Target gains INT 10, one language, human senses, ability to ambulate;
+      control gained for 30 days
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:06.263402000 Z
+    updated_at: 2014-11-29 23:54:02.733815000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 24
+    name: Bane
+    page: 216
+    level: 1
+    school_id: 3
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 30
+    range_unit: 10
+    aoe: 3 targets
+    components: 15
+    concentration: false
+    duration_n: 1
+    duration_unit: 11
+    effect: Attacks and saves are at -1d4; CHR negates
+    higher: "+1 target per level"
+    reaction: 
+    created_at: 2014-11-25 03:40:06.421702000 Z
+    updated_at: 2014-11-30 05:18:15.635356000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 25
+    name: Banishing Smite
+    page: 216
+    level: 5
+    school_id: 0
+    ritual: false
+    cast_n: 0
+    cast_unit: 2
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 8
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: Next weapon strike deals +5d10 force, banishes target if ≤50HP remaining
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:06.580234000 Z
+    updated_at: 2014-11-30 04:50:00.647202000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 26
+    name: Banishment
+    page: 217
+    level: 4
+    school_id: 0
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: 1 creature you can see
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: Creature is banished to home plane or harmless demiplane; CHR negates
+    higher: "+1 target per level"
+    reaction: 
+    created_at: 2014-11-25 03:40:06.739536000 Z
+    updated_at: 2014-11-30 04:52:04.872333000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 27
+    name: Barkskin
+    page: 217
+    level: 2
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 1 willing creature
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 12
+    effect: Minimum AC = 16 regardless of armor
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:06.906403000 Z
+    updated_at: 2014-11-30 04:52:51.792864000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 28
+    name: Beacon of Hope
+    page: 217
+    level: 3
+    school_id: 0
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 30
+    range_unit: 10
+    aoe: Any number of targets within range
+    components: 12
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: Advantage on WIS saves, death saves; all healing dice are maximized
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:07.073394000 Z
+    updated_at: 2014-11-30 04:54:13.703169000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 29
+    name: Beast Sense
+    page: 217
+    level: 2
+    school_id: 2
+    ritual: true
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 1 willing beast
+    components: 4
+    concentration: true
+    duration_n: 1
+    duration_unit: 12
+    effect: Use your action to replace your senses with the beast's, or to return
+      to your own senses
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:07.240760000 Z
+    updated_at: 2014-11-30 04:55:49.905472000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 30
+    name: Bestow Curse
+    page: 218
+    level: 3
+    school_id: 6
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 1 target
+    components: 12
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: Grant one effect, like disadvantage on one ability, disadvantage on attacks
+      against you, etc. WIS negates
+    higher: 'Duration increases: 4th: conc+10min, 5th: 8hrs, 7th: 24hrs, 9th: until
+      dispelled'
+    reaction: 
+    created_at: 2014-11-25 03:40:07.407830000 Z
+    updated_at: 2014-11-30 05:09:56.154686000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 31
+    name: Bigby's Hand
+    page: 218
+    level: 5
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 120
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: Large hand has AC 20, your MHP, STR 26, DEX 10; use bonus action to move
+      60' and take one form (see desc)
+    higher: Clenched Fist +2d8, Grasping Hand +2d6 per level
+    reaction: 
+    created_at: 2014-11-25 03:40:07.574693000 Z
+    updated_at: 2014-11-30 05:12:04.161889000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 32
+    name: Blade Barrier
+    page: 218
+    level: 6
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 90
+    range_unit: 10
+    aoe: 100' x 20' x 5' wall, or 60' diameter x 20' x 5' ring
+    components: 12
+    concentration: true
+    duration_n: 10
+    duration_unit: 11
+    effect: 6d10 slashing [DEX ½]; provides ¾ cover and difficult terrain
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:07.741871000 Z
+    updated_at: 2014-11-30 05:16:23.100960000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 33
+    name: Blade Ward
+    page: 218
+    level: 0
+    school_id: 0
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 1
+    duration_unit: 10
+    effect: Advantage against bludgeoning, piercing, and slashing weapon damage
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:07.908821000 Z
+    updated_at: 2014-11-30 05:16:55.855616000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 34
+    name: Bless
+    page: 219
+    level: 1
+    school_id: 3
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 30
+    range_unit: 10
+    aoe: 3 targets
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: Attack rolls and saves are at +1d4
+    higher: "+1 target per level"
+    reaction: 
+    created_at: 2014-11-25 03:40:08.075731000 Z
+    updated_at: 2014-11-30 05:18:30.142731000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 35
+    name: Blight
+    page: 219
+    level: 4
+    school_id: 6
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 30
+    range_unit: 10
+    aoe: 1 plant or creature; can't target undead or constructs
+    components: 12
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: Nonmagical plant dies; others take 8d8 necrotic, CON ½, plants have disadvantage
+      and take max damage
+    higher: "+1d8 necrotic per level"
+    reaction: 
+    created_at: 2014-11-25 03:40:08.360674000 Z
+    updated_at: 2014-11-30 05:20:30.402932000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 36
+    name: Blinding Smite
+    page: 219
+    level: 3
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 2
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 8
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: Next melee weapon hit does +3d8 radiant and blinds; CON negates blindness;
+      target can make CON save each turn
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:08.536109000 Z
+    updated_at: 2014-11-30 05:22:16.150055000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 37
+    name: Blindness / Deafness
+    page: 219
+    level: 2
+    school_id: 6
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 30
+    range_unit: 10
+    aoe: 
+    components: 8
+    concentration: false
+    duration_n: 1
+    duration_unit: 11
+    effect: Blinds or deafens; CON negates; target can make CON save each round
+    higher: "+1 target per level"
+    reaction: 
+    created_at: 2014-11-25 03:40:08.711318000 Z
+    updated_at: 2014-11-30 05:23:08.918285000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 38
+    name: Blink
+    page: 219
+    level: 3
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 1
+    duration_unit: 11
+    effect: 50% chance to blink to Ethereal Plane at end of each turn; return at end
+      of next turn to a spot within 10'
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:08.886547000 Z
+    updated_at: 2014-11-30 05:25:38.308805000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 39
+    name: Blur
+    page: 219
+    level: 2
+    school_id: 5
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 8
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: All attacks against you have disadvantage, unless attacker has blindsight
+      or truesight
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:09.053865000 Z
+    updated_at: 2014-11-30 05:26:23.380197000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 40
+    name: Branding Smite
+    page: 219
+    level: 2
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 2
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 8
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: Next melee weapon hit does +2d6 radiant and reveals invisibile; target
+      sheds 5' dim light
+    higher: "+1d6 radiant per level"
+    reaction: 
+    created_at: 2014-11-25 03:40:09.229250000 Z
+    updated_at: 2014-11-30 05:27:52.617683000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 41
+    name: Burning Hands
+    page: 220
+    level: 1
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 15' cone
+    components: 12
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 3d6 fire, DEX ½
+    higher: "+1d6 fire per level"
+    reaction: 
+    created_at: 2014-11-25 03:40:09.404713000 Z
+    updated_at: 2014-11-30 05:28:54.884462000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 42
+    name: Call Lightning
+    page: 220
+    level: 3
+    school_id: 1
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 120
+    range_unit: 10
+    aoe: All creatures within 5' radius of target point
+    components: 12
+    concentration: true
+    duration_n: 10
+    duration_unit: 11
+    effect: Storm cloud appears 100' above you; use action to call bolt to target,
+      does 3d10 lightning (DEX ½), 4d10 if storm already existed before casting
+    higher: "+1d10 lightning per level"
+    reaction: 
+    created_at: 2014-11-25 03:40:09.671618000 Z
+    updated_at: 2014-12-06 18:28:56.999203000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 43
+    name: Calm Emotions
+    page: 221
+    level: 2
+    school_id: 3
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: All humanoids in 20' radius sphere
+    components: 12
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: Targets that fail CHR save (a) have fear+charm suppressed or (b) move
+      from hostile to indifferent
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:09.997413000 Z
+    updated_at: 2014-12-06 18:31:30.557113000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 44
+    name: Chain Lightning
+    page: 221
+    level: 6
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 150
+    range_unit: 10
+    aoe: One target for initial bolt, then up to three targets within 30' of first
+      target
+    components: 15
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: One bolt hits initial target, then up to three more bolts jump to secondary
+      targets; all targets take 10d8 lightning (DEX ½)
+    higher: "+1 secondary bolt per level"
+    reaction: 
+    created_at: 2014-11-25 03:40:10.173041000 Z
+    updated_at: 2014-12-06 18:33:48.172372000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 45
+    name: Charm Person
+    page: 221
+    level: 1
+    school_id: 3
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 30
+    range_unit: 10
+    aoe: One humanoid
+    components: 12
+    concentration: false
+    duration_n: 1
+    duration_unit: 12
+    effect: Target regards you as a friendly acquaintaince (WIS negates, with advantage
+      if being attacked)
+    higher: "+1 target per level, which must be within 30' of each other"
+    reaction: 
+    created_at: 2014-11-25 03:40:10.448489000 Z
+    updated_at: 2014-12-06 18:35:46.611137000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 46
+    name: Chill Touch
+    page: 221
+    level: 0
+    school_id: 6
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 120
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 1
+    duration_unit: 10
+    effect: Ranged spell attack does 1d8 necrotic, target can't regain hit points
+      until your next turn; undead targets also have disadvantage to attack you
+    higher: "+1d8 necrotic at 5th, 11th, 17th"
+    reaction: 
+    created_at: 2014-11-25 03:40:10.598864000 Z
+    updated_at: 2014-12-06 18:37:47.156601000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 47
+    name: Chromatic Orb
+    page: 221
+    level: 1
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 90
+    range_unit: 10
+    aoe: 
+    components: 14
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: Pick one of acid, cold, fire, lightning, or poison; ranged spell attack
+      does 3d8
+    higher: "+1d8 damage per level"
+    reaction: 
+    created_at: 2014-11-25 03:40:10.757383000 Z
+    updated_at: 2014-12-06 18:39:32.513457000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 48
+    name: Circle of Death
+    page: 221
+    level: 6
+    school_id: 6
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 150
+    range_unit: 10
+    aoe: 60' radius sphere
+    components: 14
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 8d6 necrotic (CON ½)
+    higher: "+2d6 necrotic per level"
+    reaction: 
+    created_at: 2014-11-25 03:40:10.916053000 Z
+    updated_at: 2014-12-06 18:40:24.604910000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 49
+    name: Circle of Power
+    page: 221
+    level: 5
+    school_id: 0
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 30' radius
+    components: 8
+    concentration: true
+    duration_n: 10
+    duration_unit: 11
+    effect: Friendly creatures within area gain advantage on saves vs magic effects;
+      saves for ½ reduce damage to 0 instead
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:11.074906000 Z
+    updated_at: 2014-12-06 18:41:35.991580000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 50
+    name: Clairvoyance
+    page: 222
+    level: 3
+    school_id: 2
+    ritual: false
+    cast_n: 10
+    cast_unit: 11
+    range_n: 1
+    range_unit: 11
+    aoe: A familiar place, or an obvious unfamiliar place ("the other side of that
+      door")
+    components: 14
+    concentration: true
+    duration_n: 10
+    duration_unit: 11
+    effect: Invisible, invulnerable sensor remotely provides either sight or hearing
+      (switch with action)
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:11.241998000 Z
+    updated_at: 2014-12-06 18:43:27.852418000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 51
+    name: Clone
+    page: 222
+    level: 8
+    school_id: 6
+    ritual: false
+    cast_n: 1
+    cast_unit: 12
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 14
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: After 120d maturation, when target dies, soul is transferred to clone
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:11.409069000 Z
+    updated_at: 2014-12-06 18:44:50.875229000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 52
+    name: Cloud of Daggers
+    page: 222
+    level: 2
+    school_id: 1
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: 5' cube
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 4d4 slashing
+    higher: "+2d4 slashing per level"
+    reaction: 
+    created_at: 2014-11-25 03:40:11.576200000 Z
+    updated_at: 2014-12-06 19:14:24.428288000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 53
+    name: Cloudkill
+    page: 222
+    level: 5
+    school_id: 1
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 120
+    range_unit: 10
+    aoe: 20' radius sphere cloud of fog
+    components: 12
+    concentration: true
+    duration_n: 10
+    duration_unit: 11
+    effect: 5d8 poison (CON ½) even if you don't breathe; heavily obscures area; fog
+      sinks, moves 10' away each turn
+    higher: "+1d8 poison per level"
+    reaction: 
+    created_at: 2014-11-25 03:40:11.743228000 Z
+    updated_at: 2014-12-06 18:46:56.998862000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 54
+    name: Color Spray
+    page: 222
+    level: 1
+    school_id: 5
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 15' cone; affects up to 6d10HP worth of creatures, in ascending order of
+      HP
+    components: 15
+    concentration: false
+    duration_n: 1
+    duration_unit: 10
+    effect: Causes blindness
+    higher: Affects +2d10HP of creatures per level
+    reaction: 
+    created_at: 2014-11-25 03:40:11.911056000 Z
+    updated_at: 2014-12-06 18:49:11.645370000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 55
+    name: Command
+    page: 223
+    level: 1
+    school_id: 3
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: 1 creature
+    components: 8
+    concentration: false
+    duration_n: 1
+    duration_unit: 10
+    effect: Target obeys one-word command for one turn (WIS negates); target must
+      hear, understand, not be undead, and not be directly harmed
+    higher: "+1 target per level; must be within 30' of each other"
+    reaction: 
+    created_at: 2014-11-25 03:40:12.086508000 Z
+    updated_at: 2014-12-06 18:51:46.835536000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 56
+    name: Commune
+    page: 223
+    level: 5
+    school_id: 2
+    ritual: true
+    cast_n: 1
+    cast_unit: 11
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 1
+    duration_unit: 11
+    effect: Ask your diety up to three yes/no questions
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:12.253682000 Z
+    updated_at: 2014-12-06 18:52:49.082509000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 57
+    name: Commune with Nature
+    page: 224
+    level: 5
+    school_id: 2
+    ritual: true
+    cast_n: 1
+    cast_unit: 11
+    range_n: 0
+    range_unit: 0
+    aoe: 3 miles outdoors, or 300' in caves / underground; doesn't work in areas of
+      construction like dungeons
+    components: 12
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 'Learn up to 3 facts about your natural surroundings: terrain + water,
+      flora, fauna, supernatural creatures, buildings or towns, or planar influence'
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:12.429015000 Z
+    updated_at: 2014-12-06 18:55:44.956689000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 58
+    name: Compelled Duel
+    page: 224
+    level: 1
+    school_id: 3
+    ritual: false
+    cast_n: 0
+    cast_unit: 2
+    range_n: 30
+    range_unit: 10
+    aoe: 1 creature
+    components: 8
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 'Target is drawn to attack only you (WIS negates): disadvantage to attack
+      anyone else, WIS save to move more than 30'' away; ends if you attack someone
+      else, your ally attacks this target, or you end your turn more than 30'' away'
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:12.571013000 Z
+    updated_at: 2014-12-06 18:58:06.884356000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 59
+    name: Comprehend Languages
+    page: 224
+    level: 1
+    school_id: 2
+    ritual: true
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 1
+    duration_unit: 12
+    effect: You understand the literal meaning of any spoken language; you can touch
+      and read any written language (1min per page)
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:12.746236000 Z
+    updated_at: 2014-12-06 18:59:03.543382000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 60
+    name: Compulsion
+    page: 224
+    level: 4
+    school_id: 3
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 30
+    range_unit: 10
+    aoe: Any number of targets in range
+    components: 12
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: WIS negates; use bonus action to pick a direction; targets must use max
+      move in that direction, but may act first and will not enter a deadly hazard;
+      WIS save at end of turn negates
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:12.921437000 Z
+    updated_at: 2014-12-06 19:02:11.379462000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 61
+    name: Cone of Cold
+    page: 224
+    level: 5
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 60' cone
+    components: 15
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 8d8 cold; targets killed by spell become ice statues
+    higher: "+1d8 cold per level"
+    reaction: 
+    created_at: 2014-11-25 03:40:13.097283000 Z
+    updated_at: 2014-12-06 19:02:45.686652000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 62
+    name: Confusion
+    page: 224
+    level: 4
+    school_id: 3
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 90
+    range_unit: 10
+    aoe: 10' radius sphere
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: WIS negates; target behavior determined by d10, can't take reactions;
+      WIS negates at end of turn
+    higher: Effect +5' radius per level
+    reaction: 
+    created_at: 2014-11-25 03:40:13.272722000 Z
+    updated_at: 2014-12-06 19:04:27.730108000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 63
+    name: Conjure Animals
+    page: 225
+    level: 3
+    school_id: 1
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: true
+    duration_n: 1
+    duration_unit: 12
+    effect: 'Summon fey beasts: 1xCR2, 2xCR1, 4xCR½, or 8xCR¼'
+    higher: 2x beasts at 5th, 3x at 7th, 4x at 9th
+    reaction: 
+    created_at: 2014-11-25 03:40:13.456129000 Z
+    updated_at: 2014-12-06 19:05:57.743128000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 64
+    name: Conjure Barrage
+    page: 225
+    level: 3
+    school_id: 1
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 60' cone
+    components: 14
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: Volley of ammunition or thrown weapon used as component does 3d8 (DEX
+      ½) of same type as ammunition
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:13.707045000 Z
+    updated_at: 2014-12-06 19:08:18.048518000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 65
+    name: Conjure Celestial
+    page: 225
+    level: 7
+    school_id: 1
+    ritual: false
+    cast_n: 1
+    cast_unit: 11
+    range_n: 90
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: true
+    duration_n: 1
+    duration_unit: 12
+    effect: Summon friendly celestial of CR4; if your concentration is broken, spell
+      ends and celestial disappears
+    higher: CR5 at 9th
+    reaction: 
+    created_at: 2014-11-25 03:40:13.865503000 Z
+    updated_at: 2014-12-06 19:12:24.054629000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 66
+    name: Conjure Elemental
+    page: 225
+    level: 5
+    school_id: 1
+    ritual: false
+    cast_n: 1
+    cast_unit: 11
+    range_n: 90
+    range_unit: 10
+    aoe: 10' cube of element (air, earth, fire, water) within range acts as source
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 12
+    effect: Summon friendly CR5 elemental; if your concentration is broken, it becomes
+      hostile and only disappears after 1 hour
+    higher: CR+1 per level
+    reaction: 
+    created_at: 2014-11-25 03:40:14.024365000 Z
+    updated_at: 2014-12-06 19:11:42.859507000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 67
+    name: Conjure Fey
+    page: 226
+    level: 6
+    school_id: 1
+    ritual: false
+    cast_n: 1
+    cast_unit: 11
+    range_n: 90
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: true
+    duration_n: 1
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:14.183165000 Z
+    updated_at: 2014-11-25 03:40:14.183165000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 68
+    name: Conjure Minor Elementals
+    page: 226
+    level: 4
+    school_id: 1
+    ritual: false
+    cast_n: 1
+    cast_unit: 11
+    range_n: 90
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: true
+    duration_n: 1
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:14.366870000 Z
+    updated_at: 2014-11-25 03:40:14.366870000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 69
+    name: Conjure Volley
+    page: 226
+    level: 5
+    school_id: 1
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 150
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:14.533928000 Z
+    updated_at: 2014-11-25 03:40:14.533928000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 70
+    name: Conjure Woodland Beings
+    page: 226
+    level: 4
+    school_id: 1
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:14.700999000 Z
+    updated_at: 2014-11-25 03:40:14.700999000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 71
+    name: Contact Other Plane
+    page: 226
+    level: 5
+    school_id: 2
+    ritual: true
+    cast_n: 1
+    cast_unit: 11
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 8
+    concentration: false
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:14.867832000 Z
+    updated_at: 2014-11-25 03:40:14.867832000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 72
+    name: Contagion
+    page: 227
+    level: 5
+    school_id: 6
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 7
+    duration_unit: 13
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:15.034970000 Z
+    updated_at: 2014-11-25 03:40:15.034970000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 73
+    name: Contingency
+    page: 227
+    level: 6
+    school_id: 4
+    ritual: false
+    cast_n: 10
+    cast_unit: 11
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 14
+    concentration: false
+    duration_n: 10
+    duration_unit: 13
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:15.202098000 Z
+    updated_at: 2014-11-25 03:40:15.202098000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 74
+    name: Continual Flame
+    page: 227
+    level: 2
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 14
+    concentration: false
+    duration_n: 0
+    duration_unit: 5
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:15.486895000 Z
+    updated_at: 2014-11-25 03:40:15.486895000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 75
+    name: Control Water
+    page: 227
+    level: 4
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 300
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: true
+    duration_n: 10
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:15.661759000 Z
+    updated_at: 2014-11-25 03:40:15.661759000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 76
+    name: Control Weather
+    page: 228
+    level: 8
+    school_id: 7
+    ritual: false
+    cast_n: 10
+    cast_unit: 11
+    range_n: 0
+    range_unit: 0
+    aoe: 5mi radius
+    components: 15
+    concentration: true
+    duration_n: 8
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:15.887481000 Z
+    updated_at: 2014-11-25 03:40:15.887481000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 77
+    name: Cordon of Arrows
+    page: 228
+    level: 2
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 5
+    range_unit: 10
+    aoe: 
+    components: 14
+    concentration: false
+    duration_n: 8
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:16.062982000 Z
+    updated_at: 2014-11-25 03:40:16.062982000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 78
+    name: Counterspell
+    page: 228
+    level: 3
+    school_id: 0
+    ritual: false
+    cast_n: 0
+    cast_unit: 3
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 4
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: You see someone in range cast a spell
+    created_at: 2014-11-25 03:40:16.288459000 Z
+    updated_at: 2014-11-25 03:40:16.288459000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 79
+    name: Create Food and Water
+    page: 229
+    level: 3
+    school_id: 1
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 30
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:16.547250000 Z
+    updated_at: 2014-11-25 03:40:16.547250000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 80
+    name: Create or Destroy Water
+    page: 229
+    level: 1
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 30
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:16.722596000 Z
+    updated_at: 2014-11-25 03:40:16.722596000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 81
+    name: Create Undead
+    page: 229
+    level: 6
+    school_id: 6
+    ritual: false
+    cast_n: 1
+    cast_unit: 11
+    range_n: 10
+    range_unit: 10
+    aoe: 
+    components: 14
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:16.947737000 Z
+    updated_at: 2014-11-25 03:40:16.947737000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 82
+    name: Creation
+    page: 229
+    level: 5
+    school_id: 5
+    ritual: false
+    cast_n: 1
+    cast_unit: 11
+    range_n: 30
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 0
+    duration_unit: 0
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:17.123185000 Z
+    updated_at: 2014-11-25 03:40:17.123185000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 83
+    name: Crown of Madness
+    page: 229
+    level: 2
+    school_id: 3
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 120
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:17.298771000 Z
+    updated_at: 2014-11-25 03:40:17.298771000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 84
+    name: Crusader's Mantle
+    page: 230
+    level: 3
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 8
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:17.465693000 Z
+    updated_at: 2014-11-25 03:40:17.465693000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 85
+    name: Cure Wounds
+    page: 230
+    level: 1
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:17.641249000 Z
+    updated_at: 2014-11-25 03:40:17.641249000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 86
+    name: Dancing Lights
+    page: 230
+    level: 0
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 120
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:17.816443000 Z
+    updated_at: 2014-11-25 03:40:17.816443000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 87
+    name: Darkness
+    page: 230
+    level: 2
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 11
+    concentration: true
+    duration_n: 10
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:17.975034000 Z
+    updated_at: 2014-11-25 03:40:17.975034000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 88
+    name: Darkvision
+    page: 230
+    level: 2
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 8
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:18.133800000 Z
+    updated_at: 2014-11-25 03:40:18.133800000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 89
+    name: Daylight
+    page: 230
+    level: 3
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 1
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:18.284438000 Z
+    updated_at: 2014-11-25 03:40:18.284438000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 90
+    name: Death Ward
+    page: 230
+    level: 4
+    school_id: 0
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 8
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:18.451562000 Z
+    updated_at: 2014-11-25 03:40:18.451562000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 91
+    name: Delayed Blast Fireball
+    page: 231
+    level: 7
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 150
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:18.618562000 Z
+    updated_at: 2014-11-25 03:40:18.618562000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 92
+    name: Demiplane
+    page: 231
+    level: 8
+    school_id: 1
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 4
+    concentration: false
+    duration_n: 1
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:18.785453000 Z
+    updated_at: 2014-11-25 03:40:18.785453000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 93
+    name: Destructive Wave
+    page: 231
+    level: 5
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 30' radius
+    components: 8
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:18.952446000 Z
+    updated_at: 2014-11-25 03:40:18.952446000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 94
+    name: Detect Evil and Good
+    page: 231
+    level: 1
+    school_id: 2
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 12
+    concentration: true
+    duration_n: 10
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:19.110756000 Z
+    updated_at: 2014-11-25 03:40:19.110756000 Z
+- !ruby/object:Spell
+  attributes: &3
+    id: 95
+    name: Detect Magic
+    page: 231
+    level: 1
+    school_id: 2
+    ritual: true
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 12
+    concentration: true
+    duration_n: 10
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:19.279465000 Z
+    updated_at: 2014-11-25 03:40:19.279465000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 96
+    name: Detect Poison and Disease
+    page: 231
+    level: 1
+    school_id: 2
+    ritual: true
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 15
+    concentration: true
+    duration_n: 10
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:19.454829000 Z
+    updated_at: 2014-11-25 03:40:19.454829000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 97
+    name: Detect Thoughts
+    page: 233
+    level: 2
+    school_id: 2
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:19.630259000 Z
+    updated_at: 2014-11-25 03:40:19.630259000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 98
+    name: Dimension Door
+    page: 233
+    level: 4
+    school_id: 1
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 500
+    range_unit: 10
+    aoe: 
+    components: 8
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:19.805467000 Z
+    updated_at: 2014-11-25 03:40:19.805467000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 99
+    name: Disguise Self
+    page: 233
+    level: 1
+    school_id: 5
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 1
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:19.980901000 Z
+    updated_at: 2014-11-25 03:40:19.980901000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 100
+    name: Disintegrate
+    page: 233
+    level: 6
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:20.156460000 Z
+    updated_at: 2014-11-25 03:40:20.156460000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 101
+    name: Dispel Evil and Good
+    page: 234
+    level: 5
+    school_id: 0
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:20.397957000 Z
+    updated_at: 2014-11-25 03:40:20.397957000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 102
+    name: Dispel Magic
+    page: 234
+    level: 3
+    school_id: 0
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 120
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:20.657339000 Z
+    updated_at: 2014-11-25 03:40:20.657339000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 103
+    name: Dissonant Whispers
+    page: 234
+    level: 1
+    school_id: 3
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 8
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:20.832617000 Z
+    updated_at: 2014-11-25 03:40:20.832617000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 104
+    name: Divination
+    page: 234
+    level: 4
+    school_id: 2
+    ritual: true
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 14
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:20.991221000 Z
+    updated_at: 2014-11-25 03:40:20.991221000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 105
+    name: Divine Favor
+    page: 234
+    level: 1
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 2
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 12
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:21.149988000 Z
+    updated_at: 2014-11-25 03:40:21.149988000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 106
+    name: Divine Word
+    page: 234
+    level: 7
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 2
+    range_n: 30
+    range_unit: 10
+    aoe: 
+    components: 8
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:21.308754000 Z
+    updated_at: 2014-11-25 03:40:21.308754000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 107
+    name: Dominate Beast
+    page: 234
+    level: 4
+    school_id: 3
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:21.475801000 Z
+    updated_at: 2014-11-25 03:40:21.475801000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 108
+    name: Dominate Monster
+    page: 235
+    level: 8
+    school_id: 3
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: true
+    duration_n: 1
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:21.642919000 Z
+    updated_at: 2014-11-25 03:40:21.642919000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 109
+    name: Dominate Person
+    page: 235
+    level: 5
+    school_id: 3
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:21.809800000 Z
+    updated_at: 2014-11-25 03:40:21.809800000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 110
+    name: Drawmij's Instant Summons
+    page: 235
+    level: 6
+    school_id: 1
+    ritual: true
+    cast_n: 1
+    cast_unit: 11
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 14
+    concentration: false
+    duration_n: 0
+    duration_unit: 5
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:21.976913000 Z
+    updated_at: 2014-11-25 03:40:21.976913000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 111
+    name: Dream
+    page: 236
+    level: 5
+    school_id: 5
+    ritual: false
+    cast_n: 1
+    cast_unit: 11
+    range_n: 0
+    range_unit: 3
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 8
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:22.144135000 Z
+    updated_at: 2014-11-25 03:40:22.144135000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 112
+    name: Druidcraft
+    page: 236
+    level: 0
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 30
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:22.310485000 Z
+    updated_at: 2014-11-25 03:40:22.310485000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 113
+    name: Earthquake
+    page: 236
+    level: 8
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 500
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:22.469767000 Z
+    updated_at: 2014-11-25 03:40:22.469767000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 114
+    name: Eldritch Blast
+    page: 237
+    level: 0
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 120
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:22.720280000 Z
+    updated_at: 2014-11-25 03:40:22.720280000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 115
+    name: Elemental Weapon
+    page: 237
+    level: 3
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 12
+    concentration: true
+    duration_n: 1
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:22.912144000 Z
+    updated_at: 2014-11-25 03:40:22.912144000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 116
+    name: Enhance Ability
+    page: 237
+    level: 2
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:23.088728000 Z
+    updated_at: 2014-11-25 03:40:23.088728000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 117
+    name: Enlarge / Reduce
+    page: 237
+    level: 2
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 30
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:23.322421000 Z
+    updated_at: 2014-11-25 03:40:23.322421000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 118
+    name: Ensnaring Strike
+    page: 237
+    level: 1
+    school_id: 1
+    ritual: false
+    cast_n: 0
+    cast_unit: 2
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 8
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:23.497990000 Z
+    updated_at: 2014-11-25 03:40:23.497990000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 119
+    name: Entangle
+    page: 238
+    level: 1
+    school_id: 1
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 90
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:23.756701000 Z
+    updated_at: 2014-11-25 03:40:23.756701000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 120
+    name: Enthrall
+    page: 238
+    level: 2
+    school_id: 3
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:23.981920000 Z
+    updated_at: 2014-11-25 03:40:23.981920000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 121
+    name: Etheralness
+    page: 238
+    level: 7
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 8
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:24.156918000 Z
+    updated_at: 2014-11-25 03:40:24.156918000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 122
+    name: Evard's Black Tentacles
+    page: 238
+    level: 4
+    school_id: 1
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 90
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:24.341338000 Z
+    updated_at: 2014-11-25 03:40:24.341338000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 123
+    name: Expeditious Retreat
+    page: 238
+    level: 1
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 2
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 12
+    concentration: true
+    duration_n: 10
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:24.525200000 Z
+    updated_at: 2014-11-25 03:40:24.525200000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 124
+    name: Eyebite
+    page: 238
+    level: 6
+    school_id: 6
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 12
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:24.692228000 Z
+    updated_at: 2014-11-25 03:40:24.692228000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 125
+    name: Fabricate
+    page: 239
+    level: 4
+    school_id: 7
+    ritual: false
+    cast_n: 10
+    cast_unit: 11
+    range_n: 120
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:24.859024000 Z
+    updated_at: 2014-11-25 03:40:24.859024000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 126
+    name: Faerie Fire
+    page: 239
+    level: 1
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 8
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:25.109629000 Z
+    updated_at: 2014-11-25 03:40:25.109629000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 127
+    name: False Life
+    page: 239
+    level: 1
+    school_id: 6
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 1
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:25.293433000 Z
+    updated_at: 2014-11-25 03:40:25.293433000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 128
+    name: Fear
+    page: 239
+    level: 3
+    school_id: 5
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 30' cone
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:25.577173000 Z
+    updated_at: 2014-11-25 03:40:25.577173000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 129
+    name: Feather Fall
+    page: 239
+    level: 1
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 3
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 11
+    concentration: false
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: You or someone in range falls
+    created_at: 2014-11-25 03:40:25.785886000 Z
+    updated_at: 2014-11-25 03:40:25.785886000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 130
+    name: Feeblemind
+    page: 239
+    level: 8
+    school_id: 3
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 150
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:25.944439000 Z
+    updated_at: 2014-11-25 03:40:25.944439000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 131
+    name: Feign Death
+    page: 240
+    level: 3
+    school_id: 6
+    ritual: true
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 1
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:26.103207000 Z
+    updated_at: 2014-11-25 03:40:26.103207000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 132
+    name: Find Familiar
+    page: 240
+    level: 1
+    school_id: 1
+    ritual: true
+    cast_n: 1
+    cast_unit: 12
+    range_n: 10
+    range_unit: 10
+    aoe: 
+    components: 14
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:26.353696000 Z
+    updated_at: 2014-11-25 03:40:26.353696000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 133
+    name: Find Steed
+    page: 240
+    level: 2
+    school_id: 1
+    ritual: false
+    cast_n: 10
+    cast_unit: 11
+    range_n: 30
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:26.579085000 Z
+    updated_at: 2014-11-25 03:40:26.579085000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 134
+    name: Find the Path
+    page: 240
+    level: 6
+    school_id: 2
+    ritual: false
+    cast_n: 1
+    cast_unit: 11
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 14
+    concentration: true
+    duration_n: 1
+    duration_unit: 13
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:26.771378000 Z
+    updated_at: 2014-11-25 03:40:26.771378000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 135
+    name: Find Traps
+    page: 241
+    level: 2
+    school_id: 2
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 120
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:26.997692000 Z
+    updated_at: 2014-11-25 03:40:26.997692000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 136
+    name: Finger of Death
+    page: 241
+    level: 7
+    school_id: 6
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:27.173253000 Z
+    updated_at: 2014-11-25 03:40:27.173253000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 137
+    name: Fire Bolt
+    page: 242
+    level: 0
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 120
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:27.348443000 Z
+    updated_at: 2014-11-25 03:40:27.348443000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 138
+    name: Fire Shield
+    page: 242
+    level: 4
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 10
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:27.524061000 Z
+    updated_at: 2014-11-25 03:40:27.524061000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 139
+    name: Fire Storm
+    page: 242
+    level: 7
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 150
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:27.757681000 Z
+    updated_at: 2014-11-25 03:40:27.757681000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 140
+    name: Fireball
+    page: 241
+    level: 3
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 150
+    range_unit: 10
+    aoe: 20' radius sphere
+    components: 14
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 8d6 fire, DEX ½
+    higher: "+1d6 fire per level"
+    reaction: 
+    created_at: 2014-11-25 03:40:27.999871000 Z
+    updated_at: 2014-11-25 03:40:27.999871000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 141
+    name: Flame Blade
+    page: 242
+    level: 2
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 2
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 15
+    concentration: true
+    duration_n: 10
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:28.189221000 Z
+    updated_at: 2014-11-25 03:40:28.189221000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 142
+    name: Flame Strike
+    page: 242
+    level: 5
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:28.334073000 Z
+    updated_at: 2014-11-25 03:40:28.334073000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 143
+    name: Flaming Sphere
+    page: 242
+    level: 2
+    school_id: 1
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:28.542819000 Z
+    updated_at: 2014-11-25 03:40:28.542819000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 144
+    name: Flesh to Stone
+    page: 243
+    level: 6
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:28.792921000 Z
+    updated_at: 2014-11-25 03:40:28.792921000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 145
+    name: Fly
+    page: 243
+    level: 3
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 15
+    concentration: true
+    duration_n: 10
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:28.960285000 Z
+    updated_at: 2014-11-25 03:40:28.960285000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 146
+    name: Fog Cloud
+    page: 243
+    level: 1
+    school_id: 1
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 120
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: true
+    duration_n: 1
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:29.135692000 Z
+    updated_at: 2014-11-25 03:40:29.135692000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 147
+    name: Forbiddance
+    page: 243
+    level: 6
+    school_id: 0
+    ritual: true
+    cast_n: 10
+    cast_unit: 11
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 14
+    concentration: false
+    duration_n: 1
+    duration_unit: 13
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:29.377848000 Z
+    updated_at: 2014-11-25 03:40:29.377848000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 148
+    name: Forcecage
+    page: 243
+    level: 7
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 100
+    range_unit: 10
+    aoe: 
+    components: 14
+    concentration: false
+    duration_n: 1
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:29.631552000 Z
+    updated_at: 2014-11-25 03:40:29.631552000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 149
+    name: Foresight
+    page: 244
+    level: 9
+    school_id: 2
+    ritual: false
+    cast_n: 1
+    cast_unit: 11
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 8
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:29.912385000 Z
+    updated_at: 2014-11-25 03:40:29.912385000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 150
+    name: Freedom of Movement
+    page: 244
+    level: 4
+    school_id: 0
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 1
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:30.137877000 Z
+    updated_at: 2014-11-25 03:40:30.137877000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 151
+    name: Friends
+    page: 244
+    level: 0
+    school_id: 3
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 7
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:30.496719000 Z
+    updated_at: 2014-11-25 03:40:30.496719000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 152
+    name: Gaseous Form
+    page: 244
+    level: 3
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:30.672131000 Z
+    updated_at: 2014-11-25 03:40:30.672131000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 153
+    name: Gate
+    page: 244
+    level: 9
+    school_id: 1
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 14
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:30.931826000 Z
+    updated_at: 2014-11-25 03:40:30.931826000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 154
+    name: Geas
+    page: 244
+    level: 5
+    school_id: 3
+    ritual: false
+    cast_n: 1
+    cast_unit: 11
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 8
+    concentration: false
+    duration_n: 30
+    duration_unit: 13
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:31.106999000 Z
+    updated_at: 2014-11-25 03:40:31.106999000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 155
+    name: Gentle Repose
+    page: 245
+    level: 2
+    school_id: 6
+    ritual: true
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 10
+    duration_unit: 13
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:31.282489000 Z
+    updated_at: 2014-11-25 03:40:31.282489000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 156
+    name: Giant Insect
+    page: 245
+    level: 4
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 30
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: true
+    duration_n: 10
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:31.449508000 Z
+    updated_at: 2014-11-25 03:40:31.449508000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 157
+    name: Glibness
+    page: 245
+    level: 8
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 8
+    concentration: false
+    duration_n: 1
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:31.608373000 Z
+    updated_at: 2014-11-25 03:40:31.608373000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 158
+    name: Globe of Invulnerability
+    page: 245
+    level: 6
+    school_id: 0
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 10' radius hemisphere
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:31.817002000 Z
+    updated_at: 2014-11-25 03:40:31.817002000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 159
+    name: Glyph of Warding
+    page: 245
+    level: 3
+    school_id: 0
+    ritual: false
+    cast_n: 1
+    cast_unit: 12
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 14
+    concentration: false
+    duration_n: 0
+    duration_unit: 5
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:32.033969000 Z
+    updated_at: 2014-11-25 03:40:32.033969000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 160
+    name: Goodberry
+    page: 246
+    level: 1
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:32.293229000 Z
+    updated_at: 2014-11-25 03:40:32.293229000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 161
+    name: Grasping Vine
+    page: 246
+    level: 4
+    school_id: 1
+    ritual: false
+    cast_n: 0
+    cast_unit: 2
+    range_n: 30
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:32.510350000 Z
+    updated_at: 2014-11-25 03:40:32.510350000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 162
+    name: Grease
+    page: 246
+    level: 1
+    school_id: 1
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:32.760763000 Z
+    updated_at: 2014-11-25 03:40:32.760763000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 163
+    name: Greater Invisibility
+    page: 246
+    level: 4
+    school_id: 5
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 12
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:32.977639000 Z
+    updated_at: 2014-11-25 03:40:32.977639000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 164
+    name: Greater Restoration
+    page: 246
+    level: 5
+    school_id: 0
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 14
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:33.402951000 Z
+    updated_at: 2014-11-25 03:40:33.402951000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 165
+    name: Guardian of Faith
+    page: 246
+    level: 4
+    school_id: 1
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 30
+    range_unit: 10
+    aoe: 
+    components: 8
+    concentration: false
+    duration_n: 8
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:33.853690000 Z
+    updated_at: 2014-11-25 03:40:33.853690000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 166
+    name: Guards and Wards
+    page: 248
+    level: 6
+    school_id: 0
+    ritual: false
+    cast_n: 10
+    cast_unit: 11
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 14
+    concentration: false
+    duration_n: 24
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:34.079237000 Z
+    updated_at: 2014-11-25 03:40:34.079237000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 167
+    name: Guidance
+    page: 248
+    level: 0
+    school_id: 2
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 12
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:34.354769000 Z
+    updated_at: 2014-11-25 03:40:34.354769000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 168
+    name: Guiding Bolt
+    page: 248
+    level: 1
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 120
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 1
+    duration_unit: 10
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:34.571748000 Z
+    updated_at: 2014-11-25 03:40:34.571748000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 169
+    name: Gust of Wind
+    page: 248
+    level: 2
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 60' line
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:34.830419000 Z
+    updated_at: 2014-11-25 03:40:34.830419000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 170
+    name: Hail of Thorns
+    page: 249
+    level: 1
+    school_id: 1
+    ritual: false
+    cast_n: 0
+    cast_unit: 2
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 8
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:35.055508000 Z
+    updated_at: 2014-11-25 03:40:35.055508000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 171
+    name: Hallow
+    page: 249
+    level: 5
+    school_id: 4
+    ritual: false
+    cast_n: 24
+    cast_unit: 12
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 14
+    concentration: false
+    duration_n: 0
+    duration_unit: 5
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:35.284228000 Z
+    updated_at: 2014-11-25 03:40:35.284228000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 172
+    name: Hallucinatory Terrain
+    page: 249
+    level: 4
+    school_id: 5
+    ritual: false
+    cast_n: 10
+    cast_unit: 11
+    range_n: 300
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 24
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:35.715719000 Z
+    updated_at: 2014-11-25 03:40:35.715719000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 173
+    name: Harm
+    page: 249
+    level: 6
+    school_id: 6
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:35.874916000 Z
+    updated_at: 2014-11-25 03:40:35.874916000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 174
+    name: Haste
+    page: 250
+    level: 3
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 30
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:36.083588000 Z
+    updated_at: 2014-11-25 03:40:36.083588000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 175
+    name: Heal
+    page: 250
+    level: 6
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:36.275754000 Z
+    updated_at: 2014-11-25 03:40:36.275754000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 176
+    name: Healing Word
+    page: 250
+    level: 1
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 2
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 8
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:36.483957000 Z
+    updated_at: 2014-11-25 03:40:36.483957000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 177
+    name: Heat Metal
+    page: 250
+    level: 2
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:36.726636000 Z
+    updated_at: 2014-11-25 03:40:36.726636000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 178
+    name: Hellish Rebuke
+    page: 250
+    level: 1
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 3
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: You take damage from someone in range you can see
+    created_at: 2014-11-25 03:40:36.943606000 Z
+    updated_at: 2014-11-25 03:40:36.943606000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 179
+    name: Heroes' Feast
+    page: 250
+    level: 6
+    school_id: 1
+    ritual: false
+    cast_n: 10
+    cast_unit: 11
+    range_n: 30
+    range_unit: 10
+    aoe: 
+    components: 14
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:37.193974000 Z
+    updated_at: 2014-11-25 03:40:37.193974000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 180
+    name: Heroism
+    page: 250
+    level: 1
+    school_id: 3
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 12
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:37.360813000 Z
+    updated_at: 2014-11-25 03:40:37.360813000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 181
+    name: Hex
+    page: 251
+    level: 1
+    school_id: 3
+    ritual: false
+    cast_n: 0
+    cast_unit: 2
+    range_n: 90
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:37.578053000 Z
+    updated_at: 2014-11-25 03:40:37.578053000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 182
+    name: Hold Monster
+    page: 251
+    level: 5
+    school_id: 3
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 90
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:37.820020000 Z
+    updated_at: 2014-11-25 03:40:37.820020000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 183
+    name: Hold Person
+    page: 251
+    level: 2
+    school_id: 3
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:38.036905000 Z
+    updated_at: 2014-11-25 03:40:38.036905000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 184
+    name: Holy Aura
+    page: 251
+    level: 8
+    school_id: 0
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 14
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:38.295885000 Z
+    updated_at: 2014-11-25 03:40:38.295885000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 185
+    name: Hunger of Hadar
+    page: 251
+    level: 3
+    school_id: 1
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 150
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:38.549832000 Z
+    updated_at: 2014-11-25 03:40:38.549832000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 186
+    name: Hunter's Mark
+    page: 251
+    level: 1
+    school_id: 2
+    ritual: false
+    cast_n: 0
+    cast_unit: 2
+    range_n: 90
+    range_unit: 10
+    aoe: 
+    components: 8
+    concentration: true
+    duration_n: 1
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:38.771740000 Z
+    updated_at: 2014-11-25 03:40:38.771740000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 187
+    name: Hypnotic Patter
+    page: 252
+    level: 3
+    school_id: 5
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 120
+    range_unit: 10
+    aoe: 
+    components: 7
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:39.030338000 Z
+    updated_at: 2014-11-25 03:40:39.030338000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 188
+    name: Ice Storm
+    page: 252
+    level: 4
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 300
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:39.205672000 Z
+    updated_at: 2014-11-25 03:40:39.205672000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 189
+    name: Identify
+    page: 252
+    level: 1
+    school_id: 2
+    ritual: true
+    cast_n: 1
+    cast_unit: 11
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 14
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:39.422972000 Z
+    updated_at: 2014-11-25 03:40:39.422972000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 190
+    name: Illusory Script
+    page: 252
+    level: 1
+    school_id: 5
+    ritual: true
+    cast_n: 1
+    cast_unit: 11
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 14
+    concentration: false
+    duration_n: 10
+    duration_unit: 13
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:39.681820000 Z
+    updated_at: 2014-11-25 03:40:39.681820000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 191
+    name: Imprisonment
+    page: 252
+    level: 9
+    school_id: 0
+    ritual: false
+    cast_n: 1
+    cast_unit: 11
+    range_n: 30
+    range_unit: 10
+    aoe: 
+    components: 14
+    concentration: false
+    duration_n: 0
+    duration_unit: 5
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:39.899777000 Z
+    updated_at: 2014-11-25 03:40:39.899777000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 192
+    name: Incendiary Cloud
+    page: 253
+    level: 8
+    school_id: 1
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 150
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:40.108608000 Z
+    updated_at: 2014-11-25 03:40:40.108608000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 193
+    name: Inflict Wounds
+    page: 253
+    level: 1
+    school_id: 6
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: melee spell attack deals 3d10 necrotic
+    higher: "+1d10 necrotic per level"
+    reaction: 
+    created_at: 2014-11-25 03:40:40.325596000 Z
+    updated_at: 2014-11-25 03:40:40.325596000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 194
+    name: Insect Plague
+    page: 254
+    level: 5
+    school_id: 1
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 300
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: true
+    duration_n: 10
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:40.634404000 Z
+    updated_at: 2014-11-25 03:40:40.634404000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 195
+    name: Invisibility
+    page: 254
+    level: 2
+    school_id: 5
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:40.843245000 Z
+    updated_at: 2014-11-25 03:40:40.843245000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 196
+    name: Jump
+    page: 254
+    level: 1
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 1
+    duration_unit: 11
+    effect: target's jump distance is tripled
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:41.051894000 Z
+    updated_at: 2014-11-25 03:40:41.051894000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 197
+    name: Knock
+    page: 254
+    level: 2
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 8
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:41.285008000 Z
+    updated_at: 2014-11-25 03:40:41.285008000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 198
+    name: Legend Lore
+    page: 254
+    level: 5
+    school_id: 2
+    ritual: false
+    cast_n: 10
+    cast_unit: 11
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 14
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:41.502656000 Z
+    updated_at: 2014-11-25 03:40:41.502656000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 199
+    name: Leomund's Secret Chest
+    page: 254
+    level: 4
+    school_id: 1
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 14
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:41.719743000 Z
+    updated_at: 2014-11-25 03:40:41.719743000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 200
+    name: Leomund's Tiny Hut
+    page: 255
+    level: 3
+    school_id: 4
+    ritual: true
+    cast_n: 1
+    cast_unit: 11
+    range_n: 0
+    range_unit: 0
+    aoe: 10' radius hemisphere
+    components: 15
+    concentration: false
+    duration_n: 8
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:41.886802000 Z
+    updated_at: 2014-11-25 03:40:41.886802000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 201
+    name: Lesser Restoration
+    page: 255
+    level: 2
+    school_id: 0
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:42.136928000 Z
+    updated_at: 2014-11-25 03:40:42.136928000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 202
+    name: Levitate
+    page: 255
+    level: 2
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: true
+    duration_n: 10
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:42.447963000 Z
+    updated_at: 2014-11-25 03:40:42.447963000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 203
+    name: Light
+    page: 255
+    level: 0
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 11
+    concentration: false
+    duration_n: 1
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:42.796909000 Z
+    updated_at: 2014-11-25 03:40:42.796909000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 204
+    name: Lightning Arrow
+    page: 255
+    level: 3
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 2
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 12
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:43.030397000 Z
+    updated_at: 2014-11-25 03:40:43.030397000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 205
+    name: Lightning Bolt
+    page: 255
+    level: 3
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 100' line
+    components: 15
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:43.214437000 Z
+    updated_at: 2014-11-25 03:40:43.214437000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 206
+    name: Locate Animals or Plants
+    page: 256
+    level: 2
+    school_id: 2
+    ritual: true
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:43.511115000 Z
+    updated_at: 2014-11-25 03:40:43.511115000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 207
+    name: Locate Creature
+    page: 256
+    level: 4
+    school_id: 2
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:43.764654000 Z
+    updated_at: 2014-11-25 03:40:43.764654000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 208
+    name: Locate Object
+    page: 256
+    level: 2
+    school_id: 2
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 15
+    concentration: true
+    duration_n: 10
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:44.023847000 Z
+    updated_at: 2014-11-25 03:40:44.023847000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 209
+    name: Longstrider
+    page: 256
+    level: 1
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 1
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:44.207539000 Z
+    updated_at: 2014-11-25 03:40:44.207539000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 210
+    name: Mage Armor
+    page: 256
+    level: 1
+    school_id: 0
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 8
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:44.442337000 Z
+    updated_at: 2014-11-25 03:40:44.442337000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 211
+    name: Mage Hand
+    page: 256
+    level: 0
+    school_id: 1
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 30
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:44.659014000 Z
+    updated_at: 2014-11-25 03:40:44.659014000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 212
+    name: Magic Circle
+    page: 256
+    level: 3
+    school_id: 0
+    ritual: false
+    cast_n: 1
+    cast_unit: 11
+    range_n: 10
+    range_unit: 10
+    aoe: 
+    components: 14
+    concentration: false
+    duration_n: 1
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:44.901345000 Z
+    updated_at: 2014-11-25 03:40:44.901345000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 213
+    name: Magic Jar
+    page: 257
+    level: 6
+    school_id: 6
+    ritual: false
+    cast_n: 1
+    cast_unit: 11
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 14
+    concentration: false
+    duration_n: 0
+    duration_unit: 5
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:45.110126000 Z
+    updated_at: 2014-11-25 03:40:45.110126000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 214
+    name: Magic Missile
+    page: 257
+    level: 1
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 120
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:45.368464000 Z
+    updated_at: 2014-11-25 03:40:45.368464000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 215
+    name: Magic Mouth
+    page: 257
+    level: 2
+    school_id: 5
+    ritual: true
+    cast_n: 1
+    cast_unit: 11
+    range_n: 30
+    range_unit: 10
+    aoe: 
+    components: 14
+    concentration: false
+    duration_n: 0
+    duration_unit: 5
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:45.677180000 Z
+    updated_at: 2014-11-25 03:40:45.677180000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 216
+    name: Magic Weapon
+    page: 257
+    level: 2
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 2
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 12
+    concentration: true
+    duration_n: 1
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:45.894709000 Z
+    updated_at: 2014-11-25 03:40:45.894709000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 217
+    name: Major Image
+    page: 258
+    level: 3
+    school_id: 5
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 120
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: true
+    duration_n: 10
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:46.061708000 Z
+    updated_at: 2014-11-25 03:40:46.061708000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 218
+    name: Mass Cure Wounds
+    page: 258
+    level: 5
+    school_id: 1
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: 30' radius sphere
+    components: 12
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: heal 3d8+SAM, any six creatures in range
+    higher: "+1d8 healing per level"
+    reaction: 
+    created_at: 2014-11-25 03:40:46.278722000 Z
+    updated_at: 2014-11-25 03:40:46.278722000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 219
+    name: Mass Heal
+    page: 258
+    level: 9
+    school_id: 1
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: heal 700 HP, divided as you wish among any creatures in range; cure all
+      disease, blindness, deafness
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:46.454229000 Z
+    updated_at: 2014-11-25 03:40:46.454229000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 220
+    name: Mass Healing Word
+    page: 258
+    level: 3
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 2
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 8
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: heal 1d4+SAM, any six creatures in range
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:46.629551000 Z
+    updated_at: 2014-11-25 03:40:46.629551000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 221
+    name: Mass Suggestion
+    page: 258
+    level: 6
+    school_id: 3
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 11
+    concentration: false
+    duration_n: 24
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:46.980021000 Z
+    updated_at: 2014-11-25 03:40:46.980021000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 222
+    name: Maze
+    page: 259
+    level: 8
+    school_id: 1
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: true
+    duration_n: 10
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:47.213694000 Z
+    updated_at: 2014-11-25 03:40:47.213694000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 223
+    name: Meld into Stone
+    page: 259
+    level: 3
+    school_id: 7
+    ritual: true
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 8
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:47.480774000 Z
+    updated_at: 2014-11-25 03:40:47.480774000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 224
+    name: Melf's Acid Arrow
+    page: 259
+    level: 2
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 90
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:47.714503000 Z
+    updated_at: 2014-11-25 03:40:47.714503000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 225
+    name: Mending
+    page: 259
+    level: 0
+    school_id: 7
+    ritual: false
+    cast_n: 1
+    cast_unit: 11
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:47.981571000 Z
+    updated_at: 2014-11-25 03:40:47.981571000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 226
+    name: Message
+    page: 259
+    level: 0
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 120
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 1
+    duration_unit: 10
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:48.165228000 Z
+    updated_at: 2014-11-25 03:40:48.165228000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 227
+    name: Meteor Swarm
+    page: 259
+    level: 9
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 1
+    range_unit: 11
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:48.398954000 Z
+    updated_at: 2014-11-25 03:40:48.398954000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 228
+    name: Mind Blank
+    page: 259
+    level: 8
+    school_id: 0
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 24
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:48.690967000 Z
+    updated_at: 2014-11-25 03:40:48.690967000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 229
+    name: Minor Illusion
+    page: 260
+    level: 0
+    school_id: 5
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 30
+    range_unit: 10
+    aoe: 
+    components: 7
+    concentration: false
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:48.949632000 Z
+    updated_at: 2014-11-25 03:40:48.949632000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 230
+    name: Mirage Arcane
+    page: 260
+    level: 7
+    school_id: 5
+    ritual: false
+    cast_n: 10
+    cast_unit: 11
+    range_n: 0
+    range_unit: 2
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 10
+    duration_unit: 13
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:49.176206000 Z
+    updated_at: 2014-11-25 03:40:49.176206000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 231
+    name: Mirror Image
+    page: 260
+    level: 2
+    school_id: 5
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:49.409899000 Z
+    updated_at: 2014-11-25 03:40:49.409899000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 232
+    name: Mislead
+    page: 260
+    level: 5
+    school_id: 5
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 4
+    concentration: true
+    duration_n: 1
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:49.618659000 Z
+    updated_at: 2014-11-25 03:40:49.618659000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 233
+    name: Misty Step
+    page: 260
+    level: 2
+    school_id: 1
+    ritual: false
+    cast_n: 0
+    cast_unit: 2
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 8
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:49.835621000 Z
+    updated_at: 2014-11-25 03:40:49.835621000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 234
+    name: Modify Memory
+    page: 261
+    level: 5
+    school_id: 3
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 30
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:50.086078000 Z
+    updated_at: 2014-11-25 03:40:50.086078000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 235
+    name: Moonbeam
+    page: 261
+    level: 2
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 120
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:50.333119000 Z
+    updated_at: 2014-11-25 03:40:50.333119000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 236
+    name: Mordenkainen's Faithful Hound
+    page: 261
+    level: 4
+    school_id: 1
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 30
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 8
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:50.670127000 Z
+    updated_at: 2014-11-25 03:40:50.670127000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 237
+    name: Mordenkainen's Magnificent Mansion
+    page: 261
+    level: 7
+    school_id: 1
+    ritual: false
+    cast_n: 1
+    cast_unit: 11
+    range_n: 300
+    range_unit: 10
+    aoe: 
+    components: 14
+    concentration: false
+    duration_n: 24
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:50.895813000 Z
+    updated_at: 2014-11-25 03:40:50.895813000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 238
+    name: Mordenkainen's Private Sanctum
+    page: 262
+    level: 4
+    school_id: 0
+    ritual: false
+    cast_n: 10
+    cast_unit: 11
+    range_n: 120
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 24
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:51.121213000 Z
+    updated_at: 2014-11-25 03:40:51.121213000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 239
+    name: Mordenkainen's Sword
+    page: 262
+    level: 7
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 14
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:51.399778000 Z
+    updated_at: 2014-11-25 03:40:51.399778000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 240
+    name: Move Earth
+    page: 263
+    level: 6
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 120
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: true
+    duration_n: 2
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:51.580761000 Z
+    updated_at: 2014-11-25 03:40:51.580761000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 241
+    name: Nondetection
+    page: 263
+    level: 3
+    school_id: 0
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 14
+    concentration: false
+    duration_n: 8
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:51.764495000 Z
+    updated_at: 2014-11-25 03:40:51.764495000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 242
+    name: Nystul's Magic Aura
+    page: 263
+    level: 2
+    school_id: 5
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 24
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:51.947833000 Z
+    updated_at: 2014-11-25 03:40:51.947833000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 243
+    name: Otiluke's Freezing Sphere
+    page: 263
+    level: 6
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 300
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:52.131607000 Z
+    updated_at: 2014-11-25 03:40:52.131607000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 244
+    name: Otiluke's Resilient Sphere
+    page: 264
+    level: 4
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 30
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:52.365613000 Z
+    updated_at: 2014-11-25 03:40:52.365613000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 245
+    name: Otto's Irresistible Dance
+    page: 264
+    level: 6
+    school_id: 3
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 30
+    range_unit: 10
+    aoe: 
+    components: 8
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:52.524350000 Z
+    updated_at: 2014-11-25 03:40:52.524350000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 246
+    name: Pass without Trace
+    page: 264
+    level: 2
+    school_id: 0
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:52.749157000 Z
+    updated_at: 2014-11-25 03:40:52.749157000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 247
+    name: Passwall
+    page: 264
+    level: 5
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 30
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 1
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:52.975103000 Z
+    updated_at: 2014-11-25 03:40:52.975103000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 248
+    name: Phantasmal Force
+    page: 264
+    level: 2
+    school_id: 5
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:53.192160000 Z
+    updated_at: 2014-11-25 03:40:53.192160000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 249
+    name: Phantasmal Killer
+    page: 265
+    level: 4
+    school_id: 5
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 120
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:53.385260000 Z
+    updated_at: 2014-11-25 03:40:53.385260000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 250
+    name: Phantom Steed
+    page: 265
+    level: 3
+    school_id: 5
+    ritual: true
+    cast_n: 1
+    cast_unit: 11
+    range_n: 30
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 1
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:53.643981000 Z
+    updated_at: 2014-11-25 03:40:53.643981000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 251
+    name: Planar Ally
+    page: 265
+    level: 6
+    school_id: 1
+    ritual: false
+    cast_n: 10
+    cast_unit: 11
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:53.836001000 Z
+    updated_at: 2014-11-25 03:40:53.836001000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 252
+    name: Planar Binding
+    page: 265
+    level: 5
+    school_id: 0
+    ritual: false
+    cast_n: 1
+    cast_unit: 12
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 14
+    concentration: false
+    duration_n: 24
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:54.036489000 Z
+    updated_at: 2014-11-25 03:40:54.036489000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 253
+    name: Plane Shift
+    page: 266
+    level: 7
+    school_id: 1
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 14
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:54.178560000 Z
+    updated_at: 2014-11-25 03:40:54.178560000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 254
+    name: Plant Growth
+    page: 266
+    level: 3
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 150
+    range_unit: 10
+    aoe: 100' radius or ½ mile radius
+    components: 12
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:54.478786000 Z
+    updated_at: 2014-11-25 03:40:54.478786000 Z
+- !ruby/object:Spell
+  *1:
+    id: 255
+    name: Poison Spray
+    page: 266
+    level: 0
+    school_id: 1
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 10
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:54.704244000 Z
+    updated_at: 2014-11-25 03:40:54.704244000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 256
+    name: Polymorph
+    page: 266
+    level: 4
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:54.888146000 Z
+    updated_at: 2014-11-25 03:40:54.888146000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 257
+    name: Power Word Heal
+    page: 266
+    level: 9
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: target heals all HP; cure all charm, fear, paralysis, stun; prone target
+      can use reaction to stand
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:55.087990000 Z
+    updated_at: 2014-11-25 03:40:55.087990000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 258
+    name: Power Word Kill
+    page: 266
+    level: 9
+    school_id: 3
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 8
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: target with ≤ 100HP dies
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:55.322513000 Z
+    updated_at: 2014-11-25 03:40:55.322513000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 259
+    name: Power Word Stun
+    page: 267
+    level: 8
+    school_id: 3
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 8
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:55.698175000 Z
+    updated_at: 2014-11-25 03:40:55.698175000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 260
+    name: Prayer of Healing
+    page: 267
+    level: 2
+    school_id: 4
+    ritual: false
+    cast_n: 10
+    cast_unit: 11
+    range_n: 30
+    range_unit: 10
+    aoe: 
+    components: 8
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:55.848108000 Z
+    updated_at: 2014-11-25 03:40:55.848108000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 261
+    name: Prestidigitation
+    page: 267
+    level: 0
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 10
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 1
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:56.073772000 Z
+    updated_at: 2014-11-25 03:40:56.073772000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 262
+    name: Prismatic Spray
+    page: 267
+    level: 7
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 60' cone
+    components: 12
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:56.257362000 Z
+    updated_at: 2014-11-25 03:40:56.257362000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 263
+    name: Prismatic Wall
+    page: 267
+    level: 9
+    school_id: 0
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 10
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:56.441002000 Z
+    updated_at: 2014-11-25 03:40:56.441002000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 264
+    name: Produce Flame
+    page: 269
+    level: 0
+    school_id: 1
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 10
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:56.666456000 Z
+    updated_at: 2014-11-25 03:40:56.666456000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 265
+    name: Programmed Illusion
+    page: 269
+    level: 6
+    school_id: 5
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 120
+    range_unit: 10
+    aoe: 
+    components: 14
+    concentration: false
+    duration_n: 0
+    duration_unit: 5
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:56.866849000 Z
+    updated_at: 2014-11-25 03:40:56.866849000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 266
+    name: Project Image
+    page: 270
+    level: 7
+    school_id: 5
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 500
+    range_unit: 11
+    aoe: 
+    components: 14
+    concentration: true
+    duration_n: 1
+    duration_unit: 13
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:57.050534000 Z
+    updated_at: 2014-11-25 03:40:57.050534000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 267
+    name: Protection from Energy
+    page: 270
+    level: 3
+    school_id: 0
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 12
+    concentration: true
+    duration_n: 1
+    duration_unit: 12
+    effect: 'target gains resistance to one type: acid, cold, fire, lightning, thunder'
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:57.217670000 Z
+    updated_at: 2014-11-25 03:40:57.217670000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 268
+    name: Protection from Evil and Good
+    page: 270
+    level: 1
+    school_id: 0
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 15
+    concentration: true
+    duration_n: 10
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:57.476351000 Z
+    updated_at: 2014-11-25 03:40:57.476351000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 269
+    name: Protection from Poison
+    page: 270
+    level: 2
+    school_id: 0
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 1
+    duration_unit: 12
+    effect: cure one poison; target gains advantage on saves vs poison, resistance
+      to poison
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:57.711150000 Z
+    updated_at: 2014-11-25 03:40:57.711150000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 270
+    name: Purify Food and Drink
+    page: 270
+    level: 1
+    school_id: 7
+    ritual: true
+    cast_n: 0
+    cast_unit: 1
+    range_n: 10
+    range_unit: 10
+    aoe: 5' radius
+    components: 12
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: cure poison and disease from all nonmagical food and drink in area
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:57.869633000 Z
+    updated_at: 2014-11-25 03:40:57.869633000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 271
+    name: Raise Dead
+    page: 270
+    level: 5
+    school_id: 6
+    ritual: false
+    cast_n: 1
+    cast_unit: 12
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 14
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:58.028312000 Z
+    updated_at: 2014-11-25 03:40:58.028312000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 272
+    name: Rary's Telepathic Bond
+    page: 270
+    level: 5
+    school_id: 2
+    ritual: true
+    cast_n: 0
+    cast_unit: 1
+    range_n: 30
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 1
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:58.187167000 Z
+    updated_at: 2014-11-25 03:40:58.187167000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 273
+    name: Ray of Enfeeblement
+    page: 271
+    level: 2
+    school_id: 6
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:58.345250000 Z
+    updated_at: *2
+- !ruby/object:Spell
+  attributes:
+    id: 274
+    name: Ray of Frost
+    page: 271
+    level: 0
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:58.571405000 Z
+    updated_at: 2014-11-25 03:40:58.571405000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 275
+    name: Ray of Sickness
+    page: 271
+    level: 1
+    school_id: 6
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:58.771853000 Z
+    updated_at: 2014-11-25 03:40:58.771853000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 276
+    name: Regenerate
+    page: 271
+    level: 7
+    school_id: 7
+    ritual: false
+    cast_n: 1
+    cast_unit: 11
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 1
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:58.938815000 Z
+    updated_at: 2014-11-25 03:40:58.938815000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 277
+    name: Reincarnate
+    page: 271
+    level: 5
+    school_id: 7
+    ritual: false
+    cast_n: 1
+    cast_unit: 12
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 14
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:59.105943000 Z
+    updated_at: 2014-11-25 03:40:59.105943000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 278
+    name: Remove Curse
+    page: 271
+    level: 3
+    school_id: 0
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:59.281039000 Z
+    updated_at: 2014-11-25 03:40:59.281039000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 279
+    name: Resistance
+    page: 272
+    level: 0
+    school_id: 0
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:59.473404000 Z
+    updated_at: 2014-11-25 03:40:59.473404000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 280
+    name: Resurrection
+    page: 272
+    level: 7
+    school_id: 6
+    ritual: false
+    cast_n: 1
+    cast_unit: 12
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 14
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:59.682149000 Z
+    updated_at: 2014-11-25 03:40:59.682149000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 281
+    name: Reverse Gravity
+    page: 272
+    level: 7
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 100
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:40:59.874192000 Z
+    updated_at: 2014-11-25 03:40:59.874192000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 282
+    name: Revivify
+    page: 272
+    level: 3
+    school_id: 1
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 14
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:00.066294000 Z
+    updated_at: 2014-11-25 03:41:00.066294000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 283
+    name: Rope Trick
+    page: 272
+    level: 2
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 1
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:00.282540000 Z
+    updated_at: 2014-11-25 03:41:00.282540000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 284
+    name: Sacred Flame
+    page: 272
+    level: 0
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:00.592322000 Z
+    updated_at: 2014-11-25 03:41:00.592322000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 285
+    name: Sanctuary
+    page: 272
+    level: 1
+    school_id: 0
+    ritual: false
+    cast_n: 0
+    cast_unit: 2
+    range_n: 30
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:00.734426000 Z
+    updated_at: 2014-11-25 03:41:00.734426000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 286
+    name: Scorching Ray
+    page: 273
+    level: 2
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 120
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: three rays deal 2d6 fire on ranged spell attack
+    higher: "+1 ray per level"
+    reaction: 
+    created_at: 2014-11-25 03:41:00.876208000 Z
+    updated_at: 2014-11-25 03:41:00.876208000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 287
+    name: Scrying
+    page: 273
+    level: 5
+    school_id: 2
+    ritual: false
+    cast_n: 10
+    cast_unit: 11
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 14
+    concentration: true
+    duration_n: 10
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:01.018240000 Z
+    updated_at: 2014-11-25 03:41:01.018240000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 288
+    name: Searing Smite
+    page: 274
+    level: 1
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 2
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 8
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:01.160529000 Z
+    updated_at: 2014-11-25 03:41:01.160529000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 289
+    name: See Invisibility
+    page: 274
+    level: 2
+    school_id: 2
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 1
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:01.328541000 Z
+    updated_at: 2014-11-25 03:41:01.328541000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 290
+    name: Seeming
+    page: 274
+    level: 5
+    school_id: 5
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 30
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 8
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:01.487249000 Z
+    updated_at: 2014-11-25 03:41:01.487249000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 291
+    name: Sending
+    page: 274
+    level: 3
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 4
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 1
+    duration_unit: 10
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:01.695943000 Z
+    updated_at: 2014-11-25 03:41:01.695943000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 292
+    name: Sequester
+    page: 274
+    level: 7
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 14
+    concentration: false
+    duration_n: 0
+    duration_unit: 5
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:01.854567000 Z
+    updated_at: 2014-11-25 03:41:01.854567000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 293
+    name: Shapechange
+    page: 274
+    level: 9
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 14
+    concentration: true
+    duration_n: 1
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:02.013073000 Z
+    updated_at: 2014-11-25 03:41:02.013073000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 294
+    name: Shatter
+    page: 275
+    level: 2
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:02.180424000 Z
+    updated_at: 2014-11-25 03:41:02.180424000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 295
+    name: Shield
+    page: 275
+    level: 1
+    school_id: 0
+    ritual: false
+    cast_n: 0
+    cast_unit: 3
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 1
+    duration_unit: 10
+    effect: "+5 AC against triggering attack and all others until next turn; blocks
+      magic missile"
+    higher: 
+    reaction: You are hit by an attack or a magic missile
+    created_at: 2014-11-25 03:41:02.380626000 Z
+    updated_at: 2014-11-25 03:41:02.380626000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 296
+    name: Shield of Faith
+    page: 275
+    level: 1
+    school_id: 0
+    ritual: false
+    cast_n: 0
+    cast_unit: 2
+    range_n: 60
+    range_unit: 10
+    aoe: 1 target
+    components: 15
+    concentration: true
+    duration_n: 10
+    duration_unit: 11
+    effect: "+2 AC"
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:02.564582000 Z
+    updated_at: 2014-11-30 05:31:17.042972000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 297
+    name: Shillelagh
+    page: 275
+    level: 0
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 2
+    range_n: 0
+    range_unit: 1
+    aoe: 1 club or quarterstaff
+    components: 15
+    concentration: false
+    duration_n: 1
+    duration_unit: 11
+    effect: Use SAB instead of STR on melee attacks; weapon does 1d8 and is magical
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:02.723279000 Z
+    updated_at: 2014-11-30 05:32:23.414351000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 298
+    name: Shocking Grasp
+    page: 275
+    level: 0
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: melee spell attack deals 1d8 lightning; target can't take reactions until
+      next turn
+    higher: "+1d8 lightning at 5th, 11th, 17th"
+    reaction: 
+    created_at: 2014-11-25 03:41:02.881885000 Z
+    updated_at: 2014-11-25 03:41:02.881885000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 299
+    name: Silence
+    page: 275
+    level: 2
+    school_id: 5
+    ritual: true
+    cast_n: 0
+    cast_unit: 1
+    range_n: 120
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: true
+    duration_n: 10
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:03.032241000 Z
+    updated_at: 2014-11-25 03:41:03.032241000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 300
+    name: Silent Image
+    page: 276
+    level: 1
+    school_id: 5
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: true
+    duration_n: 10
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:03.174477000 Z
+    updated_at: 2014-11-25 03:41:03.174477000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 301
+    name: Simulacrum
+    page: 276
+    level: 7
+    school_id: 5
+    ritual: false
+    cast_n: 12
+    cast_unit: 12
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 14
+    concentration: false
+    duration_n: 0
+    duration_unit: 5
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:03.316473000 Z
+    updated_at: 2014-11-25 03:41:03.316473000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 302
+    name: Sleep
+    page: 276
+    level: 1
+    school_id: 3
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 90
+    range_unit: 10
+    aoe: 20' radius
+    components: 15
+    concentration: false
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:03.470906000 Z
+    updated_at: 2014-11-25 03:41:03.470906000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 303
+    name: Sleet Storm
+    page: 276
+    level: 3
+    school_id: 1
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 50
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:03.900990000 Z
+    updated_at: 2014-11-25 03:41:03.900990000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 304
+    name: Slow
+    page: 277
+    level: 3
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 120
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:04.042970000 Z
+    updated_at: 2014-11-25 03:41:04.042970000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 305
+    name: Spare the Dying
+    page: 277
+    level: 0
+    school_id: 6
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:04.185068000 Z
+    updated_at: 2014-11-25 03:41:04.185068000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 306
+    name: Speak with Animals
+    page: 277
+    level: 1
+    school_id: 2
+    ritual: true
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 10
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:04.343805000 Z
+    updated_at: 2014-11-25 03:41:04.343805000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 307
+    name: Speak with Dead
+    page: 277
+    level: 3
+    school_id: 6
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 10
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 10
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:04.510819000 Z
+    updated_at: 2014-11-25 03:41:04.510819000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 308
+    name: Speak with Plants
+    page: 277
+    level: 3
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 30' radius
+    components: 12
+    concentration: false
+    duration_n: 10
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:04.669562000 Z
+    updated_at: 2014-11-25 03:41:04.669562000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 309
+    name: Spider Climb
+    page: 277
+    level: 2
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:04.829249000 Z
+    updated_at: 2014-11-25 03:41:04.829249000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 310
+    name: Spike Growth
+    page: 277
+    level: 2
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 150
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: true
+    duration_n: 10
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:04.987936000 Z
+    updated_at: 2014-11-25 03:41:04.987936000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 311
+    name: Spirit Guardians
+    page: 278
+    level: 3
+    school_id: 1
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 15' radius
+    components: 15
+    concentration: true
+    duration_n: 10
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:05.155044000 Z
+    updated_at: 2014-11-25 03:41:05.155044000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 312
+    name: Spiritual Wisdom
+    page: 278
+    level: 2
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 2
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:05.363759000 Z
+    updated_at: 2014-11-25 03:41:05.363759000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 313
+    name: Staggering Smite
+    page: 278
+    level: 4
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 2
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 8
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:05.655917000 Z
+    updated_at: 2014-11-25 03:41:05.655917000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 314
+    name: Stinking Cloud
+    page: 278
+    level: 3
+    school_id: 1
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 90
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:05.822940000 Z
+    updated_at: 2014-11-25 03:41:05.822940000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 315
+    name: Stone Shape
+    page: 278
+    level: 4
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:05.989741000 Z
+    updated_at: 2014-11-25 03:41:05.989741000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 316
+    name: Stoneskin
+    page: 278
+    level: 4
+    school_id: 0
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 14
+    concentration: true
+    duration_n: 1
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:06.148608000 Z
+    updated_at: 2014-11-25 03:41:06.148608000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 317
+    name: Storm of Vengeance
+    page: 279
+    level: 9
+    school_id: 1
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 2
+    aoe: 
+    components: 12
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:06.298978000 Z
+    updated_at: 2014-11-25 03:41:06.298978000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 318
+    name: Suggestion
+    page: 279
+    level: 2
+    school_id: 3
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 30
+    range_unit: 10
+    aoe: 
+    components: 11
+    concentration: true
+    duration_n: 8
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:06.441168000 Z
+    updated_at: 2014-11-25 03:41:06.441168000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 319
+    name: Sunbeam
+    page: 279
+    level: 6
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 60' line
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:06.591434000 Z
+    updated_at: 2014-11-25 03:41:06.591434000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 320
+    name: Sunburst
+    page: 279
+    level: 8
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 150
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:06.741245000 Z
+    updated_at: 2014-11-25 03:41:06.741245000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 321
+    name: Swift Quiver
+    page: 279
+    level: 5
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 2
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 14
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:06.883772000 Z
+    updated_at: 2014-11-25 03:41:06.883772000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 322
+    name: Symbol
+    page: 280
+    level: 7
+    school_id: 0
+    ritual: false
+    cast_n: 1
+    cast_unit: 11
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 14
+    concentration: false
+    duration_n: 0
+    duration_unit: 5
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:07.050881000 Z
+    updated_at: 2014-11-25 03:41:07.050881000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 323
+    name: Tasha's Hideous Laughter
+    page: 280
+    level: 1
+    school_id: 3
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 30
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:07.193004000 Z
+    updated_at: 2014-11-25 03:41:07.193004000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 324
+    name: Telekinesis
+    page: 280
+    level: 5
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: true
+    duration_n: 10
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:07.335009000 Z
+    updated_at: 2014-11-25 03:41:07.335009000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 325
+    name: Telepathy
+    page: 281
+    level: 8
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 4
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 24
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:07.493566000 Z
+    updated_at: 2014-11-25 03:41:07.493566000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 326
+    name: Teleport
+    page: 281
+    level: 7
+    school_id: 1
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 10
+    range_unit: 10
+    aoe: 
+    components: 8
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:07.635583000 Z
+    updated_at: 2014-11-25 03:41:07.635583000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 327
+    name: Teleportation Circle
+    page: 282
+    level: 5
+    school_id: 1
+    ritual: false
+    cast_n: 1
+    cast_unit: 11
+    range_n: 10
+    range_unit: 10
+    aoe: 
+    components: 10
+    concentration: false
+    duration_n: 1
+    duration_unit: 10
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:07.786122000 Z
+    updated_at: 2014-11-25 03:41:07.786122000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 328
+    name: Tenser's Floating Disk
+    page: 282
+    level: 1
+    school_id: 1
+    ritual: true
+    cast_n: 0
+    cast_unit: 1
+    range_n: 30
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 1
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:07.936795000 Z
+    updated_at: 2014-11-25 03:41:07.936795000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 329
+    name: Thaumaturgy
+    page: 282
+    level: 0
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 30
+    range_unit: 10
+    aoe: 
+    components: 8
+    concentration: false
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:08.086999000 Z
+    updated_at: 2014-11-25 03:41:08.086999000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 330
+    name: Thorn Whip
+    page: 282
+    level: 0
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 30
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:08.254862000 Z
+    updated_at: 2014-11-25 03:41:08.254862000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 331
+    name: Thunderous Smite
+    page: 282
+    level: 1
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 2
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 8
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:08.422034000 Z
+    updated_at: 2014-11-25 03:41:08.422034000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 332
+    name: Thunderwave
+    page: 283
+    level: 1
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 15' cube
+    components: 12
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:08.655718000 Z
+    updated_at: 2014-11-25 03:41:08.655718000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 333
+    name: Time Stop
+    page: 283
+    level: 9
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 8
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:08.822692000 Z
+    updated_at: 2014-11-25 03:41:08.822692000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 334
+    name: Tongues
+    page: 283
+    level: 3
+    school_id: 2
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 11
+    concentration: false
+    duration_n: 1
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: *3
+    updated_at: 2014-11-25 03:41:08.989520000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 335
+    name: Transport via Plants
+    page: 283
+    level: 6
+    school_id: 1
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 10
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 1
+    duration_unit: 10
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:09.148549000 Z
+    updated_at: 2014-11-25 03:41:09.148549000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 336
+    name: Tree Stride
+    page: 283
+    level: 5
+    school_id: 1
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 12
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:09.307251000 Z
+    updated_at: 2014-11-25 03:41:09.307251000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 337
+    name: True Polymorph
+    page: 283
+    level: 9
+    school_id: 7
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 30
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:09.457629000 Z
+    updated_at: 2014-11-25 03:41:09.457629000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 338
+    name: True Resurrection
+    page: 284
+    level: 9
+    school_id: 6
+    ritual: false
+    cast_n: 1
+    cast_unit: 12
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 14
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:09.650023000 Z
+    updated_at: 2014-11-25 03:41:09.650023000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 339
+    name: True Seeing
+    page: 284
+    level: 6
+    school_id: 2
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 1
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:09.817080000 Z
+    updated_at: 2014-11-25 03:41:09.817080000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 340
+    name: True Strike
+    page: 284
+    level: 0
+    school_id: 2
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 30
+    range_unit: 10
+    aoe: 
+    components: 4
+    concentration: true
+    duration_n: 1
+    duration_unit: 10
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:09.975559000 Z
+    updated_at: 2014-11-25 03:41:09.975559000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 341
+    name: Tsunami
+    page: 284
+    level: 8
+    school_id: 1
+    ritual: false
+    cast_n: 1
+    cast_unit: 11
+    range_n: 0
+    range_unit: 2
+    aoe: 
+    components: 12
+    concentration: true
+    duration_n: 6
+    duration_unit: 10
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:10.134523000 Z
+    updated_at: 2014-11-25 03:41:10.134523000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 342
+    name: Unseen Servant
+    page: 284
+    level: 1
+    school_id: 1
+    ritual: true
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 1
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:10.301521000 Z
+    updated_at: 2014-11-25 03:41:10.301521000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 343
+    name: Vampiric Touch
+    page: 285
+    level: 3
+    school_id: 6
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 12
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:10.635546000 Z
+    updated_at: 2014-11-25 03:41:10.635546000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 344
+    name: Vicious Mockery
+    page: 285
+    level: 0
+    school_id: 3
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 8
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:10.777517000 Z
+    updated_at: 2014-11-25 03:41:10.777517000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 345
+    name: Wall of Fire
+    page: 285
+    level: 4
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 120
+    range_unit: 10
+    aoe: 60' x 20' x 1' wall or 20' dia x 20' x 1' ring
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:10.994396000 Z
+    updated_at: 2014-11-25 03:41:10.994396000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 346
+    name: Wall of Force
+    page: 285
+    level: 5
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 120
+    range_unit: 10
+    aoe: special
+    components: 15
+    concentration: true
+    duration_n: 10
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:11.136643000 Z
+    updated_at: 2014-11-25 03:41:11.136643000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 347
+    name: Wall of Ice
+    page: 285
+    level: 6
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 120
+    range_unit: 10
+    aoe: special
+    components: 15
+    concentration: true
+    duration_n: 10
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:11.353694000 Z
+    updated_at: 2014-11-25 03:41:11.353694000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 348
+    name: Wall of Stone
+    page: 287
+    level: 5
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 120
+    range_unit: 10
+    aoe: six 10' x 10' x 6” or 10' x 20' x 3” panels
+    components: 15
+    concentration: true
+    duration_n: 10
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:11.579084000 Z
+    updated_at: 2014-11-25 03:41:11.579084000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 349
+    name: Wall of Thorns
+    page: 287
+    level: 6
+    school_id: 1
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 120
+    range_unit: 10
+    aoe: 60' x 10' x 5' wall or 20' dia x 20' x 5' ring
+    components: 15
+    concentration: true
+    duration_n: 10
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:11.729403000 Z
+    updated_at: 2014-11-25 03:41:11.729403000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 350
+    name: Warding Bond
+    page: 287
+    level: 2
+    school_id: 0
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 1
+    aoe: 
+    components: 14
+    concentration: false
+    duration_n: 1
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:11.955566000 Z
+    updated_at: 2014-11-25 03:41:11.955566000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 351
+    name: Water Breathing
+    page: 287
+    level: 3
+    school_id: 7
+    ritual: true
+    cast_n: 0
+    cast_unit: 1
+    range_n: 30
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 24
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:12.126883000 Z
+    updated_at: 2014-11-25 03:41:12.126883000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 352
+    name: Water Walk
+    page: 287
+    level: 3
+    school_id: 7
+    ritual: true
+    cast_n: 0
+    cast_unit: 1
+    range_n: 30
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 1
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:12.339983000 Z
+    updated_at: 2014-11-25 03:41:12.339983000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 353
+    name: Web
+    page: 288
+    level: 2
+    school_id: 1
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: 20' cube
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:12.490333000 Z
+    updated_at: 2014-11-25 03:41:12.490333000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 354
+    name: Weird
+    page: 288
+    level: 9
+    school_id: 5
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 120
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:12.640698000 Z
+    updated_at: 2014-11-25 03:41:12.640698000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 355
+    name: Wind Walk
+    page: 288
+    level: 6
+    school_id: 7
+    ritual: false
+    cast_n: 1
+    cast_unit: 11
+    range_n: 30
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: false
+    duration_n: 8
+    duration_unit: 12
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:12.791071000 Z
+    updated_at: 2014-11-25 03:41:12.791071000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 356
+    name: Wind Wall
+    page: 288
+    level: 3
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 120
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:12.941325000 Z
+    updated_at: 2014-11-25 03:41:12.941325000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 357
+    name: Wish
+    page: 288
+    level: 9
+    school_id: 1
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 8
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:13.066625000 Z
+    updated_at: 2014-11-25 03:41:13.066625000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 358
+    name: Witch Bolt
+    page: 289
+    level: 1
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 30
+    range_unit: 10
+    aoe: 
+    components: 15
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:13.192283000 Z
+    updated_at: 2014-11-25 03:41:13.192283000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 359
+    name: Word of Recall
+    page: 289
+    level: 6
+    school_id: 1
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 5
+    range_unit: 10
+    aoe: 
+    components: 8
+    concentration: false
+    duration_n: 0
+    duration_unit: 4
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:13.317566000 Z
+    updated_at: 2014-11-25 03:41:13.317566000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 360
+    name: Wrathful Smite
+    page: 289
+    level: 1
+    school_id: 4
+    ritual: false
+    cast_n: 0
+    cast_unit: 2
+    range_n: 0
+    range_unit: 0
+    aoe: 
+    components: 8
+    concentration: true
+    duration_n: 1
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:13.451305000 Z
+    updated_at: 2014-11-25 03:41:13.451305000 Z
+- !ruby/object:Spell
+  attributes:
+    id: 361
+    name: Zone of Truth
+    page: 289
+    level: 2
+    school_id: 3
+    ritual: false
+    cast_n: 0
+    cast_unit: 1
+    range_n: 60
+    range_unit: 10
+    aoe: 
+    components: 12
+    concentration: false
+    duration_n: 10
+    duration_unit: 11
+    effect: 
+    higher: 
+    reaction: 
+    created_at: 2014-11-25 03:41:13.685226000 Z
+    updated_at: 2014-11-25 03:41:13.685226000 Z
