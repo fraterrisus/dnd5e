@@ -7,11 +7,12 @@ module ModalHelper
     options[:form][:id] = "#{id}-form"
     options[:form][:class] = (options[:inline] ? 'form-inline' : 'form')
     options[:form][:data] = { remote: true } if options[:remote]
+    form_model = klass.is_a?(Class) ? klass.new : klass
 
     tag.div(id: "#{id}-modal", class: %w(modal fade), tabindex: '-1', role: 'dialog',
             aria: { hidden: true, labelledby: "#{id}-label" }) do
       tag.div(class: %w(modal-dialog)) do
-        form_for(klass.new, { html: options[:form] }) do |f|
+        form_with(model: form_model, html: options[:form]) do |f|
           tag.div(class: %w(modal-content)) do
             view_join(
               tag.div(class: %w(modal-header)) do

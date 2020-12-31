@@ -3,7 +3,8 @@ import {Modal} from "bootstrap";
 
 function spellIndexDetail(ev) {
   const $me = ev.currentTarget;
-  let filename = $me.getAttribute('data-spell-file');
+  const filename = $me.getAttribute('data-spell-file');
+
   fetch('/ajax/spells/detail?name=' + encodeURIComponent(filename))
     .then(Helpers.extractResponseBody)
     .then(ajaxResponseBody => {
@@ -25,6 +26,7 @@ function spellIndexDetail(ev) {
 
 window.addEventListener('load', () => {
   const button = document.querySelector('#narrowing-ok');
+
   button.addEventListener('click', () => {
     const pageBody = document.querySelector('#spells-results');
     pageBody.innerHTML = '<h3>Loading...</h3>';
@@ -39,5 +41,6 @@ window.addEventListener('load', () => {
         pageBody.innerHTML = '<p>There was an error fetching spell data from the server.</p>';
       });
   });
+
   button.dispatchEvent(new Event('click'));
 });

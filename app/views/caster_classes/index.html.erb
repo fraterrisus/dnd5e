@@ -1,36 +1,21 @@
-<h1>Caster Classes</h1>
-<div style="margin-top:12px;">
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newclass-modal">New Caster Class</button>
-</div>
-<div id="cclass-results" class="results"></div>
-<%=
-content_tag(:div, id: 'newclass-modal', class: 'modal fade',
-            tabindex: '-1', role: 'dialog', 'aria-hidden' => true,
-            'aria-labelledby' => 'newclass-label') do
-  content_tag(:div, class: %w(modal-dialog)) do
-    form_for(CasterClass.new, class: %w(form-inline), role: 'form') do |f|
-      content_tag(:div, class: %w(modal-content)) do
-        content_tag(:div, class: %w(modal-header)) do
-          button_tag('type' => 'button', 'data-dismiss' => 'modal', class: %w(close)) do
-            content_tag(:span, nil, class: %w(fas fa-window-close), 'aria-hidden' => true) <<
-            content_tag(:span, 'close', class: 'sr-only')
-          end <<
-          content_tag(:h4, 'New Caster Class', id: 'newclass-label', class: 'modal-title')
-        end <<
-        content_tag(:div, class: %w(modal-body)) do
-          content_tag(:div, class: %w(form-group row)) do
-            content_tag(:div, class: %w(col-xs-12 col-sm-12)) do
-              f.label(:name) <<
-              f.text_field(:name, class: 'form-control')
-            end
-          end
-        end <<
-        content_tag(:div, class: %w(modal-footer)) do
-          button_tag('Cancel', type: 'button', class: %w(btn btn-default), 'data-dismiss' => 'modal') <<
-          button_tag('Add', type: 'submit', id: 'newclass-ok', class: %w(btn btn-primary))
-        end
-      end
-    end
-  end
-end
-%>
+<% content_for :head do %>
+  <%= javascript_pack_tag :caster_classes %>
+<% end %>
+
+<%= tag.h1('Caster Classes') %>
+
+<%= tag.div(style: 'margin-top: 12px;') do %>
+  <%= tag.button('New Caster Class', class: %w(btn btn-primary), type: 'button',
+                 data: { toggle: 'modal', target: '#newclass-modal' }) %>
+<% end %>
+
+<%= tag.div(id: 'cclass-results', class: 'results') %>
+
+<%= bootstrap_modal('newclass', CasterClass, 'New Caster Class') do |form| %>
+  <%= content_tag(:div, class: %w(form-group row)) do %>
+    <%= content_tag(:div, class: %w(col-xs-12 col-sm-12)) do %>
+      <%= form.label(:name) %>
+      <%= form.text_field(:name, class: 'form-control') %>
+    <% end %>
+  <% end %>
+<% end %>
