@@ -1,6 +1,6 @@
 function rollDice(sides) {
-  let numDice = Number(document.querySelector('#numdice').value);
-  let advantage = document.querySelector('#dicebar input[name="adv"]:checked').value;
+  let numDice = Number(document.getElementById('numdice').value);
+  let advantage = document.getElementById('dicebar input[name="adv"]:checked').value;
   let d1 = 0, d2 = 0, r1 = [], r2 = [];
   for (let i = 0; i<numDice; i++) {
     let t1 = Math.ceil( Math.random() * sides );
@@ -32,11 +32,11 @@ function rollDice(sides) {
       result = s1 + '<br/>' + '<strike>' + s2 + '</strike>';
     }
   } else { result = s1; }
-  document.querySelector('#dicebar-result').innerHTML = result;
+  document.getElementById('dicebar-result').innerHTML = result;
 }
 
 function incrementNumDice(amount) {
-  let numdice_box = document.querySelector('#numdice');
+  let numdice_box = document.getElementById('numdice');
   let nd = Number(numdice_box.value);
   nd = nd + amount;
   if (nd < 1) { nd = 1; }
@@ -44,20 +44,20 @@ function incrementNumDice(amount) {
 }
 
 window.addEventListener('load', () => {
-  document.querySelector('#roll-4').addEventListener('click',
+  document.getElementById('roll-4').addEventListener('click',
       function () { rollDice(4); } );
-  document.querySelector('#roll-6').addEventListener('click',
+  document.getElementById('roll-6').addEventListener('click',
       function () { rollDice(6); } );
-  document.querySelector('#roll-8').addEventListener('click',
+  document.getElementById('roll-8').addEventListener('click',
       function () { rollDice(8); } );
-  document.querySelector('#roll-10').addEventListener('click',
+  document.getElementById('roll-10').addEventListener('click',
       function () { rollDice(10); } );
-  document.querySelector('#roll-12').addEventListener('click',
+  document.getElementById('roll-12').addEventListener('click',
       function () { rollDice(12); } );
-  document.querySelector('#roll-20').addEventListener('click',
+  document.getElementById('roll-20').addEventListener('click',
       function () { rollDice(20); } );
-  document.querySelector('#numdice-minone').addEventListener('click',
+  document.getElementById('numdice-minone').addEventListener('click',
       function () { incrementNumDice(1); });
-  document.querySelector( '#numdice-plsone').addEventListener( 'click',
+  document.getElementById('numdice-plsone').addEventListener( 'click',
       function () { incrementNumDice(-1) });
 });

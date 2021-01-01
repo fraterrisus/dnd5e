@@ -7,6 +7,14 @@ export const Helpers = {
         }
     },
 
+    extractResponseJson: function(response) {
+        if (response.ok) {
+            return response.json();
+        } else {
+            return Promise.reject(response);
+        }
+    },
+
     formToQuery: function(selector) {
         const element = document.querySelector(selector);
         const formData = new FormData(element);

@@ -8,19 +8,19 @@ function spellIndexDetail(ev) {
   fetch('/ajax/spells/detail?name=' + encodeURIComponent(filename))
     .then(Helpers.extractResponseBody)
     .then(ajaxResponseBody => {
-      const modalBody = document.querySelector('#detail-body');
+      const modalBody = document.getElementById('detail-body');
       modalBody.innerHTML = ajaxResponseBody;
       const modalTitle = modalBody.querySelector('h1');
       const headerText = modalTitle.innerHTML;
       modalBody.removeChild(modalTitle);
-      document.querySelector('#detail-label').innerHTML = headerText;
-      new Modal(document.querySelector('#detail-modal')).show();
+      document.getElementById('detail-label').innerHTML = headerText;
+      new Modal(document.getElementById('detail-modal')).show();
     })
     .catch(() => {
-      document.querySelector('#detail-label').innerHTML = 'Error';
-      document.querySelector('#detail-body').innerHTML =
+      document.getElementById('detail-label').innerHTML = 'Error';
+      document.getElementById('detail-body').innerHTML =
         "<p>There was an error loading that spell's description file.</p>";
-      new Modal(document.querySelector('#detail-modal')).show();
+      new Modal(document.getElementById('detail-modal')).show();
     });
 }
 

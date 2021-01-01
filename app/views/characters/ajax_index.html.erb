@@ -1,37 +1,36 @@
-<%= tag.table(id: 'character-table', class: %w(table table-condensed)) do
-  tag.tr do
-    view_join(
-      tag.th,
-      tag.th('Name'),
-      tag.th('S', title: 'Strength'),
-      tag.th('D', title: 'Dexterity'),
-      tag.th('C', title: 'Constitution'),
-      tag.th('I', title: 'Intelligence'),
-      tag.th('W', title: 'Wisdom'),
-      tag.th('C', title: 'Charisma'),
-      tag.th('Per', title: 'Perception'),
-      tag.th('Init', title: 'Initiative'),
-      tag.th('Spd', title: 'Speed'),
-      tag.th('AC', title: 'Armor Class')
-    )
-  end <<
-  safe_join( @chars.map do |c|
-    second_row = c.notes && c.notes != ""
-    tr_klass = c.highlight ? [ 'info' ] : []
-    td_attrs = second_row ? { rowspan: 2 } : {}
-    s = tag.tr(class: tr_klass, 'data-char-id' => c.id, 'data-char-highlight' => c.highlight) do
-      cells = [ tag.td(td_attrs) { bs_glyph('edit') } ]
-      cells << tag.td(c.name, td_attrs)
-      [ :str, :dex, :con, :int, :wis, :chr, :perception, :initiative, :speed, :ac ].each do |k|
-        cells << tag.td(c.send(k))
-      end
-      safe_join(cells, '')
-    end
-    if c.notes && c.notes != ""
-      s += tag.tr(class: tr_klass, 'data-notes-id' => c.id) do
-        tag.td(c.notes, colspan: 30)
-      end
-    end
-    s
-  end, '')
-end %>
+<% attributes = %i(str dex con int wis chr perception initiative speed ac) %>
+<%= tag.table(id: 'character-table', class: %w(table table-condensed)) do %>
+  <%= tag.tr do %>
+    <%= tag.th %>
+    <%= tag.th('Name') %>
+    <%= tag.th('S', title: 'Strength') %>
+    <%= tag.th('D', title: 'Dexterity') %>
+    <%= tag.th('C', title: 'Constitution') %>
+    <%= tag.th('I', title: 'Intelligence') %>
+    <%= tag.th('W', title: 'Wisdom') %>
+    <%= tag.th('C', title: 'Charisma') %>
+    <%= tag.th('Per', title: 'Perception') %>
+    <%= tag.th('Init', title: 'Initiative') %>
+    <%= tag.th('Spd', title: 'Speed') %>
+    <%= tag.th('AC', title: 'Armor Class') %>
+  <% end %>
+  <% @chars.each do |c| %>
+    <% second_row = (c.notes && c.notes != "") %>
+    <% tr_klass = c.highlight ? [ 'info' ] : [] %>
+    <% td_attrs = second_row ? { rowspan: 2 } : {} %>
+
+    <%= tag.tr(class: tr_klass, data: { 'char-id': c.id, 'char-highlight': c.highlight }) do %>
+      <%= tag.td(td_attrs) do %>
+        <%= tag.a('', class: %(fas fa-edit edit-button)) %>
+      <% end %>
+      <%= tag.td(c.name, td_attrs) %>
+      <% attributes.each do |meth| %><%= tag.td(c.send(meth)) %><% end %>
+    <% end %>
+
+    <% if second_row %>
+      <%= tag.tr(class: tr_klass, 'data-notes-id' => c.id) do %>
+        <%= tag.td(c.notes, colspan: 30) %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
