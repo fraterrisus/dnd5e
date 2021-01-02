@@ -21,8 +21,7 @@ class CharactersController < ApplicationController
               :perception, :initiative, :speed, :ac, :notes, :highlight)
     char = Character.find id
     char.update data
-    # render json: char
-    redirect_to characters_path
+    render json: char, status: 403
   end
 
   def create
@@ -30,7 +29,6 @@ class CharactersController < ApplicationController
       .permit(:name, :str, :dex, :con, :int, :wis, :chr,
               :perception, :initiative, :speed, :ac, :notes, :highlight)
     char = Character.create data
-    # render json: char
-    redirect_to characters_path
+    render json: char
   end
 end

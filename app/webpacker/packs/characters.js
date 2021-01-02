@@ -53,10 +53,9 @@ function characters_fetch() {
     .then(Helpers.extractResponseBody)
     .then(ajaxBody => {
       document.getElementById('char-results').innerHTML = ajaxBody;
-      const editButtons = document.getElementsByClassName('edit-button');
-      for (let i = 0; i < editButtons.length; i++) {
-        $(editButtons[i]).on('click', characters_open_edit_form);
-      }});
+      Array.prototype.filter.call(document.getElementsByClassName('edit-button'),
+        editButton => $(editButton).on('click', characters_open_edit_form));
+    });
 }
 
 window.addEventListener('load', _ => {
@@ -69,16 +68,14 @@ window.addEventListener('load', _ => {
 
   $(editModal).on('shown.bs.modal', _ => { editFormInputs[0].focus() });
 
-  $(editForm).on('submit', ev => {
-    ev.preventDefault();
+  $('button#editchar-ok').on('click', ev => {
     fetch(editForm.getAttribute('action'), {
       method: editForm.getAttribute('method'),
       body: new FormData(editForm)
     }).then(response => {
-      if (response.ok) {
-        new Modal(editForm).hide();
-        characters_fetch();
-      } else {
+      characters_fetch();
+      if (!response.ok) {
+        // Replace this with a Toast?
         alert("Error: Unable to submit form");
       }
     });
