@@ -44,9 +44,9 @@ end
 %>
 
 <%= bootstrap_modal('newchar', Character, 'New Character',
-    { submit_label: 'Add', inline: false }) \
+    { submit_label: 'Add', submit_via_ajax: true }) \
     { |f| modal_body(f) } %>
 
 <%= bootstrap_modal('editchar', Character, 'Edit Character',
-    { form: { method: 'PATCH' }, submit_label: 'Update', submit_via_ajax: true, inline: false }) \
+    { form: { method: 'PATCH' }, submit_label: 'Update', submit_via_ajax: true }) \
     { |f| modal_body(f) } %>
