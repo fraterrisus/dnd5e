@@ -23,9 +23,6 @@ import "bootstrap";
 // Files can be included one of three ways:
 // 1. Add an import statement here
 import "../src/javascript/attribute_translators.js";
-// import "../src/javascript/caster_classes/index.js";
-// import "../src/javascript/caster_classes/edit.js";
-// import "../src/javascript/characters/index.js";
 // 2. Build a new pack by creating a file in app/webpacker/packs/foo.js
 //    Then add the following incantation to the head of a view:
 //    <% content_for :head do %>

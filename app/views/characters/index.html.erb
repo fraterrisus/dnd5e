@@ -1,3 +1,7 @@
+<%= content_for :head do %>
+  <%= javascript_pack_tag :characters %>
+<% end %>
+
 <h1>Character Notes</h1>
 <div style="margin-top:12px; margin-bottom:12px;">
   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newchar-modal">New Character</button>
@@ -44,5 +48,5 @@ end
     { |f| modal_body(f) } %>
 
 <%= bootstrap_modal('editchar', Character, 'Edit Character',
-    { form: { method: 'PATCH' }, submit_label: 'Update', inline: false }) \
+    { form: { method: 'PATCH' }, submit_label: 'Update', submit_via_ajax: true, inline: false }) \
     { |f| modal_body(f) } %>

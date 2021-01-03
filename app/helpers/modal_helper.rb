@@ -1,7 +1,8 @@
 module ModalHelper
   def bootstrap_modal(id, klass, title, options = {})
     options[:submit_label] ||= 'OK'
-    options[:inline] ||= false
+    # options[:inline] ||= false
+    # options[:submit_via_ajax] ||= false
     options[:form] ||= {}
     options[:form][:role] = 'form'
     options[:form][:id] = "#{id}-form"
@@ -29,12 +30,16 @@ module ModalHelper
               end,
               tag.div(class: %w(modal-body)) { yield(f) },
               tag.div(class: %w(modal-footer)) do
-                view_join(
-                  tag.button('Cancel', type: 'button', 'data-dismiss': 'modal',
-                    class: %w(btn btn-outline-secondary)),
-                  tag.button(options[:submit_label], type: 'submit', id: "#{id}-ok",
-                    class: %w(btn btn-primary))
-                )
+                button1 = tag.button('Cancel', type: 'button', 'data-dismiss': 'modal',
+                  class: %w(btn btn-outline-secondary))
+                button2 = if options[:submit_via_ajax]
+                  tag.button(options[:submit_label], id: "#{id}-ok", class: %w(btn btn-primary),
+                    type: 'button', data: { dismiss: 'modal' })
+                else
+                  tag.button(options[:submit_label], id: "#{id}-ok", class: %w(btn btn-primary),
+                    type: 'submit')
+                end
+                view_join(button1, button2)
               end
             )
           end
