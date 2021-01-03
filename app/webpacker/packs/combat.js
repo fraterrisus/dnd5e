@@ -1,42 +1,36 @@
 import "bootstrap";
 import {Helpers} from "../src/javascript/ajax_helpers";
 
-let lastupdate = 0;
-let autoupdate;
-let auth_token;
+let lastUpdate = 0;
+let csrfParam;
+let csrfToken;
 
-function start_auto_update () {
-  // autoupdate = setInterval( run_auto_update, 5000 );
-}
-
-function stop_auto_update () {
-  // clearInterval(autoupdate);
-}
-
-function run_auto_update () {
-  // Skip this update if the autoupdate button is off
-  // or if any modal dialog is currently visible
-  if ( ( $( '#autoupdate' ).prop( 'checked' ) )
-      && ( "true" === $( '#editcomb-modal' ).attr( 'aria-hidden' ) )
-      && ( "true" === $( '#newcomb-modal' ).attr( 'aria-hidden' ) ) )
-    run_update();
-}
-
-function run_update () {
+function runUpdate () {
   $( '.panel-body .btn' ).attr( 'disabled', true );
 
   $.getJSON( '/combatants/last_update.json', function (data) {
     let then = new Date(data.last_update * 1000);
-    if ((data.last_update == 0) || (then > lastupdate)) {
-      load_combatants();
-      lastupdate = then;
+    if ((data.last_update == 0) || (then > lastUpdate)) {
+      loadCombatants();
+      lastUpdate = then;
     }
-    $( '.panel-body .btn' ).removeAttr( 'disabled' );
-    $( '#nextturn' ).attr( 'disabled', ( $( '#initiative-list .list-group' ).children().length == 0 ) );
+    $( '#initiative-control .btn' ).removeAttribute( 'disabled' );
+    $( '#next-turn-btn' ).attr( 'disabled', ( $( '#initiative-list .list-group' ).children().length == 0 ) );
   } );
 }
 
-function load_combatants () {
+function loadCombatants() {
+  loadCombatantsViaHtml();
+}
+
+function loadCombatantsViaHtml() {
+  const listBody = document.getElementById('initiative-list');
+  fetch('/combatants.html')
+    .then(Helpers.extractResponseBody)
+    .then(ajaxBody => listBody.innerHTML = ajaxBody);
+}
+
+function loadCombatantsViaJson() {
   $.ajax({
     url: '/combatants',
     method: 'GET',
@@ -64,22 +58,36 @@ function load_combatants () {
 }
 
 function update_combatant(id, vals) {
+  fetch('/combatants/' + id, {
+    headers: { "Content-Type": "application/json; charset=utf-8" },
+    method: 'PATCH',
+    body: JSON.stringify({
+      [csrfParam]: csrfToken,
+      utf8: '✓',
+      id: id,
+      combatant: vals
+    })
+  }).catch(_ => alert('Unable to load combatants list'));
+}
+
+/*
   $.ajax({
     url: '/combatants/' + id,
     method: 'POST',
     data: {
       '_method': 'PATCH',
       'utf8': '✓',
-      'authenticity_token': auth_token,
+      [csrfParam]: csrfToken,
       'id': id,
       'combatant': vals
     }
   });
-}
+*/
 
-function next_turn () {
+function rotateTurn () {
   let $list = $( '#initiative-list' );
   let $cur = $( '.list-group-item.active', $list );
+  let $nxt;
   if ($cur.length === 0) {
     $nxt = $( '.list-group-item', $list ).eq(0);
   } else {
@@ -88,16 +96,18 @@ function next_turn () {
       $nxt = $( '.list-group-item', $list ).eq(0);
     }
   }
-  stop_auto_update();
-  if ($cur.length !== 0) {
-    $cur.removeClass('active');
-    update_combatant( $( '.init-id', $cur ).text(), { active: false } );
+  if ($cur[0] !== $nxt[0]) {
+    // FIXME: these two calls overlap each other, and sqlite isn't threaded so the second
+    //  transaction fails.
+    if ($cur.length !== 0) {
+      $cur.removeClass('active');
+      update_combatant($('.init-id', $cur).text(), {active: false});
+    }
+    if ($nxt.length !== 0) {
+      $nxt.addClass('active');
+      update_combatant($('.init-id', $nxt).text(), {active: true});
+    }
   }
-  if ($nxt.length !== 0) {
-    $nxt.addClass('active');
-    update_combatant( $( '.init-id', $nxt ).text(), { active: true } );
-  }
-  start_auto_update();
 }
 
 function open_edit_form ( ev ) {
@@ -111,27 +121,20 @@ function open_edit_form ( ev ) {
 }
 
 $( function () {
-  auth_token = $('form input[name="authenticity_token"]').val();
+  csrfParam = document.querySelector('meta[name="csrf-param"]').getAttribute('content');
+  csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-  lastupdate = 0;
-  run_update();
+  lastUpdate = 0;
+  runUpdate();
 
-  $( '#nextturn' ).on( 'click', next_turn );
+  $( '#next-turn-btn' ).on( 'click', rotateTurn );
 
   $( '#clear-btn' ).on( 'click', function () {
-    $.get( '/combatants/clear' );
-    run_update();
+    // FIXME: this should be a POST, it has effects
+    fetch('/combatants/clear')
+      .then(_ => runUpdate())
+      .catch(_ => alert('Failed to reset the combatants list.'));
   } );
-
-  $( '#autoupdate' ).on( 'change', function (ev) {
-    if ( $( ev.currentTarget ).prop( 'checked' ) ) {
-      start_auto_update();
-    } else {
-      stop_auto_update();
-    }
-  });
-
-  start_auto_update();
 
   // --------------------------------------------
 
@@ -143,43 +146,12 @@ $( function () {
     $editcomb_inputs.eq(0).focus();
   } );
 
-/*
-  $editcomb_form.bootstrapValidator({
-    feedbackIcons: {
-      valid: 'fas fas-check-circle',
-      invalid: 'fas fas-minus-circle',
-      validating: 'fas fas-sync',
-    },
-    fields: {
-      'combatant[name]': {
-        message: 'Not valid',
-        validators: {
-          notEmpty: {
-            message: 'Required'
-          }
-        }
-      },
-      'combatant[count]': {
-        message: 'Not valid',
-        validators: {
-          notEmpty: {
-            message: 'Required'
-          }
-        }
-      }
-    }
-  }).on( 'success.form.bv', function (ev) {
-    ev.preventDefault();
-    $( '#editcomb-ok' ).removeAttr( 'disabled' );
-  });
-*/
-
   $editcomb_form.on( 'submit', function (ev) {
     ev.preventDefault();
     Helpers.submit_form_via_ajax($editcomb_form,
       function () {
         $('#editcomb-modal').modal('hide');
-        run_update();
+        runUpdate();
       },
       function () {
         alert("Error: Couldn't submit form");
@@ -199,50 +171,4 @@ $( function () {
     // $newcomb_form.bootstrapValidator( 'resetForm' );
     $newcomb_inputs.eq(0).focus();
   } );
-
-/*
-  $newcomb_form.bootstrapValidator({
-    feedbackIcons: {
-      valid: 'fas fas-check-circle',
-      invalid: 'fas fas-minus-circle',
-      validating: 'fas fas-sync',
-    },
-    fields: {
-      'combatant[name]': {
-        message: 'Not valid',
-        validators: {
-          notEmpty: {
-            message: 'Required'
-          }
-        }
-      },
-      'combatant[count]': {
-        message: 'Not valid',
-        validators: {
-          notEmpty: {
-            message: 'Required'
-          }
-        }
-      }
-    }
-  }).on( 'success.form.bv', function (ev) {
-    ev.preventDefault();
-    $( '#newcomb-ok' ).removeAttr( 'disabled' );
-  });
-*/
-
-/*
-  $newcomb_form.on( 'submit', function (ev) {
-    ev.preventDefault();
-    Helpers.submit_form_via_ajax($newcomb_form,
-      function () {
-        $('#newcomb-modal')
-        run_update();
-      },
-      function () {
-        alert( "Error: Couldn't submit form" );
-      }
-    );
-  });
-*/
 } );

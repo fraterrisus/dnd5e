@@ -1,0 +1,9 @@
+<% @combatants.each do |c| %>
+  <% classes = ['list-group-item'] ; if c.active then classes << 'active' end %>
+  <%= tag.div(class: classes) do %>
+    <%= tag.span(c.id, class: %w(init-id), style: 'display: none',
+                 aria: { hidden: true }) %>
+    <%= tag.span(c.count, class: %w(init-count)) %>
+    <%= tag.span(c.name, class: %w(init-name)) %>
+  <% end %>
+<% end %>

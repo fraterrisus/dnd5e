@@ -1,6 +1,10 @@
 class CombatantsController < ApplicationController
   def index
-    render json: Combatant.all
+    @combatants = Combatant.all
+    respond_to do |fmt|
+      fmt.html { render layout: nil }
+      fmt.json { render json: @combatants }
+    end
   end
 
   def initiative; end

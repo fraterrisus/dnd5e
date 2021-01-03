@@ -14,34 +14,20 @@ def init_list_item(name, count)
 end
 %>
 
-<%=
-tag.div(class: %w(panel panel-default)) do
-  tag.div(class: %w(panel-heading)) do
-    tag.h2('Turn Order', class: %w(panel-title))
-  end <<
-  tag.div(class: %w(panel-body)) do
-    tag.div(class: %w(btn-group), style: 'margin-bottom: 10px',
-                role: 'group', 'aria-label' => 'cycle') do
-      button_tag('Next Turn', class: %w(btn btn-primary), id: 'nextturn')
-    end <<
-    tag.div(class: %w(btn-group),
-                style: 'margin-left: 10px; margin-bottom: 10px',
-                role: 'group', 'aria-label' => 'modify combatants') do
-      button_tag('New', id: 'new-btn', class: %w(btn btn-default),
-                 'data-toggle' => 'modal', 'data-target' => '#newcomb-modal') <<
-      button_tag('Clear', id: 'clear-btn', class: %w(btn btn-default))
-    end <<
-    tag.div(class: %w(btn-group), 'data-toggle' => 'buttons',
-                style: 'margin-left: 10px; margin-bottom: 10px',
-                role: 'group', 'aria-label' => 'toggles') do
-      tag.label(class: %w(btn btn-default active), 'aria-pressed' => true) do
-        check_box_tag(:autoupdate, 1, true, autocomplete: 'off') << 'Auto-update'
-      end
-    end <<
-    tag.div(nil, id: 'initiative-list' )
-  end
-end
-%>
+<%= tag.div(id: 'initiative-control', class: %w(card)) do %>
+  <%= tag.div(class: %w(card-body)) do %>
+    <%= tag.h5('Turn Order', class: %w(card-title)) %>
+    <%= tag.div(class: %w(btn-group), role: 'group', aria: { label: 'cycle' }) do %>
+      <%= tag.button('Next Turn', id: 'next-turn-btn', class: %w(btn btn-primary)) %>
+    <% end %>
+    <%= tag.div(class: %w(btn-group), role: 'group', aria: { label: 'modify combatants '}) do %>
+      <%= tag.button('New', id: 'new-btn', class: %w(btn btn-outline-secondary),
+                     data: { toggle: 'modal', target: '#newcomb-modal' }) %>
+      <%= tag.button('Clear', id: 'clear-btn', class: %w(btn btn-outline-secondary)) %>
+    <% end %>
+  <% end %>
+<% end %>
+<%= tag.div(id: 'initiative-list', class: 'list-group') %>
 
 <%
 def modal_body(form)
