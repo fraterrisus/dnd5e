@@ -4,6 +4,12 @@ import {Helpers} from "../src/javascript/ajax_helpers";
 let csrfParam;
 let csrfToken;
 
+function clearCombatantList() {
+  fetch('/combatants/clear', { method: 'POST' })
+    .then(_ => fetchCombatantsList())
+    .catch(_ => alert('Failed to reset the combatants list.'));
+}
+
 function fetchCombatantsList() {
   const pageButtons = document.querySelectorAll('.card-body .btn');
   Array.prototype.filter.call(pageButtons, button => button.setAttribute('disabled', true));
@@ -20,23 +26,21 @@ function fetchCombatantsList() {
     });
 }
 
-function clearCombatantList() {
-  fetch('/combatants/clear', { method: 'POST' })
-    .then(_ => fetchCombatantsList())
-    .catch(_ => alert('Failed to reset the combatants list.'));
-}
+function openEditModal(ev) {
+  const editModal = document.getElementById('editcomb-modal');
+  new Modal(editModal).show();
 
-function updateCombatant(id, vals) {
-  fetch('/combatants/' + id, {
-    headers: { "Content-Type": "application/json; charset=utf-8" },
-    method: 'PATCH',
-    body: JSON.stringify({
-      [csrfParam]: csrfToken,
-      utf8: '✓',
-      id: id,
-      combatant: vals
-    })
-  }).catch(_ => alert('Unable to load combatants list'));
+  const editForm = editModal.querySelector('form');
+  const target = ev.currentTarget;
+  const combatantId = target.querySelector('.init-id').textContent;
+
+  editForm.setAttribute('action', '/combatants/' + combatantId);
+  editForm.querySelector('input[name="combatant[name]"]').value =
+    target.querySelector('.init-name').textContent;
+  editForm.querySelector('input[name="combatant[count]"]').value =
+    target.querySelector('.init-count').textContent;
+  editForm.querySelector('input[name="combatant[effect]"]').value =
+    target.querySelector('.badge').textContent;
 }
 
 function rotateTurn() {
@@ -65,21 +69,17 @@ function rotateTurn() {
   }
 }
 
-function openEditModal(ev) {
-  const editModal = document.getElementById('editcomb-modal');
-  new Modal(editModal).show();
-
-  const editForm = editModal.querySelector('form');
-  const target = ev.currentTarget;
-  const combatantId = target.querySelector('.init-id').textContent;
-
-  editForm.setAttribute('action', '/combatants/' + combatantId);
-  editForm.querySelector('input[name="combatant[name]"]').value =
-    target.querySelector('.init-name').textContent;
-  editForm.querySelector('input[name="combatant[count]"]').value =
-    target.querySelector('.init-count').textContent;
-  editForm.querySelector('input[name="combatant[effect]"]').value =
-    target.querySelector('.badge').textContent;
+function updateCombatant(id, vals) {
+  fetch('/combatants/' + id, {
+    headers: { "Content-Type": "application/json; charset=utf-8" },
+    method: 'PATCH',
+    body: JSON.stringify({
+      [csrfParam]: csrfToken,
+      utf8: '✓',
+      id: id,
+      combatant: vals
+    })
+  }).catch(_ => alert('Unable to load combatants list'));
 }
 
 window.addEventListener('load', _ => {
