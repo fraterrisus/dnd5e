@@ -23,12 +23,15 @@ class CombatantsController < ApplicationController
     render json: cmb
   end
 
+  def activate
+    id = params.require(:id)
+    Combatant.update_all(active: false)
+    cmb = Combatant.find(id)
+    cmb.update_column(:active, true)
+  end
+
   def clear
     Combatant.destroy_all
     render json: nil
-  end
-
-  def last_update
-    render json: { last_update: Combatant.all.map(&:updated_at).max.to_i }
   end
 end

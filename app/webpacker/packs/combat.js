@@ -4,9 +4,27 @@ import {Helpers} from "../src/javascript/ajax_helpers";
 let csrfParam;
 let csrfToken;
 
+function activateCombatant(nextCharId) {
+  fetch('/combatants/' + nextCharId + '/activate', {
+    headers: {"Content-Type": "application/json; charset=utf-8"},
+    method: 'POST',
+    body: JSON.stringify({
+      [csrfParam]: csrfToken,
+      utf8: '✓',
+      id: nextCharId,
+    })
+  }).catch(_ => alert('Unable to activate combatant.'));
+}
+
 function clearCombatantList() {
-  fetch('/combatants/clear', { method: 'POST' })
-    .then(_ => fetchCombatantsList())
+  fetch('/combatants/clear', {
+    headers: {"Content-Type": "application/json; charset=utf-8"},
+    method: 'POST',
+    body: JSON.stringify({
+      [csrfParam]: csrfToken,
+      utf8: '✓'
+    })
+  }).then(_ => fetchCombatantsList())
     .catch(_ => alert('Failed to reset the combatants list.'));
 }
 
@@ -48,42 +66,21 @@ function openEditModal(ev) {
 }
 
 function rotateTurn() {
-  let $list = $( '#initiative-list' );
-  let $cur = $( '.list-group-item.active', $list );
-  let $nxt;
-  if ($cur.length === 0) {
-    $nxt = $( '.list-group-item', $list ).eq(0);
-  } else {
-    $nxt = $cur.next();
-    if ($nxt.length === 0) {
-      $nxt = $( '.list-group-item', $list ).eq(0);
-    }
+  const charList = document.getElementById('initiative-list');
+  const activeChar = charList.querySelector('.list-group-item.active');
+  let nextChar;
+  if (activeChar !== undefined && activeChar !== null) {
+    activeChar.classList.remove('active');
+    nextChar = activeChar.nextElementSibling;
   }
-  if ($cur[0] !== $nxt[0]) {
-    // FIXME: these two calls overlap each other, and sqlite isn't threaded so the second
-    //  transaction fails.
-    if ($cur.length !== 0) {
-      $cur.removeClass('active');
-      updateCombatant($('.init-id', $cur).text(), {active: false});
-    }
-    if ($nxt.length !== 0) {
-      $nxt.addClass('active');
-      updateCombatant($('.init-id', $nxt).text(), {active: true});
-    }
+  if (nextChar === undefined || nextChar === null) {
+    nextChar = charList.querySelectorAll('.list-group-item')[0]
   }
-}
-
-function updateCombatant(id, vals) {
-  fetch('/combatants/' + id, {
-    headers: { "Content-Type": "application/json; charset=utf-8" },
-    method: 'PATCH',
-    body: JSON.stringify({
-      [csrfParam]: csrfToken,
-      utf8: '✓',
-      id: id,
-      combatant: vals
-    })
-  }).catch(_ => alert('Unable to load combatants list'));
+  if (nextChar !== undefined && nextChar !== null) {
+    const nextCharId = nextChar.querySelector('.init-id').textContent;
+    activateCombatant(nextCharId);
+    nextChar.classList.add('active');
+  }
 }
 
 window.addEventListener('load', _ => {
