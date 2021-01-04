@@ -11,6 +11,9 @@ function clearCombatantList() {
 }
 
 function fetchCombatantsList() {
+  const spinner = document.getElementById('initiative-spinner');
+  spinner.classList.remove('d-none');
+
   const pageButtons = document.querySelectorAll('.card-body .btn');
   Array.prototype.filter.call(pageButtons, button => button.setAttribute('disabled', true));
 
@@ -23,6 +26,7 @@ function fetchCombatantsList() {
       const listRows = listBody.querySelectorAll('.list-group-item');
       Array.prototype.filter.call(listRows, row => $(row).on('click', openEditModal));
       Array.prototype.filter.call(pageButtons, button => button.removeAttribute('disabled'));
+      spinner.classList.add('d-none');
     });
 }
 
