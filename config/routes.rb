@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   resources :combatants, only: [:index, :create, :update]
   namespace :combatants do
     get 'last_update'
-    get 'clear'
+    post 'clear'
   end
 
   get 'dice', to: 'dice#index', as: 'dice'

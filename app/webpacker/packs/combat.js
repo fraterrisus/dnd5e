@@ -1,64 +1,29 @@
 import {Modal} from "bootstrap";
 import {Helpers} from "../src/javascript/ajax_helpers";
 
-let lastUpdate = 0;
 let csrfParam;
 let csrfToken;
 
-function runUpdate () {
-  $( '.panel-body .btn' ).attr( 'disabled', true );
-
-  $.getJSON( '/combatants/last_update.json', function (data) {
-    let then = new Date(data.last_update * 1000);
-    if ((data.last_update == 0) || (then > lastUpdate)) {
-      fetchCombatantsList();
-      lastUpdate = then;
-    }
-    $( '#initiative-control .btn' ).removeAttribute( 'disabled' );
-    $( '#next-turn-btn' ).attr( 'disabled', ( $( '#initiative-list .list-group' ).children().length == 0 ) );
-  } );
-}
-
 function fetchCombatantsList() {
-  loadCombatantsViaHtml();
-}
+  const pageButtons = document.querySelectorAll('.card-body .btn');
+  Array.prototype.filter.call(pageButtons, button => button.setAttribute('disabled', true));
 
-function loadCombatantsViaHtml() {
   const listBody = document.getElementById('initiative-list');
+
   fetch('/combatants.html')
     .then(Helpers.extractResponseBody)
     .then(ajaxBody => {
       listBody.innerHTML = ajaxBody;
       const listRows = listBody.querySelectorAll('.list-group-item');
       Array.prototype.filter.call(listRows, row => $(row).on('click', openEditModal));
+      Array.prototype.filter.call(pageButtons, button => button.removeAttribute('disabled'));
     });
 }
 
-function loadCombatantsViaJson() {
-  $.ajax({
-    url: '/combatants',
-    method: 'GET',
-    success: function (data) {
-      data = data.sort( function (a,b) { return b.count - a.count; } );
-      let c_group = $( '<div class="list-group">' );
-      for (let i=0; i<data.length; i++) {
-        let c_item = $( '<div class="list-group-item">' );
-        if ( data[i].active ) { c_item.addClass( 'active' ); }
-        c_item.on( 'click', openEditModal );
-        let c_id = $( '<span class="init-id">' ).text( data[i].id ).hide();
-        let c_count = $( '<span class="init-count">' ).text( data[i].count );
-        let c_name = $( '<span class="init-name">' ).text( data[i].name );
-        let eff = '';
-        if ( data[i].effect !== null ) { eff = data[i].effect; }
-        let c_badge = $( '<span class="badge">' ).text( eff );
-        c_item.append( c_id, c_count, c_name, c_badge );
-        c_group.append( c_item );
-      }
-      let $par = $( '#initiative-list' );
-      $( '.list-group', $par ).empty().remove();
-      $par.append( c_group );
-    }
-  });
+function clearCombatantList() {
+  fetch('/combatants/clear', { method: 'POST' })
+    .then(_ => fetchCombatantsList())
+    .catch(_ => alert('Failed to reset the combatants list.'));
 }
 
 function updateCombatant(id, vals) {
@@ -74,7 +39,7 @@ function updateCombatant(id, vals) {
   }).catch(_ => alert('Unable to load combatants list'));
 }
 
-function rotateTurn () {
+function rotateTurn() {
   let $list = $( '#initiative-list' );
   let $cur = $( '.list-group-item.active', $list );
   let $nxt;
@@ -121,23 +86,17 @@ window.addEventListener('load', _ => {
   csrfParam = document.querySelector('meta[name="csrf-param"]').getAttribute('content');
   csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-  lastUpdate = 0;
   fetchCombatantsList();
 
-  $( '#next-turn-btn' ).on( 'click', rotateTurn );
+  const nextTurnButton = document.getElementById('next-turn-btn');
+  $(nextTurnButton).on('click', rotateTurn);
 
-  $( '#clear-btn' ).on( 'click', function () {
-    // FIXME: this should be a POST, it has effects
-    fetch('/combatants/clear')
-      .then(_ => fetchCombatantsList())
-      .catch(_ => alert('Failed to reset the combatants list.'));
-  } );
-
-  // --------------------------------------------
+  const clearButton = document.getElementById('clear-btn');
+  $(clearButton).on('click', clearCombatantList);
 
   const editModal = document.getElementById('editcomb-modal');
   const editForm = editModal.querySelector('form');
-  const editFormInputs = editModal.querySelectorAll('input.form-control');
+  const editFormInputs = editForm.querySelectorAll('input.form-control');
 
   $(editModal).on('shown.bs.modal', _ => { editFormInputs[0].focus() });
 
@@ -147,7 +106,7 @@ window.addEventListener('load', _ => {
 
   const newModal = document.getElementById('newcomb-modal');
   const newForm = newModal.querySelector('form');
-  const newFormInputs = newModal.querySelectorAll('input.form-control');
+  const newFormInputs = newForm.querySelectorAll('input.form-control');
 
   $(newModal).on('show.bs.modal', _ => {
     Array.prototype.filter.call(newFormInputs, control => control.value = '') });
