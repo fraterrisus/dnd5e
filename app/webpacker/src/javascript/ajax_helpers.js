@@ -25,6 +25,17 @@ export const Helpers = {
         return "?" + parameters.join("&");
     },
 
+    getChildrenOfElement: function (element, type) {
+        const children = element.childNodes;
+        let selected = [];
+        for (let i = 0; i < children.length; i++) {
+            if (children[i].nodeName === type) {
+                selected.push(children[i]);
+            }
+        }
+        return selected;
+    },
+
     submit_form_via_ajax: function(selector, successMethod, errorMethod) {
         let $form = $( selector );
         let form_data = $form.serializeArray();
