@@ -56,18 +56,9 @@ window.addEventListener('load', _ => {
 
   $(editModal).on('shown.bs.modal', _ => { editFormInputs[0].focus() });
 
-  $('button#editchar-ok').on('click', ev => {
-    fetch(editForm.getAttribute('action'), {
-      method: editForm.getAttribute('method'),
-      body: new FormData(editForm)
-    }).then(response => {
-      fetchCharacterList();
-      if (!response.ok) {
-        // Replace this with a Toast?
-        alert("Error: Unable to submit form");
-      }
-    });
-  });
+  const editSubmitButton = document.getElementById('editchar-ok');
+  $(editSubmitButton).on('click', _ =>
+    Helpers.submitFormAndReloadPage(editForm, fetchCharacterList));
 
   const newModal = document.getElementById('newchar-modal');
   const newForm = newModal.querySelector('form');
@@ -78,16 +69,6 @@ window.addEventListener('load', _ => {
 
   $(newModal).on('shown.bs.modal', _ => { newFormInputs[0].focus() });
 
-  $('button#newchar-ok').on('click', ev => {
-    fetch(newForm.getAttribute('action'), {
-      method: newForm.getAttribute('method'),
-      body: new FormData(newForm)
-    }).then(response => {
-      fetchCharacterList();
-      if (!response.ok) {
-        // Replace this with a Toast?
-        alert("Error: Unable to submit form");
-      }
-    });
-  });
+  $('button#newchar-ok').on('click', ev =>
+    Helpers.submitFormAndReloadPage(newForm, fetchCharacterList));
 });

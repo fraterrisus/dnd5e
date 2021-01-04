@@ -45,9 +45,9 @@ end
 %>
 
 <%= bootstrap_modal('newcomb', Combatant, 'New Combatant',
-    { submit_label: 'Add', inline: false, remote: true }) \
+    { submit_label: 'Add', inline: false, submit_via_ajax: true }) \
     { |form| modal_body(form) } %>
 
-<% # bootstrap_modal('editcomb', Combatant, 'Edit Combatant',
-   # { form: { method: 'PATCH' }, submit_label: 'Update', inline: false }) \
-   # { |form| modal_body(form) } %>
+<%= bootstrap_modal('editcomb', Combatant, 'Edit Combatant',
+   { form: { method: 'PATCH' }, submit_label: 'Update', inline: false, submit_via_ajax: true }) \
+   { |form| modal_body(form) } %>

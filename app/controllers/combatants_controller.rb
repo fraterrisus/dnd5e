@@ -1,6 +1,6 @@
 class CombatantsController < ApplicationController
   def index
-    @combatants = Combatant.all
+    @combatants = Combatant.all.sort_by(&:count)
     respond_to do |fmt|
       fmt.html { render layout: nil }
       fmt.json { render json: @combatants }

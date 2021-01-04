@@ -1,4 +1,4 @@
-import "bootstrap";
+import {Modal} from "bootstrap";
 import {Helpers} from "../src/javascript/ajax_helpers";
 
 let lastUpdate = 0;
@@ -11,7 +11,7 @@ function runUpdate () {
   $.getJSON( '/combatants/last_update.json', function (data) {
     let then = new Date(data.last_update * 1000);
     if ((data.last_update == 0) || (then > lastUpdate)) {
-      loadCombatants();
+      fetchCombatantsList();
       lastUpdate = then;
     }
     $( '#initiative-control .btn' ).removeAttribute( 'disabled' );
@@ -19,7 +19,7 @@ function runUpdate () {
   } );
 }
 
-function loadCombatants() {
+function fetchCombatantsList() {
   loadCombatantsViaHtml();
 }
 
@@ -27,7 +27,11 @@ function loadCombatantsViaHtml() {
   const listBody = document.getElementById('initiative-list');
   fetch('/combatants.html')
     .then(Helpers.extractResponseBody)
-    .then(ajaxBody => listBody.innerHTML = ajaxBody);
+    .then(ajaxBody => {
+      listBody.innerHTML = ajaxBody;
+      const listRows = listBody.querySelectorAll('.list-group-item');
+      Array.prototype.filter.call(listRows, row => $(row).on('click', openEditModal));
+    });
 }
 
 function loadCombatantsViaJson() {
@@ -40,7 +44,7 @@ function loadCombatantsViaJson() {
       for (let i=0; i<data.length; i++) {
         let c_item = $( '<div class="list-group-item">' );
         if ( data[i].active ) { c_item.addClass( 'active' ); }
-        c_item.on( 'click', open_edit_form );
+        c_item.on( 'click', openEditModal );
         let c_id = $( '<span class="init-id">' ).text( data[i].id ).hide();
         let c_count = $( '<span class="init-count">' ).text( data[i].count );
         let c_name = $( '<span class="init-name">' ).text( data[i].name );
@@ -57,7 +61,7 @@ function loadCombatantsViaJson() {
   });
 }
 
-function update_combatant(id, vals) {
+function updateCombatant(id, vals) {
   fetch('/combatants/' + id, {
     headers: { "Content-Type": "application/json; charset=utf-8" },
     method: 'PATCH',
@@ -69,20 +73,6 @@ function update_combatant(id, vals) {
     })
   }).catch(_ => alert('Unable to load combatants list'));
 }
-
-/*
-  $.ajax({
-    url: '/combatants/' + id,
-    method: 'POST',
-    data: {
-      '_method': 'PATCH',
-      'utf8': '✓',
-      [csrfParam]: csrfToken,
-      'id': id,
-      'combatant': vals
-    }
-  });
-*/
 
 function rotateTurn () {
   let $list = $( '#initiative-list' );
@@ -101,74 +91,70 @@ function rotateTurn () {
     //  transaction fails.
     if ($cur.length !== 0) {
       $cur.removeClass('active');
-      update_combatant($('.init-id', $cur).text(), {active: false});
+      updateCombatant($('.init-id', $cur).text(), {active: false});
     }
     if ($nxt.length !== 0) {
       $nxt.addClass('active');
-      update_combatant($('.init-id', $nxt).text(), {active: true});
+      updateCombatant($('.init-id', $nxt).text(), {active: true});
     }
   }
 }
 
-function open_edit_form ( ev ) {
-  let $modal = $( '#editcomb-modal' ).modal( 'show' );
-  let $form = $( 'form', $modal );
-  let $me = $( ev.currentTarget );
-  $form.attr( 'action', '/combatants/' + $( '.init-id', $me ).text() );
-  $( 'input[name="combatant[name]"]', $form ).val( $( '.init-name', $me ).text() );
-  $( 'input[name="combatant[count]"]', $form ).val( $( '.init-count', $me ).text() );
-  $( 'input[name="combatant[effect]"]', $form ).val( $( '.badge', $me ).text() );
+function openEditModal(ev) {
+  const editModal = document.getElementById('editcomb-modal');
+  new Modal(editModal).show();
+
+  const editForm = editModal.querySelector('form');
+  const target = ev.currentTarget;
+  const combatantId = target.querySelector('.init-id').textContent;
+
+  editForm.setAttribute('action', '/combatants/' + combatantId);
+  editForm.querySelector('input[name="combatant[name]"]').value =
+    target.querySelector('.init-name').textContent;
+  editForm.querySelector('input[name="combatant[count]"]').value =
+    target.querySelector('.init-count').textContent;
+  editForm.querySelector('input[name="combatant[effect]"]').value =
+    target.querySelector('.badge').textContent;
 }
 
-$( function () {
+window.addEventListener('load', _ => {
   csrfParam = document.querySelector('meta[name="csrf-param"]').getAttribute('content');
   csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
   lastUpdate = 0;
-  runUpdate();
+  fetchCombatantsList();
 
   $( '#next-turn-btn' ).on( 'click', rotateTurn );
 
   $( '#clear-btn' ).on( 'click', function () {
     // FIXME: this should be a POST, it has effects
     fetch('/combatants/clear')
-      .then(_ => runUpdate())
+      .then(_ => fetchCombatantsList())
       .catch(_ => alert('Failed to reset the combatants list.'));
   } );
 
   // --------------------------------------------
 
-  let $editcomb_form = $( '#editcomb-form' );
-  let $editcomb_inputs = $( 'input.form-control', $editcomb_form );
+  const editModal = document.getElementById('editcomb-modal');
+  const editForm = editModal.querySelector('form');
+  const editFormInputs = editModal.querySelectorAll('input.form-control');
 
-  $( '#editcomb-modal' ).on( 'shown.bs.modal', function () {
-    //$editcomb_form.bootstrapValidator( 'validate' );
-    $editcomb_inputs.eq(0).focus();
-  } );
+  $(editModal).on('shown.bs.modal', _ => { editFormInputs[0].focus() });
 
-  $editcomb_form.on( 'submit', function (ev) {
-    ev.preventDefault();
-    Helpers.submit_form_via_ajax($editcomb_form,
-      function () {
-        $('#editcomb-modal').modal('hide');
-        runUpdate();
-      },
-      function () {
-        alert("Error: Couldn't submit form");
-      }
-    );
-  });
+  const editSubmitButton = document.getElementById('editcomb-ok');
+  $(editSubmitButton).on('click', _ =>
+    Helpers.submitFormAndReloadPage(editForm, fetchCombatantsList));
 
-  // --------------------------------------------
+  const newModal = document.getElementById('newcomb-modal');
+  const newForm = newModal.querySelector('form');
+  const newFormInputs = newModal.querySelectorAll('input.form-control');
 
-  let $newcomb_form = $( '#newcomb-form' );
-  let $newcomb_inputs = $( 'input.form-control', $newcomb_form );
+  $(newModal).on('show.bs.modal', _ => {
+    Array.prototype.filter.call(newFormInputs, control => control.value = '') });
 
-  $( '#newcomb-modal' ).on( 'show.bs.modal', function () {
-    $newcomb_inputs.val( '' );
-  } );
-  $( '#newcomb-modal' ).on( 'shown.bs.modal', function () {
-    // $newcomb_form.bootstrapValidator( 'resetForm' );
-    $newcomb_inputs.eq(0).focus();
-  } );
-} );
+  $(newModal).on('shown.bs.modal', _ => { newFormInputs[0].focus() });
+
+  const newSubmitButton = document.getElementById('newcomb-ok');
+  $(newSubmitButton).on('click', _ =>
+    Helpers.submitFormAndReloadPage(newForm, fetchCombatantsList));
+});

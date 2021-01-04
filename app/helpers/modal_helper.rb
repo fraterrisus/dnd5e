@@ -7,7 +7,6 @@ module ModalHelper
     options[:form][:role] = 'form'
     options[:form][:id] = "#{id}-form"
     options[:form][:class] = (options[:inline] ? 'form-inline' : 'form')
-    options[:form][:data] = { remote: true } if options[:remote]
     form_model = klass.is_a?(Class) ? klass.new : klass
 
     tag.div(id: "#{id}-modal", class: %w(modal fade), tabindex: '-1', role: 'dialog',
