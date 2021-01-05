@@ -1,248 +1,120 @@
-import "bootstrap";
+import {Modal} from "bootstrap";
 import {Helpers} from "../src/javascript/ajax_helpers";
 
-let lastupdate = 0;
-let autoupdate;
-let auth_token;
+let csrfParam;
+let csrfToken;
 
-function start_auto_update () {
-  // autoupdate = setInterval( run_auto_update, 5000 );
-}
-
-function stop_auto_update () {
-  // clearInterval(autoupdate);
-}
-
-function run_auto_update () {
-  // Skip this update if the autoupdate button is off
-  // or if any modal dialog is currently visible
-  if ( ( $( '#autoupdate' ).prop( 'checked' ) )
-      && ( "true" === $( '#editcomb-modal' ).attr( 'aria-hidden' ) )
-      && ( "true" === $( '#newcomb-modal' ).attr( 'aria-hidden' ) ) )
-    run_update();
-}
-
-function run_update () {
-  $( '.panel-body .btn' ).attr( 'disabled', true );
-
-  $.getJSON( '/combatants/last_update.json', function (data) {
-    let then = new Date(data.last_update * 1000);
-    if ((data.last_update == 0) || (then > lastupdate)) {
-      load_combatants();
-      lastupdate = then;
-    }
-    $( '.panel-body .btn' ).removeAttr( 'disabled' );
-    $( '#nextturn' ).attr( 'disabled', ( $( '#initiative-list .list-group' ).children().length == 0 ) );
-  } );
-}
-
-function load_combatants () {
-  $.ajax({
-    url: '/combatants',
-    method: 'GET',
-    success: function (data) {
-      data = data.sort( function (a,b) { return b.count - a.count; } );
-      let c_group = $( '<div class="list-group">' );
-      for (let i=0; i<data.length; i++) {
-        let c_item = $( '<div class="list-group-item">' );
-        if ( data[i].active ) { c_item.addClass( 'active' ); }
-        c_item.on( 'click', open_edit_form );
-        let c_id = $( '<span class="init-id">' ).text( data[i].id ).hide();
-        let c_count = $( '<span class="init-count">' ).text( data[i].count );
-        let c_name = $( '<span class="init-name">' ).text( data[i].name );
-        let eff = '';
-        if ( data[i].effect !== null ) { eff = data[i].effect; }
-        let c_badge = $( '<span class="badge">' ).text( eff );
-        c_item.append( c_id, c_count, c_name, c_badge );
-        c_group.append( c_item );
-      }
-      let $par = $( '#initiative-list' );
-      $( '.list-group', $par ).empty().remove();
-      $par.append( c_group );
-    }
-  });
-}
-
-function update_combatant(id, vals) {
-  $.ajax({
-    url: '/combatants/' + id,
+function activateCombatant(nextCharId) {
+  fetch('/combatants/' + nextCharId + '/activate', {
+    headers: {"Content-Type": "application/json; charset=utf-8"},
     method: 'POST',
-    data: {
-      '_method': 'PATCH',
-      'utf8': '✓',
-      'authenticity_token': auth_token,
-      'id': id,
-      'combatant': vals
-    }
-  });
+    body: JSON.stringify({
+      [csrfParam]: csrfToken,
+      utf8: '✓',
+      id: nextCharId,
+    })
+  }).catch(_ => alert('Unable to activate combatant.'));
 }
 
-function next_turn () {
-  let $list = $( '#initiative-list' );
-  let $cur = $( '.list-group-item.active', $list );
-  if ($cur.length === 0) {
-    $nxt = $( '.list-group-item', $list ).eq(0);
-  } else {
-    $nxt = $cur.next();
-    if ($nxt.length === 0) {
-      $nxt = $( '.list-group-item', $list ).eq(0);
-    }
-  }
-  stop_auto_update();
-  if ($cur.length !== 0) {
-    $cur.removeClass('active');
-    update_combatant( $( '.init-id', $cur ).text(), { active: false } );
-  }
-  if ($nxt.length !== 0) {
-    $nxt.addClass('active');
-    update_combatant( $( '.init-id', $nxt ).text(), { active: true } );
-  }
-  start_auto_update();
+function clearCombatantList() {
+  fetch('/combatants/clear', {
+    headers: {"Content-Type": "application/json; charset=utf-8"},
+    method: 'POST',
+    body: JSON.stringify({
+      [csrfParam]: csrfToken,
+      utf8: '✓'
+    })
+  }).then(_ => fetchCombatantsList())
+    .catch(_ => alert('Failed to reset the combatants list.'));
 }
 
-function open_edit_form ( ev ) {
-  let $modal = $( '#editcomb-modal' ).modal( 'show' );
-  let $form = $( 'form', $modal );
-  let $me = $( ev.currentTarget );
-  $form.attr( 'action', '/combatants/' + $( '.init-id', $me ).text() );
-  $( 'input[name="combatant[name]"]', $form ).val( $( '.init-name', $me ).text() );
-  $( 'input[name="combatant[count]"]', $form ).val( $( '.init-count', $me ).text() );
-  $( 'input[name="combatant[effect]"]', $form ).val( $( '.badge', $me ).text() );
+function fetchCombatantsList() {
+  const spinner = document.getElementById('initiative-spinner');
+  spinner.classList.remove('d-none');
+
+  const pageButtons = document.querySelectorAll('.card-body .btn');
+  Array.prototype.filter.call(pageButtons, button => button.setAttribute('disabled', true));
+
+  const listBody = document.getElementById('initiative-list');
+
+  fetch('/combatants.html')
+    .then(Helpers.extractResponseBody)
+    .then(ajaxBody => {
+      listBody.innerHTML = ajaxBody;
+      const listRows = listBody.querySelectorAll('.list-group-item');
+      Array.prototype.filter.call(listRows, row => $(row).on('click', openEditModal));
+      Array.prototype.filter.call(pageButtons, button => button.removeAttribute('disabled'));
+      spinner.classList.add('d-none');
+    });
 }
 
-$( function () {
-  auth_token = $('form input[name="authenticity_token"]').val();
+function openEditModal(ev) {
+  const editModal = document.getElementById('editcomb-modal');
+  new Modal(editModal).show();
 
-  lastupdate = 0;
-  run_update();
+  const editForm = editModal.querySelector('form');
+  const target = ev.currentTarget;
+  const combatantId = target.querySelector('.init-id').textContent;
 
-  $( '#nextturn' ).on( 'click', next_turn );
+  editForm.setAttribute('action', '/combatants/' + combatantId);
+  editForm.querySelector('input[name="combatant[name]"]').value =
+    target.querySelector('.init-name').textContent;
+  editForm.querySelector('input[name="combatant[count]"]').value =
+    target.querySelector('.init-count').textContent;
+  editForm.querySelector('input[name="combatant[effect]"]').value =
+    target.querySelector('.badge').textContent;
+}
 
-  $( '#clear-btn' ).on( 'click', function () {
-    $.get( '/combatants/clear' );
-    run_update();
-  } );
+function rotateTurn() {
+  const charList = document.getElementById('initiative-list');
+  const activeChar = charList.querySelector('.list-group-item.active');
+  let nextChar;
+  if (activeChar !== undefined && activeChar !== null) {
+    activeChar.classList.remove('active');
+    nextChar = activeChar.nextElementSibling;
+  }
+  if (nextChar === undefined || nextChar === null) {
+    nextChar = charList.querySelectorAll('.list-group-item')[0]
+  }
+  if (nextChar !== undefined && nextChar !== null) {
+    const nextCharId = nextChar.querySelector('.init-id').textContent;
+    activateCombatant(nextCharId);
+    nextChar.classList.add('active');
+  }
+}
 
-  $( '#autoupdate' ).on( 'change', function (ev) {
-    if ( $( ev.currentTarget ).prop( 'checked' ) ) {
-      start_auto_update();
-    } else {
-      stop_auto_update();
-    }
-  });
+window.addEventListener('load', _ => {
+  csrfParam = document.querySelector('meta[name="csrf-param"]').getAttribute('content');
+  csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-  start_auto_update();
+  fetchCombatantsList();
 
-  // --------------------------------------------
+  const nextTurnButton = document.getElementById('next-turn-btn');
+  $(nextTurnButton).on('click', rotateTurn);
 
-  let $editcomb_form = $( '#editcomb-form' );
-  let $editcomb_inputs = $( 'input.form-control', $editcomb_form );
+  const clearButton = document.getElementById('clear-btn');
+  $(clearButton).on('click', clearCombatantList);
 
-  $( '#editcomb-modal' ).on( 'shown.bs.modal', function () {
-    //$editcomb_form.bootstrapValidator( 'validate' );
-    $editcomb_inputs.eq(0).focus();
-  } );
+  const editModal = document.getElementById('editcomb-modal');
+  const editForm = editModal.querySelector('form');
+  const editFormInputs = editForm.querySelectorAll('input.form-control');
 
-/*
-  $editcomb_form.bootstrapValidator({
-    feedbackIcons: {
-      valid: 'fas fas-check-circle',
-      invalid: 'fas fas-minus-circle',
-      validating: 'fas fas-sync',
-    },
-    fields: {
-      'combatant[name]': {
-        message: 'Not valid',
-        validators: {
-          notEmpty: {
-            message: 'Required'
-          }
-        }
-      },
-      'combatant[count]': {
-        message: 'Not valid',
-        validators: {
-          notEmpty: {
-            message: 'Required'
-          }
-        }
-      }
-    }
-  }).on( 'success.form.bv', function (ev) {
-    ev.preventDefault();
-    $( '#editcomb-ok' ).removeAttr( 'disabled' );
-  });
-*/
+  $(editModal).on('shown.bs.modal', _ => { editFormInputs[0].focus() });
 
-  $editcomb_form.on( 'submit', function (ev) {
-    ev.preventDefault();
-    Helpers.submit_form_via_ajax($editcomb_form,
-      function () {
-        $('#editcomb-modal').modal('hide');
-        run_update();
-      },
-      function () {
-        alert("Error: Couldn't submit form");
-      }
-    );
-  });
+  const editSubmitButton = document.getElementById('editcomb-ok');
+  $(editSubmitButton).on('click', _ =>
+    Helpers.submitFormAndReloadPage(editForm, fetchCombatantsList));
 
-  // --------------------------------------------
+  const newModal = document.getElementById('newcomb-modal');
+  const newForm = newModal.querySelector('form');
+  const newFormInputs = newForm.querySelectorAll('input.form-control');
 
-  let $newcomb_form = $( '#newcomb-form' );
-  let $newcomb_inputs = $( 'input.form-control', $newcomb_form );
+  $(newModal).on('show.bs.modal', _ => {
+    Array.prototype.filter.call(newFormInputs, control => control.value = '') });
 
-  $( '#newcomb-modal' ).on( 'show.bs.modal', function () {
-    $newcomb_inputs.val( '' );
-  } );
-  $( '#newcomb-modal' ).on( 'shown.bs.modal', function () {
-    // $newcomb_form.bootstrapValidator( 'resetForm' );
-    $newcomb_inputs.eq(0).focus();
-  } );
+  $(newModal).on('shown.bs.modal', _ => { newFormInputs[0].focus() });
 
-/*
-  $newcomb_form.bootstrapValidator({
-    feedbackIcons: {
-      valid: 'fas fas-check-circle',
-      invalid: 'fas fas-minus-circle',
-      validating: 'fas fas-sync',
-    },
-    fields: {
-      'combatant[name]': {
-        message: 'Not valid',
-        validators: {
-          notEmpty: {
-            message: 'Required'
-          }
-        }
-      },
-      'combatant[count]': {
-        message: 'Not valid',
-        validators: {
-          notEmpty: {
-            message: 'Required'
-          }
-        }
-      }
-    }
-  }).on( 'success.form.bv', function (ev) {
-    ev.preventDefault();
-    $( '#newcomb-ok' ).removeAttr( 'disabled' );
-  });
-*/
-
-/*
-  $newcomb_form.on( 'submit', function (ev) {
-    ev.preventDefault();
-    Helpers.submit_form_via_ajax($newcomb_form,
-      function () {
-        $('#newcomb-modal')
-        run_update();
-      },
-      function () {
-        alert( "Error: Couldn't submit form" );
-      }
-    );
-  });
-*/
-} );
+  const newSubmitButton = document.getElementById('newcomb-ok');
+  $(newSubmitButton).on('click', _ =>
+    Helpers.submitFormAndReloadPage(newForm, fetchCombatantsList));
+});
