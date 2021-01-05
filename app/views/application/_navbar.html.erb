@@ -1,15 +1,17 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="<%= root_path %>">D&amp;D5e Reference</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="dnd-navbar">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item"><a class="nav-link" href="<%= dice_path %>">Dice</a></li>
-      <li class="nav-item"><a class="nav-link" href="<%= spells_path %>">Spells</a></li>
-      <li class="nav-item"><a class="nav-link" href="<%= characters_path %>">Characters</a></li>
-      <li class="nav-item"><a class="nav-link" href="<%= combat_path %>">Initiative</a></li>
-      <li class="nav-item"><a class="nav-link" href="<%= caster_classes_path %>">Casters</a></li>
-    </ul>
-  </div>
-</nav>
+<%= tag.nav(class: %w(navbar navbar-expand-md navbar-dark bg-dark)) do %>
+  <%= link_to('D&D5e Reference', root_path, class: 'navbar-brand') %>
+  <%= tag.button(type: 'button', class: 'navbar-toggler',
+                 data: { toggle: 'collapse', target: '#dnd-navbar' },
+                 aria: { controls: 'dnd-navbar', label: 'Toggle navigation' }) do %>
+    <%= tag.span(class: 'navbar-toggler-icon') %>
+  <% end %>
+  <%= tag.div(id: 'dnd-navbar', class: %w(collapse navbar-collapse)) do %>
+    <%= tag.ul(class: %w(navbar-nav mr-auto)) do %>
+      <%= tag.li(class: 'nav-item') { link_to('Dice', dice_path, class: 'nav-link') } %>
+      <%= tag.li(class: 'nav-item') { link_to('Spells', spells_path, class: 'nav-link') } %>
+      <%= tag.li(class: 'nav-item') { link_to('Characters', characters_path, class: 'nav-link') } %>
+      <%= tag.li(class: 'nav-item') { link_to('Initiative', combat_path, class: 'nav-link') } %>
+      <%= tag.li(class: 'nav-item') { link_to('Casters', caster_classes_path, class: 'nav-link') } %>
+    <% end %>
+  <% end %>
+<% end %>
