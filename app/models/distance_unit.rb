@@ -1,37 +1,34 @@
 class DistanceUnit
-  Self = 0
-  Touch = 1
-  Sight = 2
-  Plane = 3
-  Unlimited = 4
-  Feet = 10
-  Miles = 11
+  UNITS = {
+    0 => { unit: 'Self', range: 'self' },
+    1 => { unit: 'Touch', range: 'touch' },
+    2 => { unit: 'Sight', range: 'sight' },
+    3 => { unit: 'Plane', range: 'same plane' },
+    4 => { unit: 'Unlimited', range: 'unlimited' },
+    10 => { unit: 'Feet', range: "'" },
+    11 => { unit: 'Miles', range: 'mi' }
+  }.freeze
 
-  def self.options_for_select
-    %w( Self Touch Sight Plane Unlimited Feet Miles ).map do |d|
-      c = self.const_get d
-      [ self.to_s(c).capitalize, c ]
-    end
+  def initialize(id)
+    raise(ArgumentError, id) unless UNITS.keys.include? id
+
+    @unit = UNITS[id][:unit]
+    @range = UNITS[id][:range]
   end
 
-  def self.to_s (u)
-    fail ArgumentError unless u.is_a? Fixnum
+  attr_reader :unit, :range
 
-    case u
-    when Self
-      'self'
-    when Touch
-      'touch'
-    when Sight
-      'sight'
-    when Plane
-      'same plane'
-    when Unlimited
-      'unlimited'
-    when Feet
-      "'"
-    when Miles
-      'mi'
+  def self.range(id)
+    new(id).range
+  end
+
+  def self.unit(id)
+    new(id).unit
+  end
+
+  def self.options_for_select
+    UNITS.map do |id, data|
+      [data[:unit], id]
     end
   end
 end

@@ -1,26 +1,29 @@
 module BootstrapHelper
-
-  def bs_glyph (ident, opts=nil)
-    options = merge_options(opts, { class: [ 'glyphicon', "glyphicon-#{ident}" ]}) 
-    content_tag(:span, '', options)
+  def bs_glyph(ident, opts = {})
+    opts[:class] = ['fas', "fa-#{ident}"] + Array.wrap(opts[:class])
+    content_tag('span', nil, opts)
   end
 
-  def bs_nav_link (label, url, opts={})
-    content_tag(:li, link_to(label, url), opts)
+  def bs_nav_link(label, url, opts = {})
+    tag.li(link_to(label, url), opts)
   end
 
-  def bs_nav_divider (opts=nil)
-    options = merge_options(opts, { class: 'divider' })
-    content_tag(:li, '', options)
+  def bs_nav_divider(opts = {})
+    opts[:class] = ['divider'] + Array.wrap(opts[:class])
+    tag(:li, opts)
   end
 
-  def bs_nav_dropdown (label, &block)
+  def bs_nav_dropdown(label, &block)
     content_tag(:li, class: 'dropdown') do
-      block_text = yield block
+      block_text = block.call
       link_label = ''.html_safe
       link_label << label << '&nbsp;'.html_safe << content_tag(:span, '', class: 'caret')
       link_to(link_label, '#', role: 'button', 'data-toggle' => 'dropdown', 'aria-expanded' => false) << block_text
     end
+  end
+
+  def view_join(*args)
+    safe_join(args, '')
   end
 
   private
@@ -28,16 +31,13 @@ module BootstrapHelper
   def merge_options(theirs, yours)
     case theirs
     when NilClass
-      return yours
+      yours
     when Hash
-      return theirs.merge(yours) do |key, t, y|
-        t = [ t ] unless t.is_a? Array
-        y = [ y ] unless y.is_a? Array
-        t + y
+      theirs.merge(yours) do |_, t, y|
+        Array.wrap(t) + Array.wrap(y)
       end
     else
-      fail ArgumentError
+      raise ArgumentError
     end
   end
-
 end

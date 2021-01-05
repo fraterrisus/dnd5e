@@ -1,107 +1,116 @@
+<% content_for :head do %>
+  <%= javascript_pack_tag 'spells' %>
+<% end %>
+
 <%= safe_join([
   content_tag(:h1, 'Spell List'),
 
-  button_tag('Filter', id: 'filter-btn', class: %w( btn btn-primary ), 
+  button_tag('Filter', id: 'filter-btn', class: %w(btn btn-primary),
              'data-toggle' => 'modal', 'data-target' => '#narrowing-modal'),
 
   content_tag(:div, nil, id: 'spells-results', class: 'results'),
 
-  content_tag(:div, id: 'detail-modal', class: 'modal fade', 
+  content_tag(:div, id: 'detail-modal', class: 'modal fade',
               tabindex: '-1', role: 'dialog', 'aria-hidden' => true,
               'aria-labelledby' => 'detail-label') do
-    content_tag(:div, class: %w( modal-dialog )) do
-      content_tag(:div, class: %w( modal-content )) do
-        content_tag(:div, class: %w( modal-header )) do
-          button_tag('type' => 'button', 'data-dismiss' => 'modal', class: %w( close )) do
-            content_tag(:span, nil, class: %w( fa fa-close ), 'aria-hidden' => true) <<
-            content_tag(:span, 'close', class: 'sr-only')
-          end <<
-          content_tag(:h4, nil, id: 'detail-label', class: 'modal-title')
+    content_tag(:div, class: %w(modal-dialog)) do
+      content_tag(:div, class: %w(modal-content)) do
+        tag.div(class: %w(modal-header)) do
+          view_join(
+            tag.h5(nil, id: 'detail-label', class: 'modal-title'),
+            tag.button(type: 'button', class: %w(btn-close), 'data-dismiss': 'modal',
+              'aria-label': 'close') do
+              view_join(
+                bs_glyph('times', { 'aria-hidden': true }),
+                tag.span('close', class: %w(sr-only))
+              )
+            end
+          )
         end <<
-        content_tag(:div, nil, id: 'detail-body', class: %w( modal-body ))
+        content_tag(:div, nil, id: 'detail-body', class: %w(modal-body))
       end
     end
   end,
 
-  content_tag(:div, id: 'narrowing-modal', class: 'modal fade', 
+  content_tag(:div, id: 'narrowing-modal', class: 'modal fade',
               tabindex: '-1', role: 'dialog', 'aria-hidden' => true,
               'aria-labelledby' => 'narrowing-label') do
-    content_tag(:div, class: %w( modal-dialog )) do
-      form_tag('', id: 'narrow-select', class: %w( form ), role: 'form') do
-        content_tag(:div, class: %w( modal-content )) do
-          content_tag(:div, class: %w( modal-header )) do
-            button_tag('type' => 'button', 'data-dismiss' => 'modal', class: %w( close )) do
-              content_tag(:span, nil, class: %w( fa fa-close ), 'aria-hidden' => true) <<
-              content_tag(:span, 'close', class: 'sr-only')
+    content_tag(:div, class: %w(modal-dialog)) do
+      form_tag('', id: 'narrow-select', class: %w(form), role: 'form') do
+        tag.div(class: %w(modal-content)) do
+          tag.div(class: %w(modal-header)) do
+            button_tag('type' => 'button', 'data-dismiss' => 'modal', class: %w(close)) do
+              tag.span('', class: %w(fas fa-window-close), 'aria-hidden' => true) <<
+              tag.span('close', class: 'sr-only')
             end <<
-            content_tag(:h4, 'Filter Spells', id: 'narrowing-label', class: 'modal-title')
+              tag.h4('Filter Spells', id: 'narrowing-label', class: 'modal-title')
           end <<
-          content_tag(:div, class: %w( modal-body )) do
-            content_tag(:div, class: %w( form-group )) do
-              label_tag('spell[caster_class_ids]', t('helpers.label.spell.class_id') + ':', class: %w( control-label )) <<
-              select_tag('spell[caster_class_ids]', 
-                         options_from_collection_for_select(CasterClass.order(:name), :id, :name), 
-                         multiple: true, class: %w( form-control ))
+          content_tag(:div, class: %w(modal-body)) do
+            content_tag(:div, class: %w(form-group)) do
+              label_tag('spell[caster_class_ids]', t('helpers.label.spell.class_id') + ':', class: %w(control-label)) <<
+              select_tag('spell[caster_class_ids]',
+                         options_from_collection_for_select(CasterClass.order(:name), :id, :name),
+                         multiple: true, class: %w(form-control))
             end <<
-            content_tag(:div, class: %w( form-group )) do
-              label_tag('spell[school_id]', t('helpers.label.spell.school_id') + ':', class: %w( control-label )) <<
-              select_tag('spell[school_id]', 
-                         options_for_select(SpellSchool::options_for_select),
-                         multiple: true, class: %w( form-control ))
+            content_tag(:div, class: %w(form-group)) do
+              label_tag('spell[school_id]', t('helpers.label.spell.school_id') + ':', class: %w(control-label)) <<
+              select_tag('spell[school_id]',
+                         options_for_select(SpellSchool.options_for_select),
+                         multiple: true, class: %w(form-control))
             end <<
-            content_tag(:div, class: %w( form-group )) do
-              label_tag('spell[level]', t('helpers.label.spell.level') + ':', class: %w( control-label )) <<
-              select_tag('spell[level]', 
+            content_tag(:div, class: %w(form-group)) do
+              label_tag('spell[level]', t('helpers.label.spell.level') + ':', class: %w(control-label)) <<
+              select_tag('spell[level]',
                          options_for_select([[ 'Cantrip', 0 ]] + (1..9).zip( (1..9).to_a) ),
-                         multiple: true, class: %w( form-control ))
+                         multiple: true, class: %w(form-control))
             end <<
-            content_tag(:div, class: %w( form-group )) do
-              label_tag('spell[cast_unit]', t('helpers.label.spell.cast_unit') + ':', class: %w( control-label )) <<
-              select_tag('spell[cast_unit]', 
-                         options_for_select(TimeUnit::options_for_select),
-                         multiple: true, class: %w( form-control ))
+            content_tag(:div, class: %w(form-group)) do
+              label_tag('spell[cast_unit]', t('helpers.label.spell.cast_unit') + ':', class: %w(control-label)) <<
+              select_tag('spell[cast_unit]',
+                         options_for_select(TimeUnit.options_for_select),
+                         multiple: true, class: %w(form-control))
             end <<
-            content_tag(:div, class: %w( form-group )) do
-              label_tag('spell[ritual]', t('helpers.label.spell.ritual') + ':', class: %w( control-label )) <<
-              select_tag('spell[ritual]', 
+            content_tag(:div, class: %w(form-group)) do
+              label_tag('spell[ritual]', t('helpers.label.spell.ritual') + ':', class: %w(control-label)) <<
+              select_tag('spell[ritual]',
                          options_for_select([[ 'yes', 't' ], [ 'no', 'f' ]]),
-                         multiple: true, class: %w( form-control ))
+                         multiple: true, class: %w(form-control))
             end <<
-            content_tag(:div, class: %w( form-group )) do
-              label_tag('spell[range_unit]', t('helpers.label.spell.range_unit') + ':', class: %w( control-label )) <<
-              select_tag('spell[range_unit]', 
-                         options_for_select(DistanceUnit::options_for_select),
-                         multiple: true, class: %w( form-control ))
+            content_tag(:div, class: %w(form-group)) do
+              label_tag('spell[range_unit]', t('helpers.label.spell.range_unit') + ':', class: %w(control-label)) <<
+              select_tag('spell[range_unit]',
+                         options_for_select(DistanceUnit.options_for_select),
+                         multiple: true, class: %w(form-control))
             end <<
-            content_tag(:div, class: %w( form-group )) do
-              label_tag('spell[components]', t('helpers.label.spell.components') + ':', class: %w( control-label )) <<
-              select_tag('spell[components]', 
+            content_tag(:div, class: %w(form-group)) do
+              label_tag('spell[components]', t('helpers.label.spell.components') + ':', class: %w(control-label)) <<
+              select_tag('spell[components]',
                          options_for_select([ [ 'Verbal', 8 ], [ 'Somatic', 4 ], [ 'Material', 2 ], [ 'Focus', 1 ] ]),
-                         multiple: true, class: %w( form-control ))
+                         multiple: true, class: %w(form-control))
             end <<
-            content_tag(:div, class: %w( form-group )) do
-              label_tag('spell[duration_unit]', t('helpers.label.spell.duration_unit') + ':', class: %w( control-label )) <<
-              select_tag('spell[duration_unit]', 
-                         options_for_select(TimeUnit::options_for_select),
-                         multiple: true, class: %w( form-control ))
+            content_tag(:div, class: %w(form-group)) do
+              label_tag('spell[duration_unit]', t('helpers.label.spell.duration_unit') + ':', class: %w(control-label)) <<
+              select_tag('spell[duration_unit]',
+                         options_for_select(TimeUnit.options_for_select),
+                         multiple: true, class: %w(form-control))
             end <<
-            content_tag(:div, class: %w( form-group )) do
-              label_tag('spell[concentration]', t('helpers.label.spell.concentration') + ':', class: %w( control-label )) <<
-              select_tag('spell[concentration]', 
+            content_tag(:div, class: %w(form-group)) do
+              label_tag('spell[concentration]', t('helpers.label.spell.concentration') + ':', class: %w(control-label)) <<
+              select_tag('spell[concentration]',
                          options_for_select([[ 'yes', 't' ], [ 'no', 'f' ]]),
-                         multiple: true, class: %w( form-control ))
+                         multiple: true, class: %w(form-control))
             end <<
-            content_tag(:div, class: %w( form-group )) do
-              content_tag(:label, class: %w( checkbox-inline )) do
+            content_tag(:div, class: %w(form-group)) do
+              content_tag(:label, class: %w(checkbox-inline)) do
                 hidden_field_tag('spell[sort_by_level]', '0') <<
                 check_box_tag('spell[sort_by_level]', '1', false) << 'Sort by level'
               end
             end
           end <<
-          content_tag(:div, class: %w( modal-footer )) do
-            button_tag('Cancel', type: 'button', class: %w( btn btn-default ), 'data-dismiss' => 'modal') <<
-            button_tag('Update Filters', type: 'button', id: 'narrowing-ok', 
-                       class: %w( btn btn-primary ), 'data-dismiss' => 'modal')
+          content_tag(:div, class: %w(modal-footer)) do
+            button_tag('Cancel', type: 'button', class: %w(btn btn-default), 'data-dismiss' => 'modal') <<
+            button_tag('Update Filters', type: 'button', id: 'narrowing-ok',
+                       class: %w(btn btn-primary), 'data-dismiss' => 'modal')
           end
         end
       end

@@ -1,14 +1,20 @@
+<% content_for :head do %>
+  <%= javascript_pack_tag :caster_classes %>
+<% end %>
+
 <h1>Edit Caster Class</h1>
-<%= form_for(@cclass, url: edit_caster_class_path(@cclass), 
-             method: :patch, html: { role: 'form' }) { |f| safe_join([
-  f.hidden_field(:id),
-  content_tag(:div, class: %w( form-group )) do
-    f.label(:name) << f.text_field(:name, class: %w( form-control ))
-  end,
-  content_tag(:div, class: %w( form-group )) do
-    f.submit('Update', class: %w( btn btn-success )) << ' ' <<
-    link_to('Back to Classes', caster_classes_path, class: %w( btn btn-primary ))
-  end,
-  content_tag(:div, nil, class: %w( form-group ), id: 'casterclass-edit-results'),
-  content_tag(:div, class: %w( form-group )) { f.submit('Update', class: %w( btn btn-success )) },
-]) } %>
+<%= form_with(model: @cclass, url: edit_caster_class_path(@cclass), id: 'edit-caster-class',
+              method: :patch, html: { role: 'form' }) do |f| %>
+  <%= f.hidden_field(:id) %>
+  <%= tag.div(class: %w(form-group)) do %>
+    <%= f.label(:name) %><%= f.text_field(:name, class: %w(form-control)) %>
+  <% end %>
+  <%= tag.div(class: %w(form-group)) do %>
+    <%= f.submit('Update', class: %w(btn btn-success)) %>
+    <%= link_to('Back to Classes', caster_classes_path, class: %w(btn btn-primary)) %>
+  <% end %>
+  <%= tag.div(id: 'casterclass-edit-results', class: %w(form-group)) %>
+  <%= tag.div(class: %w(form-group)) do %>
+    <%= f.submit('Update', class: %w(btn btn-success)) %>
+  <% end %>
+<% end %>

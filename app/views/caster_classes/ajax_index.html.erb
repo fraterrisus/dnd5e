@@ -1,7 +1,5 @@
-<%= safe_join(@cclasses.each.map do |cl|
-  content_tag(:div) do
-    link_to('', edit_caster_class_path(cl), class: %w( glyphicon glyphicon-pencil )) <<
-    '&nbsp;&nbsp;'.html_safe <<
-    cl.name
-  end
-end) %>
+<% @cclasses.each do |cl| %>
+  <%= tag.div do %>
+    <%= link_to('', edit_caster_class_path(cl), class: %w(fas fa-edit)) %>&nbsp;&nbsp;<%= cl.name %>
+  <% end %>
+<% end %>

@@ -1,11 +1,13 @@
 class CombatantsController < ApplicationController
-
   def index
-    render json: Combatant.all
+    @combatants = Combatant.all.sort_by(&:count)
+    respond_to do |fmt|
+      fmt.html { render layout: nil }
+      fmt.json { render json: @combatants }
+    end
   end
 
-  def initiative
-  end
+  def initiative; end
 
   def create
     data = params.require(:combatant).permit(:name, :count, :effect, :active)
@@ -17,17 +19,19 @@ class CombatantsController < ApplicationController
     id = params.require(:id)
     data = params.require(:combatant).permit(:name, :count, :effect, :active)
     cmb = Combatant.find(id)
-    cmb.update_attributes(data)
+    cmb.update(data)
     render json: cmb
   end
 
+  def activate
+    id = params.require(:id)
+    Combatant.update_all(active: false)
+    cmb = Combatant.find(id)
+    cmb.update_column(:active, true)
+  end
+
   def clear
-    Combatant.destroy_all()
+    Combatant.destroy_all
     render json: nil
   end
-
-  def last_update
-    render json: { last_update: Combatant.all.map(&:updated_at).max.to_i }
-  end
-
 end

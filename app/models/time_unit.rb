@@ -1,49 +1,37 @@
 class TimeUnit
-  Special = 0
+  UNITS = {
+    0 => { unit: :special, time: 'special' },
+    1 => { unit: :action, time: 'action' },
+    2 => { unit: :bonus, time: 'bonus action' },
+    3 => { unit: :reaction, time: 'reaction' },
+    4 => { unit: :instant, time: 'instantaneous' },
+    5 => { unit: :permanent, time: 'until dispelled' },
+    10 => { unit: :rounds, time: 'rnd' },
+    11 => { unit: :minutes, time: 'min' },
+    12 => { unit: :hours, time: 'hr' },
+    13 => { unit: :days, time: 'd' }
+  }.freeze
 
-  Action = 1
-  Bonus = 2
-  Reaction = 3
-  Instant = 4
-  Permanent = 5
+  def initialize(id)
+    raise(ArgumentError, id) unless UNITS.keys.include? id
 
-  Rounds = 10
-  Minutes = 11
-  Hours = 12
-  Days = 13
-
-  def self.options_for_select
-    %w( Special Action Bonus Reaction Instant
-        Permanent Rounds Minutes Hours Days ).map do |t|
-      c = self.const_get t
-      [ self.to_s(c).capitalize, c ]
-    end
+    @unit = UNITS[id][:unit]
+    @time = UNITS[id][:time]
   end
 
-  def self.to_s (u)
-    fail ArgumentError unless u.is_a? Fixnum
+  attr_reader :time, :unit
 
-    case u
-    when Special
-      'special'
-    when Action
-      '1 action'
-    when Bonus
-      'bonus action'
-    when Reaction
-      'reaction'
-    when Instant
-      'instantaneous'
-    when Permanent
-      'until dispelled'
-    when Rounds
-      'round'
-    when Minutes
-      'minute'
-    when Hours
-      'hour'
-    when Days
-      'day'
+  def self.time(id)
+    new(id).time
+  end
+
+  def self.unit(id)
+    new(id).unit
+  end
+
+  def self.options_for_select
+    UNITS.map do |id, data|
+      [data[:unit].to_s.capitalize, id]
     end
   end
 end

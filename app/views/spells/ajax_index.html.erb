@@ -1,28 +1,30 @@
 <% last_value = -1 %>
 <%= render partial: 'spells/filters', locals: { filters: filters } %>
 <%= content_tag(:div, "Matched #{@spells.count} spells", style: 'font-style: italic') %>
-<%= 
-safe_join( @spells.map do |s|
+<%=
+safe_join( @spells.map do |spell|
   items = [ ]
-  items << s.school_text
-  items << s.level_text
-  items << s.casting_time_text
-  items << s.range_text
-  items << s.components_text
-  items << s.duration_text 
+  items << spell.school_text
+  items << spell.level_text
+  items << spell.casting_time_text
+  items << spell.range_text
+  items << spell.components_text
+  items << spell.duration_text
 
-  comparison_attribute = (bylevel) ? s.level : s.name[0]
+  comparison_attribute = (bylevel) ? spell.level : spell.name[0]
   if comparison_attribute != last_value
     last_value = comparison_attribute
-    div_classes = %w( new-section )
+    div_classes = %w(new-section)
   else
     div_classes = []
   end
 
-  content_tag(:div, class: div_classes) { safe_join([
-    content_tag(:a, nil, class: %w( glyphicon glyphicon-eye-open ), 'data-spell-file' => s.to_asset ),
-    link_to('', spell_path(s), class: %w( glyphicon glyphicon-pencil )),
-    safe_join( [ content_tag(:b, s.name) ] + items, ' &ndash; '.html_safe )
-  ], '&nbsp;'.html_safe) }
+  tag.div(class: div_classes) do
+    safe_join([
+      tag.a(class: %w(fas fa-eye), 'data-spell-file': spell.to_asset),
+      link_to('', spell_path(spell), class: %w(fas fa-edit)),
+      safe_join( [ tag.b { spell.name } ] + items, ' &ndash; '.html_safe )
+    ], '&nbsp;'.html_safe)
+  end
 end )
 %>

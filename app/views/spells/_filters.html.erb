@@ -1,18 +1,18 @@
 <%=
 content_tag(:div, id: 'active-filters') do
-  safe_join(filters.map do |k,v|
+  safe_join(filters.to_h.map do |k,v|
     v = [ v ] unless v.is_a?(Array)
     desc = [ ]
     v.each do |val|
       case k
       when 'school_id'
-        desc << SpellSchool::to_s(val.to_i)
+        desc << SpellSchool.school(val.to_i)
       when 'level'
         desc << Spell::level_to_s(val.to_i)
       when 'cast_unit', 'duration_unit'
-        desc << TimeUnit::to_s(val.to_i).capitalize
+        desc << TimeUnit.unit(val.to_i).to_s.capitalize
       when 'range_unit'
-        desc << DistanceUnit::to_s(val.to_i).capitalize
+        desc << DistanceUnit.unit(val.to_i)
       when 'ritual', 'concentration'
         desc << (val == 't' ? 'Yes' : 'No')
       when 'components'
@@ -24,7 +24,7 @@ content_tag(:div, id: 'active-filters') do
         desc << val
       end
     end
-    content_tag(:div) do 
+    content_tag(:div) do
       t("helpers.label.spell.#{k}") + ': ' + desc.join(' or ')
     end
   end)
