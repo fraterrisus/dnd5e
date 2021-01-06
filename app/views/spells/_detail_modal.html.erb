@@ -1,0 +1,16 @@
+<%= tag.div(id: 'detail-modal', class: %w(modal fade), tabindex: '-1', role: 'dialog',
+            aria: { hidden: true, labelledby: 'detail-label' }) do %>
+  <%= tag.div(class: %w(modal-dialog)) do %>
+    <%= tag.div(class: %w(modal-content)) do %>
+      <%= tag.div(class: %w(modal-header)) do %>
+        <%= tag.h5(id: 'detail-label', class: %w(modal-title)) %>
+        <%= tag.button(type: 'button', class: %w(btn-close), data: { dismiss: 'modal' },
+                       aria: { label: 'close' }) do %>
+          <%= bs_glyph('times', { 'aria-hidden': true }) %>
+          <%= tag.span('close', class: %w(sr-only)) %>
+        <% end %>
+      <% end %>
+      <%= tag.div(id: 'detail-body', class: %w(modal-body)) %>
+    <% end %>
+  <% end %>
+<% end %>

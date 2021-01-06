@@ -1,6 +1,23 @@
 import {Helpers} from "../src/javascript/ajax_helpers";
 import {Modal} from "bootstrap";
 
+function applySpellFilters() {
+  const pageBody = document.getElementById('spells-results');
+  pageBody.innerHTML = '<h3>Loading...</h3>';
+  fetch('ajax/spells/index/' + Helpers.formToQuery('#narrow-select'))
+    .then(Helpers.extractResponseBody)
+    .then(ajaxResponseBody => {
+      pageBody.innerHTML = ajaxResponseBody;
+      pageBody.querySelectorAll('.fa-eye')
+        .forEach(spellRow => {
+          spellRow.addEventListener('click', spellIndexDetail)
+        });
+    })
+    .catch(() => {
+      pageBody.innerHTML = '<p>There was an error fetching spell data from the server.</p>';
+    });
+}
+
 function spellIndexDetail(ev) {
   const $me = ev.currentTarget;
   const filename = $me.getAttribute('data-spell-file');
@@ -25,22 +42,7 @@ function spellIndexDetail(ev) {
 }
 
 window.addEventListener('load', () => {
-  const button = document.querySelector('#narrowing-ok');
+  $(document.getElementById('narrowing-ok')).on('click', applySpellFilters);
 
-  button.addEventListener('click', () => {
-    const pageBody = document.querySelector('#spells-results');
-    pageBody.innerHTML = '<h3>Loading...</h3>';
-    fetch('ajax/spells/index/' + Helpers.formToQuery('#narrow-select'))
-      .then(Helpers.extractResponseBody)
-      .then(ajaxResponseBody => {
-        pageBody.innerHTML = ajaxResponseBody;
-        pageBody.querySelectorAll('.fa-eye')
-          .forEach(spellRow => { spellRow.addEventListener('click', spellIndexDetail) });
-      })
-      .catch(() => {
-        pageBody.innerHTML = '<p>There was an error fetching spell data from the server.</p>';
-      });
-  });
-
-  button.dispatchEvent(new Event('click'));
+  applySpellFilters();
 });

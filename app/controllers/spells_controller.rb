@@ -5,9 +5,11 @@ class SpellsController < ApplicationController
 
   def ajax_index
     searches = params.require('spell')
-      .permit(['sort_by_level', { 'caster_class_ids' => [], 'school_id' => [],
+      .permit(['utf8', 'sort_by_level', { 'caster_class_ids' => [], 'school_id' => [],
                'level' => [], 'cast_unit' => [], 'ritual' => [], 'range_unit' => [],
                'components' => [], 'duration_unit' => [], 'concentration' => [] }])
+
+    searches.delete('utf8')
 
     if searches.delete('sort_by_level') == '1'
       by_level = true
