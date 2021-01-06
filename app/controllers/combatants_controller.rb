@@ -28,10 +28,11 @@ class CombatantsController < ApplicationController
     Combatant.update_all(active: false)
     cmb = Combatant.find(id)
     cmb.update_column(:active, true)
+    head :no_content
   end
 
   def clear
     Combatant.destroy_all
-    render json: nil
+    head :no_content
   end
 end

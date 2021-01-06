@@ -32,10 +32,10 @@ module ModalHelper
                 button1 = tag.button('Cancel', type: 'button', 'data-dismiss': 'modal',
                   class: %w(btn btn-outline-secondary))
                 button2 = if options[:submit_via_ajax]
-                  tag.button(options[:submit_label], id: "#{id}-ok", class: %w(btn btn-primary),
+                  tag.button(options[:submit_label], id: "#{id}-ok", class: %w(btn btn-success),
                     type: 'button', data: { dismiss: 'modal' })
                 else
-                  tag.button(options[:submit_label], id: "#{id}-ok", class: %w(btn btn-primary),
+                  tag.button(options[:submit_label], id: "#{id}-ok", class: %w(btn btn-success),
                     type: 'submit')
                 end
                 view_join(button1, button2)
