@@ -51,13 +51,13 @@ class SpellsController < ApplicationController
     filename = params.require :name
     filename = "#{Rails.root}/public/spells/#{filename}.md"
     begin
-      descrip = File.read(filename)
+      markdown = File.read(filename)
     rescue Errno::ENOENT
       Rails.logger.error "Failed to load #{filename}"
       render html: '', status: 404
       return
     end
-    render md: descrip
+    render md: markdown
   end
 
   def show; end
@@ -65,22 +65,22 @@ class SpellsController < ApplicationController
   def edit; end
 
   def update
-    data = params.require(:spell) \
-      .permit(:name, :school_id, :level, :cast_n, :cast_unit, :ritual,
-              :reaction, :range_n, :range_unit, :aoe, :verbal, :somatic,
-              :material, :focus, :page, :duration_n, :duration_unit,
-              :concentration, :effect, :higher)
+    data = params.require(:edit_spell)
+      .permit(:name, :level, :school_id,
+              :cast_n, :cast_unit, :ritual,
+              :range_n, :range_unit,
+              :duration_n, :duration_unit, :concentration,
+              :somatic, :verbal, :material, :focus)
 
-    [:reaction, :cast_n, :range_n, :aoe, :duration_n, :effect, :higher].each do |f|
-      data[f] = nil if data[f] == ''
+    [:cast_n, :range_n, :duration_n].each do |f|
+      data[f] = nil unless data[f].present?
     end
+
+    data[:material] = true if data[:focus] == true
 
     @spell.update(data)
 
-    respond_to do |f|
-      f.html { redirect_to spell_url(@spell) }
-      f.json { render json: @spell, status: :ok }
-    end
+    render json: @spell, status: :ok
   end
 
   private

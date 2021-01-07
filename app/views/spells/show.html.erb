@@ -1,5 +1,5 @@
 <%= tag.div(class: %w(modal-dialog)) do %>
-  <%= form_with(model: @spell, html: { role: 'form', id: 'editspell-form', class: 'form' }) do |f| %>
+  <%= form_with(model: @spell, scope: 'edit_spell', html: { role: 'form', id: 'editspell-form', class: 'form' }) do |f| %>
     <%= tag.div(class: %w(modal-content)) do %>
       <%= tag.div(class: %w(modal-header)) do %>
         <%= tag.h5('Edit Spell', id: 'editspell-label', class: %w(modal-title)) %>
