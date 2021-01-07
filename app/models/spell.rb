@@ -38,7 +38,7 @@ class Spell < ActiveRecord::Base
     end
 
     define_method("#{x[0]}=") do |o|
-      c = if value_to_boolean o
+      c = if ActiveModel::Type::Boolean.new.cast(o)
         components | (1 << x[1])
       else
         components & ~(1 << x[1])

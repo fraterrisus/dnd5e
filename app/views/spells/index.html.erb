@@ -9,3 +9,5 @@
 
 <%= render partial: 'spells/detail_modal' %>
 <%= render partial: 'spells/edit_filters_modal' %>
+<%= tag.div(id: 'editspell-modal', class: %w(modal fade), tabindex: '-1', role: 'dialog',
+            aria: { hidden: true, labelledby: 'editspell-label' }) %>

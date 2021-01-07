@@ -75,7 +75,7 @@ class SpellsController < ApplicationController
       data[f] = nil if data[f] == ''
     end
 
-    @spell.update_attributes(data)
+    @spell.update(data)
 
     respond_to do |f|
       f.html { redirect_to spell_url(@spell) }
