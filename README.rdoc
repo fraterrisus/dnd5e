@@ -1,5 +1,0 @@
-== README
-
-I started this project as a way to organize the spell data in the D&D 5e Player's Handbook. Naturally, the source material is under strict commercial license, which is why there's no db/seeds.rb file in this repository.
-
-You're welcome to use the code that is here under GPL v2; see LICENSE.
