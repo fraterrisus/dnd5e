@@ -1,40 +1,20 @@
 import {Helpers} from "../src/javascript/ajax_helpers";
 import {Modal} from "bootstrap";
 
-function openCharacterEditForm(ev) {
-  const editModal = document.getElementById('editchar-modal')
-  new Modal(editModal).show();
+function deleteCharacter(ev) {
+  const char_id = getMyCharacterId(ev);
+  const csrfParam = document.querySelector('meta[name="csrf-param"]').getAttribute('content');
+  const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-  const editForm = editModal.querySelector('form');
-  const me = ev.currentTarget;
-  const this_row = me.parentNode.parentNode;
-  const these_data = Helpers.getChildrenOfElement(this_row, 'TD');
-
-  const char_id = this_row.getAttribute('data-char-id');
-  editForm.setAttribute('action', '/characters/' + char_id);
-
-  const fields = [ "name", "str", "dex", "con", "int", "wis", "chr",
-    "perception", "initiative", "speed", "ac" ];
-  for (let i = 0; i < fields.length; i++) {
-    const objName = 'input[name="character[' + fields[i] + ']"]';
-    editForm.querySelector(objName).value = these_data[i+1].innerText;
-  }
-
-  const notesRow = this_row.nextElementSibling;
-  const notesData = Helpers.getChildrenOfElement(notesRow, 'TD');
-  const notesFormField = editForm.querySelector('input[name="character[notes]"]');
-  if (notesRow.getAttribute('data-notes-id') === char_id) {
-    notesFormField.value = notesData[0].innerText;
-  } else {
-    notesFormField.value = '';
-  }
-
-  const isHighlighted = this_row.getAttribute('data-char-highlight') === 'true';
-  const highlightFormField = editForm.querySelector('input[name="character[highlight]"]');
-
-  highlightFormField.setAttribute('checked', String(isHighlighted));
-  //$( 'input[name="character[highlight]"]', $(editForm) )
-  //  .prop( 'checked', ( this_row.getAttribute('data-char-highlight') === "true" ) );
+  fetch('/characters/' + char_id, {
+    headers: {"Content-Type": "application/json; charset=utf-8"},
+    method: 'DELETE',
+    body: JSON.stringify({
+      [csrfParam]: csrfToken,
+      utf8: '✓'
+    })
+  }).then(fetchCharacterList)
+    .catch(_ => alert('Failed to delete the requested character.'));
 }
 
 function fetchCharacterList() {
@@ -43,32 +23,49 @@ function fetchCharacterList() {
     .then(ajaxBody => {
       document.getElementById('char-results').innerHTML = ajaxBody;
       Array.prototype.filter.call(document.getElementsByClassName('edit-button'),
-        editButton => $(editButton).on('click', openCharacterEditForm));
+        editButton => $(editButton).on('click', openEditCharacterForm));
+      Array.prototype.filter.call(document.getElementsByClassName('delete-button'),
+        deleteButton => $(deleteButton).on('click', deleteCharacter));
     });
+}
+
+function getMyCharacterId(ev) {
+  const me = ev.currentTarget;
+  const this_row = me.parentNode.parentNode;
+  return this_row.getAttribute('data-char-id');
+}
+
+function openEditCharacterForm(ev) {
+  const char_id = getMyCharacterId(ev);
+  fetch('/characters/' + char_id + '/edit')
+    .then(Helpers.extractResponseBody)
+    .then(prepareCharacterForm);
+}
+
+function openNewCharacterForm() {
+  fetch('/characters/new')
+    .then(Helpers.extractResponseBody)
+    .then(prepareCharacterForm);
+}
+
+function prepareCharacterForm(ajaxBody) {
+  const charModal = document.getElementById('char-modal');
+  charModal.innerHTML = ajaxBody;
+
+  const charForm = document.getElementById('char-form');
+  const submitButton = document.getElementById('char-modal-ok');
+  $(submitButton).on('click', _ =>
+    Helpers.submitFormAndReloadPage(charForm, fetchCharacterList));
+
+  const formInputs = charForm.querySelectorAll('input.form-control');
+  $(charModal).on('shown.bs.modal', _ => { formInputs[0].focus() });
+
+  new Modal(charModal).show();
 }
 
 window.addEventListener('load', _ => {
   fetchCharacterList();
 
-  const editModal = document.getElementById('editchar-modal');
-  const editForm = editModal.querySelector('form');
-  const editFormInputs = editForm.querySelectorAll('input.form-control');
-
-  $(editModal).on('shown.bs.modal', _ => { editFormInputs[0].focus() });
-
-  const editSubmitButton = document.getElementById('editchar-ok');
-  $(editSubmitButton).on('click', _ =>
-    Helpers.submitFormAndReloadPage(editForm, fetchCharacterList));
-
-  const newModal = document.getElementById('newchar-modal');
-  const newForm = newModal.querySelector('form');
-  const newFormInputs = newForm.querySelectorAll('input.form-control');
-
-  $(newModal).on('show.bs.modal', _ => {
-    Array.prototype.filter.call(newFormInputs, control => control.value = '') });
-
-  $(newModal).on('shown.bs.modal', _ => { newFormInputs[0].focus() });
-
-  $('button#newchar-ok').on('click', ev =>
-    Helpers.submitFormAndReloadPage(newForm, fetchCharacterList));
+  const newButton = document.getElementById('new-char-btn')
+  $(newButton).on('click', openNewCharacterForm);
 });

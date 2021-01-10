@@ -2,51 +2,10 @@
   <%= javascript_pack_tag :characters %>
 <% end %>
 
-<h1>Character Notes</h1>
-<div style="margin-top:12px; margin-bottom:12px;">
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newchar-modal">New Character</button>
-</div>
-<div id="char-results" class="results"></div>
-<%
-def modal_body(f)
-  tag.div(class: %w(form-group row)) do
-    tag.div(class: %w(col-xs-12 col-sm-12)) do
-      f.label(:name) << f.text_field(:name, class: 'form-control')
-    end
-  end <<
-  tag.div(class: %w(form-group row)) do
-    safe_join( [ :str, :dex, :con, :int, :wis, :chr ].map do |k|
-      tag.div(class: %w(col-xs-2 col-sm-2)) do
-        f.label(k) << f.text_field(k, class: 'form-control')
-      end
-    end, '')
-  end <<
-  tag.div(class: %w(form-group row)) do
-    safe_join( [ :perception, :initiative, :speed, :ac ].map do |k|
-      tag.div(class: %w(col-xs-3 col-sm-3)) do
-        f.label(k) << f.text_field(k, class: 'form-control')
-      end
-    end, '')
-  end <<
-  tag.div(class: %w(form-group row)) do
-    tag.div(class: %w(col-xs-12 col-sm-12)) do
-      f.label(:notes) << f.text_field(:notes, class: 'form-control')
-    end
-  end <<
-  tag.div(class: %w(form-group row)) do
-    tag.div(class: %w(col-xs-12 col-sm-12)) do
-      content_tag(:label, class: %w(checkbox-inline)) do
-        f.check_box(:highlight, class: 'form_control') << 'Highlight?'
-      end
-    end
-  end
-end
-%>
+<%= tag.h1('Spell List', id: 'spells-index') %>
+<%= tag.button('New Character', id: 'new-char-btn', class: %w(btn btn-primary)) %>
 
-<%= bootstrap_modal('newchar', Character, 'New Character',
-    { submit_label: 'Add', submit_via_ajax: true }) \
-    { |f| modal_body(f) } %>
+<%= tag.div(id: 'char-results', class: %w(results)) %>
 
-<%= bootstrap_modal('editchar', Character, 'Edit Character',
-    { form: { method: 'PATCH' }, submit_label: 'Update', submit_via_ajax: true }) \
-    { |f| modal_body(f) } %>
+<%= tag.div(id: 'char-modal', class: %w(modal fade), tabindex: '-1', role: 'dialog',
+  aria: { hidden: true, labelledby: 'char-modal-label' }) %>

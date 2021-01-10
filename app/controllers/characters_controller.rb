@@ -14,6 +14,17 @@ class CharactersController < ApplicationController
     end
   end
 
+  def new
+    @char = nil
+    render :edit, layout: nil
+  end
+
+  def edit
+    id = params.require(:id)
+    @char = Character.find id
+    render layout: nil
+  end
+
   def update
     id = params.require(:id)
     data = params.require(:character)
@@ -21,7 +32,7 @@ class CharactersController < ApplicationController
               :perception, :initiative, :speed, :ac, :notes, :highlight)
     char = Character.find id
     char.update data
-    render json: char, status: 403
+    render json: char
   end
 
   def create
@@ -30,5 +41,11 @@ class CharactersController < ApplicationController
               :perception, :initiative, :speed, :ac, :notes, :highlight)
     char = Character.create data
     render json: char
+  end
+
+  def destroy
+    id = params.require(:id)
+    Character.destroy id
+    head :no_content
   end
 end

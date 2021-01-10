@@ -30,3 +30,6 @@ Install ruby 2.7 via the package manager of your choice; I use `rvm`.
 
 `rails server` should present a page at `http://localhost:3000`, although you won't have any spells
 visible on the default page.
+
+**Note** that there is no authentication anywhere, so you probably should not deploy this outside of
+a private home network.

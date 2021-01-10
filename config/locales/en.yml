@@ -22,6 +22,8 @@
 en:
   helpers:
     label:
+      character:
+        ac: 'AC'
       spell:
         aoe: 'Area of Effect'
         cast_n: 'Casting Time'

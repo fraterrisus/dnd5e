@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get 'ajax/classes/index', to: 'caster_classes#ajax_index', as: 'ajax_classes'
   get 'ajax/characters/index', to: 'characters#ajax_index'
 
-  resources :characters, only: [:index, :create, :update]
+  resources :characters
   resources :classes, controller: 'caster_classes', as: 'caster_classes',
     only: [:index, :create, :new, :edit, :update]
 
