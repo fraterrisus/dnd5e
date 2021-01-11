@@ -1,10 +1,38 @@
 import {Modal} from "bootstrap";
 import {Helpers} from "../src/javascript/ajax_helpers";
 
+let charactersToImport = [];
 let csrfParam;
 let csrfToken;
 
+// -------------------------------
+
+function hideSpinner() {
+  const spinner = document.getElementById('initiative-spinner');
+  spinner.classList.add('d-none');
+}
+
+function showSpinner() {
+  const spinner = document.getElementById('initiative-spinner');
+  spinner.classList.remove('d-none');
+}
+
+function disableButtons() {
+  const pageButtons = document.querySelectorAll('.card-body .btn');
+  Array.prototype.filter.call(pageButtons, button => button.setAttribute('disabled', true));
+}
+
+function enableButtons() {
+  const pageButtons = document.querySelectorAll('.card-body .btn');
+  Array.prototype.filter.call(pageButtons, button => button.removeAttribute('disabled'));
+}
+
+// -------------------------------
+
 function activateCombatant(nextCharId) {
+  showSpinner();
+  disableButtons();
+
   fetch('/combatants/' + nextCharId + '/activate', {
     headers: {"Content-Type": "application/json; charset=utf-8"},
     method: 'POST',
@@ -17,6 +45,9 @@ function activateCombatant(nextCharId) {
 }
 
 function clearCombatantList() {
+  showSpinner();
+  disableButtons();
+
   fetch('/combatants/clear', {
     headers: {"Content-Type": "application/json; charset=utf-8"},
     method: 'POST',
@@ -29,11 +60,8 @@ function clearCombatantList() {
 }
 
 function fetchCombatantsList() {
-  const spinner = document.getElementById('initiative-spinner');
-  spinner.classList.remove('d-none');
-
-  const pageButtons = document.querySelectorAll('.card-body .btn');
-  Array.prototype.filter.call(pageButtons, button => button.setAttribute('disabled', true));
+  showSpinner();
+  disableButtons();
 
   const listBody = document.getElementById('initiative-list');
 
@@ -43,8 +71,8 @@ function fetchCombatantsList() {
       listBody.innerHTML = ajaxBody;
       const listRows = listBody.querySelectorAll('.list-group-item');
       Array.prototype.filter.call(listRows, row => $(row).on('click', openEditModal));
-      Array.prototype.filter.call(pageButtons, button => button.removeAttribute('disabled'));
-      spinner.classList.add('d-none');
+      hideSpinner();
+      enableButtons();
     });
 }
 
@@ -61,8 +89,40 @@ function openEditModal(ev) {
     target.querySelector('.init-name').textContent;
   editForm.querySelector('input[name="combatant[count]"]').value =
     target.querySelector('.init-count').textContent;
-  editForm.querySelector('input[name="combatant[effect]"]').value =
-    target.querySelector('.badge').textContent;
+//  editForm.querySelector('input[name="combatant[effect]"]').value =
+//    target.querySelector('.badge').textContent;
+}
+
+function createNextCombatant() {
+  const data = charactersToImport.pop();
+  if (data) {
+    fetch('/combatants', {
+      headers: {"Content-Type": "application/json; charset=utf-8"},
+      method: 'POST',
+      body: JSON.stringify({
+        [csrfParam]: csrfToken,
+        utf8: '✓',
+        combatant: data
+      })
+    }).then(createNextCombatant)
+      .catch(_ => alert('Failed to reset the combatants list.'));
+  } else {
+    fetchCombatantsList();
+  }
+}
+
+function importCharacters() {
+  showSpinner();
+  disableButtons();
+
+  fetch('/characters.json')
+    .then(Helpers.extractResponseJson)
+    .then(characters => {
+      Array.prototype.filter.call(characters, character => {
+        charactersToImport.push({name: character.name, count: 0, active: 0})
+      });
+      createNextCombatant();
+    });
 }
 
 function rotateTurn() {
@@ -91,6 +151,9 @@ window.addEventListener('load', _ => {
 
   const nextTurnButton = document.getElementById('next-turn-btn');
   $(nextTurnButton).on('click', rotateTurn);
+
+  const importButton = document.getElementById('import-btn');
+  $(importButton).on('click', importCharacters);
 
   const clearButton = document.getElementById('clear-btn');
   $(clearButton).on('click', clearCombatantList);

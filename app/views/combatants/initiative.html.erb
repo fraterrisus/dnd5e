@@ -27,9 +27,10 @@ end
       <%= tag.button('Next Turn', id: 'next-turn-btn', class: %w(btn btn-primary)) %>
     <% end %>
     <%= tag.div(class: %w(btn-group), role: 'group', aria: { label: 'modify combatants '}) do %>
-      <%= tag.button('New', id: 'new-btn', class: %w(btn btn-outline-secondary),
+      <%= tag.button('New', id: 'new-btn', class: %w(btn btn-outline-success),
                      data: { toggle: 'modal', target: '#newcomb-modal' }) %>
       <%= tag.button('Clear', id: 'clear-btn', class: %w(btn btn-outline-secondary)) %>
+      <%= tag.button('Import', id: 'import-btn', class: %w(btn btn-outline-secondary)) %>
     <% end %>
   <% end %>
 <% end %>
