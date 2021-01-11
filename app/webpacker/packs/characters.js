@@ -49,18 +49,18 @@ function openNewCharacterForm() {
 }
 
 function prepareCharacterForm(ajaxBody) {
-  const charModal = document.getElementById('char-modal');
-  charModal.innerHTML = ajaxBody;
+  const myModal = document.getElementById('char-modal');
+  myModal.innerHTML = ajaxBody;
 
-  const charForm = document.getElementById('char-form');
+  const myForm = document.getElementById('char-form');
   const submitButton = document.getElementById('char-modal-ok');
   $(submitButton).on('click', _ =>
-    Helpers.submitFormAndReloadPage(charForm, fetchCharacterList));
+    Helpers.submitFormAndReloadPage(myForm, fetchCharacterList));
 
-  const formInputs = charForm.querySelectorAll('input.form-control');
-  $(charModal).on('shown.bs.modal', _ => { formInputs[0].focus() });
+  const formInputs = myForm.querySelectorAll('input.form-control');
+  $(myModal).on('shown.bs.modal', _ => { formInputs[0].focus() });
 
-  new Modal(charModal).show();
+  new Modal(myModal).show();
 }
 
 window.addEventListener('load', _ => {

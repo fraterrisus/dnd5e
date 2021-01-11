@@ -27,9 +27,10 @@ export const Helpers = {
 
   getChildrenOfElement: function (element, type) {
     const children = element.childNodes;
+    const match = type.toUpperCase();
     let selected = [];
     for (let i = 0; i < children.length; i++) {
-      if (children[i].nodeName === type) {
+      if (children[i].nodeName === match) {
         selected.push(children[i]);
       }
     }

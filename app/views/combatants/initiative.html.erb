@@ -2,17 +2,7 @@
   <%= javascript_pack_tag 'combat' %>
 <% end %>
 
-<h1>Combat: Initiative</h1>
-
-<%
-def init_list_item(name, count)
-  tag.div(class: %w(list-group-item)) do
-    tag.span(count, class: 'init-count') <<
-    tag.span(name, class: 'init-name' ) <<
-    tag.span('', class: 'badge')
-  end
-end
-%>
+<%= tag.h1('Combat: Initiative') %>
 
 <%= tag.div(id: 'initiative-control', class: %w(card)) do %>
   <%= tag.div(class: %w(card-body)) do %>
@@ -27,34 +17,14 @@ end
       <%= tag.button('Next Turn', id: 'next-turn-btn', class: %w(btn btn-primary)) %>
     <% end %>
     <%= tag.div(class: %w(btn-group), role: 'group', aria: { label: 'modify combatants '}) do %>
-      <%= tag.button('New', id: 'new-btn', class: %w(btn btn-outline-success),
-                     data: { toggle: 'modal', target: '#newcomb-modal' }) %>
+      <%= tag.button('New', id: 'new-btn', class: %w(btn btn-outline-success)) %>
       <%= tag.button('Clear', id: 'clear-btn', class: %w(btn btn-outline-secondary)) %>
       <%= tag.button('Import', id: 'import-btn', class: %w(btn btn-outline-secondary)) %>
     <% end %>
   <% end %>
 <% end %>
+
 <%= tag.div(id: 'initiative-list', class: 'list-group') %>
 
-<%
-def modal_body(form)
-  tag.div(class: %w(form-group row)) do
-    tag.div(class: %w(col-xs-12 col-sm-9)) do
-      form.label(:name) <<
-      form.text_field(:name, class: 'form-control')
-    end <<
-    tag.div(class: %w(col-xs-4 col-sm-3)) do
-      form.label(:count) <<
-      form.text_field(:count, class: %w(form-control col-xs-2))
-    end
-  end
-end
-%>
-
-<%= bootstrap_modal('newcomb', Combatant, 'New Combatant',
-    { submit_label: 'Add', inline: false, submit_via_ajax: true }) \
-    { |form| modal_body(form) } %>
-
-<%= bootstrap_modal('editcomb', Combatant, 'Edit Combatant',
-   { form: { method: 'PATCH' }, submit_label: 'Update', inline: false, submit_via_ajax: true }) \
-   { |form| modal_body(form) } %>
+<%= tag.div(id: 'comb-modal', class: %w(modal fade), tabindex: '-1', role: 'dialog',
+  aria: { hidden: true, labelledby: 'comb-modal-label' }) %>

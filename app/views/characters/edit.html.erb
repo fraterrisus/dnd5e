@@ -1,7 +1,7 @@
 <%
   model = @char ? @char : Character
   verb = @char ? 'Edit' : 'New'
-  submit_verb = @char ? 'Update' : 'Create'
+  submit_verb = @char ? 'Update' : 'Add'
 %>
 <%= tag.div(class: %w(modal-dialog)) do %>
   <%= form_with(model: model, html: { role: 'form', id: 'char-form', class: 'form' }) do |f| %>

@@ -29,19 +29,20 @@ function enableButtons() {
 
 // -------------------------------
 
-function activateCombatant(nextCharId) {
+function activateCombatant(nextCombId) {
   showSpinner();
   disableButtons();
 
-  fetch('/combatants/' + nextCharId + '/activate', {
+  fetch('/combatants/' + nextCombId + '/activate', {
     headers: {"Content-Type": "application/json; charset=utf-8"},
     method: 'POST',
     body: JSON.stringify({
       [csrfParam]: csrfToken,
       utf8: '✓',
-      id: nextCharId,
+      id: nextCombId,
     })
-  }).catch(_ => alert('Unable to activate combatant.'));
+  }).then(_ => { hideSpinner(); enableButtons(); })
+    .catch(_ => alert('Unable to activate combatant.'));
 }
 
 function clearCombatantList() {
@@ -57,40 +58,6 @@ function clearCombatantList() {
     })
   }).then(_ => fetchCombatantsList())
     .catch(_ => alert('Failed to reset the combatants list.'));
-}
-
-function fetchCombatantsList() {
-  showSpinner();
-  disableButtons();
-
-  const listBody = document.getElementById('initiative-list');
-
-  fetch('/combatants.html')
-    .then(Helpers.extractResponseBody)
-    .then(ajaxBody => {
-      listBody.innerHTML = ajaxBody;
-      const listRows = listBody.querySelectorAll('.list-group-item');
-      Array.prototype.filter.call(listRows, row => $(row).on('click', openEditModal));
-      hideSpinner();
-      enableButtons();
-    });
-}
-
-function openEditModal(ev) {
-  const editModal = document.getElementById('editcomb-modal');
-  new Modal(editModal).show();
-
-  const editForm = editModal.querySelector('form');
-  const target = ev.currentTarget;
-  const combatantId = target.querySelector('.init-id').textContent;
-
-  editForm.setAttribute('action', '/combatants/' + combatantId);
-  editForm.querySelector('input[name="combatant[name]"]').value =
-    target.querySelector('.init-name').textContent;
-  editForm.querySelector('input[name="combatant[count]"]').value =
-    target.querySelector('.init-count').textContent;
-//  editForm.querySelector('input[name="combatant[effect]"]').value =
-//    target.querySelector('.badge').textContent;
 }
 
 function createNextCombatant() {
@@ -111,6 +78,50 @@ function createNextCombatant() {
   }
 }
 
+function deleteCombatant(ev) {
+  showSpinner();
+  disableButtons();
+
+  const combId = getMyCombatantId(ev);
+  fetch('/combatants/' + combId , {
+    headers: {"Content-Type": "application/json; charset=utf-8"},
+    method: 'DELETE',
+    body: JSON.stringify({
+      [csrfParam]: csrfToken,
+      utf8: '✓',
+      id: combId,
+    })
+  }).then(fetchCombatantsList)
+    .catch(_ => alert('Unable to delete combatant.'));
+}
+
+function fetchCombatantsList() {
+  showSpinner();
+  disableButtons();
+
+  const listBody = document.getElementById('initiative-list');
+
+  fetch('/combatants.html')
+    .then(Helpers.extractResponseBody)
+    .then(ajaxBody => {
+      listBody.innerHTML = ajaxBody;
+
+      const editButtons = document.querySelectorAll('.edit-btn');
+      Array.prototype.filter.call(editButtons, btn => $(btn).on('click', openEditCombatantForm));
+
+      const deleteButtons = document.querySelectorAll('.delete-btn');
+      Array.prototype.filter.call(deleteButtons, btn => $(btn).on('click', deleteCombatant));
+
+      hideSpinner();
+      enableButtons();
+    });
+}
+
+function getMyCombatantId(ev) {
+  const me = ev.currentTarget;
+  return Helpers.getChildrenOfElement(me.parentNode, 'span')[0].textContent;
+}
+
 function importCharacters() {
   showSpinner();
   disableButtons();
@@ -119,27 +130,55 @@ function importCharacters() {
     .then(Helpers.extractResponseJson)
     .then(characters => {
       Array.prototype.filter.call(characters, character => {
-        charactersToImport.push({name: character.name, count: 0, active: 0})
+        charactersToImport.push({name: character.name, time: 0, active: 0})
       });
       createNextCombatant();
     });
 }
 
+function openEditCombatantForm(ev) {
+  const comb_id = getMyCombatantId(ev);
+  fetch('/combatants/' + comb_id + '/edit')
+    .then(Helpers.extractResponseBody)
+    .then(prepareCombatantForm);
+}
+
+function openNewCombatantForm() {
+  fetch('/combatants/new')
+    .then(Helpers.extractResponseBody)
+    .then(prepareCombatantForm);
+}
+
+function prepareCombatantForm(ajaxBody) {
+  const myModal = document.getElementById('comb-modal');
+  myModal.innerHTML = ajaxBody;
+
+  const myForm = document.getElementById('comb-form');
+  const submitButton = document.getElementById('comb-modal-ok');
+  $(submitButton).on('click', _ =>
+    Helpers.submitFormAndReloadPage(myForm, fetchCombatantsList));
+
+  const formInputs = myForm.querySelectorAll('input.form-control');
+  $(myModal).on('shown.bs.modal', _ => { formInputs[0].focus() });
+
+  new Modal(myModal).show();
+}
+
 function rotateTurn() {
-  const charList = document.getElementById('initiative-list');
-  const activeChar = charList.querySelector('.list-group-item.active');
-  let nextChar;
-  if (activeChar !== undefined && activeChar !== null) {
-    activeChar.classList.remove('active');
-    nextChar = activeChar.nextElementSibling;
+  const combList = document.getElementById('initiative-list');
+  const activeComb = combList.querySelector('.list-group-item.list-group-item-info');
+  let nextComb;
+  if (activeComb !== undefined && activeComb !== null) {
+    activeComb.classList.remove('list-group-item-info');
+    nextComb = activeComb.nextElementSibling;
   }
-  if (nextChar === undefined || nextChar === null) {
-    nextChar = charList.querySelectorAll('.list-group-item')[0]
+  if (nextComb === undefined || nextComb === null) {
+    nextComb = combList.querySelectorAll('.list-group-item')[0]
   }
-  if (nextChar !== undefined && nextChar !== null) {
-    const nextCharId = nextChar.querySelector('.init-id').textContent;
-    activateCombatant(nextCharId);
-    nextChar.classList.add('active');
+  if (nextComb !== undefined && nextComb !== null) {
+    const nextCombId = nextComb.querySelector('.init-id').textContent;
+    activateCombatant(nextCombId);
+    nextComb.classList.add('list-group-item-info');
   }
 }
 
@@ -147,37 +186,17 @@ window.addEventListener('load', _ => {
   csrfParam = document.querySelector('meta[name="csrf-param"]').getAttribute('content');
   csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-  fetchCombatantsList();
+  const newButton = document.getElementById('new-btn');
+  $(newButton).on('click', openNewCombatantForm);
 
   const nextTurnButton = document.getElementById('next-turn-btn');
   $(nextTurnButton).on('click', rotateTurn);
 
-  const importButton = document.getElementById('import-btn');
-  $(importButton).on('click', importCharacters);
-
   const clearButton = document.getElementById('clear-btn');
   $(clearButton).on('click', clearCombatantList);
 
-  const editModal = document.getElementById('editcomb-modal');
-  const editForm = editModal.querySelector('form');
-  const editFormInputs = editForm.querySelectorAll('input.form-control');
+  const importButton = document.getElementById('import-btn');
+  $(importButton).on('click', importCharacters);
 
-  $(editModal).on('shown.bs.modal', _ => { editFormInputs[0].focus() });
-
-  const editSubmitButton = document.getElementById('editcomb-ok');
-  $(editSubmitButton).on('click', _ =>
-    Helpers.submitFormAndReloadPage(editForm, fetchCombatantsList));
-
-  const newModal = document.getElementById('newcomb-modal');
-  const newForm = newModal.querySelector('form');
-  const newFormInputs = newForm.querySelectorAll('input.form-control');
-
-  $(newModal).on('show.bs.modal', _ => {
-    Array.prototype.filter.call(newFormInputs, control => control.value = '') });
-
-  $(newModal).on('shown.bs.modal', _ => { newFormInputs[0].focus() });
-
-  const newSubmitButton = document.getElementById('newcomb-ok');
-  $(newSubmitButton).on('click', _ =>
-    Helpers.submitFormAndReloadPage(newForm, fetchCombatantsList));
+  fetchCombatantsList();
 });

@@ -2,10 +2,10 @@
 
 one:
   name: MyString
-  count: 1
+  time: 1
   effect: 1
 
 two:
   name: MyString
-  count: 1
+  time: 1
   effect: 1

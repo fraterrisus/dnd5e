@@ -1,0 +1,39 @@
+<%
+  model = @char ? @char : Combatant
+  verb = @char ? 'Edit' : 'New'
+  submit_verb = @char ? 'Update' : 'Add'
+%>
+<%= tag.div(class: %w(modal-dialog)) do %>
+  <%= form_with(model: model, html: { role: 'form', id: 'comb-form', class: 'form' }) do |form| %>
+    <%= tag.div(class: %w(modal-content)) do %>
+      <%= tag.div(class: %w(modal-header)) do %>
+        <%= tag.h5("#{verb} Combatant", id: 'comb-modal-label', class: %w(modal-title)) %>
+        <%= tag.button(type: 'button', class: %w(btn-close), data: { dismiss: 'modal' },
+          aria: { label: 'close' }) do %>
+          <%= bs_glyph('times', aria: { hidden: true }) %>
+          <%= tag.span('close', class: %w(sr-only)) %>
+        <% end %>
+      <% end %>
+
+      <%= tag.div(class: %w(modal-body)) do %>
+        <%= tag.div(class: %w(form-group row)) do %>
+          <%= tag.div(class: %w(col-sm-9)) do %>
+            <%= form.label(:name)  %>
+            <%= form.text_field(:name, class: 'form-control') %>
+          <% end %>
+          <%= tag.div(class: %w(col-sm-3)) do %>
+            <%= form.label(:time) %>
+            <%= form.text_field(:time, class: %w(form-control col-xs-2)) %>
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <%= tag.div(class: %w(modal-footer)) do %>
+        <%= tag.button('Cancel', type: 'button', class: %w(btn btn-outline-secondary),
+          data: { dismiss: 'modal' }) %>
+        <%= tag.button(submit_verb, type: 'button', id: 'comb-modal-ok', class: %w(btn btn-success),
+          data: { dismiss: 'modal' }) %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

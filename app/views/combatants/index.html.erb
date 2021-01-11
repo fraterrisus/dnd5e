@@ -1,9 +1,11 @@
 <% @combatants.each do |c| %>
-  <% classes = ['list-group-item'] ; if c.active then classes << 'active' end %>
+  <% classes = ['list-group-item'] %>
+  <% classes << 'list-group-item-info' if c.active %>
   <%= tag.div(class: classes) do %>
-    <%= tag.span(c.id, class: %w(init-id), style: 'display: none',
-                 aria: { hidden: true }) %>
-    <%= tag.span(c.count, class: %w(init-count)) %>
+    <%= tag.span(c.id, class: %w(init-id d-none), aria: { hidden: true }) %>
+    <%= tag.a('', class: %w(fas fa-edit edit-btn)) %>
+    <%= tag.a('', class: %w(fas fa-trash delete-btn)) %>
+    <%= tag.span(c.time, class: %w(init-time)) %>
     <%= tag.span(c.name, class: %w(init-name)) %>
   <% end %>
 <% end %>

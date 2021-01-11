@@ -1,69 +1,68 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your
-# database schema. If you need to create the application database on another
-# system, you should be using db:schema:load, not running all the migrations
-# from scratch. The latter is a flawed and unsustainable approach (the more migrations
-# you'll amass, the slower it'll run and the greater likelihood for issues).
+# This file is the source Rails uses to define your schema when running `bin/rails
+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150222004949) do
+ActiveRecord::Schema.define(version: 2021_01_11_023119) do
 
-  create_table "caster_classes", force: true do |t|
-    t.string   "name"
+  create_table "caster_classes", force: :cascade do |t|
+    t.string "name", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "caster_classes_spells", id: false, force: true do |t|
+  create_table "caster_classes_spells", id: false, force: :cascade do |t|
     t.integer "caster_class_id", null: false
-    t.integer "spell_id",        null: false
+    t.integer "spell_id", null: false
   end
 
-  create_table "characters", force: true do |t|
-    t.string   "name"
-    t.boolean  "highlight"
-    t.integer  "str"
-    t.integer  "dex"
-    t.integer  "con"
-    t.integer  "int"
-    t.integer  "wis"
-    t.integer  "chr"
-    t.integer  "perception"
-    t.integer  "ac"
-    t.integer  "initiative"
-    t.integer  "speed"
-    t.text     "notes"
+  create_table "characters", force: :cascade do |t|
+    t.string "name", limit: 255
+    t.boolean "highlight"
+    t.integer "str"
+    t.integer "dex"
+    t.integer "con"
+    t.integer "int"
+    t.integer "wis"
+    t.integer "chr"
+    t.integer "perception"
+    t.integer "ac"
+    t.integer "initiative"
+    t.integer "speed"
+    t.text "notes"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "combatants", force: true do |t|
-    t.string   "name"
-    t.integer  "count"
-    t.integer  "effect"
-    t.boolean  "active"
+  create_table "combatants", force: :cascade do |t|
+    t.string "name", limit: 255
+    t.integer "time"
+    t.integer "effect"
+    t.boolean "active"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "spells", force: true do |t|
-    t.string   "name"
-    t.integer  "level"
-    t.integer  "school_id"
-    t.boolean  "ritual"
-    t.integer  "cast_n"
-    t.integer  "cast_unit"
-    t.integer  "range_n"
-    t.integer  "range_unit"
-    t.integer  "components"
-    t.boolean  "concentration"
-    t.integer  "duration_n"
-    t.integer  "duration_unit"
+  create_table "spells", force: :cascade do |t|
+    t.string "name", limit: 255
+    t.integer "level"
+    t.integer "school_id"
+    t.boolean "ritual"
+    t.integer "cast_n"
+    t.integer "cast_unit"
+    t.integer "range_n"
+    t.integer "range_unit"
+    t.integer "components"
+    t.boolean "concentration"
+    t.integer "duration_n"
+    t.integer "duration_unit"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

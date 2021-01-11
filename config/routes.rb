@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   get 'combat', to: 'combatants#initiative', as: 'combat'
 
-  resources :combatants, only: [:index, :create, :update] do
+  resources :combatants do
     post 'activate'
   end
 
