@@ -39,9 +39,11 @@ function toggleButtonHandler(ev) {
   if (isExpanded === 'true') {
     targetElement.classList.add('collapse');
     thisButton.setAttribute('aria-expanded', 'false');
+    thisButton.classList.remove('btn-primary');
   } else {
     targetElement.classList.remove('collapse');
     thisButton.setAttribute('aria-expanded', 'true');
+    thisButton.classList.add('btn-primary');
   }
 }
 
