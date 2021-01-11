@@ -19,7 +19,5 @@ Rails.application.routes.draw do
 
   post 'combatants/clear'
 
-  get 'dice', to: 'dice#index', as: 'dice'
-
   resources :spells, only: [:index, :show, :update]
 end

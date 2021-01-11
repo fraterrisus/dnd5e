@@ -6,3 +6,10 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 @import '~@fortawesome/fontawesome-free/scss/solid';
 
 @import '../src/stylesheets/application';
+
+#dicebar {
+  width: 21em;
+  position: absolute;
+  left: 0;
+  z-index: 5;
+}

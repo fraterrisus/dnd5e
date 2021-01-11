@@ -1,5 +1,7 @@
 <%= tag.nav(class: %w(navbar navbar-expand-md navbar-dark bg-dark)) do %>
-  <%= link_to('D&D5e Reference', root_path, class: 'navbar-brand') %>
+  <%= link_to(root_path, class: 'navbar-brand') { tag.img(src:asset_path('logo-100.png')) } %>
+  <%= tag.button(type: 'button', id: 'dice-toggler', class: %w(fas fa-dice-d20),
+                 aria: { controls: 'dicebar', expanded: 'false', label: 'Toggle dice roller' }) %>
   <%= tag.button(type: 'button', class: 'navbar-toggler',
                  data: { toggle: 'collapse', target: '#dnd-navbar' },
                  aria: { controls: 'dnd-navbar', label: 'Toggle navigation' }) do %>
@@ -7,7 +9,6 @@
   <% end %>
   <%= tag.div(id: 'dnd-navbar', class: %w(collapse navbar-collapse)) do %>
     <%= tag.ul(class: %w(navbar-nav mr-auto)) do %>
-      <%= tag.li(class: 'nav-item') { link_to('Dice', dice_path, class: 'nav-link') } %>
       <%= tag.li(class: 'nav-item') { link_to('Spells', spells_path, class: 'nav-link') } %>
       <%= tag.li(class: 'nav-item') { link_to('Characters', characters_path, class: 'nav-link') } %>
       <%= tag.li(class: 'nav-item') { link_to('Initiative', combat_path, class: 'nav-link') } %>

@@ -29,6 +29,22 @@ import "bootstrap";
 //   <%= javascript_pack_tag 'foo' %>
 //   <% end %>
 
-Array.prototype.sortNumbers = function() {
-    return this.sort( function (a,b) { return a-b; } );
+// There seems to be some sort of bug with Bootstrap 4 and JQuery 3.5 that prevents the toggle
+// handler from *hiding* something. The only reported solutions include "oh, hey, I forgot to
+// actually include all the Bootstrap JS files" :unimpressed:
+function toggleButtonHandler(ev) {
+  const thisButton = ev.currentTarget;
+  const targetElement = document.getElementById(thisButton.getAttribute('aria-controls'));
+  const isExpanded = thisButton.getAttribute('aria-expanded');
+  if (isExpanded === 'true') {
+    targetElement.classList.add('collapse');
+    thisButton.setAttribute('aria-expanded', 'false');
+  } else {
+    targetElement.classList.remove('collapse');
+    thisButton.setAttribute('aria-expanded', 'true');
+  }
 }
+
+window.addEventListener('load', () => {
+  $(document.getElementById('dice-toggler')).on('click', toggleButtonHandler);
+});

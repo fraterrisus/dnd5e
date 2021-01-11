@@ -5,12 +5,14 @@
   <title>D&amp;D5e Reference</title>
   <%= stylesheet_pack_tag 'application' %>
   <%= javascript_pack_tag 'application' %>
+  <%= javascript_pack_tag 'dice' %>
   <%= yield :head %>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 </head>
 <body role="document">
 <%= render 'navbar' %>
+<%= render 'dicebar' %>
 
 <div class="container" role="main">
   <%= yield %>

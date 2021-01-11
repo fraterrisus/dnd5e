@@ -1,0 +1,55 @@
+<%= tag.div(id: 'dicebar', class: %w(collapse)) do %>
+  <%= tag.div(class: %w(card)) do %>
+    <%= tag.div(class: %w(card-header)) do %>
+      <%= tag.h5('Die Roller', class: %w(card-title card-auto)) %>
+    <% end %>
+    <%= tag.div(class: %w(card-body)) do %>
+      <%= tag.form(class: %w(form), role: 'form') do %>
+        <%= tag.div(id: 'dicebar-adv', class: %w(form-group row)) do %>
+          <%= tag.div(class: %w(col)) do %>
+            <%= tag.span('Advantage:', class: %w(form-label-inline)) %>
+            <%= tag.div(class: %w(form-check form-check-inline)) do %>
+              <%= tag.input(class: 'form-check-input', type: 'radio', name: 'adv', id: 'adv_-1', value: -1) %>
+              <%= tag.label('&ndash;'.html_safe, class: 'form-check-label', for: 'adv_-1') %>
+            <% end %>
+            <%= tag.div(class: %w(form-check form-check-inline)) do %>
+              <%= tag.input(class: 'form-check-input', type: 'radio', name: 'adv', id: 'adv_0', value: 0, checked: true) %>
+              <%= tag.label('0', class: 'form-check-label', for: 'adv_0') %>
+            <% end %>
+            <%= tag.div(class: %w(form-check form-check-inline)) do %>
+              <%= tag.input(class: 'form-check-input', type: 'radio', name: 'adv', id: 'adv_1', value: 1) %>
+              <%= tag.label('+', class: 'form-check-label', for: 'adv_1') %>
+            <% end %>
+          <% end %>
+        <% end %>
+
+        <%= tag.div(id: 'dicebar-numdice', class: %w(form-group row)) do %>
+          <%= tag.div(class: %w(col col-auto)) do %>
+            <%= tag.div(class: %w(input-group)) do %>
+              <%= tag.button(type: 'button', id: 'numdice-minone',
+                class: %w(btn btn-default btn-outline-primary fas fa-minus)) %>
+              <%= tag.input(id: 'numdice', class: %w(form-control), type: 'text', value: '1') %>
+              <%= tag.button(type: 'button', id: 'numdice-plsone',
+                class: %w(btn btn-default btn-outline-primary fas fa-plus)) %>
+            <% end %>
+          <% end %>
+        <% end %>
+
+        <%= tag.div(id: 'dicebar-sides', class: %w(form-group row)) do %>
+          <%= tag.div(class: %w(col)) do %>
+            <%= tag.div(class: %w(btn-group)) do %>
+              <%= tag.button('d4', type: 'button', id: 'roll-4', class: %w(btn btn-outline-secondary)) %>
+              <%= tag.button('d6', type: 'button', id: 'roll-6', class: %w(btn btn-outline-secondary)) %>
+              <%= tag.button('d8', type: 'button', id: 'roll-8', class: %w(btn btn-outline-secondary)) %>
+              <%= tag.button('d10', type: 'button', id: 'roll-10', class: %w(btn btn-outline-secondary)) %>
+              <%= tag.button('d12', type: 'button', id: 'roll-12', class: %w(btn btn-outline-secondary)) %>
+              <%= tag.button('d20', type: 'button', id: 'roll-20', class: %w(btn btn-outline-primary)) %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <%= tag.div('&nbsp;Result:'.html_safe, id: 'dicebar-result', class: %w(card-footer)) %>
+  <% end %>
+<% end %>
