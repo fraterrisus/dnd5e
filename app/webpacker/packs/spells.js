@@ -12,7 +12,7 @@ function applyEditModalEventHandlers() {
   ['edit_spell_cast_unit', 'edit_spell_range_unit', 'edit_spell_duration_unit'].forEach(id => {
     const element = document.getElementById(id);
     element.addEventListener('change', disableTextField);
-    element.change();
+    element.dispatchEvent(new Event('change'));
   })
 
   // If FOCUS is true, MATERIAL must also be true.
@@ -45,7 +45,8 @@ function applySpellFilters() {
 
 function disableTextField(ev) {
   const selectElement = ev.currentTarget;
-  const textFieldElement = selectElement.previousElementSibling;
+  const textFieldElementId = selectElement.getAttribute('id').replace('unit', 'n');
+  const textFieldElement = document.getElementById(textFieldElementId);
   const val = Number(selectElement.value);
   if (val >= 10) {
     textFieldElement.removeAttribute('disabled');
@@ -64,8 +65,7 @@ function openEditModal(ev) {
       modal.innerHTML = ajaxBody;
       new Modal(modal).show();
       applyEditModalEventHandlers();
-    })
-    .catch(() => {
+    }).catch(() => {
       alert('There was an error editing that spell.');
     })
 }
