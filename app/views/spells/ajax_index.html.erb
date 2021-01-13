@@ -21,9 +21,8 @@ safe_join( @spells.map do |spell|
 
   tag.div(class: div_classes) do
     safe_join([
-      tag.a(class: %w(bi bi-pencil text-primary), 'data-spell-file': spell.to_asset),
-      tag.a(class: %w(fas fa-eye), 'data-spell-file': spell.to_asset),
-      tag.a(class: %w(fas fa-edit), 'data-spell-id': spell.id),
+      tag.i(class: %w(bi bi-eye-fill text-primary view-btn), 'data-spell-file': spell.to_asset),
+      tag.i(class: %w(bi bi-pencil-fill text-primary edit-btn), 'data-spell-id': spell.id),
       safe_join( [ tag.b { spell.name } ] + items, ' &ndash; '.html_safe )
     ], '&nbsp;'.html_safe)
   end

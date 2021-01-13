@@ -33,9 +33,9 @@ function applySpellFilters() {
     .then(Helpers.extractResponseBody)
     .then(ajaxResponseBody => {
       pageBody.innerHTML = ajaxResponseBody;
-      pageBody.querySelectorAll('.fa-eye').forEach(spellRow => {
+      pageBody.querySelectorAll('.view-btn').forEach(spellRow => {
         spellRow.addEventListener('click', spellIndexDetail)});
-      pageBody.querySelectorAll('.fa-edit').forEach(spellRow => {
+      pageBody.querySelectorAll('.edit-btn').forEach(spellRow => {
         spellRow.addEventListener('click', openEditModal)});
     })
     .catch(() => {
@@ -65,7 +65,8 @@ function openEditModal(ev) {
       modal.innerHTML = ajaxBody;
       new Modal(modal).show();
       applyEditModalEventHandlers();
-    }).catch(() => {
+    })
+    .catch(() => {
       alert('There was an error editing that spell.');
     })
 }
