@@ -5,23 +5,23 @@ function applyEditModalEventHandlers() {
   const editForm = document.getElementById('editspell-form');
   const submitButton = document.getElementById('editspell-ok');
 
-  $(submitButton).on('click', _ =>
+  submitButton.addEventListener('click', _ =>
     Helpers.submitFormAndReloadPage(editForm, applySpellFilters));
 
   // If the unit ID is less than 10, it doesn't have a count, so disable that text box.
   ['edit_spell_cast_unit', 'edit_spell_range_unit', 'edit_spell_duration_unit'].forEach(id => {
     const element = document.getElementById(id);
-    $(element).on('change', disableTextField);
-    $(element).change();
+    element.addEventListener('change', disableTextField);
+    element.change();
   })
 
   // If FOCUS is true, MATERIAL must also be true.
   const focusCheckBox = document.getElementById('edit_spell_focus');
   const materialCheckBox = document.getElementById('edit_spell_material');
-  $(focusCheckBox).on('change', _ => {
+  focusCheckBox.addEventListener('change', _ => {
     if (focusCheckBox.checked) { materialCheckBox.checked = true; }
   });
-  $(materialCheckBox).on('change', _ => {
+  materialCheckBox.addEventListener('change', _ => {
     if (focusCheckBox.checked) { materialCheckBox.checked = true; }
   })
 }
@@ -95,5 +95,5 @@ function spellIndexDetail(ev) {
 window.addEventListener('load', () => {
   applySpellFilters();
 
-  $(document.getElementById('narrowing-ok')).on('click', applySpellFilters);
+  document.getElementById('narrowing-ok').addEventListener('click', applySpellFilters);
 });

@@ -6,7 +6,7 @@
 
 <%= tag.div(style: 'margin-top: 12px;') do %>
   <%= tag.button('New Caster Class', class: %w(btn btn-primary), type: 'button',
-                 data: { toggle: 'modal', target: '#newclass-modal' }) %>
+                 data: { 'bs-toggle': 'modal', 'bs-target': '#newclass-modal' }) %>
 <% end %>
 
 <%= tag.div(id: 'cclass-results', class: 'results') %>

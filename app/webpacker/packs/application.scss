@@ -5,4 +5,10 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 @import '~@fortawesome/fontawesome-free/scss/solid';
 
+// https://icons.getbootstrap.com/
+// This is a hack; bootstrap-icons.css uses "./" as the path identifier. :unimpressed:
+$bs-font-path: '~bootstrap-icons/font';
+@import '~bootstrap-icons/font/bootstrap-icons';
+
 @import '../src/stylesheets/application';
+

@@ -18,13 +18,8 @@ module ModalHelper
               tag.div(class: %w(modal-header)) do
                 view_join(
                   tag.h5(title, id: "#{id}-label", class: 'modal-title'),
-                  tag.button(type: 'button', class: %w(btn-close), 'data-dismiss': 'modal',
-                    'aria-label': 'close') do
-                    view_join(
-                      bs_glyph('times', { 'aria-hidden': true }),
-                      tag.span('close', class: %w(sr-only))
-                    )
-                  end
+                  tag.button(type: 'button', class: %w(btn-close), 'data-bs-dismiss': 'modal',
+                             'aria-label': 'close')
                 )
               end,
               tag.div(class: %w(modal-body)) { yield(f) },

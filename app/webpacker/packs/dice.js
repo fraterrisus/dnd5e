@@ -44,12 +44,12 @@ function incrementNumDice(amount) {
 }
 
 window.addEventListener('load', () => {
-  $(document.getElementById('roll-4')).on('click', _ => { rollDice(4); } );
-  $(document.getElementById('roll-6')).on('click', _ => { rollDice(6); } );
-  $(document.getElementById('roll-8')).on('click', _ => { rollDice(8); } );
-  $(document.getElementById('roll-10')).on('click', _ => { rollDice(10); } );
-  $(document.getElementById('roll-12')).on('click', _ => { rollDice(12); } );
-  $(document.getElementById('roll-20')).on('click', _ => { rollDice(20); } );
-  $(document.getElementById('numdice-minone')).on('click', _ => { incrementNumDice(-1); });
-  $(document.getElementById('numdice-plsone')).on('click', _ => { incrementNumDice(1) });
+  document.getElementById('roll-4').addEventListener('click', _ => { rollDice(4); } );
+  document.getElementById('roll-6').addEventListener('click', _ => { rollDice(6); } );
+  document.getElementById('roll-8').addEventListener('click', _ => { rollDice(8); } );
+  document.getElementById('roll-10').addEventListener('click', _ => { rollDice(10); } );
+  document.getElementById('roll-12').addEventListener('click', _ => { rollDice(12); } );
+  document.getElementById('roll-20').addEventListener('click', _ => { rollDice(20); } );
+  document.getElementById('numdice-minone').addEventListener('click', _ => { incrementNumDice(-1); });
+  document.getElementById('numdice-plsone').addEventListener('click', _ => { incrementNumDice(1) });
 });

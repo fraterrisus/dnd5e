@@ -18,7 +18,7 @@ module BootstrapHelper
       block_text = block.call
       link_label = ''.html_safe
       link_label << label << '&nbsp;'.html_safe << content_tag(:span, '', class: 'caret')
-      link_to(link_label, '#', role: 'button', 'data-toggle' => 'dropdown', 'aria-expanded' => false) << block_text
+      link_to(link_label, '#', role: 'button', 'data-bs-toggle' => 'dropdown', 'aria-expanded' => false) << block_text
     end
   end
 
