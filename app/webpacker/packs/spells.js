@@ -57,7 +57,7 @@ function disableTextField(ev) {
 function openEditModal(ev) {
   const spellId = ev.currentTarget.getAttribute('data-spell-id');
 
-  fetch('/spells/' + encodeURIComponent(spellId))
+  fetch('/spells/' + encodeURIComponent(spellId) + '/edit')
     .then(Helpers.extractResponseBody)
     .then(ajaxBody => {
       const modal = document.getElementById('editspell-modal');

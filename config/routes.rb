@@ -19,5 +19,5 @@ Rails.application.routes.draw do
 
   post 'combatants/clear'
 
-  resources :spells, only: [:index, :show, :update]
+  resources :spells, only: [:index, :edit, :update]
 end
