@@ -1,5 +1,5 @@
-import {Modal} from "bootstrap";
 import {Helpers} from "../src/javascript/ajax_helpers";
+import {AbstractMethods} from "../src/javascript/abstract_methods";
 
 let charactersToImport = [];
 let csrfParam;
@@ -106,11 +106,10 @@ function fetchCombatantsList() {
     .then(ajaxBody => {
       listBody.innerHTML = ajaxBody;
 
-      const editButtons = document.querySelectorAll('.edit-btn');
-      Array.prototype.filter.call(editButtons, btn => $(btn).on('click', openEditCombatantForm));
-
-      const deleteButtons = document.querySelectorAll('.delete-btn');
-      Array.prototype.filter.call(deleteButtons, btn => $(btn).on('click', deleteCombatant));
+      Array.prototype.filter.call(document.querySelectorAll('.edit-button'),
+        btn => btn.addEventListener('click', openEditModal));
+      Array.prototype.filter.call(document.querySelectorAll('.delete-button'),
+        btn => btn.addEventListener('click', deleteCombatant));
 
       hideSpinner();
       enableButtons();
@@ -118,8 +117,7 @@ function fetchCombatantsList() {
 }
 
 function getMyCombatantId(ev) {
-  const me = ev.currentTarget;
-  return Helpers.getChildrenOfElement(me.parentNode, 'span')[0].textContent;
+  return ev.currentTarget.parentElement.getAttribute('data-object-id');
 }
 
 function importCharacters() {
@@ -136,33 +134,20 @@ function importCharacters() {
     });
 }
 
-function openEditCombatantForm(ev) {
+function openEditModal(ev) {
   const comb_id = getMyCombatantId(ev);
   fetch('/combatants/' + comb_id + '/edit')
     .then(Helpers.extractResponseBody)
-    .then(prepareCombatantForm);
+    .then(prepareEditForm);
 }
 
-function openNewCombatantForm() {
+function openNewModal() {
   fetch('/combatants/new')
     .then(Helpers.extractResponseBody)
-    .then(prepareCombatantForm);
+    .then(prepareEditForm);
 }
 
-function prepareCombatantForm(ajaxBody) {
-  const myModal = document.getElementById('comb-modal');
-  myModal.innerHTML = ajaxBody;
-
-  const myForm = document.getElementById('comb-form');
-  const submitButton = document.getElementById('comb-modal-ok');
-  $(submitButton).on('click', _ =>
-    Helpers.submitFormAndReloadPage(myForm, fetchCombatantsList));
-
-  const formInputs = myForm.querySelectorAll('input.form-control');
-  $(myModal).on('shown.bs.modal', _ => { formInputs[0].focus() });
-
-  new Modal(myModal).show();
-}
+const prepareEditForm = AbstractMethods.prepareEditForm(fetchCombatantsList);
 
 function rotateTurn() {
   const combList = document.getElementById('initiative-list');
@@ -176,7 +161,7 @@ function rotateTurn() {
     nextComb = combList.querySelectorAll('.list-group-item')[0]
   }
   if (nextComb !== undefined && nextComb !== null) {
-    const nextCombId = nextComb.querySelector('.init-id').textContent;
+    const nextCombId = nextComb.querySelector('.object-id').getAttribute('data-object-id');
     activateCombatant(nextCombId);
     nextComb.classList.add('list-group-item-info');
   }
@@ -187,16 +172,16 @@ window.addEventListener('load', _ => {
   csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
   const newButton = document.getElementById('new-btn');
-  $(newButton).on('click', openNewCombatantForm);
+  newButton.addEventListener('click', openNewModal);
 
   const nextTurnButton = document.getElementById('next-turn-btn');
-  $(nextTurnButton).on('click', rotateTurn);
+  nextTurnButton.addEventListener('click', rotateTurn);
 
   const clearButton = document.getElementById('clear-btn');
-  $(clearButton).on('click', clearCombatantList);
+  clearButton.addEventListener('click', clearCombatantList);
 
   const importButton = document.getElementById('import-btn');
-  $(importButton).on('click', importCharacters);
+  importButton.addEventListener('click', importCharacters);
 
   fetchCombatantsList();
 });
