@@ -10,15 +10,13 @@ Rails.application.routes.draw do
   resources :characters
   get 'characters/:id/confirm/delete', to: 'characters#confirm_delete'
 
-  resources :classes, controller: 'caster_classes', as: 'caster_classes',
-    only: [:index, :create, :new, :edit, :update]
+  resources :classes, controller: 'caster_classes', as: 'caster_classes'
+  get 'classes/:id/confirm/delete', to: 'caster_classes#confirm_delete'
 
   get 'combat', to: 'combatants#initiative', as: 'combat'
 
-  resources :combatants do
-    post 'activate'
-  end
-
+  resources :combatants
+  post 'combatants/:id/activate', to: 'combatants#activate'
   post 'combatants/clear'
 
   resources :spells, only: [:index, :edit, :update]

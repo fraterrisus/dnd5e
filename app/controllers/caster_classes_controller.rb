@@ -1,5 +1,5 @@
 class CasterClassesController < ApplicationController
-  before_action :load_caster_class, only: [:edit, :update]
+  before_action :load_caster_class, only: [:edit, :confirm_delete, :update]
 
   def index
     respond_to do |fmt|
@@ -16,19 +16,36 @@ class CasterClassesController < ApplicationController
     end
   end
 
-  def edit; end
+  def new
+    @cclass = nil
+    render :edit, layout: nil
+  end
+
+  def edit
+    render layout: nil
+  end
+
+  def confirm_delete
+    render layout: nil
+  end
 
   def update
     p = params.require('caster_class').permit('id', 'name', 'spell_ids' => [])
     p.delete('id')
-    @cclass.update_attributes(p)
-    redirect_to action: :edit
+    @cclass.update p
+    render json: @cclass
   end
 
   def create
     p = params.require('caster_class').permit('name')
     cclass = CasterClass.create(p)
     render json: cclass
+  end
+
+  def destroy
+    id = params.require(:id)
+    CasterClass.destroy id
+    head :no_content
   end
 
   private

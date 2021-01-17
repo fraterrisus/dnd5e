@@ -1,20 +1,36 @@
-<% content_for :head do %>
-  <%= javascript_pack_tag :caster_classes %>
-<% end %>
+<%
+  model = @cclass ? @cclass : CasterClass
+  verb = @cclass ? 'Edit' : 'New'
+  submit_verb = @cclass ? 'Update' : 'Add'
+%>
+<%= tag.div(class: %w(modal-dialog)) do %>
+  <%= form_with(model: model, html: { id: 'object-form', class: 'form', role: 'form' }) do |f| %>
+    <%= tag.div(class: %w(modal-content)) do %>
+      <%= tag.div(class: %w(modal-header)) do %>
+        <%= tag.h5("#{verb} Caster Class", id: 'object-modal-label', class: %w(modal-title)) %>
+        <%= tag.button(type: 'button', class: %w(btn-close), 'data-bs-dismiss': 'modal',
+                       aria: { label: 'close' }) %>
+      <% end %>
 
-<h1>Edit Caster Class</h1>
-<%= form_with(model: @cclass, url: edit_caster_class_path(@cclass), id: 'edit-caster-class',
-              method: :patch, html: { role: 'form' }) do |f| %>
-  <%= f.hidden_field(:id) %>
-  <%= tag.div(class: %w(form-group)) do %>
-    <%= f.label(:name) %><%= f.text_field(:name, class: %w(form-control)) %>
-  <% end %>
-  <%= tag.div(class: %w(form-group)) do %>
-    <%= f.submit('Update', class: %w(btn btn-success)) %>
-    <%= link_to('Back to Classes', caster_classes_path, class: %w(btn btn-primary)) %>
-  <% end %>
-  <%= tag.div(id: 'casterclass-edit-results', class: %w(form-group)) %>
-  <%= tag.div(class: %w(form-group)) do %>
-    <%= f.submit('Update', class: %w(btn btn-success)) %>
+      <%= tag.div(class: %w(modal-body)) do %>
+        <%= tag.div(class: %w(row)) do %>
+          <%= tag.div(class: %w(col)) do %>
+            <%= f.label(:name, class: %w(form-label)) %>
+          <% end %>
+        <% end %>
+        <%= tag.div(class: %w(row mb-3)) do %>
+          <%= tag.div(class: %w(col)) do %>
+            <%= f.text_field(:name, class: %w(form-control)) %>
+          <% end %>
+        <% end %>
+
+        <%= tag.div(class: %w(modal-footer)) do %>
+          <%= tag.button('Cancel', type: 'button', class: %w(btn btn-outline-secondary),
+                         'data-bs-dismiss': 'modal') %>
+          <%= tag.button(submit_verb, type: 'button', id: 'object-modal-ok', class: %w(btn btn-success),
+                         'data-bs-dismiss': 'modal') %>
+        <% end %>
+      <% end %>
+    <% end %>
   <% end %>
 <% end %>
