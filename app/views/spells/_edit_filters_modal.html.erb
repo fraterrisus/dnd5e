@@ -7,70 +7,68 @@
 
         <%= tag.div(class: %w(modal-header)) do %>
           <%= tag.h5('Filter Spells', id: 'narrowing-label', class: %w(modal-title)) %>
-          <%= tag.button(type: 'button', class: %w(close), data: { dismiss: 'modal' }) do %>
-            <%= tag.span(class: %w(fas fa-window-close), 'aria-hidden' => true) %>
-            <%= tag.span('close', class: 'sr-only') %>
-          <% end %>
+          <%= tag.button(type: 'button', class: %w(btn-close), 'data-bs-dismiss': 'modal',
+            aria: { label: 'close' }) %>
         <% end %>
 
         <%= tag.div(class: %w(modal-body)) do %>
-          <%= tag.div(class: %w(form-group)) do %>
-            <%= tag.label(t('helpers.label.spell.class_id'), class: %w(control-label), for: 'spell_caster_class_ids') %>
+          <%= tag.div(class: %w(mb-3)) do %>
+            <%= tag.label(t('helpers.label.spell.class_id'), class: %w(form-label), for: 'spell_caster_class_ids') %>
             <%= select_tag('spell[caster_class_ids]',
                            options_from_collection_for_select(CasterClass.order(:name), :id, :name),
                            multiple: true, class: %w(form-control)) %>
           <% end %>
-          <%= tag.div(class: %w(form-group)) do %>
-            <%= tag.label(t('helpers.label.spell.school_id'), class: %w(control-label), for: 'spell_school_id') %>
+          <%= tag.div(class: %w(mb-3)) do %>
+            <%= tag.label(t('helpers.label.spell.school_id'), class: %w(form-label), for: 'spell_school_id') %>
             <%= select_tag('spell[school_id]',
                            options_for_select(SpellSchool.options_for_select),
                            multiple: true, class: %w(form-control)) %>
           <% end %>
-          <%= tag.div(class: %w(form-group)) do %>
-            <%= tag.label(t('helpers.label.spell.level'), class: %w(control-label), for: 'spell_level') %>
+          <%= tag.div(class: %w(mb-3)) do %>
+            <%= tag.label(t('helpers.label.spell.level'), class: %w(form-label), for: 'spell_level') %>
             <%= select_tag('spell[level]',
                            options_for_select([['Cantrip', 0]] + (1..9).zip( (1..9).to_a) ),
                            multiple: true, class: %w(form-control)) %>
           <% end %>
 
-          <%= tag.div(class: %w(form-group)) do %>
-            <%= tag.label(t('helpers.label.spell.cast_unit'), class: %w(control-label), for: 'spell_cast_unit') %>
+          <%= tag.div(class: %w(mb-3)) do %>
+            <%= tag.label(t('helpers.label.spell.cast_unit'), class: %w(form-label), for: 'spell_cast_unit') %>
             <%= select_tag('spell[cast_unit]',
                            options_for_select(TimeUnit.options_for_select),
                            multiple: true, class: %w(form-control)) %>
           <% end %>
-          <%= tag.div(class: %w(form-group)) do %>
-            <%= tag.label(t('helpers.label.spell.ritual'), class: %w(control-label), for: 'spell_ritual') %>
+          <%= tag.div(class: %w(mb-3)) do %>
+            <%= tag.label(t('helpers.label.spell.ritual'), class: %w(form-label), for: 'spell_ritual') %>
             <%= select_tag('spell[ritual]',
                            options_for_select([['yes', 't'], ['no', 'f']]),
                            multiple: true, class: %w(form-control)) %>
           <% end %>
-          <%= tag.div(class: %w(form-group)) do %>
-            <%= tag.label(t('helpers.label.spell.range_unit'), class: %w(control-label), for: 'spell_range_unit') %>
+          <%= tag.div(class: %w(mb-3)) do %>
+            <%= tag.label(t('helpers.label.spell.range_unit'), class: %w(form-label), for: 'spell_range_unit') %>
             <%= select_tag('spell[range_unit]',
                            options_for_select(DistanceUnit.options_for_select),
                            multiple: true, class: %w(form-control)) %>
           <% end %>
-          <%= tag.div(class: %w(form-group)) do %>
-            <%= tag.label(t('helpers.label.spell.components'), class: %w(control-label), for: 'spell_components') %>
+          <%= tag.div(class: %w(mb-3)) do %>
+            <%= tag.label(t('helpers.label.spell.components'), class: %w(form-label), for: 'spell_components') %>
             <%= select_tag('spell[components]',
                            options_for_select([['Verbal', 8], ['Somatic', 4], ['Material', 2], ['Focus', 1]]),
                            multiple: true, class: %w(form-control)) %>
           <% end %>
-          <%= tag.div(class: %w(form-group)) do %>
-            <%= tag.label(t('helpers.label.spell.duration_unit'), class: %w(control-label), for: 'spell_duration_unit') %>
+          <%= tag.div(class: %w(mb-3)) do %>
+            <%= tag.label(t('helpers.label.spell.duration_unit'), class: %w(form-label), for: 'spell_duration_unit') %>
             <%= select_tag('spell[duration_unit]',
                            options_for_select(TimeUnit.options_for_select),
                            multiple: true, class: %w(form-control)) %>
           <% end %>
-          <%= tag.div(class: %w(form-group)) do %>
-            <%= tag.label(t('helpers.label.spell.concentration'), class: %w(control-label), for: 'spell_concentration') %>
+          <%= tag.div(class: %w(mb-3)) do %>
+            <%= tag.label(t('helpers.label.spell.concentration'), class: %w(form-label), for: 'spell_concentration') %>
             <%= select_tag('spell[concentration]',
                            options_for_select([['yes', 't'], ['no', 'f']]),
                            multiple: true, class: %w(form-control)) %>
           <% end %>
-          <%= tag.div(class: %w(form-group)) do %>
-            Sort by
+          <%= tag.div(class: %w(mb-3)) do %>
+            <%= tag.div('Sort by', class: %w(form-label)) %>
             <%= tag.div(class: %w(form-check)) do %>
               <%= tag.input(id: 'spell_sort_by_name', name: 'spell[sort_by_level]',
                             class: %w(form-check-input), type: 'radio', value: '0', checked: true) %>
@@ -86,9 +84,9 @@
 
         <%= tag.div(class: %w(modal-footer)) do %>
           <%= tag.button('Cancel', type: 'button', class: %w(btn btn-outline-secondary),
-            data: { dismiss: 'modal' }) %>
+                         'data-bs-dismiss': 'modal') %>
           <%= tag.button('Update Filters', type: 'button', id: 'narrowing-ok',
-            class: %w(btn btn-primary), data: { dismiss: 'modal' }) %>
+                         class: %w(btn btn-primary), 'data-bs-dismiss': 'modal') %>
         <% end %>
       <% end %>
     <% end %>

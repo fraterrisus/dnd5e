@@ -23,9 +23,9 @@ function fetchCharacterList() {
     .then(ajaxBody => {
       document.getElementById('char-results').innerHTML = ajaxBody;
       Array.prototype.filter.call(document.getElementsByClassName('edit-button'),
-        editButton => $(editButton).on('click', openEditCharacterForm));
+        editButton => editButton.addEventListener('click', openEditCharacterForm));
       Array.prototype.filter.call(document.getElementsByClassName('delete-button'),
-        deleteButton => $(deleteButton).on('click', deleteCharacter));
+        deleteButton => deleteButton.addEventListener('click', openDeleteCharacterDialog));
     });
 }
 
@@ -35,9 +35,26 @@ function getMyCharacterId(ev) {
   return this_row.getAttribute('data-char-id');
 }
 
+function openDeleteCharacterDialog(ev) {
+  const charId = getMyCharacterId(ev);
+  fetch('/characters/' + encodeURIComponent(charId) + '/confirm/delete')
+    .then(Helpers.extractResponseBody)
+    .then(ajaxBody => {
+      const deleteModal = document.getElementById('char-delete-modal');
+      deleteModal.innerHTML = ajaxBody;
+
+      const myForm = document.getElementById('delete-char-form');
+      const submitButton = document.getElementById('delete-char-ok');
+      submitButton.addEventListener('click', _ =>
+        Helpers.submitFormAndReloadPage(myForm, fetchCharacterList));
+
+      new Modal(deleteModal).show();
+    });
+}
+
 function openEditCharacterForm(ev) {
-  const char_id = getMyCharacterId(ev);
-  fetch('/characters/' + char_id + '/edit')
+  const charId = getMyCharacterId(ev);
+  fetch('/characters/' + encodeURIComponent(charId) + '/edit')
     .then(Helpers.extractResponseBody)
     .then(prepareCharacterForm);
 }
@@ -54,11 +71,11 @@ function prepareCharacterForm(ajaxBody) {
 
   const myForm = document.getElementById('char-form');
   const submitButton = document.getElementById('char-modal-ok');
-  $(submitButton).on('click', _ =>
+  submitButton.addEventListener('click', _ =>
     Helpers.submitFormAndReloadPage(myForm, fetchCharacterList));
 
   const formInputs = myForm.querySelectorAll('input.form-control');
-  $(myModal).on('shown.bs.modal', _ => { formInputs[0].focus() });
+  myModal.addEventListener('shown.bs.modal', _ => { formInputs[0].focus() });
 
   new Modal(myModal).show();
 }
@@ -66,6 +83,5 @@ function prepareCharacterForm(ajaxBody) {
 window.addEventListener('load', _ => {
   fetchCharacterList();
 
-  const newButton = document.getElementById('new-char-btn')
-  $(newButton).on('click', openNewCharacterForm);
+  document.getElementById('new-char-btn').addEventListener('click', openNewCharacterForm);
 });

@@ -4,7 +4,7 @@
 
 <%= tag.h1('Spell List', id: 'spells-index') %>
 <%= tag.button('Filter', id: 'filter-btn', class: %w(btn btn-primary),
-               data: { toggle: 'modal', target: '#narrowing-modal' }) %>
+               data: { 'bs-toggle': 'modal', 'bs-target': '#narrowing-modal' }) %>
 <%= tag.div(id: 'spells-results', class: %w(results)) %>
 
 <%= render partial: 'spells/detail_modal' %>

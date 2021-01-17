@@ -5,23 +5,23 @@ function applyEditModalEventHandlers() {
   const editForm = document.getElementById('editspell-form');
   const submitButton = document.getElementById('editspell-ok');
 
-  $(submitButton).on('click', _ =>
+  submitButton.addEventListener('click', _ =>
     Helpers.submitFormAndReloadPage(editForm, applySpellFilters));
 
   // If the unit ID is less than 10, it doesn't have a count, so disable that text box.
   ['edit_spell_cast_unit', 'edit_spell_range_unit', 'edit_spell_duration_unit'].forEach(id => {
     const element = document.getElementById(id);
-    $(element).on('change', disableTextField);
-    $(element).change();
+    element.addEventListener('change', disableTextField);
+    element.dispatchEvent(new Event('change'));
   })
 
   // If FOCUS is true, MATERIAL must also be true.
   const focusCheckBox = document.getElementById('edit_spell_focus');
   const materialCheckBox = document.getElementById('edit_spell_material');
-  $(focusCheckBox).on('change', _ => {
+  focusCheckBox.addEventListener('change', _ => {
     if (focusCheckBox.checked) { materialCheckBox.checked = true; }
   });
-  $(materialCheckBox).on('change', _ => {
+  materialCheckBox.addEventListener('change', _ => {
     if (focusCheckBox.checked) { materialCheckBox.checked = true; }
   })
 }
@@ -33,9 +33,9 @@ function applySpellFilters() {
     .then(Helpers.extractResponseBody)
     .then(ajaxResponseBody => {
       pageBody.innerHTML = ajaxResponseBody;
-      pageBody.querySelectorAll('.fa-eye').forEach(spellRow => {
+      pageBody.querySelectorAll('.view-btn').forEach(spellRow => {
         spellRow.addEventListener('click', spellIndexDetail)});
-      pageBody.querySelectorAll('.fa-edit').forEach(spellRow => {
+      pageBody.querySelectorAll('.edit-btn').forEach(spellRow => {
         spellRow.addEventListener('click', openEditModal)});
     })
     .catch(() => {
@@ -45,7 +45,8 @@ function applySpellFilters() {
 
 function disableTextField(ev) {
   const selectElement = ev.currentTarget;
-  const textFieldElement = selectElement.previousElementSibling;
+  const textFieldElementId = selectElement.getAttribute('id').replace('unit', 'n');
+  const textFieldElement = document.getElementById(textFieldElementId);
   const val = Number(selectElement.value);
   if (val >= 10) {
     textFieldElement.removeAttribute('disabled');
@@ -57,7 +58,7 @@ function disableTextField(ev) {
 function openEditModal(ev) {
   const spellId = ev.currentTarget.getAttribute('data-spell-id');
 
-  fetch('/spells/' + encodeURIComponent(spellId))
+  fetch('/spells/' + encodeURIComponent(spellId) + '/edit')
     .then(Helpers.extractResponseBody)
     .then(ajaxBody => {
       const modal = document.getElementById('editspell-modal');
@@ -95,5 +96,5 @@ function spellIndexDetail(ev) {
 window.addEventListener('load', () => {
   applySpellFilters();
 
-  $(document.getElementById('narrowing-ok')).on('click', applySpellFilters);
+  document.getElementById('narrowing-ok').addEventListener('click', applySpellFilters);
 });

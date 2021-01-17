@@ -60,8 +60,6 @@ class SpellsController < ApplicationController
     render md: markdown
   end
 
-  def show; end
-
   def edit; end
 
   def update

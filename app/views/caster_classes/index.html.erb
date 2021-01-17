@@ -3,19 +3,11 @@
 <% end %>
 
 <%= tag.h1('Caster Classes') %>
+<%= tag.button('New Caster Class', class: %w(btn btn-primary new-button)) %>
 
-<%= tag.div(style: 'margin-top: 12px;') do %>
-  <%= tag.button('New Caster Class', class: %w(btn btn-primary), type: 'button',
-                 data: { toggle: 'modal', target: '#newclass-modal' }) %>
-<% end %>
+<%= tag.div(class: 'results') %>
 
-<%= tag.div(id: 'cclass-results', class: 'results') %>
-
-<%= bootstrap_modal('newclass', CasterClass, 'New Caster Class') do |form| %>
-  <%= content_tag(:div, class: %w(form-group row)) do %>
-    <%= content_tag(:div, class: %w(col-xs-12 col-sm-12)) do %>
-      <%= form.label(:name) %>
-      <%= form.text_field(:name, class: 'form-control') %>
-    <% end %>
-  <% end %>
-<% end %>
+<%= tag.div(id: 'object-modal', class: %w(modal fade), tabindex: '-1', role: 'dialog',
+            aria: { hidden: true, labelledby: 'object-modal-label' }) %>
+<%= tag.div(id: 'object-delete-modal', class: %w(modal fade), tabindex: '-1', role: 'dialog',
+            aria: { hidden: true, labelledby: 'object-delete-label' }) %>

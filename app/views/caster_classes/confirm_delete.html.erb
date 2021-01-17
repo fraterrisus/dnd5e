@@ -1,0 +1,26 @@
+<%= tag.div(class: %w(modal-dialog)) do %>
+  <%= form_with(model: @cclass, method: 'delete',
+    html: { id: 'delete-object-form', class: 'form', role: 'form' }) do |_| %>
+    <%= tag.div(class: %w(modal-content)) do %>
+      <%= tag.div(class: %w(modal-header)) do %>
+        <%= tag.h5('Delete Caster Class', class: %w(modal-title), id: 'object-delete-label') %>
+        <%= tag.button(type: 'button', class: %w(btn-close), 'data-bs-dismiss': 'modal',
+          aria: { label: 'close' }) %>
+      <% end %>
+
+      <%= tag.div(class: %w(modal-body)) do %>
+        <%= tag.i(class: %w(bi bi-exclamation-octagon-fill text-danger fs-3 ms-3)) %>
+        <%= tag.span(class: %w(fs-5 ms-3)) do %>
+          Are you sure you want to delete <%= @cclass.name %>?
+        <% end %>
+      <% end %>
+
+      <%= tag.div(class: %w(modal-footer)) do %>
+        <%= tag.button('Cancel', type: 'button', class: %w(btn btn-outline-secondary),
+          'data-bs-dismiss': 'modal') %>
+        <%= tag.button('Delete', type: 'button', id: 'delete-object-ok',
+          class: %w(btn btn-danger), 'data-bs-dismiss': 'modal') %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

@@ -48,5 +48,5 @@ function toggleButtonHandler(ev) {
 }
 
 window.addEventListener('load', () => {
-  $(document.getElementById('dice-toggler')).on('click', toggleButtonHandler);
+  document.getElementById('dice-toggler').addEventListener('click', toggleButtonHandler);
 });

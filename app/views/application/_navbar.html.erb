@@ -3,7 +3,7 @@
   <%= tag.button(type: 'button', id: 'dice-toggler', class: %w(fas fa-dice-d20),
                  aria: { controls: 'dicebar', expanded: 'false', label: 'Toggle dice roller' }) %>
   <%= tag.button(type: 'button', class: 'navbar-toggler',
-                 data: { toggle: 'collapse', target: '#dnd-navbar' },
+                 data: { 'bs-toggle': 'collapse', 'bs-target': '#dnd-navbar' },
                  aria: { controls: 'dnd-navbar', label: 'Toggle navigation' }) do %>
     <%= tag.span(class: 'navbar-toggler-icon') %>
   <% end %>

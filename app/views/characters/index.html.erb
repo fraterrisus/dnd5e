@@ -3,9 +3,12 @@
 <% end %>
 
 <%= tag.h1('Character List', id: 'char-index') %>
-<%= tag.button('New Character', id: 'new-char-btn', class: %w(btn btn-primary)) %>
+<%= tag.button('New Character', id: 'new-char-btn', class: %w(btn btn-primary new-button)) %>
 
 <%= tag.div(id: 'char-results', class: %w(results)) %>
 
 <%= tag.div(id: 'char-modal', class: %w(modal fade), tabindex: '-1', role: 'dialog',
-  aria: { hidden: true, labelledby: 'char-modal-label' }) %>
+            aria: { hidden: true, labelledby: 'char-modal-label' }) %>
+
+<%= tag.div(id: 'char-delete-modal', class: %w(modal fade), tabindex: '-1', role: 'dialog',
+  aria: { hidden: true, labelledby: 'char-delete-label' }) %>

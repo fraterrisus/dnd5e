@@ -4,15 +4,12 @@
   submit_verb = @char ? 'Update' : 'Add'
 %>
 <%= tag.div(class: %w(modal-dialog)) do %>
-  <%= form_with(model: model, html: { role: 'form', id: 'comb-form', class: 'form' }) do |form| %>
+  <%= form_with(model: model, html: { role: 'form', id: 'object-form', class: 'form' }) do |form| %>
     <%= tag.div(class: %w(modal-content)) do %>
       <%= tag.div(class: %w(modal-header)) do %>
-        <%= tag.h5("#{verb} Combatant", id: 'comb-modal-label', class: %w(modal-title)) %>
-        <%= tag.button(type: 'button', class: %w(btn-close), data: { dismiss: 'modal' },
-          aria: { label: 'close' }) do %>
-          <%= bs_glyph('times', aria: { hidden: true }) %>
-          <%= tag.span('close', class: %w(sr-only)) %>
-        <% end %>
+        <%= tag.h5("#{verb} Combatant", id: 'object-modal-label', class: %w(modal-title)) %>
+        <%= tag.button(type: 'button', class: %w(btn-close), 'data-bs-dismiss': 'modal',
+                       aria: { label: 'close' }) %>
       <% end %>
 
       <%= tag.div(class: %w(modal-body)) do %>
@@ -30,9 +27,9 @@
 
       <%= tag.div(class: %w(modal-footer)) do %>
         <%= tag.button('Cancel', type: 'button', class: %w(btn btn-outline-secondary),
-          data: { dismiss: 'modal' }) %>
-        <%= tag.button(submit_verb, type: 'button', id: 'comb-modal-ok', class: %w(btn btn-success),
-          data: { dismiss: 'modal' }) %>
+                       'data-bs-dismiss': 'modal') %>
+        <%= tag.button(submit_verb, type: 'button', id: 'object-modal-ok', class: %w(btn btn-success),
+                       'data-bs-dismiss': 'modal') %>
       <% end %>
     <% end %>
   <% end %>

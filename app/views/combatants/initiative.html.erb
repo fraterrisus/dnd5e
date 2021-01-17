@@ -4,27 +4,29 @@
 
 <%= tag.h1('Combat: Initiative') %>
 
-<%= tag.div(id: 'initiative-control', class: %w(card)) do %>
-  <%= tag.div(class: %w(card-body)) do %>
-    <%= tag.h5(class: %w(card-title)) do %>
-      Turn Order
-      <%= tag.span(id: 'initiative-spinner', role: 'status') do %>
-        <%= tag.span(class: %w(spinner-border spinner-border-sm text-primary)) %>
-        Loading...
+<%= tag.div(class: %w(col-sm-12 col-md-8 col-lg-6)) do %>
+  <%= tag.div(id: 'initiative-control', class: %w(card)) do %>
+    <%= tag.div(class: %w(card-body)) do %>
+      <%= tag.h5(class: %w(card-title)) do %>
+        Turn Order
+        <%= tag.span(id: 'initiative-spinner', role: 'status') do %>
+          <%= tag.span(class: %w(spinner-border spinner-border-sm text-primary)) %>
+          Loading...
+        <% end %>
+      <% end %>
+      <%= tag.div(class: %w(btn-group), role: 'group', aria: { label: 'cycle' }) do %>
+        <%= tag.button('Next Turn', id: 'next-turn-btn', class: %w(btn btn-primary)) %>
+      <% end %>
+      <%= tag.div(class: %w(btn-group), role: 'group', aria: { label: 'modify combatants '}) do %>
+        <%= tag.button('New', id: 'new-btn', class: %w(btn btn-outline-success)) %>
+        <%= tag.button('Clear', id: 'clear-btn', class: %w(btn btn-outline-secondary)) %>
+        <%= tag.button('Import', id: 'import-btn', class: %w(btn btn-outline-secondary)) %>
       <% end %>
     <% end %>
-    <%= tag.div(class: %w(btn-group), role: 'group', aria: { label: 'cycle' }) do %>
-      <%= tag.button('Next Turn', id: 'next-turn-btn', class: %w(btn btn-primary)) %>
-    <% end %>
-    <%= tag.div(class: %w(btn-group), role: 'group', aria: { label: 'modify combatants '}) do %>
-      <%= tag.button('New', id: 'new-btn', class: %w(btn btn-outline-success)) %>
-      <%= tag.button('Clear', id: 'clear-btn', class: %w(btn btn-outline-secondary)) %>
-      <%= tag.button('Import', id: 'import-btn', class: %w(btn btn-outline-secondary)) %>
-    <% end %>
   <% end %>
+
+  <%= tag.div(id: 'initiative-list', class: 'list-group') %>
 <% end %>
 
-<%= tag.div(id: 'initiative-list', class: 'list-group') %>
-
-<%= tag.div(id: 'comb-modal', class: %w(modal fade), tabindex: '-1', role: 'dialog',
-  aria: { hidden: true, labelledby: 'comb-modal-label' }) %>
+<%= tag.div(id: 'object-modal', class: %w(modal fade), tabindex: '-1', role: 'dialog',
+            aria: { hidden: true, labelledby: 'object-modal-label' }) %>
