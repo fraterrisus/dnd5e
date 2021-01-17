@@ -1,4 +1,3 @@
-<% attributes = %i(str dex con int wis chr perception initiative speed ac) %>
 <%= tag.div(class: %w(table-responsive)) do %>
   <%= tag.table(id: 'character-table', class: %w(table table-sm)) do %>
     <%= tag.tr do %>
@@ -22,11 +21,13 @@
 
       <%= tag.tr(class: tr_klass, data: { 'char-id': c.id }) do %>
         <%= tag.td(td_attrs) do %>
-          <%= tag.a('', class: %(fas fa-edit edit-button)) %>
-          <%= tag.a('', class: %(fas fa-trash delete-button)) %>
+          <%= tag.i(class: %w(bi bi-pencil-fill text-primary edit-button)) %>
+          <%= tag.i(class: %w(bi bi-trash-fill text-primary delete-button)) %>
         <% end %>
         <%= tag.td(c.name, td_attrs) %>
-        <% attributes.each do |meth| %><%= tag.td(c.send(meth), class: %w(text-center)) %><% end %>
+        <% %i(str dex con int wis chr perception initiative speed ac).each do |meth| %>
+          <%= tag.td(c.send(meth), class: %w(text-center)) %>
+        <% end %>
       <% end %>
 
       <% if second_row %>

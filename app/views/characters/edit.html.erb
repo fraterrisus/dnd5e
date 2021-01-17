@@ -4,7 +4,7 @@
   submit_verb = @char ? 'Update' : 'Add'
 %>
 <%= tag.div(class: %w(modal-dialog)) do %>
-  <%= form_with(model: model, html: { role: 'form', id: 'char-form', class: 'form' }) do |f| %>
+  <%= form_with(model: model, html: { id: 'char-form', class: 'form', role: 'form' }) do |f| %>
     <%= tag.div(class: %w(modal-content)) do %>
       <%= tag.div(class: %w(modal-header)) do %>
         <%= tag.h5("#{verb} Character", id: 'char-modal-label', class: %w(modal-title)) %>
@@ -13,12 +13,18 @@
       <% end %>
 
       <%= tag.div(class: %w(modal-body)) do %>
-        <%= tag.div(class: %w(form-group)) do %>
-          <%= f.label(:name, class: %w(form-label)) %>
-          <%= f.text_field(:name, class: %w(form-control)) %>
+        <%= tag.div(class: %w(row)) do %>
+          <%= tag.div(class: %w(col)) do %>
+            <%= f.label(:name, class: %w(form-label)) %>
+          <% end %>
+        <% end %>
+        <%= tag.div(class: %w(row mb-3)) do %>
+          <%= tag.div(class: %w(col)) do %>
+            <%= f.text_field(:name, class: %w(form-control)) %>
+          <% end %>
         <% end %>
 
-        <%= tag.div(class: %w(row)) do %>
+        <%= tag.div(class: %w(row mb-3)) do %>
           <% %i(str dex con int wis chr).each do |field| %>
             <%= tag.div(class: %w(form-group col-sm-2 text-center)) do %>
               <%= f.label(field, class: %w(form-label)) %>
@@ -27,7 +33,7 @@
           <% end %>
         <% end %>
 
-        <%= tag.div(class: %w(row)) do %>
+        <%= tag.div(class: %w(row mb-3)) do %>
           <% %i(perception initiative speed ac).each do |field| %>
             <%= tag.div(class: %w(form-group col-sm-3 text-center)) do %>
               <%= f.label(field, class: %w(form-label)) %>
@@ -36,12 +42,18 @@
           <% end %>
         <% end %>
 
-        <%= tag.div(class: %w(form-group)) do %>
-          <%= f.label(:notes, class: %w(form-label)) %>
-          <%= f.text_field(:notes, class: %w(form-control)) %>
+        <%= tag.div(class: %w(row)) do %>
+          <%= tag.div(class: %w(col)) do %>
+            <%= f.label(:notes, class: %w(form-label)) %>
+          <% end %>
+        <% end %>
+        <%= tag.div(class: %w(row mb-3)) do %>
+          <%= tag.div(class: %w(col)) do %>
+            <%= f.text_field(:notes, class: %w(form-control)) %>
+          <% end %>
         <% end %>
 
-        <%= tag.div(class: %w(form-group row)) do %>
+        <%= tag.div(class: %w(row)) do %>
           <%= tag.div(class: %w(col)) do %>
             <%= tag.div(class: %w(form-check)) do %>
               <%= f.check_box(:highlight, class: %w(form-check-input)) %>
@@ -53,9 +65,9 @@
 
       <%= tag.div(class: %w(modal-footer)) do %>
         <%= tag.button('Cancel', type: 'button', class: %w(btn btn-outline-secondary),
-          data: { dismiss: 'modal' }) %>
+                       'data-bs-dismiss': 'modal') %>
         <%= tag.button(submit_verb, type: 'button', id: 'char-modal-ok', class: %w(btn btn-success),
-          data: { dismiss: 'modal' }) %>
+                       'data-bs-dismiss': 'modal') %>
       <% end %>
     <% end %>
   <% end %>

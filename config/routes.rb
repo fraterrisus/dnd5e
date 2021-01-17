@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get 'ajax/characters/index', to: 'characters#ajax_index'
 
   resources :characters
+  get 'characters/:id/confirm/delete', to: 'characters#confirm_delete'
+
   resources :classes, controller: 'caster_classes', as: 'caster_classes',
     only: [:index, :create, :new, :edit, :update]
 

@@ -8,4 +8,7 @@
 <%= tag.div(id: 'char-results', class: %w(results)) %>
 
 <%= tag.div(id: 'char-modal', class: %w(modal fade), tabindex: '-1', role: 'dialog',
-  aria: { hidden: true, labelledby: 'char-modal-label' }) %>
+            aria: { hidden: true, labelledby: 'char-modal-label' }) %>
+
+<%= tag.div(id: 'char-delete-modal', class: %w(modal fade), tabindex: '-1', role: 'dialog',
+  aria: { hidden: true, labelledby: 'char-delete-label' }) %>

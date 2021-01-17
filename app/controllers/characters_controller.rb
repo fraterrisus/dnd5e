@@ -1,4 +1,6 @@
 class CharactersController < ApplicationController
+  before_action :load_character, only: [:edit, :confirm_delete, :update]
+
   def index
     respond_to do |fmt|
       fmt.json { redirect_to action: :ajax_index, format: :json }
@@ -20,19 +22,19 @@ class CharactersController < ApplicationController
   end
 
   def edit
-    id = params.require(:id)
-    @char = Character.find id
+    render layout: nil
+  end
+
+  def confirm_delete
     render layout: nil
   end
 
   def update
-    id = params.require(:id)
     data = params.require(:character)
       .permit(:name, :str, :dex, :con, :int, :wis, :chr,
               :perception, :initiative, :speed, :ac, :notes, :highlight)
-    char = Character.find id
-    char.update data
-    render json: char
+    @char.update data
+    render json: @char
   end
 
   def create
@@ -47,5 +49,12 @@ class CharactersController < ApplicationController
     id = params.require(:id)
     Character.destroy id
     head :no_content
+  end
+
+  private
+
+  def load_character
+    id = params.require(:id)
+    @char = Character.find id
   end
 end
