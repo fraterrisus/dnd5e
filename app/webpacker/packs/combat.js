@@ -1,5 +1,6 @@
 import {Helpers} from "../src/javascript/ajax_helpers";
 import {AbstractMethods} from "../src/javascript/abstract_methods";
+import {Toasts} from "../src/javascript/toasts";
 
 let charactersToImport = [];
 let csrfParam;
@@ -29,11 +30,13 @@ function enableButtons() {
 
 // -------------------------------
 
-function activateCombatant(nextCombId) {
+function activateCombatant(nextComb) {
   showSpinner();
   disableButtons();
 
-  fetch('/combatants/' + nextCombId + '/activate', {
+  const nextCombId = nextComb.querySelector('.object-id').getAttribute('data-object-id');
+
+  fetch(`/combatants/${encodeURIComponent(nextCombId)}/activate`, {
     headers: {"Content-Type": "application/json; charset=utf-8"},
     method: 'POST',
     body: JSON.stringify({
@@ -41,8 +44,15 @@ function activateCombatant(nextCombId) {
       utf8: '✓',
       id: nextCombId,
     })
-  }).then(_ => { hideSpinner(); enableButtons(); })
-    .catch(_ => alert('Unable to activate combatant.'));
+  }).then(response => {
+    if (response.ok) {
+      nextComb.classList.add('list-group-item-info');
+    } else {
+      Toasts.showToastWithText('Server error', 'Unable to activate combatant.', 'warning');
+    }
+    hideSpinner();
+    enableButtons();
+  });
 }
 
 function clearCombatantList() {
@@ -56,8 +66,15 @@ function clearCombatantList() {
       [csrfParam]: csrfToken,
       utf8: '✓'
     })
-  }).then(_ => fetchCombatantsList())
-    .catch(_ => alert('Failed to reset the combatants list.'));
+  }).then(response => {
+    if (response.ok) {
+      fetchCombatantsList();
+    } else {
+      Toasts.showToastWithText('Server Error', 'Unable to reset the combatants list.', 'warning');
+      hideSpinner();
+      enableButtons();
+    }
+  });
 }
 
 function createNextCombatant() {
@@ -71,8 +88,14 @@ function createNextCombatant() {
         utf8: '✓',
         combatant: data
       })
-    }).then(createNextCombatant)
-      .catch(_ => alert('Failed to reset the combatants list.'));
+    }).then(response => {
+      if (response.ok) {
+        createNextCombatant();
+      } else {
+        Toasts.showToastWithText('Server Error', 'Unable to create combatant.', 'danger')
+        fetchCombatantsList();
+      }
+    });
   } else {
     fetchCombatantsList();
   }
@@ -91,8 +114,12 @@ function deleteCombatant(ev) {
       utf8: '✓',
       id: combId,
     })
-  }).then(fetchCombatantsList)
-    .catch(_ => alert('Unable to delete combatant.'));
+  }).then(response => {
+    if (!response.ok) {
+      Toasts.showToastWithText('Server Error', 'Unable to delete combatant.', 'warning')
+    }
+    fetchCombatantsList();
+  });
 }
 
 function fetchCombatantsList() {
@@ -113,6 +140,11 @@ function fetchCombatantsList() {
 
       hideSpinner();
       enableButtons();
+    })
+    .catch(_ => {
+      Toasts.showToastWithText('Server Error', 'Unable to fetch combatant list.', 'danger');
+      hideSpinner();
+      enableButtons();
     });
 }
 
@@ -131,20 +163,23 @@ function importCharacters() {
         charactersToImport.push({name: character.name, time: 0, active: 0})
       });
       createNextCombatant();
-    });
+    })
+    .catch(_ => Toasts.showToastWithText('Server Error', 'Unable to import combatants from character list.', 'warning'));
 }
 
 function openEditModal(ev) {
   const comb_id = getMyCombatantId(ev);
   fetch('/combatants/' + comb_id + '/edit')
     .then(Helpers.extractResponseBody)
-    .then(prepareEditForm);
+    .then(prepareEditForm)
+    .catch(_ => Toasts.showToastWithText('Server Error', 'Unable to open form.', 'danger'));
 }
 
 function openNewModal() {
   fetch('/combatants/new')
     .then(Helpers.extractResponseBody)
-    .then(prepareEditForm);
+    .then(prepareEditForm)
+    .catch(_ => Toasts.showToastWithText('Server Error', 'Unable to open form.', 'danger'));
 }
 
 const prepareEditForm = AbstractMethods.prepareEditForm(fetchCombatantsList);
@@ -161,9 +196,7 @@ function rotateTurn() {
     nextComb = combList.querySelectorAll('.list-group-item')[0]
   }
   if (nextComb !== undefined && nextComb !== null) {
-    const nextCombId = nextComb.querySelector('.object-id').getAttribute('data-object-id');
-    activateCombatant(nextCombId);
-    nextComb.classList.add('list-group-item-info');
+    activateCombatant(nextComb);
   }
 }
 

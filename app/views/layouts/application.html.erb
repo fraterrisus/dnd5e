@@ -10,13 +10,12 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 </head>
-<body role="document">
-<%= render 'navbar' %>
-<%= render 'dicebar' %>
-
-<div class="container" role="main">
-  <%= yield %>
-</div>
-
-</body>
+<%= tag.body(role: 'document') do %>
+  <%= render 'navbar' %>
+  <%= render 'dicebar' %>
+  <%= tag.div(id: 'toasts', class: %w(toast-container)) %>
+  <%= tag.div(class: %w(container), role: 'main') do %>
+    <%= yield %>
+  <% end %>
+<% end %>
 </html>
