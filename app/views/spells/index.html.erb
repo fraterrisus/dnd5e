@@ -3,9 +3,22 @@
 <% end %>
 
 <%= tag.h1('Spell List', id: 'spells-index') %>
-<%= tag.button('Filter', id: 'filter-btn', class: %w(btn btn-primary),
-               data: { 'bs-toggle': 'modal', 'bs-target': '#narrowing-modal' }) %>
-<%= tag.div(id: 'spells-results', class: %w(results)) %>
+
+<%= tag.div(id: 'initiative-control', class: %w(card)) do %>
+  <%= tag.div(class: %w(card-header)) do %>
+    <%= tag.div(class: %w(btn-group), role: 'group', aria: { label: 'cycle' }) do %>
+      <%= tag.button('Filter', id: 'filter-btn', class: %w(btn btn-primary),
+                     'data-bs-modal': 'modal', 'data-bs-target': '#narrowing-modal') %>
+    <% end %>
+    <%= tag.span(id: 'page-spinner', role: 'status') do %>
+      <%= tag.span(class: %w(spinner-border spinner-border-sm text-primary)) %>
+      Loading...
+    <% end %>
+  <% end %>
+  <%# tag.div(class: %w(card-body)) do %>
+    <%= tag.div(id: 'spells-results', class: %w(list-group results)) %>
+  <%# end %>
+<% end %>
 
 <%= render partial: 'spells/detail_modal' %>
 <%= render partial: 'spells/edit_filters_modal' %>

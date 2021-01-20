@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   root to: 'spells#index'
 
-  get 'ajax/spells/index', to: 'spells#ajax_index'
   get 'ajax/spells/caster_edit/:id', to: 'spells#ajax_caster_edit'
   get 'ajax/spells/detail', to: 'spells#ajax_markdown'
 
@@ -20,4 +19,5 @@ Rails.application.routes.draw do
   post 'combatants/clear'
 
   resources :spells, only: [:index, :edit, :update]
+  get 'spells/list'
 end

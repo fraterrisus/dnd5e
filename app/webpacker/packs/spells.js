@@ -1,12 +1,13 @@
 import {Helpers} from "../src/javascript/ajax_helpers";
 import {Modal} from "bootstrap";
+import {Toasts} from "../src/javascript/toasts";
 
 function applyEditModalEventHandlers() {
   const editForm = document.getElementById('editspell-form');
   const submitButton = document.getElementById('editspell-ok');
 
   submitButton.addEventListener('click', _ =>
-    Helpers.submitFormAndReloadPage(editForm, applySpellFilters));
+    Helpers.submitFormAndReloadPage(editForm, fetchResults));
 
   // If the unit ID is less than 10, it doesn't have a count, so disable that text box.
   ['edit_spell_cast_unit', 'edit_spell_range_unit', 'edit_spell_duration_unit'].forEach(id => {
@@ -26,20 +27,29 @@ function applyEditModalEventHandlers() {
   })
 }
 
-function applySpellFilters() {
+function fetchResults() {
+  Helpers.disableUI();
   const pageBody = document.getElementById('spells-results');
   pageBody.innerHTML = '<h3>Loading...</h3>';
-  fetch('ajax/spells/index/' + Helpers.formToQuery('#narrow-select'))
+  fetch('spells/list.html' + Helpers.formToQuery('#narrow-select'))
     .then(Helpers.extractResponseBody)
     .then(ajaxResponseBody => {
       pageBody.innerHTML = ajaxResponseBody;
+/*
+      for (let editButton of document.getElementsByClassName('edit-button'))
+        editButton.addEventListener('click', openEditModal);
+      for (let deleteButton of document.getElementsByClassName('delete-button'))
+        deleteButton.addEventListener('click', openDeleteModal);
+*/
       pageBody.querySelectorAll('.view-btn').forEach(spellRow => {
         spellRow.addEventListener('click', spellIndexDetail)});
       pageBody.querySelectorAll('.edit-btn').forEach(spellRow => {
         spellRow.addEventListener('click', openEditModal)});
+      Helpers.enableUI();
     })
-    .catch(() => {
-      pageBody.innerHTML = '<p>There was an error fetching spell data from the server.</p>';
+    .catch(_ => {
+      Toasts.showToastWithText('Server Error', 'Unable to fetch spell list.', 'danger');
+      Helpers.enableUI();
     });
 }
 
@@ -94,7 +104,6 @@ function spellIndexDetail(ev) {
 }
 
 window.addEventListener('load', () => {
-  applySpellFilters();
-
-  document.getElementById('narrowing-ok').addEventListener('click', applySpellFilters);
+  fetchResults();
+  document.getElementById('narrowing-ok').addEventListener('click', fetchResults);
 });

@@ -3,7 +3,7 @@ class SpellsController < ApplicationController
 
   def index; end
 
-  def ajax_index
+  def list
     searches = params.require('spell')
       .permit(['utf8', 'sort_by_level', { 'caster_class_ids' => [], 'school_id' => [],
                'level' => [], 'cast_unit' => [], 'ritual' => [], 'range_unit' => [],
@@ -32,7 +32,10 @@ class SpellsController < ApplicationController
 
     @spells = Spell.includes(:caster_classes).where(searches).order(sorts)
 
-    render layout: nil, locals: { bylevel: by_level, filters: searches }
+    respond_to do |fmt|
+      fmt.json { render json: @chars }
+      fmt.html { render layout: nil, locals: { bylevel: by_level, filters: searches } }
+    end
   end
 
   def ajax_caster_edit
@@ -40,8 +43,8 @@ class SpellsController < ApplicationController
     @caster = CasterClass.find(caster_id)
     @spells = Spell.order(:level, :name).all
     respond_to do |fmt|
-      fmt.html { render layout: nil }
       fmt.json { render json: @spells }
+      fmt.html { render layout: nil }
     end
   end
 
