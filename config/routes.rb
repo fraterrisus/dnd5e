@@ -4,9 +4,9 @@ Rails.application.routes.draw do
   get 'ajax/spells/index', to: 'spells#ajax_index'
   get 'ajax/spells/caster_edit/:id', to: 'spells#ajax_caster_edit'
   get 'ajax/spells/detail', to: 'spells#ajax_markdown'
-  get 'ajax/characters/index', to: 'characters#ajax_index'
 
-  resources :characters
+  resources :characters, except: [:show]
+  get 'characters/list'
   get 'characters/:id/confirm/delete', to: 'characters#confirm_delete'
 
   resources :classes, except: [:show], controller: 'caster_classes', as: 'caster_classes'

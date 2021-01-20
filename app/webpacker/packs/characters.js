@@ -1,78 +1,74 @@
 import {Helpers} from "../src/javascript/ajax_helpers";
 import {Modal} from "bootstrap";
+import {Toasts} from "../src/javascript/toasts";
 
-function deleteCharacter(ev) {
-  const char_id = getMyCharacterId(ev);
-  const csrfParam = document.querySelector('meta[name="csrf-param"]').getAttribute('content');
-  const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-
-  fetch('/characters/' + char_id, {
-    headers: {"Content-Type": "application/json; charset=utf-8"},
-    method: 'DELETE',
-    body: JSON.stringify({
-      [csrfParam]: csrfToken,
-      utf8: '✓'
-    })
-  }).then(fetchCharacterList)
-    .catch(_ => alert('Failed to delete the requested character.'));
-}
-
-function fetchCharacterList() {
-  fetch('/ajax/characters/index.html')
+function fetchResults() {
+  Helpers.disableUI();
+  fetch('/characters/list.html')
     .then(Helpers.extractResponseBody)
     .then(ajaxBody => {
-      document.getElementById('char-results').innerHTML = ajaxBody;
-      Array.prototype.filter.call(document.getElementsByClassName('edit-button'),
-        editButton => editButton.addEventListener('click', openEditCharacterForm));
-      Array.prototype.filter.call(document.getElementsByClassName('delete-button'),
-        deleteButton => deleteButton.addEventListener('click', openDeleteCharacterDialog));
+      document.querySelector('.results').innerHTML = ajaxBody;
+      for (let editButton of document.getElementsByClassName('edit-button'))
+        editButton.addEventListener('click', openEditModal);
+      for (let deleteButton of document.getElementsByClassName('delete-button'))
+        deleteButton.addEventListener('click', openDeleteModal);
+      Helpers.enableUI();
+    })
+    .catch(_ => {
+      Toasts.showToastWithText('Server Error', 'Unable to fetch class list.', 'danger');
+      Helpers.enableUI();
     });
 }
 
-function getMyCharacterId(ev) {
+function getMyObjectId(ev) {
   const me = ev.currentTarget;
   const this_row = me.parentNode.parentNode;
-  return this_row.getAttribute('data-char-id');
+  return this_row.getAttribute('data-object-id');
 }
 
-function openDeleteCharacterDialog(ev) {
-  const charId = getMyCharacterId(ev);
-  fetch('/characters/' + encodeURIComponent(charId) + '/confirm/delete')
+function openDeleteModal(ev) {
+  const objectId = getMyObjectId(ev);
+  fetch('/characters/' + encodeURIComponent(objectId) + '/confirm/delete')
     .then(Helpers.extractResponseBody)
-    .then(ajaxBody => {
-      const deleteModal = document.getElementById('char-delete-modal');
-      deleteModal.innerHTML = ajaxBody;
-
-      const myForm = document.getElementById('delete-char-form');
-      const submitButton = document.getElementById('delete-char-ok');
-      submitButton.addEventListener('click', _ =>
-        Helpers.submitFormAndReloadPage(myForm, fetchCharacterList));
-
-      new Modal(deleteModal).show();
-    });
+    .then(prepareDeleteForm)
+    .catch(_ => Toasts.showToastWithText('Server Error', 'Unable to open form.', 'danger'));
 }
 
-function openEditCharacterForm(ev) {
-  const charId = getMyCharacterId(ev);
-  fetch('/characters/' + encodeURIComponent(charId) + '/edit')
+function openEditModal(ev) {
+  const objectId = getMyObjectId(ev);
+  fetch('/characters/' + encodeURIComponent(objectId) + '/edit')
     .then(Helpers.extractResponseBody)
-    .then(prepareCharacterForm);
+    .then(prepareEditForm)
+    .catch(_ => Toasts.showToastWithText('Server Error', 'Unable to open form.', 'danger'));
 }
 
-function openNewCharacterForm() {
+function openNewModal() {
   fetch('/characters/new')
     .then(Helpers.extractResponseBody)
-    .then(prepareCharacterForm);
+    .then(prepareEditForm)
+    .catch(_ => Toasts.showToastWithText('Server Error', 'Unable to open form.', 'danger'));
 }
 
-function prepareCharacterForm(ajaxBody) {
-  const myModal = document.getElementById('char-modal');
+function prepareDeleteForm(ajaxBody) {
+  const myModal = document.getElementById('object-delete-modal');
   myModal.innerHTML = ajaxBody;
 
-  const myForm = document.getElementById('char-form');
-  const submitButton = document.getElementById('char-modal-ok');
+  const myForm = document.getElementById('delete-object-form');
+  const submitButton = document.getElementById('delete-object-ok');
   submitButton.addEventListener('click', _ =>
-    Helpers.submitFormAndReloadPage(myForm, fetchCharacterList));
+    Helpers.submitFormAndReloadPage(myForm, fetchResults));
+
+  new Modal(myModal).show();
+}
+
+function prepareEditForm(ajaxBody) {
+  const myModal = document.getElementById('object-modal');
+  myModal.innerHTML = ajaxBody;
+
+  const myForm = document.getElementById('object-form');
+  const submitButton = document.getElementById('object-modal-ok');
+  submitButton.addEventListener('click', _ =>
+    Helpers.submitFormAndReloadPage(myForm, fetchResults));
 
   const formInputs = myForm.querySelectorAll('input.form-control');
   myModal.addEventListener('shown.bs.modal', _ => { formInputs[0].focus() });
@@ -81,7 +77,6 @@ function prepareCharacterForm(ajaxBody) {
 }
 
 window.addEventListener('load', _ => {
-  fetchCharacterList();
-
-  document.getElementById('new-char-btn').addEventListener('click', openNewCharacterForm);
+  fetchResults();
+  document.querySelector('.new-button').addEventListener('click', openNewModal);
 });

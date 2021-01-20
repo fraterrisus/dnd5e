@@ -19,7 +19,7 @@
       <% tr_klass = c.highlight ? %w(table-info) : [] %>
       <% td_attrs = second_row ? { rowspan: 2 } : {} %>
 
-      <%= tag.tr(class: tr_klass, data: { 'char-id': c.id }) do %>
+      <%= tag.tr(class: tr_klass, data: { 'object-id': c.id }) do %>
         <%= tag.td(td_attrs) do %>
           <%= tag.i(class: %w(bi bi-pencil-fill text-primary edit-button)) %>
           <%= tag.i(class: %w(bi bi-trash-fill text-primary delete-button)) %>

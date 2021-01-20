@@ -74,7 +74,7 @@ function prepareEditForm(ajaxBody) {
   new Modal(myModal).show();
 }
 
-window.addEventListener('load', () => {
+window.addEventListener('load', _ => {
   fetchResults();
   document.querySelector('.new-button').addEventListener('click', openNewModal);
 });

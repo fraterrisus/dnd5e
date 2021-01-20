@@ -1,11 +1,11 @@
 <%= tag.div(class: %w(modal-dialog)) do %>
   <%= form_with(model: @char, method: 'delete',
-                html: { id: 'delete-char-form', class: 'form', role: 'form' }) do |_| %>
+                html: { id: 'delete-object-form', class: 'form', role: 'form' }) do |_| %>
     <%= tag.div(class: %w(modal-content)) do %>
       <%= tag.div(class: %w(modal-header)) do %>
-        <%= tag.h5('Delete Character', class: %w(modal-title), id: 'char-delete-label') %>
+        <%= tag.h5('Delete Character', class: %w(modal-title), id: 'object-delete-label') %>
         <%= tag.button(type: 'button', class: %w(btn-close), 'data-bs-dismiss': 'modal',
-             aria: { label: 'close' }) %>
+                       aria: { label: 'close' }) %>
       <% end %>
 
       <%= tag.div(class: %w(modal-body)) do %>
@@ -18,7 +18,7 @@
       <%= tag.div(class: %w(modal-footer)) do %>
         <%= tag.button('Cancel', type: 'button', class: %w(btn btn-outline-secondary),
                        'data-bs-dismiss': 'modal') %>
-        <%= tag.button('Delete', type: 'button', id: 'delete-char-ok',
+        <%= tag.button('Delete', type: 'button', id: 'delete-object-ok',
                        class: %w(btn btn-danger), 'data-bs-dismiss': 'modal') %>
       <% end %>
     <% end %>

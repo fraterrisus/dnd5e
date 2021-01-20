@@ -2,13 +2,24 @@
   <%= javascript_pack_tag :characters %>
 <% end %>
 
-<%= tag.h1('Character List', id: 'char-index') %>
-<%= tag.button('New Character', id: 'new-char-btn', class: %w(btn btn-primary new-button)) %>
+<%= tag.h1('Character List') %>
 
-<%= tag.div(id: 'char-results', class: %w(results)) %>
+<%= tag.div(class: %w(card)) do %>
+  <%= tag.div(class: %w(card-header)) do %>
+    <%= tag.div(class: %w(card-title mb-0)) do %>
+      <%= tag.button('New Character', class: %w(btn btn-primary new-button)) %>
+      <%= tag.span(id: 'page-spinner', role: 'status') do %>
+        <%= tag.span(class: %w(spinner-border spinner-border-sm text-primary)) %>
+        Loading...
+      <% end %>
+    <% end %>
+  <% end %>
+  <%= tag.div(class: %w(card-body)) do %>
+    <%= tag.div(class: 'results') %>
+  <% end %>
+<% end %>
 
-<%= tag.div(id: 'char-modal', class: %w(modal fade), tabindex: '-1', role: 'dialog',
-            aria: { hidden: true, labelledby: 'char-modal-label' }) %>
-
-<%= tag.div(id: 'char-delete-modal', class: %w(modal fade), tabindex: '-1', role: 'dialog',
-  aria: { hidden: true, labelledby: 'char-delete-label' }) %>
+<%= tag.div(id: 'object-modal', class: %w(modal fade), tabindex: '-1', role: 'dialog',
+            aria: { hidden: true, labelledby: 'object-modal-label' }) %>
+<%= tag.div(id: 'object-delete-modal', class: %w(modal fade), tabindex: '-1', role: 'dialog',
+            aria: { hidden: true, labelledby: 'object-delete-label' }) %>
