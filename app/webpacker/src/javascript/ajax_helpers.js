@@ -1,4 +1,20 @@
+import {Toasts} from "./toasts";
+
 export const Helpers = {
+  disableUI: function() {
+    document.getElementById('page-spinner').classList.remove('d-none');
+
+    for (let button of document.querySelectorAll('.card-header .btn'))
+      button.setAttribute('disabled', 'true');
+  },
+
+  enableUI: function() {
+    document.getElementById('page-spinner').classList.add('d-none');
+
+    for (let button of document.querySelectorAll('.card-header .btn'))
+      button.removeAttribute('disabled');
+  },
+
   extractResponseBody: function(response) {
     if (response.ok) {
       return response.text();
@@ -38,17 +54,16 @@ export const Helpers = {
   },
 
   submitFormAndReloadPage: function (formElement, reloadCallback) {
+    Helpers.disableUI();
     fetch(formElement.getAttribute('action'), {
       method: formElement.getAttribute('method'),
       body: new FormData(formElement)
     }).then(response => {
-      reloadCallback();
+      reloadCallback(); // expected to call enableUI()
       if (!response.ok) {
-        alert("Error: Unable to submit form");
+        Toasts.showToastWithText('Server Error', 'Unable to submit form.', 'danger');
       }
     });
   }
-    // JSON.stringify({ object: data });
-    // JSON.stringify(Object.fromEntries(new FormData(form)));
 };
 

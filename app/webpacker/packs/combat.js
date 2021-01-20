@@ -6,34 +6,8 @@ let charactersToImport = [];
 let csrfParam;
 let csrfToken;
 
-// -------------------------------
-
-function hideSpinner() {
-  const spinner = document.getElementById('initiative-spinner');
-  spinner.classList.add('d-none');
-}
-
-function showSpinner() {
-  const spinner = document.getElementById('initiative-spinner');
-  spinner.classList.remove('d-none');
-}
-
-function disableButtons() {
-  const pageButtons = document.querySelectorAll('.card-body .btn');
-  Array.prototype.filter.call(pageButtons, button => button.setAttribute('disabled', true));
-}
-
-function enableButtons() {
-  const pageButtons = document.querySelectorAll('.card-body .btn');
-  Array.prototype.filter.call(pageButtons, button => button.removeAttribute('disabled'));
-}
-
-// -------------------------------
-
 function activateCombatant(nextComb) {
-  showSpinner();
-  disableButtons();
-
+  Helpers.disableUI();
   const nextCombId = nextComb.querySelector('.object-id').getAttribute('data-object-id');
 
   fetch(`/combatants/${encodeURIComponent(nextCombId)}/activate`, {
@@ -50,15 +24,12 @@ function activateCombatant(nextComb) {
     } else {
       Toasts.showToastWithText('Server error', 'Unable to activate combatant.', 'warning');
     }
-    hideSpinner();
-    enableButtons();
+    Helpers.enableUI();
   });
 }
 
 function clearCombatantList() {
-  showSpinner();
-  disableButtons();
-
+  Helpers.disableUI();
   fetch('/combatants/clear', {
     headers: {"Content-Type": "application/json; charset=utf-8"},
     method: 'POST',
@@ -71,8 +42,7 @@ function clearCombatantList() {
       fetchCombatantsList();
     } else {
       Toasts.showToastWithText('Server Error', 'Unable to reset the combatants list.', 'warning');
-      hideSpinner();
-      enableButtons();
+      Helpers.enableUI();
     }
   });
 }
@@ -102,9 +72,7 @@ function createNextCombatant() {
 }
 
 function deleteCombatant(ev) {
-  showSpinner();
-  disableButtons();
-
+  Helpers.disableUI();
   const combId = getMyCombatantId(ev);
   fetch('/combatants/' + combId , {
     headers: {"Content-Type": "application/json; charset=utf-8"},
@@ -123,11 +91,8 @@ function deleteCombatant(ev) {
 }
 
 function fetchCombatantsList() {
-  showSpinner();
-  disableButtons();
-
+  Helpers.disableUI();
   const listBody = document.getElementById('initiative-list');
-
   fetch('/combatants/list.html')
     .then(Helpers.extractResponseBody)
     .then(ajaxBody => {
@@ -138,13 +103,11 @@ function fetchCombatantsList() {
       Array.prototype.filter.call(document.querySelectorAll('.delete-button'),
         btn => btn.addEventListener('click', deleteCombatant));
 
-      hideSpinner();
-      enableButtons();
+      Helpers.enableUI();
     })
     .catch(_ => {
       Toasts.showToastWithText('Server Error', 'Unable to fetch combatant list.', 'danger');
-      hideSpinner();
-      enableButtons();
+      Helpers.enableUI();
     });
 }
 
@@ -153,15 +116,13 @@ function getMyCombatantId(ev) {
 }
 
 function importCharacters() {
-  showSpinner();
-  disableButtons();
-
+  Helpers.disableUI();
   fetch('/characters.json')
     .then(Helpers.extractResponseJson)
     .then(characters => {
-      Array.prototype.filter.call(characters, character => {
-        charactersToImport.push({name: character.name, time: 0, active: 0})
-      });
+      for (let character of characters) {
+        charactersToImport.push({name: character.name, time: 0, active: 0});
+      }
       createNextCombatant();
     })
     .catch(_ => Toasts.showToastWithText('Server Error', 'Unable to import combatants from character list.', 'warning'));
@@ -188,8 +149,9 @@ function prepareEditForm(ajaxBody) {
 
   const myForm = document.getElementById('object-form');
   const submitButton = document.getElementById('object-modal-ok');
-  submitButton.addEventListener('click', _ =>
-    Helpers.submitFormAndReloadPage(myForm, fetchCombatantsList));
+  submitButton.addEventListener('click', _ => {
+    Helpers.submitFormAndReloadPage(myForm, fetchCombatantsList);
+  });
 
   const formInputs = myForm.querySelectorAll('input.form-control');
   myModal.addEventListener('shown.bs.modal', _ => { formInputs[0].focus() });

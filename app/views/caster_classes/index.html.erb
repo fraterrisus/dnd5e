@@ -3,9 +3,23 @@
 <% end %>
 
 <%= tag.h1('Caster Classes') %>
-<%= tag.button('New Caster Class', class: %w(btn btn-primary new-button)) %>
 
-<%= tag.div(class: 'results') %>
+<%= tag.div(class: %w(col-sm-12 col-md-8 col-lg-6)) do %>
+  <%= tag.div(id: 'initiative-control', class: %w(card)) do %>
+    <%= tag.div(class: %w(card-header)) do %>
+      <%= tag.div(class: %w(card-title mb-0)) do %>
+        <%= tag.button('New Caster Class', class: %w(btn btn-primary new-button)) %>
+        <%= tag.span(id: 'page-spinner', role: 'status') do %>
+          <%= tag.span(class: %w(spinner-border spinner-border-sm text-primary)) %>
+          Loading...
+        <% end %>
+      <% end %>
+    <% end %>
+    <%= tag.div(class: %w(card-body)) do %>
+      <%= tag.div(class: 'results') %>
+    <% end %>
+  <% end %>
+<% end %>
 
 <%= tag.div(id: 'object-modal', class: %w(modal fade), tabindex: '-1', role: 'dialog',
             aria: { hidden: true, labelledby: 'object-modal-label' }) %>

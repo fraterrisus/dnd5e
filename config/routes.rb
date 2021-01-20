@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :characters
   get 'characters/:id/confirm/delete', to: 'characters#confirm_delete'
 
-  resources :classes, controller: 'caster_classes', as: 'caster_classes'
+  resources :classes, except: [:show], controller: 'caster_classes', as: 'caster_classes'
   get 'classes/list', to: 'caster_classes#list'
   get 'classes/:id/confirm/delete', to: 'caster_classes#confirm_delete'
 
