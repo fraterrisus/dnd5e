@@ -1,0 +1,12 @@
+<% @combatants.each do |c| %>
+  <% classes = %w(list-group-item d-flex justify-content-between align-items-center) %>
+  <% classes << 'list-group-item-info' if c.active %>
+  <%= tag.div(class: classes) do %>
+    <%= tag.div(class: 'object-id', 'data-object-id': c.id) do %>
+      <%= tag.i(class: %w(bi bi-pencil-fill text-primary edit-button)) %>
+      <%= tag.i(class: %w(bi bi-trash-fill text-primary delete-button)) %>
+      <%= tag.span(c.name, class: %w(ms-3)) %>
+    <% end %>
+    <%= tag.span(c.time, class: %w(badge bg-primary rounded-pill)) %>
+  <% end %>
+<% end %>

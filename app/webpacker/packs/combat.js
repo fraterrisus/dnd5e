@@ -1,6 +1,6 @@
 import {Helpers} from "../src/javascript/ajax_helpers";
-import {AbstractMethods} from "../src/javascript/abstract_methods";
 import {Toasts} from "../src/javascript/toasts";
+import {Modal} from "bootstrap";
 
 let charactersToImport = [];
 let csrfParam;
@@ -128,7 +128,7 @@ function fetchCombatantsList() {
 
   const listBody = document.getElementById('initiative-list');
 
-  fetch('/combatants.html')
+  fetch('/combatants/list.html')
     .then(Helpers.extractResponseBody)
     .then(ajaxBody => {
       listBody.innerHTML = ajaxBody;
@@ -182,7 +182,20 @@ function openNewModal() {
     .catch(_ => Toasts.showToastWithText('Server Error', 'Unable to open form.', 'danger'));
 }
 
-const prepareEditForm = AbstractMethods.prepareEditForm(fetchCombatantsList);
+function prepareEditForm(ajaxBody) {
+  const myModal = document.getElementById('object-modal');
+  myModal.innerHTML = ajaxBody;
+
+  const myForm = document.getElementById('object-form');
+  const submitButton = document.getElementById('object-modal-ok');
+  submitButton.addEventListener('click', _ =>
+    Helpers.submitFormAndReloadPage(myForm, fetchCombatantsList));
+
+  const formInputs = myForm.querySelectorAll('input.form-control');
+  myModal.addEventListener('shown.bs.modal', _ => { formInputs[0].focus() });
+
+  new Modal(myModal).show();
+}
 
 function rotateTurn() {
   const combList = document.getElementById('initiative-list');

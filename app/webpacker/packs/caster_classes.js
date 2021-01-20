@@ -2,12 +2,8 @@ import {Helpers} from "../src/javascript/ajax_helpers";
 import {Modal} from "bootstrap";
 import {AbstractMethods} from "../src/javascript/abstract_methods";
 
-  /* Add validation code here;
-     See https://getbootstrap.com/docs/4.5/components/forms/#validation
-     And https://getbootstrap.com/docs/5.0/forms/validation/ */
-
 function fetchResults() {
-  fetch('/ajax/classes/index.html')
+  fetch('/classes/list.html')
     .then(Helpers.extractResponseBody)
     .then(ajaxBody => {
       document.querySelector('.results').innerHTML = ajaxBody;

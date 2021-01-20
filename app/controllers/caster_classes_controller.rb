@@ -3,12 +3,12 @@ class CasterClassesController < ApplicationController
 
   def index
     respond_to do |fmt|
-      fmt.json { redirect_to action: :ajax_index, format: :json }
+      fmt.json { redirect_to action: :list, format: :json }
       fmt.html
     end
   end
 
-  def ajax_index
+  def list
     @cclasses = CasterClass.order(:name).all
     respond_to do |fmt|
       fmt.json { render json: @cclasses }
