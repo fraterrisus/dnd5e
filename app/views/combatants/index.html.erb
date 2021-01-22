@@ -1,12 +1,34 @@
-<% @combatants.each do |c| %>
-  <% classes = %w(list-group-item d-flex justify-content-between align-items-center) %>
-  <% classes << 'list-group-item-info' if c.active %>
-  <%= tag.div(class: classes) do %>
-    <%= tag.div(class: 'object-id', 'data-object-id': c.id) do %>
-      <%= tag.i(class: %w(bi bi-pencil-fill text-primary edit-button)) %>
-      <%= tag.i(class: %w(bi bi-trash-fill text-primary delete-button)) %>
-      <%= tag.span(c.name, class: %w(ms-3)) %>
-    <% end %>
-    <%= tag.span(c.time, class: %w(badge bg-primary rounded-pill)) %>
-  <% end %>
+<% content_for :head do %>
+  <%= javascript_pack_tag 'combat' %>
 <% end %>
+
+<%= tag.h1('Combat: Initiative') %>
+
+<%= tag.div(class: %w(col-sm-12 col-md-8 col-lg-6)) do %>
+  <%= tag.div(id: 'initiative-control', class: %w(card)) do %>
+    <%= tag.div(class: %w(card-header)) do %>
+      <%= tag.div(class: %w(card-title)) do %>
+        <%= tag.h5 do %>Turn Order<% end %>
+      <% end %>
+      <%= tag.div(class: %w(btn-group), role: 'group', aria: { label: 'cycle' }) do %>
+        <%= tag.button('Next Turn', id: 'next-turn-btn', class: %w(btn btn-primary)) %>
+      <% end %>
+      <%= tag.div(class: %w(btn-group), role: 'group', aria: { label: 'modify combatants '}) do %>
+        <%= tag.button('New', id: 'new-btn', class: %w(btn btn-outline-success)) %>
+        <%= tag.button('Clear', id: 'clear-btn', class: %w(btn btn-outline-secondary)) %>
+        <%= tag.button('Import', id: 'import-btn', class: %w(btn btn-outline-secondary)) %>
+      <% end %>
+      <%= tag.span(id: 'page-spinner', role: 'status') do %>
+        <%= tag.span(class: %w(spinner-border spinner-border-sm text-primary)) %>
+        Loading...
+      <% end %>
+    <% end %>
+    <%= tag.div(class: %w(card-body)) do %>
+      <%= tag.div(id: 'initiative-list', class: 'list-group') %>
+    <% end %>
+  <% end %>
+
+<% end %>
+
+<%= tag.div(id: 'object-modal', class: %w(modal fade), tabindex: '-1', role: 'dialog',
+            aria: { hidden: true, labelledby: 'object-modal-label' }) %>

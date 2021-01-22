@@ -1,0 +1,22 @@
+<% last_value = -1 %>
+<%= render partial: 'spells/filters', locals: { filters: filters } %>
+<%= tag.div("Matched #{@spells.count} spells", id: 'results-count', class: %w(mt-1 fst-italic)) %>
+<% @spells.each do |spell|
+    comparison_attribute = (bylevel) ? spell.level : spell.name[0]
+    if comparison_attribute != last_value
+      last_value = comparison_attribute
+    end %>
+  <%= tag.div(class: %w(list-group-item)) do %>
+    <%= tag.i(class: %w(bi bi-eye-fill text-primary view-button), 'data-spell-file': spell.to_asset) %>
+    <%= tag.i(class: %w(bi bi-pencil-fill text-primary edit-button), 'data-spell-id': spell.id) %>
+    <%= tag.span(class: %w(ms-3)) do %>
+      <%= tag.b { spell.name } %> &ndash;
+      <%= spell.school_text %> &ndash;
+      <%= spell.level_text %> &ndash;
+      <%= spell.casting_time_text %> &ndash;
+      <%= spell.range_text %> &ndash;
+      <%= spell.components_text %> &ndash;
+      <%= spell.duration_text %>
+    <% end %>
+  <% end %>
+<% end %>
