@@ -1,7 +1,11 @@
-<% @cclasses.each do |cc| %>
-  <%= tag.div('data-object-id': cc.id) do %>
-    <%= tag.i(class: %w(bi bi-pencil-fill text-primary edit-button)) %>
-    <%= tag.i(class: %w(bi bi-trash-fill text-primary delete-button)) %>
-    <%= tag.span(cc.name, class: %w(ms-3)) %>
+<%= tag.div(class: %w(card-body)) do %>
+  <%= tag.div(class: %w(list-group)) do %>
+    <% @cclasses.each do |cc| %>
+      <%= tag.div(class: %w(list-group-item), 'data-object-id': cc.id) do %>
+        <%= tag.i(class: %w(bi bi-pencil-fill text-primary edit-button)) %>
+        <%= tag.i(class: %w(bi bi-trash-fill text-primary delete-button)) %>
+        <%= tag.span(cc.name, class: %w(ms-3)) %>
+      <% end %>
+    <% end %>
   <% end %>
 <% end %>
