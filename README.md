@@ -17,7 +17,7 @@ Current utilities:
 ### Tech
 * Ruby 2.7
 * Rails 6.1 (with `redcarpet` for Markdown support)
-* Bootstrap 4.5 (with `jquery` 3.5 and `popper.js` 1.16)
+* Bootstrap 5.0.0b1 (with `popper.js` 2.6)
 
 ### Installation
 Install ruby 2.7 via the package manager of your choice; I use `rvm`.
