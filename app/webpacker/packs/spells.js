@@ -30,8 +30,9 @@ function applyEditModalEventHandlers() {
 function disableButtons() {
   document.getElementById('page-spinner').classList.remove('d-none');
 
-  for (let button of document.querySelectorAll('.card-header .btn'))
+  for (let button of document.querySelectorAll('.card-header .btn')) {
     button.setAttribute('disabled', 'true');
+  }
   for (let viewButton of document.getElementsByClassName('view-button')) {
     viewButton.classList.remove('text-primary');
     viewButton.classList.add('text-muted');
@@ -45,8 +46,9 @@ function disableButtons() {
 function enableButtons() {
   document.getElementById('page-spinner').classList.add('d-none');
 
-  for (let button of document.querySelectorAll('.card-header .btn'))
+  for (let button of document.querySelectorAll('.card-header .btn')) {
     button.removeAttribute('disabled');
+  }
   for (let viewButton of document.getElementsByClassName('view-button')) {
     viewButton.classList.remove('text-muted');
     viewButton.classList.add('text-primary');

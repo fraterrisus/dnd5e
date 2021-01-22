@@ -2,8 +2,40 @@ import {Helpers} from "../src/javascript/ajax_helpers";
 import {Modal} from "bootstrap";
 import {Toasts} from "../src/javascript/toasts";
 
+function disableButtons() {
+  document.getElementById('page-spinner').classList.remove('d-none');
+
+  for (let button of document.querySelectorAll('.card-header .btn')) {
+    button.setAttribute('disabled', 'true');
+  }
+  for (let editButton of document.getElementsByClassName('edit-button')) {
+    editButton.classList.remove('text-primary');
+    editButton.classList.add('text-muted');
+  }
+  for (let deleteButton of document.getElementsByClassName('delete-button')) {
+    deleteButton.classList.remove('text-primary');
+    deleteButton.classList.add('text-muted');
+  }
+}
+
+function enableButtons() {
+  document.getElementById('page-spinner').classList.add('d-none');
+
+  for (let button of document.querySelectorAll('.card-header .btn')) {
+    button.removeAttribute('disabled');
+  }
+  for (let editButton of document.getElementsByClassName('edit-button')) {
+    editButton.classList.remove('text-muted');
+    editButton.classList.add('text-primary');
+  }
+  for (let deleteButton of document.getElementsByClassName('delete-button')) {
+    deleteButton.classList.remove('text-muted');
+    deleteButton.classList.add('text-primary');
+  }
+}
+
 function fetchResults() {
-  Helpers.disableUI();
+  disableButtons();
   fetch('/classes/list.html')
     .then(Helpers.extractResponseBody)
     .then(ajaxBody => {
@@ -12,11 +44,11 @@ function fetchResults() {
         editButton.addEventListener('click', openEditModal);
       for (let deleteButton of document.getElementsByClassName('delete-button'))
         deleteButton.addEventListener('click', openDeleteModal);
-      Helpers.enableUI();
+      enableButtons();
     })
     .catch(_ => {
       Toasts.showToastWithText('Server Error', 'Unable to fetch class list.', 'danger');
-      Helpers.enableUI();
+      enableButtons();
     });
 }
 
