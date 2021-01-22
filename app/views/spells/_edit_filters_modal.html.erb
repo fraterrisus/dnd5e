@@ -1,14 +1,14 @@
-<%= tag.div(id: 'narrowing-modal', class: %w(modal fade), tabindex: '-1', role: 'dialog',
-            aria: { hidden: true, labelledby: 'narrowing-label' }) do %>
+<%= tag.div(id: 'filter-modal', class: %w(modal fade), tabindex: '-1', role: 'dialog',
+            aria: { hidden: true, labelledby: 'filter-modal-label' }) do %>
   <%= tag.div(class: %w(modal-dialog)) do %>
-    <%= tag.form(id: 'narrow-select', class: 'form', role: 'form') do %>
+    <%= tag.form(id: 'filter-form', class: %w(form), role: 'form') do %>
       <%= tag.input(type: 'hidden', name:'spell[utf8]', value: '✓') %>
       <%= tag.div(class: %w(modal-content)) do %>
 
         <%= tag.div(class: %w(modal-header)) do %>
-          <%= tag.h5('Filter Spells', id: 'narrowing-label', class: %w(modal-title)) %>
+          <%= tag.h5('Filter Spells', id: 'filter-modal-label', class: %w(modal-title)) %>
           <%= tag.button(type: 'button', class: %w(btn-close), 'data-bs-dismiss': 'modal',
-            aria: { label: 'close' }) %>
+                         aria: { label: 'close' }) %>
         <% end %>
 
         <%= tag.div(class: %w(modal-body)) do %>
@@ -85,7 +85,7 @@
         <%= tag.div(class: %w(modal-footer)) do %>
           <%= tag.button('Cancel', type: 'button', class: %w(btn btn-outline-secondary),
                          'data-bs-dismiss': 'modal') %>
-          <%= tag.button('Update Filters', type: 'button', id: 'narrowing-ok',
+          <%= tag.button('Update Filters', type: 'button', id: 'filter-modal-ok',
                          class: %w(btn btn-primary), 'data-bs-dismiss': 'modal') %>
         <% end %>
       <% end %>

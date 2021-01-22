@@ -1,10 +1,6 @@
 <%= tag.nav(class: %w(navbar navbar-expand-md navbar-dark bg-dark)) do %>
   <%= link_to(root_path, class: 'navbar-brand') do %>
-    <%= if File.exist? asset_path('logo-100.png', skip_pipeline: true)
-          tag.img(src: asset_path('logo-100.png'))
-        else
-          'dnd5e'
-        end %>
+    <%= File.exist?('app/assets/images/logo-100.png') ? tag.img(src: asset_path('logo-100.png')) : 'dnd5e' %>
   <% end %>
   <%= tag.button(type: 'button', id: 'dice-toggler', class: %w(fas fa-dice-d20),
                  aria: { controls: 'dicebar', expanded: 'false', label: 'Toggle dice roller' }) %>

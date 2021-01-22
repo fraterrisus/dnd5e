@@ -1,33 +1,27 @@
-<%=
-content_tag(:div, id: 'active-filters') do
-  safe_join(filters.to_h.map do |k,v|
-    v = [ v ] unless v.is_a?(Array)
-    desc = [ ]
-    v.each do |val|
-      case k
-      when 'school_id'
-        desc << SpellSchool.school(val.to_i)
-      when 'level'
-        desc << Spell::level_to_s(val.to_i)
-      when 'cast_unit', 'duration_unit'
-        desc << TimeUnit.unit(val.to_i).to_s.capitalize
-      when 'range_unit'
-        desc << DistanceUnit.unit(val.to_i)
-      when 'ritual', 'concentration'
-        desc << (val == 't' ? 'Yes' : 'No')
-      when 'components'
-        desc << Spell::components_to_s(val.to_i)
-      when 'caster_classes'
-        kl = CasterClass.where(id: val['id'])
-        desc = kl.map(&:name)
-      else
-        desc << val
-      end
-    end
-    content_tag(:div) do
-      t("helpers.label.spell.#{k}") + ': ' + desc.join(' or ')
-    end
-  end)
-end
-%>
-
+<%= tag.div(id: 'active-filters', class: %w(mt-1)) do %>
+  <% filters.to_h.each do |k,v| %>
+    <%= tag.div do %>
+      <%= t("helpers.label.spell.#{k}") %>:
+      <% Array.wrap(v).each do |val| %>
+        <%= case k
+            when 'school_id'
+              SpellSchool.school(val.to_i)
+            when 'level'
+              Spell::level_to_s(val.to_i)
+            when 'cast_unit', 'duration_unit'
+              TimeUnit.unit(val.to_i).to_s.capitalize
+            when 'range_unit'
+              DistanceUnit.unit(val.to_i)
+            when 'ritual', 'concentration'
+              (val == 't' ? 'Yes' : 'No')
+            when 'components'
+              Spell::components_to_s(val.to_i)
+            when 'caster_classes'
+              CasterClass.where(id: val['id']).pluck(:name).join(' ')
+            else
+              val
+            end %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

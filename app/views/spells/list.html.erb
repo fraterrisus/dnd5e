@@ -1,15 +1,14 @@
 <% last_value = -1 %>
 <%= render partial: 'spells/filters', locals: { filters: filters } %>
-<%= content_tag(:div, "Matched #{@spells.count} spells", style: 'font-style: italic') %>
+<%= tag.div("Matched #{@spells.count} spells", id: 'results-count', class: %w(mt-1 fst-italic)) %>
 <% @spells.each do |spell|
     comparison_attribute = (bylevel) ? spell.level : spell.name[0]
-    div_classes = %w(list-group-item)
     if comparison_attribute != last_value
       last_value = comparison_attribute
     end %>
-  <%= tag.div(class: div_classes) do %>
-    <%= tag.i(class: %w(bi bi-eye-fill text-primary view-btn), 'data-spell-file': spell.to_asset) %>
-    <%= tag.i(class: %w(bi bi-pencil-fill text-primary edit-btn), 'data-spell-id': spell.id) %>
+  <%= tag.div(class: %w(list-group-item)) do %>
+    <%= tag.i(class: %w(bi bi-eye-fill text-primary view-button), 'data-spell-file': spell.to_asset) %>
+    <%= tag.i(class: %w(bi bi-pencil-fill text-primary edit-button), 'data-spell-id': spell.id) %>
     <%= tag.span(class: %w(ms-3)) do %>
       <%= tag.b { spell.name } %> &ndash;
       <%= spell.school_text %> &ndash;

@@ -4,11 +4,10 @@
 
 <%= tag.h1('Spell List', id: 'spells-index') %>
 
-<%= tag.div(id: 'initiative-control', class: %w(card)) do %>
+<%= tag.div(id: 'spells-card', class: %w(card)) do %>
   <%= tag.div(class: %w(card-header)) do %>
     <%= tag.div(class: %w(btn-group), role: 'group', aria: { label: 'cycle' }) do %>
-      <%= tag.button('Filter', id: 'filter-btn', class: %w(btn btn-primary),
-                     'data-bs-modal': 'modal', 'data-bs-target': '#narrowing-modal') %>
+      <%= tag.button('Filter', id: 'filter-button', class: %w(btn btn-primary)) %>
     <% end %>
     <%= tag.span(id: 'page-spinner', role: 'status') do %>
       <%= tag.span(class: %w(spinner-border spinner-border-sm text-primary)) %>
@@ -16,7 +15,7 @@
     <% end %>
   <% end %>
   <%# tag.div(class: %w(card-body)) do %>
-    <%= tag.div(id: 'spells-results', class: %w(list-group results)) %>
+    <%= tag.div(class: %w(list-group-flush results)) %>
   <%# end %>
 <% end %>
 
