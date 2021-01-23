@@ -7,6 +7,7 @@
       <%= tag.i(class: %w(bi bi-trash-fill text-primary delete-button)) %>
       <%= tag.span(c.name, class: %w(ms-3)) %>
     <% end %>
+    <%= tag.span(c.notes) %>
     <%= tag.span(c.time, class: %w(badge bg-primary rounded-pill)) %>
   <% end %>
 <% end %>
