@@ -13,14 +13,20 @@
       <% end %>
 
       <%= tag.div(class: %w(modal-body)) do %>
-        <%= tag.div(class: %w(form-group row)) do %>
-          <%= tag.div(class: %w(col-sm-9)) do %>
+        <%= tag.div(class: %w(row mb-3)) do %>
+          <%= tag.div(class: %w(form-group col-sm-9)) do %>
             <%= form.label(:name)  %>
             <%= form.text_field(:name, class: 'form-control') %>
           <% end %>
-          <%= tag.div(class: %w(col-sm-3)) do %>
+          <%= tag.div(class: %w(form-group col-sm-3)) do %>
             <%= form.label(:time) %>
             <%= form.text_field(:time, class: %w(form-control col-xs-2)) %>
+          <% end %>
+        <% end %>
+        <%= tag.div(class: %w(row)) do %>
+          <%= tag.div(class: %w(form-group col)) do %>
+            <%= form.label(:notes)  %>
+            <%= form.text_field(:notes, class: 'form-control') %>
           <% end %>
         <% end %>
       <% end %>

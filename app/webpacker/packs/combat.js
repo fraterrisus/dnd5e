@@ -149,9 +149,8 @@ function prepareEditForm(ajaxBody) {
 
   const myForm = document.getElementById('object-form');
   const submitButton = document.getElementById('object-modal-ok');
-  submitButton.addEventListener('click', _ => {
-    Helpers.submitFormAndReloadPage(myForm, fetchCombatantsList);
-  });
+  submitButton.addEventListener('click', _ =>
+    Helpers.submitFormAndReloadPage(myForm, fetchCombatantsList));
 
   const formInputs = myForm.querySelectorAll('input.form-control');
   myModal.addEventListener('shown.bs.modal', _ => { formInputs[0].focus() });
@@ -178,6 +177,11 @@ function rotateTurn() {
 window.addEventListener('load', _ => {
   csrfParam = document.querySelector('meta[name="csrf-param"]').getAttribute('content');
   csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+  const myModal = document.getElementById('object-modal');
+  myModal.addEventListener('keydown', ev => {
+    if (ev.code === 'Enter') { document.getElementById('object-modal-ok').click(); }
+  });
 
   const newButton = document.getElementById('new-btn');
   newButton.addEventListener('click', openNewModal);
