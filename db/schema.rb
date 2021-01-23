@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_11_023119) do
+ActiveRecord::Schema.define(version: 2021_01_23_005051) do
 
   create_table "caster_classes", force: :cascade do |t|
     t.string "name", limit: 255
@@ -44,10 +44,10 @@ ActiveRecord::Schema.define(version: 2021_01_11_023119) do
   create_table "combatants", force: :cascade do |t|
     t.string "name", limit: 255
     t.integer "time"
-    t.integer "effect"
     t.boolean "active"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string "notes"
   end
 
   create_table "spells", force: :cascade do |t|
