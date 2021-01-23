@@ -1,7 +1,43 @@
 class SpellsController < ApplicationController
-  before_action :load_spell, only: [:show, :edit, :update]
+  before_action :load_spell, only: [:edit, :update]
 
   def index; end
+
+  def edit; end
+
+  def update
+    data = params.require(:edit_spell)
+      .permit(:name, :level, :school_id,
+        :cast_n, :cast_unit, :ritual,
+        :range_n, :range_unit,
+        :duration_n, :duration_unit, :concentration,
+        :somatic, :verbal, :material, :focus)
+
+    [:cast_n, :range_n, :duration_n].each do |f|
+      data[f] = nil unless data[f].present?
+    end
+
+    data[:material] = true if data[:focus] == true
+
+    @spell.update(data)
+
+    render json: @spell, status: :ok
+  end
+
+  def show
+    require 'redcarpet'
+
+    filename = params.require :name
+    filename = "#{Rails.root}/public/spells/#{filename}.md"
+    begin
+      markdown = File.read(filename)
+    rescue Errno::ENOENT
+      Rails.logger.error "Failed to load #{filename}"
+      render html: '', status: 404
+      return
+    end
+    render md: markdown
+  end
 
   def list
     searches = params.require('spell')
@@ -36,52 +72,6 @@ class SpellsController < ApplicationController
       fmt.json { render json: @chars }
       fmt.html { render layout: nil, locals: { by_level: by_level, filters: searches } }
     end
-  end
-
-  def ajax_caster_edit
-    caster_id = params.require :id
-    @caster = CasterClass.find(caster_id)
-    @spells = Spell.order(:level, :name).all
-    respond_to do |fmt|
-      fmt.json { render json: @spells }
-      fmt.html { render layout: nil }
-    end
-  end
-
-  def ajax_markdown
-    require 'redcarpet'
-
-    filename = params.require :name
-    filename = "#{Rails.root}/public/spells/#{filename}.md"
-    begin
-      markdown = File.read(filename)
-    rescue Errno::ENOENT
-      Rails.logger.error "Failed to load #{filename}"
-      render html: '', status: 404
-      return
-    end
-    render md: markdown
-  end
-
-  def edit; end
-
-  def update
-    data = params.require(:edit_spell)
-      .permit(:name, :level, :school_id,
-              :cast_n, :cast_unit, :ritual,
-              :range_n, :range_unit,
-              :duration_n, :duration_unit, :concentration,
-              :somatic, :verbal, :material, :focus)
-
-    [:cast_n, :range_n, :duration_n].each do |f|
-      data[f] = nil unless data[f].present?
-    end
-
-    data[:material] = true if data[:focus] == true
-
-    @spell.update(data)
-
-    render json: @spell, status: :ok
   end
 
   private

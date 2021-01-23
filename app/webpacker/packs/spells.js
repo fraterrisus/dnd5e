@@ -100,8 +100,8 @@ function openEditModal(ev) {
     .then(ajaxBody => {
       const modal = document.getElementById('editspell-modal');
       modal.innerHTML = ajaxBody;
-      new Modal(modal).show();
       applyEditModalEventHandlers();
+      new Modal(modal).show();
       enableButtons();
     })
     .catch(() => {
@@ -114,7 +114,7 @@ function openViewModal(ev) {
   disableButtons();
 
   const filename = ev.currentTarget.getAttribute('data-spell-file');
-  fetch('/ajax/spells/detail?name=' + encodeURIComponent(filename))
+  fetch('/spells/show?name=' + encodeURIComponent(filename))
     .then(Helpers.extractResponseBody)
     .then(ajaxBody => {
       const modalBody = document.getElementById('detail-body');

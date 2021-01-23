@@ -8,6 +8,10 @@ function disableButtons() {
   for (let button of document.querySelectorAll('.card-header .btn')) {
     button.setAttribute('disabled', 'true');
   }
+  for (let viewButton of document.getElementsByClassName('view-button')) {
+    viewButton.classList.remove('text-primary');
+    viewButton.classList.add('text-muted');
+  }
   for (let editButton of document.getElementsByClassName('edit-button')) {
     editButton.classList.remove('text-primary');
     editButton.classList.add('text-muted');
@@ -23,6 +27,10 @@ function enableButtons() {
 
   for (let button of document.querySelectorAll('.card-header .btn')) {
     button.removeAttribute('disabled');
+  }
+  for (let viewButton of document.getElementsByClassName('view-button')) {
+    viewButton.classList.remove('text-muted');
+    viewButton.classList.add('text-primary');
   }
   for (let editButton of document.getElementsByClassName('edit-button')) {
     editButton.classList.remove('text-muted');
@@ -40,6 +48,8 @@ function fetchResults() {
     .then(Helpers.extractResponseBody)
     .then(ajaxBody => {
       document.querySelector('.results').innerHTML = ajaxBody;
+      for (let viewButton of document.getElementsByClassName('view-button'))
+        viewButton.addEventListener('click', openViewModal);
       for (let editButton of document.getElementsByClassName('edit-button'))
         editButton.addEventListener('click', openEditModal);
       for (let deleteButton of document.getElementsByClassName('delete-button'))
@@ -79,6 +89,14 @@ function openNewModal() {
     .catch(_ => Toasts.showToastWithText('Server Error', 'Unable to open form.', 'danger'));
 }
 
+function openViewModal(ev) {
+  const objectId = getMyObjectId(ev);
+  fetch('/classes/' + encodeURIComponent(objectId) + `/spells.html`)
+    .then(Helpers.extractResponseBody)
+    .then(prepareViewForm)
+    .catch(_ => Toasts.showToastWithText('Server Error', 'Unable to open form.', 'danger'));
+}
+
 function prepareDeleteForm(ajaxBody) {
   const myModal = document.getElementById('object-delete-modal');
   myModal.innerHTML = ajaxBody;
@@ -102,6 +120,18 @@ function prepareEditForm(ajaxBody) {
 
   const formInputs = myForm.querySelectorAll('input.form-control');
   myModal.addEventListener('shown.bs.modal', _ => { formInputs[0].focus() });
+
+  new Modal(myModal).show();
+}
+
+function prepareViewForm(ajaxBody) {
+  const myModal = document.getElementById('spells-modal');
+  myModal.innerHTML = ajaxBody;
+
+  const myForm = document.getElementById('spells-form');
+  const submitButton = document.getElementById('spells-modal-ok');
+  submitButton.addEventListener('click', _ =>
+    Helpers.submitFormAndReloadPage(myForm, fetchResults));
 
   new Modal(myModal).show();
 }
