@@ -8,10 +8,10 @@ class SpellsController < ApplicationController
   def update
     data = params.require(:edit_spell)
       .permit(:name, :level, :school_id,
-        :cast_n, :cast_unit, :ritual,
-        :range_n, :range_unit,
-        :duration_n, :duration_unit, :concentration,
-        :somatic, :verbal, :material, :focus)
+              :cast_n, :cast_unit, :ritual,
+              :range_n, :range_unit,
+              :duration_n, :duration_unit, :concentration,
+              :somatic, :verbal, :material, :focus)
 
     [:cast_n, :range_n, :duration_n].each do |f|
       data[f] = nil unless data[f].present?

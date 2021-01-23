@@ -11,7 +11,7 @@ class CharactersController < ApplicationController
   def create
     data = params.require(:character)
       .permit(:name, :str, :dex, :con, :int, :wis, :chr,
-        :perception, :initiative, :speed, :ac, :notes, :highlight)
+              :perception, :initiative, :speed, :ac, :notes, :highlight)
     char = Character.create data
     render json: char
   end

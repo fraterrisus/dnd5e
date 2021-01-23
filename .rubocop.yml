@@ -1,4 +1,10 @@
 AllCops:
+  Exclude:
+    - 'bin/*'
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'node_modules/**/*'
+    - 'script/**/*'
   NewCops: enable
 
 Layout/ElseAlignment:
