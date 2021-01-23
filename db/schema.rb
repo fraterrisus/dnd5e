@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_23_005051) do
+ActiveRecord::Schema.define(version: 2021_01_23_021506) do
 
   create_table "caster_classes", force: :cascade do |t|
     t.string "name", limit: 255
