@@ -1,5 +1,6 @@
-<%= render partial: 'spells/filters', locals: { filters: filters } %>
-<%= tag.div("Matched #{@spells.count} spells", id: 'results-count', class: %w(mt-1 fst-italic)) %>
+<%= tag.div(id: 'spell-data', class: %w(d-none), 'data-spell-count': @spells.count) do %>
+  <%= render partial: 'spells/filters', locals: { filters: filters } %>
+<% end %>
 
 <% chunks = @spells.chunk { |spell| (by_level) ? spell.level : spell.name[0] } %>
 

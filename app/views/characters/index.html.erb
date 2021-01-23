@@ -8,10 +8,7 @@
   <%= tag.div(class: %w(card-header)) do %>
     <%= tag.div(class: %w(card-title mb-0)) do %>
       <%= tag.button('New Character', class: %w(btn btn-primary new-button)) %>
-      <%= tag.span(id: 'page-spinner', role: 'status') do %>
-        <%= tag.span(class: %w(spinner-border spinner-border-sm text-primary)) %>
-        Loading...
-      <% end %>
+      <%= render partial: 'loading_spinner' %>
     <% end %>
   <% end %>
   <%= tag.div(class: %w(card-body)) do %>

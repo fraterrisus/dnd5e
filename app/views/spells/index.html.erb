@@ -7,11 +7,12 @@
 <%= tag.div(id: 'spells-card', class: %w(card)) do %>
   <%= tag.div(class: %w(card-header)) do %>
     <%= tag.div(class: %w(btn-group), role: 'group', aria: { label: 'cycle' }) do %>
-      <%= tag.button('Filter', id: 'filter-button', class: %w(btn btn-primary)) %>
+      <%= tag.button('Edit Filters', id: 'filter-button', class: %w(btn btn-primary)) %>
     <% end %>
-    <%= tag.span(id: 'page-spinner', role: 'status') do %>
-      <%= tag.span(class: %w(spinner-border spinner-border-sm text-primary)) %>
-      Loading...
+    <%= render partial: 'loading_spinner' %>
+    <%= tag.div(id: 'result-metadata', class: %w()) do %>
+      <%= tag.div(id: 'result-metadata-filters', class: %w(mt-2)) %>
+      <%= tag.div(id: 'result-metadata-count', class: %w(mt-2 fst-italic)) %>
     <% end %>
   <% end %>
   <%= tag.div(class: %w(results)) %>

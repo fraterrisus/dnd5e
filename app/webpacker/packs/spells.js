@@ -65,26 +65,12 @@ function fetchResults() {
   fetch('spells/list.html' + Helpers.formToQuery('#filter-form'))
     .then(Helpers.extractResponseBody)
     .then(ajaxResponseBody => {
-      const oldFiltersElement = document.querySelector('#active-filters')
-      if (oldFiltersElement) { oldFiltersElement.remove(); }
-      const oldCountElement = document.querySelector('#results-count')
-      if (oldCountElement) { oldCountElement.remove(); }
-
       document.querySelector('.results').innerHTML = ajaxResponseBody;
-
-      const parent = document.getElementById('spells-card');
-      const newFiltersElement = parent.querySelector('#active-filters');
-      newFiltersElement.remove();
-      const newCountElement = parent.querySelector('#results-count');
-      newCountElement.remove();
-      parent.querySelector('.card-header').appendChild(newFiltersElement);
-      parent.querySelector('.card-header').appendChild(newCountElement);
-
+      updateResultMetadata();
       for (let viewButton of document.getElementsByClassName('view-button'))
         viewButton.addEventListener('click', openViewModal);
       for (let editButton of document.getElementsByClassName('edit-button'))
         editButton.addEventListener('click', openEditModal);
-
       enableButtons();
     })
     .catch(_ => {
@@ -144,6 +130,18 @@ function openViewModal(ev) {
       Toasts.showToastWithText('Server Error', "Unable to view that spell's description.", 'warning');
       enableButtons();
     })
+}
+
+function updateResultMetadata() {
+  const spellData = document.getElementById('spell-data');
+
+  const spellCount = spellData.getAttribute('data-spell-count');
+  const spellCountElement = document.getElementById('result-metadata-count');
+  spellCountElement.innerHTML = `Matched ${spellCount} spells`;
+
+  const appliedFilters = spellData.innerHTML;
+  const appliedFiltersElement = document.getElementById('result-metadata-filters');
+  appliedFiltersElement.innerHTML = appliedFilters;
 }
 
 window.addEventListener('load', () => {
