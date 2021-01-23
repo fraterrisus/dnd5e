@@ -1,5 +1,5 @@
 class CasterClassesController < ApplicationController
-  before_action :load_caster_class, only: [:edit, :confirm_delete, :update]
+  before_action :load_caster_class, only: [:edit, :confirm_delete, :spells, :update, :update_spells]
 
   def index
     respond_to do |fmt|
@@ -46,6 +46,25 @@ class CasterClassesController < ApplicationController
 
   def confirm_delete
     render layout: nil
+  end
+
+  def spells
+    respond_to do |fmt|
+      fmt.json do
+        @spells = @cclass.spells.order(:level, :name)
+        render json: @spells
+      end
+      fmt.html do
+        @spells = Spell.order(:level, :name).all
+        render layout: nil
+      end
+    end
+  end
+
+  def update_spells
+    data = params.require :spell_ids
+    @cclass.update(spell_ids: data.keys.map(&:to_i))
+    head :no_content
   end
 
   private
