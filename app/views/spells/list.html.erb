@@ -1,23 +1,47 @@
-<% last_value = -1 %>
 <%= render partial: 'spells/filters', locals: { filters: filters } %>
 <%= tag.div("Matched #{@spells.count} spells", id: 'results-count', class: %w(mt-1 fst-italic)) %>
-<%= tag.div(class: %w(list-group-flush)) do %>
-  <% @spells.each do |spell|
-      comparison_attribute = (bylevel) ? spell.level : spell.name[0]
-      if comparison_attribute != last_value
-        last_value = comparison_attribute
-      end %>
-    <%= tag.div(class: %w(list-group-item)) do %>
-      <%= tag.i(class: %w(bi bi-eye-fill text-primary view-button), 'data-spell-file': spell.to_asset) %>
-      <%= tag.i(class: %w(bi bi-pencil-fill text-primary edit-button), 'data-spell-id': spell.id) %>
-      <%= tag.span(class: %w(ms-3)) do %>
-        <%= tag.b { spell.name } %> &ndash;
-        <%= spell.school_text %> &ndash;
-        <%= spell.level_text %> &ndash;
-        <%= spell.casting_time_text %> &ndash;
-        <%= spell.range_text %> &ndash;
-        <%= spell.components_text %> &ndash;
-        <%= spell.duration_text %>
+
+<% chunks = @spells.chunk { |spell| (by_level) ? spell.level : spell.name[0] } %>
+
+<% if @spells.count > 20 %>
+  <%= tag.div(class: %w(card-header)) do %>
+    <%= tag.ul(class: %w(nav nav-tabs card-header-tabs), role: 'tablist') do %>
+      <% first_tab = true %>
+      <% chunks.each do |chunk_id, _| %>
+        <%= tag.li(chunk_id, class: %w(nav-item), role: 'presentation') do %>
+          <% classes = %w(nav-link) %>
+          <% classes << 'active' if first_tab %>
+          <% link_text = chunk_id == 0 ? 'Cantrips' : chunk_id %>
+          <%= tag.a(link_text, href: "#spells-#{chunk_id}", class: classes, id: "tab-#{chunk_id}",
+                    role: 'tab', 'data-bs-toggle': 'tab', 'aria-controls': "spells-#{chunk_id}") %>
+        <% end %>
+        <% first_tab = false %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<%= tag.div(class: %w(tab-content)) do %>
+  <% if @spells.count > 20 %>
+    <% first_tab = true %>
+    <% chunks.each do |chunk_id, subspells| %>
+      <% klasses = first_tab ? %w(tab-pane show active) : %w(tab-pane) %>
+      <% first_tab = false %>
+      <%= tag.div(class: klasses, id: "spells-#{chunk_id}", role: 'tabpanel',
+                  'aria-labeledby': "tab-#{chunk_id}") do %>
+        <%= tag.div(class: %w(list-group list-group-flush)) do %>
+          <% subspells.each do |spell| %>
+            <%= render partial: 'spells/spell_row', locals: { spell: spell } %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <%= tag.div(class: %w(list-group list-group-flush)) do %>
+      <% chunks.each do |_, subspells| %>
+        <% subspells.each do |spell| %>
+          <%= render partial: 'spells/spell_row', locals: { spell: spell } %>
+        <% end %>
       <% end %>
     <% end %>
   <% end %>

@@ -34,7 +34,7 @@ class SpellsController < ApplicationController
 
     respond_to do |fmt|
       fmt.json { render json: @chars }
-      fmt.html { render layout: nil, locals: { bylevel: by_level, filters: searches } }
+      fmt.html { render layout: nil, locals: { by_level: by_level, filters: searches } }
     end
   end
 

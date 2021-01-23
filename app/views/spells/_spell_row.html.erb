@@ -1,0 +1,13 @@
+<%= tag.div(class: %w(list-group-item)) do %>
+  <%= tag.i(class: %w(bi bi-eye-fill text-primary view-button), 'data-spell-file': spell.to_asset) %>
+  <%= tag.i(class: %w(bi bi-pencil-fill text-primary edit-button), 'data-spell-id': spell.id) %>
+  <%= tag.span(class: %w(ms-3)) do %>
+    <%= tag.b { spell.name } %> &ndash;
+    <%= spell.school_text %> &ndash;
+    <%= spell.level_text %> &ndash;
+    <%= spell.casting_time_text %> &ndash;
+    <%= spell.range_text %> &ndash;
+    <%= spell.components_text %> &ndash;
+    <%= spell.duration_text %>
+  <% end %>
+<% end %>
