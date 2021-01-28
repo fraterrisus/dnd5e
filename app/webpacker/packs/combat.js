@@ -121,7 +121,7 @@ function importCharacters() {
     .then(Helpers.extractResponseJson)
     .then(characters => {
       for (let character of characters) {
-        charactersToImport.push({name: character.name, time: 0, active: 0});
+        charactersToImport.push({nym: character.nym, time: 0, active: 0});
       }
       createNextCombatant();
     })

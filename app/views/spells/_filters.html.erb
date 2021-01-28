@@ -16,7 +16,7 @@
           when 'components'
             Spell::components_to_s(val.to_i)
           when 'caster_classes'
-            CasterClass.where(id: val['id']).pluck(:name).join(' ')
+            CasterClass.where(id: val['id']).pluck(:nym).join(' ')
           else
             val
           end %>

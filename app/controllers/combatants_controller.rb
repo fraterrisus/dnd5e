@@ -2,7 +2,7 @@ class CombatantsController < ApplicationController
   def index; end
 
   def create
-    data = params.require(:combatant).permit(:name, :time, :notes, :active)
+    data = params.require(:combatant).permit(:nym, :time, :notes, :active)
     cmb = Combatant.create(data)
     render json: cmb
   end
@@ -20,7 +20,7 @@ class CombatantsController < ApplicationController
 
   def update
     id = params.require(:id)
-    data = params.require(:combatant).permit(:name, :time, :notes, :active)
+    data = params.require(:combatant).permit(:nym, :time, :notes, :active)
     cmb = Combatant.find(id)
     cmb.update(data)
     render json: cmb

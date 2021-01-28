@@ -2,7 +2,7 @@
   <%= render partial: 'spells/filters', locals: { filters: filters } %>
 <% end %>
 
-<% chunks = @spells.chunk { |spell| (by_level) ? spell.level : spell.name[0] } %>
+<% chunks = @spells.chunk { |spell| (by_level) ? spell.level : spell.nym[0] } %>
 
 <% if @spells.count > 20 %>
   <%= tag.div(class: %w(card-header)) do %>

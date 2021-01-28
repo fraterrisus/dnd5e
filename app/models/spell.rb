@@ -2,7 +2,7 @@ class Spell < ActiveRecord::Base
   has_and_belongs_to_many :caster_classes
 
   def to_asset
-    name.downcase.gsub(%r(['/]), '').gsub(/\s+/, '_')
+    nym.downcase.gsub(%r(['/]), '').gsub(/\s+/, '_')
   end
 
   def self.level_to_s(level)

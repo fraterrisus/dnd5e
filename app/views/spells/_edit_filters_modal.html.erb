@@ -15,7 +15,7 @@
           <%= tag.div(class: %w(mb-3)) do %>
             <%= tag.label(t('helpers.label.spell.class_id'), class: %w(form-label), for: 'spell_caster_class_ids') %>
             <%= select_tag('spell[caster_class_ids]',
-                           options_from_collection_for_select(CasterClass.order(:name), :id, :name),
+                           options_from_collection_for_select(CasterClass.order(:nym), :id, :nym),
                            multiple: true, class: %w(form-control)) %>
           <% end %>
           <%= tag.div(class: %w(mb-3)) do %>
