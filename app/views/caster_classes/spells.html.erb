@@ -3,7 +3,7 @@
                 id: 'spells-form', class: 'form', role: 'form') do %>
     <%= tag.div(class: %w(modal-content)) do %>
       <%= tag.div(class: %w(modal-header)) do %>
-        <%= tag.h5(@cclass.name, id: 'spells-modal-label', class: %w(modal-title)) %>
+        <%= tag.h5(@cclass.nym, id: 'spells-modal-label', class: %w(modal-title)) %>
         <%= tag.button(type: 'button', class: %w(btn-close), 'data-bs-dismiss': 'modal',
                        aria: { label: 'close' }) %>
       <% end %>
@@ -18,7 +18,7 @@
                 <%= tag.div(class: %w(col-6)) do %>
                   <%= tag.div(class: %w(form-check)) do %>
                     <%= tag.input(id: "spell-#{subspell.id}", class: %w(form-check-input), type: 'checkbox', name: "spell_ids[#{subspell.id}]", checked: @cclass.spell_ids.include?(subspell.id)) %>
-                    <%= tag.label(subspell.name, class: %w(form-check-label), for: "spell-#{subspell.id}") %>
+                    <%= tag.label(subspell.nym, class: %w(form-check-label), for: "spell-#{subspell.id}") %>
                   <% end %>
                 <% end %>
               <% end %>
@@ -26,7 +26,7 @@
                 <%= tag.div(class: %w(col-6)) do %>
                   <%= tag.div(class: %w(form-check)) do %>
                     <%= tag.input(id: "spell-#{subspell.id}", class: %w(form-check-input), type: 'checkbox', name: "spell_ids[#{subspell.id}]", checked: @cclass.spell_ids.include?(subspell.id)) %>
-                    <%= tag.label(subspell.name, class: %w(form-check-label), for: "spell-#{subspell.id}") %>
+                    <%= tag.label(subspell.nym, class: %w(form-check-label), for: "spell-#{subspell.id}") %>
                   <% end %>
                 <% end %>
               <% end %>

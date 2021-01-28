@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_23_021506) do
+ActiveRecord::Schema.define(version: 2021_01_28_231556) do
 
   create_table "caster_classes", force: :cascade do |t|
-    t.string "name", limit: 255
+    t.string "nym", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2021_01_23_021506) do
   end
 
   create_table "characters", force: :cascade do |t|
-    t.string "name", limit: 255
+    t.string "nym", limit: 255
     t.boolean "highlight"
     t.integer "str"
     t.integer "dex"
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 2021_01_23_021506) do
   end
 
   create_table "combatants", force: :cascade do |t|
-    t.string "name", limit: 255
+    t.string "nym", limit: 255
     t.integer "time"
     t.boolean "active"
     t.datetime "created_at"
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 2021_01_23_021506) do
   end
 
   create_table "spells", force: :cascade do |t|
-    t.string "name", limit: 255
+    t.string "nym", limit: 255
     t.integer "level"
     t.integer "school_id"
     t.boolean "ritual"

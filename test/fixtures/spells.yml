@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
+  nym: MyString
   page: 1
   level: 1
   school_id: 1
@@ -20,7 +20,7 @@ one:
   reaction: MyString
 
 two:
-  name: MyString
+  nym: MyString
   page: 1
   level: 1
   school_id: 1

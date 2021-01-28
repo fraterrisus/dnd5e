@@ -9,7 +9,7 @@ class CasterClassesController < ApplicationController
   end
 
   def create
-    p = params.require('caster_class').permit('name')
+    p = params.require(:caster_class).permit(:nym)
     cclass = CasterClass.create(p)
     render json: cclass
   end
@@ -24,8 +24,8 @@ class CasterClassesController < ApplicationController
   end
 
   def update
-    p = params.require('caster_class').permit('id', 'name', 'spell_ids' => [])
-    p.delete('id')
+    p = params.require(:caster_class).permit(:id, :nym)
+    p.delete(:id)
     @cclass.update p
     render json: @cclass
   end
@@ -37,7 +37,7 @@ class CasterClassesController < ApplicationController
   end
 
   def list
-    @cclasses = CasterClass.order(:name).all
+    @cclasses = CasterClass.order(:nym).all
     respond_to do |fmt|
       fmt.json { render json: @cclasses }
       fmt.html { render layout: nil }
@@ -51,11 +51,11 @@ class CasterClassesController < ApplicationController
   def spells
     respond_to do |fmt|
       fmt.json do
-        @spells = @cclass.spells.order(:level, :name)
+        @spells = @cclass.spells.order(:level, :nym)
         render json: @spells
       end
       fmt.html do
-        @spells = Spell.order(:level, :name).all
+        @spells = Spell.order(:level, :nym).all
         render layout: nil
       end
     end

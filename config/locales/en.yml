@@ -22,8 +22,13 @@
 en:
   helpers:
     label:
+      caster_class:
+        nym: 'Name'
       character:
         ac: 'AC'
+        nym: 'Name'
+      combatant:
+        nym: 'Name'
       spell:
         aoe: 'Area of Effect'
         cast_n: 'Casting Time'
@@ -37,6 +42,7 @@ en:
         effect: 'Spell Effect'
         higher: 'At Higher Levels'
         level: 'Spell Level'
+        nym: 'Name'
         page: 'Reference'
         range_n: 'Range'
         range_unit: 'Range'

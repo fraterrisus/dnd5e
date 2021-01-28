@@ -24,7 +24,7 @@
           <%= tag.i(class: %w(bi bi-pencil-fill text-primary edit-button)) %>
           <%= tag.i(class: %w(bi bi-trash-fill text-primary delete-button)) %>
         <% end %>
-        <%= tag.td(c.name, td_attrs) %>
+        <%= tag.td(c.nym, td_attrs) %>
         <% %i(str dex con int wis chr perception initiative speed ac).each do |meth| %>
           <%= tag.td(c.send(meth), class: %w(text-center)) %>
         <% end %>

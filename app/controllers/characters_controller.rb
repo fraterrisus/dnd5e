@@ -10,7 +10,7 @@ class CharactersController < ApplicationController
 
   def create
     data = params.require(:character)
-      .permit(:name, :str, :dex, :con, :int, :wis, :chr,
+      .permit(:nym, :str, :dex, :con, :int, :wis, :chr,
               :perception, :initiative, :speed, :ac, :notes, :highlight)
     char = Character.create data
     render json: char
@@ -27,7 +27,7 @@ class CharactersController < ApplicationController
 
   def update
     data = params.require(:character)
-      .permit(:name, :str, :dex, :con, :int, :wis, :chr,
+      .permit(:nym, :str, :dex, :con, :int, :wis, :chr,
               :perception, :initiative, :speed, :ac, :notes, :highlight)
     @char.update data
     render json: @char
@@ -40,7 +40,7 @@ class CharactersController < ApplicationController
   end
 
   def list
-    @chars = Character.order(:name).all
+    @chars = Character.order(:nym).all
     respond_to do |fmt|
       fmt.json { render json: @chars }
       fmt.html { render layout: nil }
