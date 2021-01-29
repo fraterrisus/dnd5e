@@ -10,7 +10,7 @@
 
       <%= tag.div(class: %w(modal-body)) do %>
         <% @spells.chunk(&:level).each do |level, subspells| %>
-          <%= tag.h5(class:%w(mt-2)) { level == 0 ? 'Cantrips' : "Level #{level}"} %>
+          <%= tag.h5(class:%w(mt-2)) { level == 0 ? t('helpers.label.spell.cantrip').pluralize : "Level #{level}"} %>
           <% lidx = 0 ; ridx = (subspells.count + 1) / 2 %>
           <% while lidx <= (subspells.count / 2) do %>
             <%= tag.div(class: %w(row)) do %>

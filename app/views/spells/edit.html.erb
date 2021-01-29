@@ -3,7 +3,7 @@
                 html: { id: 'editspell-form', class: 'form', role: 'form' }) do |f| %>
     <%= tag.div(class: %w(modal-content)) do %>
       <%= tag.div(class: %w(modal-header)) do %>
-        <%= tag.h5('Edit Spell', id: 'editspell-label', class: %w(modal-title)) %>
+        <%= tag.h5(t('page-titles.spells.edit'), id: 'editspell-label', class: %w(modal-title)) %>
         <%= tag.button(type: 'button', class: %w(btn-close), 'data-bs-dismiss': 'modal',
                        aria: { label: 'close' }) %>
       <% end %>
@@ -24,7 +24,7 @@
         <%= tag.div(class: %w(row mb-3)) do %>
           <%= f.label(:level, class: %w(col-form-label col-4)) %>
           <%= tag.div(class: %w(col)) do %>
-            <% level_select_options = [['Cantrip', 0]] %>
+            <% level_select_options = [[t('helpers.label.spell.cantrip'), 0]] %>
             <% (1..9).each { |i| level_select_options << ["Level #{i}", i] } %>
             <%= f.select(:level, level_select_options, {}, { class: %w(form-control) }) %>
           <% end %>
@@ -88,9 +88,9 @@
       <% end %>
 
       <%= tag.div(class: %w(modal-footer)) do %>
-        <%= tag.button('Cancel', type: 'button', class: %w(btn btn-outline-secondary),
+        <%= tag.button(t('button-labels.cancel'), type: 'button', class: %w(btn btn-outline-secondary),
                        'data-bs-dismiss': 'modal') %>
-        <%= tag.button('Update', type: 'button', id: 'editspell-ok', class: %w(btn btn-success),
+        <%= tag.button(t('button-labels.edit'), type: 'button', id: 'editspell-ok', class: %w(btn btn-success),
                        'data-bs-dismiss': 'modal') %>
       <% end %>
     <% end %>

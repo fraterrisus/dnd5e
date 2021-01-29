@@ -2,12 +2,12 @@
   <%= javascript_pack_tag 'spells' %>
 <% end %>
 
-<%= tag.h1('Spell List', id: 'spells-index') %>
+<%= tag.h1(t('page-titles.spells.list'), id: 'spells-index') %>
 
 <%= tag.div(id: 'spells-card', class: %w(card)) do %>
   <%= tag.div(class: %w(card-header)) do %>
     <%= tag.div(class: %w(btn-group), role: 'group', aria: { label: 'cycle' }) do %>
-      <%= tag.button('Edit Filters', id: 'filter-button', class: %w(btn btn-primary)) %>
+      <%= tag.button(t('page-titles.spells.filter'), id: 'filter-button', class: %w(btn btn-primary)) %>
     <% end %>
     <%= render partial: 'loading_spinner' %>
     <%= tag.div(id: 'result-metadata', class: %w()) do %>

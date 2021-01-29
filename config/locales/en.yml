@@ -69,6 +69,7 @@ en:
         result: 'Result'
       spell:
         aoe: 'Area of Effect'
+        cantrip: 'Cantrip'
         cast_n: 'Casting Time'
         cast_unit: 'Casting Time'
         caster_classes: 'Caster Class'
@@ -87,6 +88,7 @@ en:
         reaction: 'Reaction Trigger'
         ritual: 'May be cast as Ritual'
         school_id: 'Magic School'
+        tabs: 'Breakout Tabs'
   navbar-titles:
     caster_classes: 'Classes'
     characters: 'Characters'
@@ -110,6 +112,12 @@ en:
       edit: 'Edit Combatant'
       list: 'Combat: Initiative'
     dice: 'Dice Roller'
+    spells:
+      create: 'New Spell'
+      delete: 'Delete Spell'
+      edit: 'Edit Spell'
+      filter: 'Filter Spells'
+      list: 'Spell List'
   strings:
     delete-confirm-before: 'Are you sure you want to delete'
     delete-confirm-after: '?'
