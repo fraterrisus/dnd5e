@@ -2,17 +2,11 @@
   <%= tag.table(id: 'character-table', class: %w(table table-sm)) do %>
     <%= tag.tr do %>
       <%= tag.th %>
-      <%= tag.th('Name') %>
-      <%= tag.th('Str', title: 'Strength', class: %w(text-center)) %>
-      <%= tag.th('Dex', title: 'Dexterity', class: %w(text-center)) %>
-      <%= tag.th('Con', title: 'Constitution', class: %w(text-center)) %>
-      <%= tag.th('Int', title: 'Intelligence', class: %w(text-center)) %>
-      <%= tag.th('Wis', title: 'Wisdom', class: %w(text-center)) %>
-      <%= tag.th('Chr', title: 'Charisma', class: %w(text-center)) %>
-      <%= tag.th('Per', title: 'Perception', class: %w(text-center)) %>
-      <%= tag.th('Init', title: 'Initiative', class: %w(text-center)) %>
-      <%= tag.th('Spd', title: 'Speed', class: %w(text-center)) %>
-      <%= tag.th('AC', title: 'Armor Class', class: %w(text-center)) %>
+      <%= tag.th(t('helpers.abbr.character.nym')) %>
+      <% Character::TABLE_FIELDS.each do |field| %>
+        <%= tag.th(t("helpers.abbr.character.#{field}"), class: %w(text-center),
+                   title: t("helpers.full.character.#{field}")) %>
+      <% end %>
     <% end %>
     <% @chars.each do |c| %>
       <% second_row = (c.notes && c.notes != "") %>
@@ -25,7 +19,7 @@
           <%= tag.i(class: %w(bi bi-trash-fill text-primary delete-button)) %>
         <% end %>
         <%= tag.td(c.nym, td_attrs) %>
-        <% %i(str dex con int wis chr perception initiative speed ac).each do |meth| %>
+        <% Character::TABLE_FIELDS.each do |meth| %>
           <%= tag.td(c.send(meth), class: %w(text-center)) %>
         <% end %>
       <% end %>

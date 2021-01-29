@@ -21,6 +21,32 @@
 
 en:
   helpers:
+    abbr:
+      character:
+        ac: 'AC'
+        chr: 'Chr'
+        con: 'Con'
+        dex: 'Dex'
+        initiative: 'Init'
+        int: 'Int'
+        nym: 'Name'
+        perception: 'Per'
+        speed: 'Spd'
+        str: 'Str'
+        wis: 'Wis'
+    full:
+      character:
+        ac: 'Armor Class'
+        chr: 'Charisma'
+        con: 'Constitution'
+        dex: 'Dexterity'
+        initiative: 'Initiative'
+        int: 'Intelligence'
+        nym: 'Name'
+        perception: 'Perception'
+        speed: 'Speed'
+        str: 'Strength'
+        wis: 'Wisdom'
     label:
       caster_class:
         nym: 'Name'
