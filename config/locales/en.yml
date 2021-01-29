@@ -75,3 +75,14 @@ en:
         reaction: 'Reaction Trigger'
         ritual: 'May be cast as Ritual'
         school_id: 'Magic School'
+  page-titles:
+    character:
+      list: 'Character List'
+      create: 'New Character'
+      delete: 'Delete Character'
+      edit: 'Edit Character'
+  button-labels:
+    cancel: 'Cancel'
+    create: 'Add'
+    delete: 'Delete'
+    edit: 'Update'

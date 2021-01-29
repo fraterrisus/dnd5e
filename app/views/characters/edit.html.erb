@@ -1,13 +1,13 @@
 <%
   model = @char ? @char : Character
-  verb = @char ? 'Edit' : 'New'
-  submit_verb = @char ? 'Update' : 'Add'
+  modal_title = @char ? t('page-titles.character.edit') : t('page-titles.character.create')
+  submit_verb = @char ? t('button-labels.edit') : t('button-labels.create')
 %>
 <%= tag.div(class: %w(modal-dialog)) do %>
   <%= form_with(model: model, html: { id: 'object-form', class: 'form', role: 'form' }) do |f| %>
     <%= tag.div(class: %w(modal-content)) do %>
       <%= tag.div(class: %w(modal-header)) do %>
-        <%= tag.h5("#{verb} Character", id: 'object-modal-label', class: %w(modal-title)) %>
+        <%= tag.h5(modal_title, id: 'object-modal-label', class: %w(modal-title)) %>
         <%= tag.button(type: 'button', class: %w(btn-close), 'data-bs-dismiss': 'modal',
                        aria: { label: 'close' }) %>
       <% end %>
@@ -64,7 +64,7 @@
       <% end %>
 
       <%= tag.div(class: %w(modal-footer)) do %>
-        <%= tag.button('Cancel', type: 'button', class: %w(btn btn-outline-secondary),
+        <%= tag.button(t('button-labels.cancel'), type: 'button', class: %w(btn btn-outline-secondary),
                        'data-bs-dismiss': 'modal') %>
         <%= tag.button(submit_verb, type: 'button', id: 'object-modal-ok', class: %w(btn btn-success),
                        'data-bs-dismiss': 'modal') %>

@@ -2,12 +2,12 @@
   <%= javascript_pack_tag :characters %>
 <% end %>
 
-<%= tag.h1('Character List') %>
+<%= tag.h1(t('page-titles.character.list')) %>
 
 <%= tag.div(class: %w(card)) do %>
   <%= tag.div(class: %w(card-header)) do %>
     <%= tag.div(class: %w(card-title mb-0)) do %>
-      <%= tag.button('New Character', class: %w(btn btn-primary new-button)) %>
+      <%= tag.button(t('page-titles.character.create'), class: %w(btn btn-primary new-button)) %>
       <%= render partial: 'loading_spinner' %>
     <% end %>
   <% end %>
