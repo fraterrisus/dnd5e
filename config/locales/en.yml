@@ -20,6 +20,11 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  button-labels:
+    cancel: 'Cancel'
+    create: 'Add'
+    delete: 'Delete'
+    edit: 'Update'
   helpers:
     abbr:
       character:
@@ -76,13 +81,16 @@ en:
         ritual: 'May be cast as Ritual'
         school_id: 'Magic School'
   page-titles:
+    caster_classes:
+      list: 'Caster Classes'
+      create: 'New Caster Class'
+      delete: 'Delete Caster Class'
+      edit: 'Edit Caster Class'
     character:
       list: 'Character List'
       create: 'New Character'
       delete: 'Delete Character'
       edit: 'Edit Character'
-  button-labels:
-    cancel: 'Cancel'
-    create: 'Add'
-    delete: 'Delete'
-    edit: 'Update'
+  strings:
+    delete-confirm-before: 'Are you sure you want to delete'
+    delete-confirm-after: '?'

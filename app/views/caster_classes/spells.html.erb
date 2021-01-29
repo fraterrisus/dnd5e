@@ -14,22 +14,8 @@
           <% lidx = 0 ; ridx = (subspells.count + 1) / 2 %>
           <% while lidx <= (subspells.count / 2) do %>
             <%= tag.div(class: %w(row)) do %>
-              <% if (subspell = subspells[lidx]) %>
-                <%= tag.div(class: %w(col-6)) do %>
-                  <%= tag.div(class: %w(form-check)) do %>
-                    <%= tag.input(id: "spell-#{subspell.id}", class: %w(form-check-input), type: 'checkbox', name: "spell_ids[#{subspell.id}]", checked: @cclass.spell_ids.include?(subspell.id)) %>
-                    <%= tag.label(subspell.nym, class: %w(form-check-label), for: "spell-#{subspell.id}") %>
-                  <% end %>
-                <% end %>
-              <% end %>
-              <% if (subspell = subspells[ridx]) %>
-                <%= tag.div(class: %w(col-6)) do %>
-                  <%= tag.div(class: %w(form-check)) do %>
-                    <%= tag.input(id: "spell-#{subspell.id}", class: %w(form-check-input), type: 'checkbox', name: "spell_ids[#{subspell.id}]", checked: @cclass.spell_ids.include?(subspell.id)) %>
-                    <%= tag.label(subspell.nym, class: %w(form-check-label), for: "spell-#{subspell.id}") %>
-                  <% end %>
-                <% end %>
-              <% end %>
+              <%= render partial: 'spell_checkbox', locals: { spell: subspells[lidx] } %>
+              <%= render partial: 'spell_checkbox', locals: { spell: subspells[ridx] } %>
             <% end %>
             <% lidx += 1; ridx += 1 %>
           <% end %>
@@ -37,10 +23,10 @@
       <% end %>
 
       <%= tag.div(class: %w(modal-footer)) do %>
-        <%= tag.button('Cancel', type: 'button', class: %w(btn btn-outline-secondary),
-          'data-bs-dismiss': 'modal') %>
-        <%= tag.button('Submit', type: 'button', id: 'spells-modal-ok', class: %w(btn btn-success),
-          'data-bs-dismiss': 'modal') %>
+        <%= tag.button(t('button-labels.cancel'), type: 'button', class: %w(btn btn-outline-secondary),
+                       'data-bs-dismiss': 'modal') %>
+        <%= tag.button(t('button-labels.edit'), type: 'button', id: 'spells-modal-ok',
+                       class: %w(btn btn-success), 'data-bs-dismiss': 'modal') %>
       <% end %>
     <% end %>
   <% end %>
