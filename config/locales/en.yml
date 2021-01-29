@@ -60,6 +60,10 @@ en:
         nym: 'Name'
       combatant:
         nym: 'Name'
+      dice:
+        advantage: 'Advantage'
+        dice_n: 'Number of Dice'
+        result: 'Result'
       spell:
         aoe: 'Area of Effect'
         cast_n: 'Casting Time'
@@ -80,8 +84,14 @@ en:
         reaction: 'Reaction Trigger'
         ritual: 'May be cast as Ritual'
         school_id: 'Magic School'
+  navbar-titles:
+    caster_classes: 'Classes'
+    characters: 'Characters'
+    combatants: 'Initiative'
+    spells: 'Spells'
   page-titles:
-    caster_classes:
+    application-header: 'D&D5e Reference'
+    caster_class:
       list: 'Caster Classes'
       create: 'New Caster Class'
       delete: 'Delete Caster Class'
@@ -91,6 +101,8 @@ en:
       create: 'New Character'
       delete: 'Delete Character'
       edit: 'Edit Character'
+    dice: 'Dice Roller'
   strings:
     delete-confirm-before: 'Are you sure you want to delete'
     delete-confirm-after: '?'
+    loading: 'Loading...'
