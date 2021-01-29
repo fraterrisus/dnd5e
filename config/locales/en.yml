@@ -22,9 +22,12 @@
 en:
   button-labels:
     cancel: 'Cancel'
+    clear: 'Clear'
     create: 'Add'
     delete: 'Delete'
     edit: 'Update'
+    import: 'Import'
+    turn: 'Next Turn'
   helpers:
     abbr:
       character:
@@ -92,15 +95,20 @@ en:
   page-titles:
     application-header: 'D&D5e Reference'
     caster_class:
-      list: 'Caster Classes'
       create: 'New Caster Class'
       delete: 'Delete Caster Class'
       edit: 'Edit Caster Class'
+      list: 'Caster Classes'
     character:
-      list: 'Character List'
       create: 'New Character'
       delete: 'Delete Character'
       edit: 'Edit Character'
+      list: 'Character List'
+    combatants:
+      create: 'New Combatant'
+      delete: 'Delete Combatant'
+      edit: 'Edit Combatant'
+      list: 'Combat: Initiative'
     dice: 'Dice Roller'
   strings:
     delete-confirm-before: 'Are you sure you want to delete'
