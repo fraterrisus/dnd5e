@@ -3,8 +3,8 @@
   <% classes << 'list-group-item-info' if c.active %>
   <%= tag.div(class: classes) do %>
     <%= tag.div(class: 'object-id', 'data-object-id': c.id) do %>
-      <%= tag.i(class: %w(bi bi-pencil-fill text-primary edit-button)) %>
-      <%= tag.i(class: %w(bi bi-trash-fill text-primary delete-button)) %>
+      <%= tag.i(class: %w(bi bi-pencil-fill text-primary edit-button), title: 'Set Count') %>
+      <%= tag.i(class: %w(bi bi-trash-fill text-primary delete-button), title: 'Remove Combatant') %>
       <%= tag.span(c.nym, class: %w(ms-3)) %>
     <% end %>
     <%= tag.span(c.notes) %>
