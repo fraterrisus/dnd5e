@@ -34,6 +34,14 @@ en:
         speed: 'Spd'
         str: 'Str'
         wis: 'Wis'
+      range:
+        feet: "'"
+        miles: 'mi'
+        plane: 'same plane'
+        self: 'self'
+        sight: 'sight'
+        touch: 'touch'
+        unlimited: 'unlimited'
       school:
         abjuration: 'Ab'
         conjuration: 'Co'
@@ -57,13 +65,13 @@ en:
         str: 'Strength'
         wis: 'Wisdom'
       range:
-        self: 'Self'
-        touch: 'Touch'
-        sight: 'Sight'
-        plane: 'Plane'
-        unlimited: 'Unlimited'
         feet: 'Feet'
         miles: 'Miles'
+        plane: 'Plane'
+        self: 'Self'
+        sight: 'Sight'
+        touch: 'Touch'
+        unlimited: 'Unlimited'
       school:
         abjuration: 'Abjuration'
         conjuration: 'Conjuration'
@@ -77,6 +85,17 @@ en:
         concentration: 'Concentration, up to'
         level: 'Level'
         ritual: 'Ritual'
+      time:
+        special: 'special'
+        action: 'action'
+        bonus: 'bonus action'
+        reaction: 'reaction'
+        instant: 'instantaneous'
+        permanent: 'until dispelled'
+        rounds: 'rnd'
+        minutes: 'min'
+        hours: 'hr'
+        days: 'd'
   button-labels:
     cancel: 'Cancel'
     clear: 'Clear'

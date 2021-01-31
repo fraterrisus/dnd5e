@@ -43,12 +43,36 @@ RSpec.describe TimeUnit do
   # Instance methods
 
   describe '#unit' do
-    subject { described_class.new(0).unit }
-    it { is_expected.to eq(:special) }
+    subject { described_class.new(id).unit }
+
+    context 'when the ID exists' do
+      let(:id) { 0 }
+      it { is_expected.to eq(:special) }
+    end
+
+    context 'when the ID does not exist' do
+      let(:id) { 9 }
+
+      it 'throws an exception' do
+        expect { subject }.to raise_error(ArgumentError)
+      end
+    end
   end
 
   describe '#time' do
-    subject { described_class.new(0).time }
-    it { is_expected.to eq('special') }
+    subject { described_class.new(id).time }
+
+    context 'when the ID exists' do
+      let(:id) { 0 }
+      it { is_expected.to eq('special') }
+    end
+
+    context 'when the ID does not exist' do
+      let(:id) { 9 }
+
+      it 'throws an exception' do
+        expect { subject }.to raise_error(ArgumentError)
+      end
+    end
   end
 end

@@ -43,12 +43,36 @@ RSpec.describe DistanceUnit do
   # Instance methods
 
   describe '#unit' do
-    subject { described_class.new(0).unit }
-    it { is_expected.to eq('Self') }
+    subject { described_class.new(id).unit }
+
+    context 'when the ID exists' do
+      let(:id) { 0 }
+      it { is_expected.to eq('Self') }
+    end
+
+    context 'when the ID does not exist' do
+      let(:id) { 9 }
+
+      it 'throws an exception' do
+        expect { subject }.to raise_error(ArgumentError)
+      end
+    end
   end
 
   describe '#range' do
-    subject { described_class.new(0).range }
-    it { is_expected.to eq('self') }
+    subject { described_class.new(id).range }
+
+    context 'when the ID exists' do
+      let(:id) { 0 }
+      it { is_expected.to eq('self') }
+    end
+
+    context 'when the ID does not exist' do
+      let(:id) { 9 }
+
+      it 'throws an exception' do
+        expect { subject }.to raise_error(ArgumentError)
+      end
+    end
   end
 end

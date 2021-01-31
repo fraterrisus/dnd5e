@@ -42,12 +42,36 @@ RSpec.describe SpellSchool do
   # Instance methods
 
   describe '#abbr' do
-    subject { described_class.new(0).abbr }
-    it { is_expected.to eq('Ab') }
+    subject { described_class.new(id).abbr }
+
+    context 'when the ID exists' do
+      let(:id) { 0 }
+      it { is_expected.to eq('Ab') }
+    end
+
+    context 'when the ID does not exist' do
+      let(:id) { 9 }
+
+      it 'throws an exception' do
+        expect { subject }.to raise_error(ArgumentError)
+      end
+    end
   end
 
   describe '#school' do
-    subject { described_class.new(0).school }
-    it { is_expected.to eq('Abjuration') }
+    subject { described_class.new(id).school }
+
+    context 'when the ID exists' do
+      let(:id) { 0 }
+      it { is_expected.to eq('Abjuration') }
+    end
+
+    context 'when the ID does not exist' do
+      let(:id) { 9 }
+
+      it 'throws an exception' do
+        expect { subject }.to raise_error(ArgumentError)
+      end
+    end
   end
 end
