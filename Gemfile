@@ -32,6 +32,10 @@ end
 
 group :test do
   gem 'capybara', '>= 3.26'
+  gem 'factory_bot_rails'
+  gem 'rspec'
+  gem 'rspec-rails'
+  gem 'rubocop-rspec'
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
