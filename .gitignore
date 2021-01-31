@@ -29,9 +29,6 @@ public/spells
 /storage/*
 !/storage/.keep
 
-/public/assets
-.byebug_history
-
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
@@ -42,3 +39,4 @@ public/spells
 yarn-debug.log*
 .yarn-integrity
 .sass-cache
+.byebug_history

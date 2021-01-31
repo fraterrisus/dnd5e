@@ -1,8 +1,8 @@
 <% filters.to_h.each do |k,v| %>
   <%= tag.div do %>
     <%= t("helpers.label.spell.#{k}") %>:
-    <% Array.wrap(v).each do |val| %>
-      <%= case k
+    <%= Array.wrap(v).map do |val| %>
+      <% case k
           when 'school_id'
             SpellSchool.school(val.to_i)
           when 'level'
@@ -16,10 +16,10 @@
           when 'components'
             Spell::components_to_s(val.to_i)
           when 'caster_classes'
-            CasterClass.where(id: val['id']).pluck(:nym).join(' ')
+            CasterClass.where(id: val['id']).pluck(:nym).join(', ')
           else
             val
           end %>
-    <% end %>
+    <% end.join(', ') %>
   <% end %>
 <% end %>

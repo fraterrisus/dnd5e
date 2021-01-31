@@ -1,22 +1,13 @@
 class TimeUnit
-  UNITS = {
-    0 => { unit: :special, time: 'special' },
-    1 => { unit: :action, time: 'action' },
-    2 => { unit: :bonus, time: 'bonus action' },
-    3 => { unit: :reaction, time: 'reaction' },
-    4 => { unit: :instant, time: 'instantaneous' },
-    5 => { unit: :permanent, time: 'until dispelled' },
-    10 => { unit: :rounds, time: 'rnd' },
-    11 => { unit: :minutes, time: 'min' },
-    12 => { unit: :hours, time: 'hr' },
-    13 => { unit: :days, time: 'd' }
-  }.freeze
+  UNITS = [:special, :action, :bonus, :reaction, :instant, :permanent, nil, nil, nil, nil,
+           :rounds, :minutes, :hours, :days].freeze
 
   def initialize(id)
-    raise(ArgumentError, id) unless UNITS.keys.include? id
+    unit = UNITS[id]
+    raise(ArgumentError, id) unless unit
 
-    @unit = UNITS[id][:unit]
-    @time = UNITS[id][:time]
+    @unit = unit
+    @time = I18n.t("attributes.full.time.#{unit}")
   end
 
   attr_reader :time, :unit
@@ -30,8 +21,10 @@ class TimeUnit
   end
 
   def self.options_for_select
-    UNITS.map do |id, data|
-      [data[:unit].to_s.capitalize, id]
+    [].tap do |options|
+      UNITS.each_with_index do |unit, idx|
+        options << [unit.to_s.capitalize, idx] if unit
+      end
     end
   end
 end

@@ -1,0 +1,9 @@
+<% if spell %>
+  <%= tag.div(class: %w(col-6)) do %>
+    <%= tag.div(class: %w(form-check)) do %>
+      <%= tag.input(id: "spell-#{spell.id}", class: %w(form-check-input), type: 'checkbox',
+                    name: "spell_ids[#{spell.id}]", checked: @cclass.spell_ids.include?(spell.id)) %>
+      <%= tag.label(spell.nym, class: %w(form-check-label), for: "spell-#{spell.id}") %>
+    <% end %>
+  <% end %>
+<% end %>

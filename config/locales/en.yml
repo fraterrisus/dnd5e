@@ -20,7 +20,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  helpers:
+  attributes:
     abbr:
       character:
         ac: 'AC'
@@ -34,6 +34,23 @@ en:
         speed: 'Spd'
         str: 'Str'
         wis: 'Wis'
+      range:
+        feet: "'"
+        miles: 'mi'
+        plane: 'same plane'
+        self: 'self'
+        sight: 'sight'
+        touch: 'touch'
+        unlimited: 'unlimited'
+      school:
+        abjuration: 'Ab'
+        conjuration: 'Co'
+        divination: 'Dv'
+        enchantment: 'En'
+        evocation: 'Ev'
+        illusion: 'Il'
+        necromancy: 'Nc'
+        transmutation: 'Tr'
     full:
       character:
         ac: 'Armor Class'
@@ -47,6 +64,47 @@ en:
         speed: 'Speed'
         str: 'Strength'
         wis: 'Wisdom'
+      range:
+        feet: 'Feet'
+        miles: 'Miles'
+        plane: 'Plane'
+        self: 'Self'
+        sight: 'Sight'
+        touch: 'Touch'
+        unlimited: 'Unlimited'
+      school:
+        abjuration: 'Abjuration'
+        conjuration: 'Conjuration'
+        divination: 'Divination'
+        enchantment: 'Enchantment'
+        evocation: 'Evocation'
+        illusion: 'Illusion'
+        necromancy: 'Necromancy'
+        transmutation: 'Transmutation'
+      spell:
+        concentration: 'Concentration, up to'
+        level: 'Level'
+        ritual: 'Ritual'
+      time:
+        special: 'special'
+        action: 'action'
+        bonus: 'bonus action'
+        reaction: 'reaction'
+        instant: 'instantaneous'
+        permanent: 'until dispelled'
+        rounds: 'rnd'
+        minutes: 'min'
+        hours: 'hr'
+        days: 'd'
+  button-labels:
+    cancel: 'Cancel'
+    clear: 'Clear'
+    create: 'Add'
+    delete: 'Delete'
+    edit: 'Update'
+    import: 'Import'
+    turn: 'Next Turn'
+  helpers:
     label:
       caster_class:
         nym: 'Name'
@@ -55,8 +113,13 @@ en:
         nym: 'Name'
       combatant:
         nym: 'Name'
+      dice:
+        advantage: 'Advantage'
+        dice_n: 'Number of Dice'
+        result: 'Result'
       spell:
         aoe: 'Area of Effect'
+        cantrip: 'Cantrip'
         cast_n: 'Casting Time'
         cast_unit: 'Casting Time'
         caster_classes: 'Caster Class'
@@ -75,3 +138,37 @@ en:
         reaction: 'Reaction Trigger'
         ritual: 'May be cast as Ritual'
         school_id: 'Magic School'
+        tabs: 'Breakout Tabs'
+  navbar-titles:
+    caster_classes: 'Classes'
+    characters: 'Characters'
+    combatants: 'Initiative'
+    spells: 'Spells'
+  page-titles:
+    application-header: 'D&D5e Reference'
+    caster_class:
+      create: 'New Caster Class'
+      delete: 'Delete Caster Class'
+      edit: 'Edit Caster Class'
+      list: 'Caster Classes'
+    character:
+      create: 'New Character'
+      delete: 'Delete Character'
+      edit: 'Edit Character'
+      list: 'Character List'
+    combatants:
+      create: 'New Combatant'
+      delete: 'Delete Combatant'
+      edit: 'Edit Combatant'
+      list: 'Combat: Initiative'
+    dice: 'Dice Roller'
+    spells:
+      create: 'New Spell'
+      delete: 'Delete Spell'
+      edit: 'Edit Spell'
+      filter: 'Filter Spells'
+      list: 'Spell List'
+  strings:
+    delete-confirm-before: 'Are you sure you want to delete'
+    delete-confirm-after: '?'
+    loading: 'Loading...'

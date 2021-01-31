@@ -6,7 +6,7 @@
       <%= tag.div(class: %w(modal-content)) do %>
 
         <%= tag.div(class: %w(modal-header)) do %>
-          <%= tag.h5('Filter Spells', id: 'filter-modal-label', class: %w(modal-title)) %>
+          <%= tag.h5(t('page-titles.spells.filter'), id: 'filter-modal-label', class: %w(modal-title)) %>
           <%= tag.button(type: 'button', class: %w(btn-close), 'data-bs-dismiss': 'modal',
                          aria: { label: 'close' }) %>
         <% end %>
@@ -27,7 +27,7 @@
           <%= tag.div(class: %w(mb-3)) do %>
             <%= tag.label(t('helpers.label.spell.level'), class: %w(form-label), for: 'spell_level') %>
             <%= select_tag('spell[level]',
-                           options_for_select([['Cantrip', 0]] + (1..9).zip( (1..9).to_a) ),
+                           options_for_select([[t('helpers.label.spell.cantrip'), 0]] + (1..9).zip( (1..9).to_a) ),
                            multiple: true, class: %w(form-control)) %>
           <% end %>
 
@@ -68,24 +68,24 @@
                            multiple: true, class: %w(form-control)) %>
           <% end %>
           <%= tag.div(class: %w(mb-3)) do %>
-            <%= tag.div('Breakout tabs', class: %w(form-label)) %>
+            <%= tag.div(t('helpers.label.spell.tabs'), class: %w(form-label)) %>
             <%= tag.div(class: %w(form-check)) do %>
               <%= tag.input(id: 'spell_sort_by_name', name: 'spell[sort_by_level]',
                             class: %w(form-check-input), type: 'radio', value: '0', checked: true) %>
-              <%= tag.label('Name', class: %w(form-check-label), for: 'spell_sort_by_name') %>
+              <%= tag.label(t('helpers.label.spell.nym'), class: %w(form-check-label), for: 'spell_sort_by_name') %>
             <% end %>
             <%= tag.div(class: %w(form-check)) do %>
               <%= tag.input(id: 'spell_sort_by_level', name: 'spell[sort_by_level]',
                             class: %w(form-check-input), type: 'radio', value: '1') %>
-              <%= tag.label('Level', class: %w(form-check-label), for: 'spell_sort_by_level') %>
+              <%= tag.label(t('helpers.label.spell.level'), class: %w(form-check-label), for: 'spell_sort_by_level') %>
             <% end %>
           <% end %>
         <% end %>
 
         <%= tag.div(class: %w(modal-footer)) do %>
-          <%= tag.button('Cancel', type: 'button', class: %w(btn btn-outline-secondary),
+          <%= tag.button(t('button-labels.cancel'), type: 'button', class: %w(btn btn-outline-secondary),
                          'data-bs-dismiss': 'modal') %>
-          <%= tag.button('Update Filters', type: 'button', id: 'filter-modal-ok',
+          <%= tag.button(t('button-labels.edit'), type: 'button', id: 'filter-modal-ok',
                          class: %w(btn btn-primary), 'data-bs-dismiss': 'modal') %>
         <% end %>
       <% end %>

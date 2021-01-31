@@ -12,7 +12,7 @@
         <%= tag.li(chunk_id, class: %w(nav-item), role: 'presentation') do %>
           <% classes = %w(nav-link) %>
           <% classes << 'active' if first_tab %>
-          <% link_text = chunk_id == 0 ? 'Cantrips' : chunk_id %>
+          <% link_text = chunk_id == 0 ? t('helpers.label.spell.cantrip').pluralize : chunk_id %>
           <%= tag.a(link_text, href: "#spells-#{chunk_id}", class: classes, id: "tab-#{chunk_id}",
                     role: 'tab', 'data-bs-toggle': 'tab', 'aria-controls': "spells-#{chunk_id}") %>
         <% end %>

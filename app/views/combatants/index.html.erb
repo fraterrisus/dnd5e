@@ -2,18 +2,18 @@
   <%= javascript_pack_tag 'combat' %>
 <% end %>
 
-<%= tag.h1('Combat: Initiative') %>
+<%= tag.h1(t('page-titles.combatants.list')) %>
 
 <%= tag.div(class: %w(col-sm-12 col-md-8 col-lg-6)) do %>
   <%= tag.div(id: 'initiative-control', class: %w(card)) do %>
     <%= tag.div(class: %w(card-header)) do %>
       <%= tag.div(class: %w(btn-group), role: 'group', aria: { label: 'cycle' }) do %>
-        <%= tag.button('Next Turn', id: 'next-turn-btn', class: %w(btn btn-primary)) %>
+        <%= tag.button(t('button-labels.turn'), id: 'next-turn-btn', class: %w(btn btn-primary)) %>
       <% end %>
       <%= tag.div(class: %w(btn-group), role: 'group', aria: { label: 'modify combatants '}) do %>
-        <%= tag.button('New', id: 'new-btn', class: %w(btn btn-outline-success)) %>
-        <%= tag.button('Clear', id: 'clear-btn', class: %w(btn btn-outline-secondary)) %>
-        <%= tag.button('Import', id: 'import-btn', class: %w(btn btn-outline-secondary)) %>
+        <%= tag.button(t('button-labels.create'), id: 'new-btn', class: %w(btn btn-outline-success)) %>
+        <%= tag.button(t('button-labels.clear'), id: 'clear-btn', class: %w(btn btn-outline-secondary)) %>
+        <%= tag.button(t('button-labels.import'), id: 'import-btn', class: %w(btn btn-outline-secondary)) %>
       <% end %>
       <%= render partial: 'loading_spinner' %>
     <% end %>

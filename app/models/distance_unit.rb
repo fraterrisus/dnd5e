@@ -1,19 +1,12 @@
 class DistanceUnit
-  UNITS = {
-    0 => { unit: 'Self', range: 'self' },
-    1 => { unit: 'Touch', range: 'touch' },
-    2 => { unit: 'Sight', range: 'sight' },
-    3 => { unit: 'Plane', range: 'same plane' },
-    4 => { unit: 'Unlimited', range: 'unlimited' },
-    10 => { unit: 'Feet', range: "'" },
-    11 => { unit: 'Miles', range: 'mi' }
-  }.freeze
+  UNITS = [:self, :touch, :sight, :plane, :unlimited, nil, nil, nil, nil, nil, :feet, :miles].freeze
 
   def initialize(id)
-    raise(ArgumentError, id) unless UNITS.keys.include? id
+    unit = UNITS[id]
+    raise(ArgumentError, id) unless unit
 
-    @unit = UNITS[id][:unit]
-    @range = UNITS[id][:range]
+    @unit = I18n.t("attributes.full.range.#{unit}")
+    @range = I18n.t("attributes.abbr.range.#{unit}")
   end
 
   attr_reader :unit, :range
@@ -27,8 +20,10 @@ class DistanceUnit
   end
 
   def self.options_for_select
-    UNITS.map do |id, data|
-      [data[:unit], id]
+    [].tap do |options|
+      UNITS.each_with_index do |unit, idx|
+        options << [I18n.t("attributes.full.range.#{unit}"), idx] if unit
+      end
     end
   end
 end

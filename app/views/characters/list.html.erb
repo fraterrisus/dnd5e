@@ -2,10 +2,10 @@
   <%= tag.table(id: 'character-table', class: %w(table table-sm)) do %>
     <%= tag.tr do %>
       <%= tag.th %>
-      <%= tag.th(t('helpers.abbr.character.nym')) %>
+      <%= tag.th(t('attributes.abbr.character.nym')) %>
       <% Character::TABLE_FIELDS.each do |field| %>
-        <%= tag.th(t("helpers.abbr.character.#{field}"), class: %w(text-center),
-                   title: t("helpers.full.character.#{field}")) %>
+        <%= tag.th(t("attributes.abbr.character.#{field}"), class: %w(text-center),
+                   title: t("attributes.full.character.#{field}")) %>
       <% end %>
     <% end %>
     <% @chars.each do |c| %>

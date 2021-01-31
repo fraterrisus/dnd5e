@@ -11,10 +11,10 @@
   <% end %>
   <%= tag.div(id: 'dnd-navbar', class: %w(collapse navbar-collapse)) do %>
     <%= tag.ul(class: %w(navbar-nav mr-auto)) do %>
-      <%= tag.li(class: 'nav-item') { link_to('Spells', spells_path, class: 'nav-link') } %>
-      <%= tag.li(class: 'nav-item') { link_to('Characters', characters_path, class: 'nav-link') } %>
-      <%= tag.li(class: 'nav-item') { link_to('Initiative', combat_path, class: 'nav-link') } %>
-      <%= tag.li(class: 'nav-item') { link_to('Casters', caster_classes_path, class: 'nav-link') } %>
+      <%= tag.li(class: 'nav-item') { link_to(t('navbar-titles.spells'), spells_path, class: 'nav-link') } %>
+      <%= tag.li(class: 'nav-item') { link_to(t('navbar-titles.characters'), characters_path, class: 'nav-link') } %>
+      <%= tag.li(class: 'nav-item') { link_to(t('navbar-titles.combatants'), combat_path, class: 'nav-link') } %>
+      <%= tag.li(class: 'nav-item') { link_to(t('navbar-titles.caster_classes'), caster_classes_path, class: 'nav-link') } %>
     <% end %>
   <% end %>
 <% end %>

@@ -3,7 +3,7 @@
                 html: { id: 'delete-object-form', class: 'form', role: 'form' }) do |_| %>
     <%= tag.div(class: %w(modal-content)) do %>
       <%= tag.div(class: %w(modal-header)) do %>
-        <%= tag.h5('Delete Character', class: %w(modal-title), id: 'object-delete-label') %>
+        <%= tag.h5(t('page-titles.character.delete'), class: %w(modal-title), id: 'object-delete-label') %>
         <%= tag.button(type: 'button', class: %w(btn-close), 'data-bs-dismiss': 'modal',
                        aria: { label: 'close' }) %>
       <% end %>
@@ -11,14 +11,14 @@
       <%= tag.div(class: %w(modal-body)) do %>
         <%= tag.i(class: %w(bi bi-exclamation-octagon-fill text-danger fs-3 ms-3)) %>
         <%= tag.span(class: %w(fs-5 ms-3)) do %>
-          Are you sure you want to delete <%= @char.nym %>?
+          <%= t('strings.delete-confirm-before') + @char.nym + t('strings.delete-confirm-after') %>
         <% end %>
       <% end %>
 
       <%= tag.div(class: %w(modal-footer)) do %>
-        <%= tag.button('Cancel', type: 'button', class: %w(btn btn-outline-secondary),
+        <%= tag.button(t('button-labels.cancel'), type: 'button', class: %w(btn btn-outline-secondary),
                        'data-bs-dismiss': 'modal') %>
-        <%= tag.button('Delete', type: 'button', id: 'delete-object-ok',
+        <%= tag.button(t('button-labels.delete'), type: 'button', id: 'delete-object-ok',
                        class: %w(btn btn-danger), 'data-bs-dismiss': 'modal') %>
       <% end %>
     <% end %>
