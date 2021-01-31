@@ -9,6 +9,8 @@ RSpec.describe SpellSchool do
     I18n.locale = @saved_locale
   end
 
+  # Class methods
+
   describe '::abbr' do
     it 'translates values as expected' do
       %w(Ab Co Dv En Ev Il Nc Tr).each_with_index do |abbr, idx|
@@ -35,5 +37,17 @@ RSpec.describe SpellSchool do
       end
       expect(described_class.options_for_select).to eq(expected_value)
     end
+  end
+
+  # Instance methods
+
+  describe 'abbr' do
+    subject { described_class.new(0).abbr }
+    it { is_expected.to eq('Ab') }
+  end
+
+  describe 'school' do
+    subject { described_class.new(0).school }
+    it { is_expected.to eq('Abjuration') }
   end
 end

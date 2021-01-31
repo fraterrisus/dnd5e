@@ -1,20 +1,13 @@
 class SpellSchool
-  SCHOOLS = {
-    0 => { school: 'Abjuration', abbr: 'Ab' },
-    1 => { school: 'Conjuration', abbr: 'Co' },
-    2 => { school: 'Divination', abbr: 'Dv' },
-    3 => { school: 'Enchantment', abbr: 'En' },
-    4 => { school: 'Evocation', abbr: 'Ev' },
-    5 => { school: 'Illusion', abbr: 'Il' },
-    6 => { school: 'Necromancy', abbr: 'Nc' },
-    7 => { school: 'Transmutation', abbr: 'Tr' }
-  }.freeze
+  SCHOOLS = %i(abjuration conjuration divination enchantment
+               evocation illusion necromancy transmutation).freeze
 
   def initialize(id)
-    raise ArgumentError unless SCHOOLS.keys.include? id
+    sym = SCHOOLS[id]
+    raise ArgumentError unless sym
 
-    @abbr = SCHOOLS[id][:abbr]
-    @school = SCHOOLS[id][:school]
+    @abbr = I18n.t("helpers.abbr.spell_school.#{sym}")
+    @school = I18n.t("helpers.full.spell_school.#{sym}")
   end
 
   attr_reader :abbr, :school
@@ -28,8 +21,10 @@ class SpellSchool
   end
 
   def self.options_for_select
-    SCHOOLS.map do |id, data|
-      [data[:school], id]
+    [].tap do |options|
+      SCHOOLS.each_with_index do |sym, id|
+        options << [I18n.t("helpers.full.spell_school.#{sym}"), id]
+      end
     end
   end
 end
