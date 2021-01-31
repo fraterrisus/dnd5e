@@ -42,6 +42,15 @@ en:
         speed: 'Spd'
         str: 'Str'
         wis: 'Wis'
+      spell_school:
+        abjuration: 'Ab'
+        conjuration: 'Co'
+        divination: 'Dv'
+        enchantment: 'En'
+        evocation: 'Ev'
+        illusion: 'Il'
+        necromancy: 'Nc'
+        transmutation: 'Tr'
     full:
       character:
         ac: 'Armor Class'
@@ -55,6 +64,15 @@ en:
         speed: 'Speed'
         str: 'Strength'
         wis: 'Wisdom'
+      spell_school:
+        abjuration: 'Abjuration'
+        conjuration: 'Conjuration'
+        divination: 'Divination'
+        enchantment: 'Enchantment'
+        evocation: 'Evocation'
+        illusion: 'Illusion'
+        necromancy: 'Necromancy'
+        transmutation: 'Transmutation'
     label:
       caster_class:
         nym: 'Name'
@@ -80,7 +98,7 @@ en:
         duration_unit: 'Duration'
         effect: 'Spell Effect'
         higher: 'At Higher Levels'
-        level: 'Spell Level'
+        level: 'Level'
         nym: 'Name'
         page: 'Reference'
         range_n: 'Range'

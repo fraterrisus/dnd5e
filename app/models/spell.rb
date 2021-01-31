@@ -6,7 +6,11 @@ class Spell < ActiveRecord::Base
   end
 
   def self.level_to_s(level)
-    level.zero? ? I18n.t('helpers.label.spell.cantrip') : "Level #{level}"
+    if level.zero?
+      I18n.t('helpers.label.spell.cantrip')
+    else
+      "#{I18n.t('helpers.label.spell.level')} #{level}"
+    end
   end
 
   def level_text
