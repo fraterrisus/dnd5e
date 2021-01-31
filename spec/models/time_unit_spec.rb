@@ -47,7 +47,10 @@ RSpec.describe TimeUnit do
 
     context 'when the ID exists' do
       let(:id) { 0 }
-      it { is_expected.to eq(:special) }
+
+      it 'translates the value' do
+        is_expected.to eq(:special)
+      end
     end
 
     context 'when the ID does not exist' do
@@ -64,7 +67,10 @@ RSpec.describe TimeUnit do
 
     context 'when the ID exists' do
       let(:id) { 0 }
-      it { is_expected.to eq('special') }
+
+      it 'translates the value' do
+        is_expected.to eq('special')
+      end
     end
 
     context 'when the ID does not exist' do

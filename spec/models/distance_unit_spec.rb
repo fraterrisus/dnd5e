@@ -47,7 +47,10 @@ RSpec.describe DistanceUnit do
 
     context 'when the ID exists' do
       let(:id) { 0 }
-      it { is_expected.to eq('Self') }
+
+      it 'translates the value' do
+        is_expected.to eq('Self')
+      end
     end
 
     context 'when the ID does not exist' do
@@ -64,7 +67,10 @@ RSpec.describe DistanceUnit do
 
     context 'when the ID exists' do
       let(:id) { 0 }
-      it { is_expected.to eq('self') }
+
+      it 'translates the ID' do
+        is_expected.to eq('self')
+      end
     end
 
     context 'when the ID does not exist' do

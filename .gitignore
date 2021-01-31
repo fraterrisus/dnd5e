@@ -4,13 +4,17 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile '~/.gitignore_global'
 
+# Ignore all backup and temporary editor files.
+*.bak
+*.tmp
+
 # Ignore copyrighted spell data.
 public/spells
 
 # Ignore bundler config.
 /.bundle
 
-# Ignore the default SQLite database.
+# Ignore the default SQLite databases.
 /db/*.sqlite3
 /db/*.sqlite3-*
 
@@ -32,11 +36,12 @@ public/spells
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
+.byebug_history
+/node_modules
 /public/packs
 /public/packs-test
-/node_modules
-/yarn-error.log
-yarn-debug.log*
-.yarn-integrity
 .sass-cache
-.byebug_history
+/spec/examples.txt
+yarn-debug.log*
+/yarn-error.log
+.yarn-integrity

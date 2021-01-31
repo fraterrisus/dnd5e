@@ -18,15 +18,10 @@ class Spell < ActiveRecord::Base
   end
 
   def range_text
-    if range_unit >= 10
-      "#{range_n}#{DistanceUnit.range(range_unit)}"
-    else
-      DistanceUnit.range(range_unit)
+    ''.tap do |text|
+      text << range_n.to_s if range_unit >= 10
+      text << DistanceUnit.range(range_unit)
     end
-  end
-
-  def reference_text
-    "PHB p.#{page}"
   end
 
   def school_text
@@ -52,19 +47,12 @@ class Spell < ActiveRecord::Base
   end
   # :doc:
 
-  def cast_as_reaction?
-    TimeUnit.unit(cast_unit) == :reaction
-  end
-
-  def reaction_text
-    cast_as_reaction? ? reaction : nil
-  end
-
   def casting_time_text
-    text = TimeUnit.time(cast_unit)
-    text = "#{cast_n} #{text}" if cast_unit >= 10
-    text += " (#{I18n.t('attributes.full.spell.ritual')})" if ritual
-    text.capitalize
+    ''.tap do |text|
+      text << "#{cast_n} " if cast_unit >= 10
+      text << TimeUnit.time(cast_unit)
+      text << " (#{I18n.t('attributes.full.spell.ritual')})" if ritual
+    end.capitalize
   end
 
   def components_text
@@ -72,18 +60,18 @@ class Spell < ActiveRecord::Base
   end
 
   def self.components_to_s(bitfield)
-    cmp = []
-    cmp << 'V' if bitfield[3] == 1
-    cmp << 'S' if bitfield[2] == 1
-    cmp << (bitfield[0] == 1 ? 'F' : 'M') if bitfield[1] == 1
-    cmp.join ','
+    [].tap do |cmp|
+      cmp << 'V' if bitfield[3] == 1
+      cmp << 'S' if bitfield[2] == 1
+      cmp << (bitfield[0] == 1 ? 'F' : 'M') if bitfield[1] == 1
+    end.join ','
   end
 
   def duration_text
-    dt = ''
-    dt += "#{I18n.t('attributes.full.spell.concentration')} " if concentration
-    dt += "#{duration_n} " if duration_unit >= 10
-    dt += TimeUnit.time(duration_unit)
-    dt.capitalize
+    ''.tap do |text|
+      text << "#{I18n.t('attributes.full.spell.concentration')} " if concentration
+      text << "#{duration_n} " if duration_unit >= 10
+      text << TimeUnit.time(duration_unit)
+    end.capitalize
   end
 end

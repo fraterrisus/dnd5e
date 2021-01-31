@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'CasterClasses routes' do
+RSpec.describe 'CasterClasses' do
   it 'routes #confirm_delete' do
     expect(get: 'classes/18/confirm/delete')
       .to route_to(controller: 'caster_classes', action: 'confirm_delete', id: '18')
