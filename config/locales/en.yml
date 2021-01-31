@@ -20,15 +20,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  button-labels:
-    cancel: 'Cancel'
-    clear: 'Clear'
-    create: 'Add'
-    delete: 'Delete'
-    edit: 'Update'
-    import: 'Import'
-    turn: 'Next Turn'
-  helpers:
+  attributes:
     abbr:
       character:
         ac: 'AC'
@@ -42,7 +34,7 @@ en:
         speed: 'Spd'
         str: 'Str'
         wis: 'Wis'
-      spell_school:
+      school:
         abjuration: 'Ab'
         conjuration: 'Co'
         divination: 'Dv'
@@ -64,7 +56,15 @@ en:
         speed: 'Speed'
         str: 'Strength'
         wis: 'Wisdom'
-      spell_school:
+      range:
+        self: 'Self'
+        touch: 'Touch'
+        sight: 'Sight'
+        plane: 'Plane'
+        unlimited: 'Unlimited'
+        feet: 'Feet'
+        miles: 'Miles'
+      school:
         abjuration: 'Abjuration'
         conjuration: 'Conjuration'
         divination: 'Divination'
@@ -73,6 +73,19 @@ en:
         illusion: 'Illusion'
         necromancy: 'Necromancy'
         transmutation: 'Transmutation'
+      spell:
+        concentration: 'Concentration, up to'
+        level: 'Level'
+        ritual: 'Ritual'
+  button-labels:
+    cancel: 'Cancel'
+    clear: 'Clear'
+    create: 'Add'
+    delete: 'Delete'
+    edit: 'Update'
+    import: 'Import'
+    turn: 'Next Turn'
+  helpers:
     label:
       caster_class:
         nym: 'Name'
@@ -98,7 +111,7 @@ en:
         duration_unit: 'Duration'
         effect: 'Spell Effect'
         higher: 'At Higher Levels'
-        level: 'Level'
+        level: 'Spell Level'
         nym: 'Name'
         page: 'Reference'
         range_n: 'Range'

@@ -6,8 +6,8 @@ class SpellSchool
     sym = SCHOOLS[id]
     raise ArgumentError unless sym
 
-    @abbr = I18n.t("helpers.abbr.spell_school.#{sym}")
-    @school = I18n.t("helpers.full.spell_school.#{sym}")
+    @abbr = I18n.t("attributes.abbr.school.#{sym}")
+    @school = I18n.t("attributes.full.school.#{sym}")
   end
 
   attr_reader :abbr, :school
@@ -23,7 +23,7 @@ class SpellSchool
   def self.options_for_select
     [].tap do |options|
       SCHOOLS.each_with_index do |sym, id|
-        options << [I18n.t("helpers.full.spell_school.#{sym}"), id]
+        options << [I18n.t("attributes.full.school.#{sym}"), id]
       end
     end
   end

@@ -41,12 +41,12 @@ RSpec.describe SpellSchool do
 
   # Instance methods
 
-  describe 'abbr' do
+  describe '#abbr' do
     subject { described_class.new(0).abbr }
     it { is_expected.to eq('Ab') }
   end
 
-  describe 'school' do
+  describe '#school' do
     subject { described_class.new(0).school }
     it { is_expected.to eq('Abjuration') }
   end

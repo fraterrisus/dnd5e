@@ -9,7 +9,7 @@ class Spell < ActiveRecord::Base
     if level.zero?
       I18n.t('helpers.label.spell.cantrip')
     else
-      "#{I18n.t('helpers.label.spell.level')} #{level}"
+      "#{I18n.t('attributes.full.spell.level')} #{level}"
     end
   end
 
@@ -63,7 +63,7 @@ class Spell < ActiveRecord::Base
   def casting_time_text
     text = TimeUnit.time(cast_unit)
     text = "#{cast_n} #{text}" if cast_unit >= 10
-    text += ' (ritual)' if ritual
+    text += " (#{I18n.t('attributes.full.spell.ritual')})" if ritual
     text.capitalize
   end
 
@@ -81,7 +81,7 @@ class Spell < ActiveRecord::Base
 
   def duration_text
     dt = ''
-    dt += 'Concentration, up to ' if concentration
+    dt += "#{I18n.t('attributes.full.spell.concentration')} " if concentration
     dt += "#{duration_n} " if duration_unit >= 10
     dt += TimeUnit.time(duration_unit)
     dt.capitalize
