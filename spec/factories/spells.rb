@@ -3,7 +3,19 @@ FactoryBot.define do
     cast_unit { 0 }
     components { 0 }
     duration_unit { 0 }
+    level { 1 }
     range_unit { 0 }
+    school_id { 0 }
+
+    trait :random_nym do
+      nym do
+        ('A'..'Z').to_a.sample + ('a'..'z').to_a.sample(9).join
+      end
+    end
+
+    trait :random_level do
+      level { Random.rand(10) }
+    end
 
     # Spell Level
 

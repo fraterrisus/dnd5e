@@ -11,12 +11,12 @@
       <%= tag.div(class: %w(modal-body)) do %>
         <%= tag.i(class: %w(bi bi-exclamation-octagon-fill text-danger fs-3 ms-3)) %>
         <%= tag.span(class: %w(fs-5 ms-3)) do %>
-          <%= t('strings.delete-confirm-before') + @cclass.nym + t('strings.delete-confirm-after') %>
+          <%= t('strings.delete-confirm-before') + ' ' + @cclass.nym + t('strings.delete-confirm-after') %>
         <% end %>
       <% end %>
 
       <%= tag.div(class: %w(modal-footer)) do %>
-        <%= tag.button('Cancel', type: 'button', class: %w(btn btn-outline-secondary),
+        <%= tag.button('Cancel', type: 'button', class: %w(btn btn-outline-secondary cancel-button),
                        'data-bs-dismiss': 'modal') %>
         <%= tag.button('Delete', type: 'button', id: 'delete-object-ok',
                        class: %w(btn btn-danger), 'data-bs-dismiss': 'modal') %>

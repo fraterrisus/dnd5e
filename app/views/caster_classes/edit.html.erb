@@ -25,7 +25,7 @@
         <% end %>
 
         <%= tag.div(class: %w(modal-footer)) do %>
-          <%= tag.button(t('button-labels.cancel'), type: 'button', class: %w(btn btn-outline-secondary),
+          <%= tag.button(t('button-labels.cancel'), type: 'button', class: %w(btn btn-outline-secondary cancel-button),
                          'data-bs-dismiss': 'modal') %>
           <%= tag.button(submit_verb, type: 'button', id: 'object-modal-ok', class: %w(btn btn-success),
                          'data-bs-dismiss': 'modal') %>

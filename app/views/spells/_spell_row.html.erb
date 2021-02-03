@@ -2,7 +2,7 @@
   <%= tag.i(class: %w(bi bi-eye-fill text-primary view-button), title: 'View Spell Description', 'data-spell-file': spell.to_asset) %>
   <%= tag.i(class: %w(bi bi-pencil-fill text-primary edit-button), title: 'Edit Spell', 'data-spell-id': spell.id) %>
   <%= tag.span(class: %w(ms-3)) do %>
-    <%= tag.b { spell.nym } %> &ndash;
+    <%= tag.span(spell.nym, class: %w(spell-nym fw-bold)) %> &ndash;
     <%= spell.school_text %> &ndash;
     <%= spell.level_text %> &ndash;
     <%= spell.casting_time_text %> &ndash;
