@@ -2,8 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Feature: List Caster Classes', js: true do
   before do
-    @cclasses = []
-    5.times { @cclasses << create(:caster_class, :random_nym) }
+    @cclasses = 5.times.map { create(:caster_class, :random_nym) }
 
     visit '/classes'
   end
