@@ -9,10 +9,21 @@ will display the full text when you click on the 'view' button.
 You're welcome to use the code that is here under GPL v2; see LICENSE.
 
 Current utilities:
-* dice roller (can apply dis/advantage)
-* spell list (with filtering and full text in Markdown)
+* dice roller
+  * multiple dice
+  * apply advantage / disadvantage
+* spell list
+  * filter on any attribute
+  * full spell text in Markdown
 * character list
-* initiative tracker (with "rotate turn" button)
+  * freeform notes
+  * highlight individual characters
+* initiative tracker
+  * add combatants or import from the characters list
+  * assign initative count, auto-sort, tracks whose turn it is
+* caster class list
+  * create, edit
+  * assign spells to classes
 
 ### Tech
 * Ruby 2.7
@@ -20,6 +31,9 @@ Current utilities:
 * Bootstrap 5.0.0b1 (with `popper.js` 2.6)
 
 ### Installation
+**Note** that there is no authentication anywhere, so you probably should not deploy this outside of
+a private home network.
+
 Install ruby 2.7 via the package manager of your choice; I use `rvm`.
 
 `bundle install` to install ruby libraries.
@@ -31,5 +45,6 @@ Install ruby 2.7 via the package manager of your choice; I use `rvm`.
 `rails server` should present a page at `http://localhost:3000`, although you won't have any spells
 visible on the default page.
 
-**Note** that there is no authentication anywhere, so you probably should not deploy this outside of
-a private home network.
+As I said above, I can't distribute WOTC's intellectual property, so you'll need to find your own
+source for content for the `spells` table (no "New Spell" function yet, sorry) and the markdown 
+files.
