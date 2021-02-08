@@ -12,7 +12,7 @@
         <% @spells.chunk(&:level).each do |level, subspells| %>
           <%= tag.h5(class:%w(mt-2)) { level == 0 ? t('helpers.label.spell.cantrip').pluralize : "Level #{level}"} %>
           <% lidx = 0 ; ridx = (subspells.count + 1) / 2 %>
-          <% while lidx <= (subspells.count / 2) do %>
+          <% while lidx < (subspells.count + 1) / 2 do %>
             <%= tag.div(class: %w(row)) do %>
               <%= render partial: 'spell_checkbox', locals: { spell: subspells[lidx] } %>
               <%= render partial: 'spell_checkbox', locals: { spell: subspells[ridx] } %>
@@ -23,7 +23,7 @@
       <% end %>
 
       <%= tag.div(class: %w(modal-footer)) do %>
-        <%= tag.button(t('button-labels.cancel'), type: 'button', class: %w(btn btn-outline-secondary),
+        <%= tag.button(t('button-labels.cancel'), type: 'button', class: %w(btn btn-outline-secondary cancel-button),
                        'data-bs-dismiss': 'modal') %>
         <%= tag.button(t('button-labels.edit'), type: 'button', id: 'spells-modal-ok',
                        class: %w(btn btn-success), 'data-bs-dismiss': 'modal') %>

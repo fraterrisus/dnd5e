@@ -71,14 +71,14 @@ RSpec.describe 'Feature: Edit Caster Class', js: true do
   end
 
   def wait_for_dialog_open
-    modal = page.find(:css, '#object-modal')
+    modal = page.find(:css, '#object-modal', visible: false)
     Timeout.timeout(2) do
       loop until modal[:class].include?('show')
     end
   end
 
   def wait_for_dialog_close
-    modal = page.find(:css, '#object-modal')
+    modal = page.find(:css, '#object-modal', visible: false)
     Timeout.timeout(2) do
       loop if modal[:class].include?('show')
     end

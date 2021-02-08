@@ -1,13 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Feature: List Spells', js: true do
-  def generate_spells(n)
-    @spells = []
-    n.times do
-      @spells << create(:spell, :random_nym, :random_level)
-    end
-  end
-
   context 'when there are no filters defined' do
     context 'and there are fewer than 20 results' do
       before do
@@ -77,6 +70,13 @@ RSpec.describe 'Feature: List Spells', js: true do
           expect(spell_nyms).to eq(spell_nyms.sort)
         end
       end
+    end
+  end
+
+  def generate_spells(n)
+    @spells = []
+    n.times do
+      @spells << create(:spell, :random_nym, :random_level)
     end
   end
 end
