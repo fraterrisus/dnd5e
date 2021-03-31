@@ -5,10 +5,7 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 @import '~@fortawesome/fontawesome-free/scss/solid';
 
-// https://icons.getbootstrap.com/
-// This file uses a relative path (./fonts), which means either we have to hack the .css file to
-// change the path, or symlink app/webpacker/packs/fonts to ~boostrap-icons/font/fonts  :vomit:
-@import '~bootstrap-icons/font/bootstrap-icons';
-
-@import '../src/stylesheets/application';
-
+// https://icons.getbootstrap.com/ plus my personal modifications
+$bs-icon-font-path: '';
+@import '../stylesheets/bootstrap-icons';
+@import '../stylesheets/dnd5e';

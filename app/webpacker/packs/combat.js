@@ -1,5 +1,5 @@
-import {Helpers} from "../src/javascript/ajax_helpers";
-import {Toasts} from "../src/javascript/toasts";
+import {Helpers} from "../lib/ajax_helpers";
+import {Toasts} from "../lib/toasts";
 import {Modal} from "bootstrap";
 
 let charactersToImport = [];

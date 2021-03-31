@@ -11,6 +11,9 @@
 # Ignore copyrighted spell data.
 public/spells
 
+# Ignore SCSS imported from node modules.
+app/webpacker/stylesheets/bootstrap-icons.scss
+
 # Ignore bundler config.
 /.bundle
 

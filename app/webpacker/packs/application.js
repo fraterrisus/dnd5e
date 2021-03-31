@@ -5,12 +5,9 @@
 
 import Rails from "@rails/ujs";
 //import Turbolinks from "turbolinks";
-import * as ActiveStorage from "@rails/activestorage";
-import "channels";
 
 Rails.start()
 //Turbolinks.start()
-ActiveStorage.start()
 
 import "bootstrap";
 
@@ -22,7 +19,7 @@ import "bootstrap";
 
 // Files can be included one of three ways:
 // 1. Add an import statement here
-//   import "../src/javascript/attribute_translators.js";
+//   import "../lib/attribute_translators.js";
 // 2. Build a new pack by creating a file in app/webpacker/packs/foo.js
 //    Then add the following incantation to the head of a view:
 //   <% content_for :head do %>

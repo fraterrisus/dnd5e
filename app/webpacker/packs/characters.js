@@ -1,6 +1,6 @@
-import {Helpers} from "../src/javascript/ajax_helpers";
+import {Helpers} from "../lib/ajax_helpers";
 import {Modal} from "bootstrap";
-import {Toasts} from "../src/javascript/toasts";
+import {Toasts} from "../lib/toasts";
 
 function fetchResults() {
   Helpers.disableUI();
