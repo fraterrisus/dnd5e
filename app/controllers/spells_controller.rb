@@ -27,16 +27,22 @@ class SpellsController < ApplicationController
   def show
     require 'redcarpet'
 
-    filename = params.require :name
-    filename = "#{Rails.root}/public/spells/#{filename}.md"
-    begin
-      markdown = File.read(filename)
-    rescue Errno::ENOENT
-      Rails.logger.error "Failed to load #{filename}"
-      render html: '', status: 404
+    base_file = params.require :name
+    dest_dir = "#{Rails.root}/public/spells"
+
+    filename = "#{dest_dir}/#{base_file}.md"
+    if File.exist?(filename)
+      render md: File.read(filename)
       return
     end
-    render md: markdown
+
+    filename = "#{dest_dir}/#{base_file}.html"
+    if File.exist?(filename)
+      render html: File.read(filename).html_safe
+      return
+    end
+
+    render html: '', status: 404
   end
 
   def list
