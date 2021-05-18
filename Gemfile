@@ -5,7 +5,7 @@ ruby '2.7.2'
 
 gem 'bootsnap', '>= 1.4', require: false # boot caching, see config/boot.rb
 gem 'jbuilder', '~> 2.7'
-gem 'puma', '~> 5.0'
+gem 'puma', '~> 5.3'
 gem 'rails', '~> 6.1'
 gem 'redcarpet', '~> 3.5' # allows rendering Markdown
 gem 'rubocop-rails', '~> 2.9'
