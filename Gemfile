@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.2'
 
+gem 'rubyzip', '~> 2.3' # be intentional about the upgrade to 3.0
+
 gem 'bootsnap', '>= 1.4', require: false # boot caching, see config/boot.rb
 gem 'jbuilder', '~> 2.7'
 gem 'puma', '~> 5.3'
