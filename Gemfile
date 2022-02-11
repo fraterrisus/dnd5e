@@ -7,7 +7,7 @@ gem 'rubyzip', '~> 2.3' # be intentional about the upgrade to 3.0
 
 gem 'bootsnap', '>= 1.4', require: false # boot caching, see config/boot.rb
 gem 'jbuilder', '~> 2.7'
-gem 'puma', '~> 5.5'
+gem 'puma', '~> 5.6'
 gem 'rails', '~> 6.1'
 gem 'redcarpet', '~> 3.5' # allows rendering Markdown
 gem 'rubocop-rails', '~> 2.9'
