@@ -26,7 +26,7 @@ jobs:
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
 
     - name: Rubocop
-      run: bundle exec rubocop
+      run: bundle exec rubocop app lib spec
 
     # Doesn't work because rspec uses selenium-webdriver
     # - name: Run tests
