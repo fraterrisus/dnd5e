@@ -26,7 +26,7 @@ group :development, :test do
 end
 
 group :development do
-  gem 'httparty', '~> 0.18'
+  gem 'httparty', '~> 0.21'
   gem 'listen', '~> 3.3' # performance popup; https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
   gem 'nokogiri', '~> 1.13'
   gem 'rack-mini-profiler', '~> 2.0'
