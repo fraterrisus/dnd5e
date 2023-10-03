@@ -22,8 +22,8 @@ RSpec.describe 'Feature: List Characters', js: true do
   end
 
   it 'builds the expected modals' do
-    expect(page).to have_css('#object-modal', :hidden)
-    expect(page).to have_css('#object-delete-modal', :hidden)
+    expect(page).to have_css('#object-modal', visible: :hidden)
+    expect(page).to have_css('#object-delete-modal', visible: :hidden)
   end
 
   it 'builds a row for every character' do

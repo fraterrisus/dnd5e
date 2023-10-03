@@ -16,9 +16,9 @@ RSpec.describe 'Feature: List Caster Classes', js: true do
   end
 
   it 'builds the expected modals' do
-    expect(page).to have_css('#object-modal', :hidden)
-    expect(page).to have_css('#object-delete-modal', :hidden)
-    expect(page).to have_css('#spells-modal', :hidden)
+    expect(page).to have_css('#object-modal', visible: :hidden)
+    expect(page).to have_css('#object-delete-modal', visible: :hidden)
+    expect(page).to have_css('#spells-modal', visible: :hidden)
   end
 
   it 'displays a sorted list of caster classes' do
