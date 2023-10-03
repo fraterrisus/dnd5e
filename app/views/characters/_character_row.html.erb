@@ -7,7 +7,7 @@
     <%= tag.i(class: %w(bi bi-pencil-fill text-primary edit-button), title: 'Edit Character') %>
     <%= tag.i(class: %w(bi bi-trash-fill text-primary delete-button), title: 'Delete Character') %>
   <% end %>
-  <%= tag.td(char.nym, td_attrs) %>
+  <%= tag.td(char.nym, **td_attrs) %>
   <% Character::TABLE_FIELDS.each do |meth| %>
     <%= tag.td(char.send(meth), class: %w(text-center)) %>
   <% end %>

@@ -16,7 +16,7 @@ RSpec.describe 'caster_classes/spells.html.erb' do
 
     it 'has one checkbox for each spell' do
       spells.each do |spell|
-        re = Regexp.new(/id="spell-#{spell.id}"/)
+        re = /id="spell-#{spell.id}"/
         results = rendered.scan(re)
         expect(results.count).to eq(1)
       end
@@ -28,7 +28,7 @@ RSpec.describe 'caster_classes/spells.html.erb' do
 
     it 'has one checkbox for each spell' do
       spells.each do |spell|
-        re = Regexp.new(/id="spell-#{spell.id}"/)
+        re = /id="spell-#{spell.id}"/
         results = rendered.scan(re)
         expect(results.count).to eq(1)
       end

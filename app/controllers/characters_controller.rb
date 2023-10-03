@@ -8,14 +8,6 @@ class CharactersController < ApplicationController
     end
   end
 
-  def create
-    data = params.require(:character)
-      .permit(:nym, :str, :dex, :con, :int, :wis, :chr,
-              :perception, :initiative, :speed, :ac, :notes, :highlight)
-    char = Character.create data
-    render json: char
-  end
-
   def new
     @char = nil
     render :edit, layout: nil
@@ -23,6 +15,14 @@ class CharactersController < ApplicationController
 
   def edit
     render layout: nil
+  end
+
+  def create
+    data = params.require(:character)
+      .permit(:nym, :str, :dex, :con, :int, :wis, :chr,
+              :perception, :initiative, :speed, :ac, :notes, :highlight)
+    char = Character.create data
+    render json: char
   end
 
   def update

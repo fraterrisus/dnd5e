@@ -1,8 +1,9 @@
+# rubocop:disable Rails/RakeEnvironment
 namespace :bootstrap do
   desc 'Import bootstrap-icons SCSS and update font URLs'
   task :icons do
-    source_dir = Rails.root.join('node_modules', 'bootstrap-icons', 'font')
-    assets_dir = Rails.root.join('app', 'webpacker', 'stylesheets')
+    source_dir = Rails.root.join('node_modules/bootstrap-icons/font')
+    assets_dir = Rails.root.join('app/webpacker/stylesheets')
 
     css_source = "#{source_dir}/bootstrap-icons.css"
     scss_dest = "#{assets_dir}/bootstrap-icons.scss"
@@ -27,3 +28,4 @@ end
 require 'rails/tasks'
 
 Rake::Task['yarn:install'].enhance(nil) { Rake::Task['bootstrap:icons'].invoke }
+# rubocop:enable Rails/RakeEnvironment

@@ -3,6 +3,30 @@ class SpellsController < ApplicationController
 
   def index; end
 
+  def show
+    require 'redcarpet'
+
+    base_file = params.require :name
+    dest_dir = Rails.public_path.join('spells').to_s
+
+    filename = "#{dest_dir}/#{base_file}.md"
+    if File.exist?(filename)
+      render md: File.read(filename)
+      return
+    end
+
+    # rubocop:disable Rails/OutputSafety
+    # yeah yeah i know
+    filename = "#{dest_dir}/#{base_file}.html"
+    if File.exist?(filename)
+      render html: File.read(filename).html_safe
+      return
+    end
+    # rubocop:enable Rails/OutputSafety
+
+    render html: '', status: :not_found
+  end
+
   def edit; end
 
   def update
@@ -14,7 +38,7 @@ class SpellsController < ApplicationController
               :somatic, :verbal, :material, :focus)
 
     [:cast_n, :range_n, :duration_n].each do |f|
-      data[f] = nil unless data[f].present?
+      data[f] = nil if data[f].blank?
     end
 
     data[:material] = true if data[:focus] == true
@@ -22,27 +46,6 @@ class SpellsController < ApplicationController
     @spell.update(data)
 
     render json: @spell, status: :ok
-  end
-
-  def show
-    require 'redcarpet'
-
-    base_file = params.require :name
-    dest_dir = "#{Rails.root}/public/spells"
-
-    filename = "#{dest_dir}/#{base_file}.md"
-    if File.exist?(filename)
-      render md: File.read(filename)
-      return
-    end
-
-    filename = "#{dest_dir}/#{base_file}.html"
-    if File.exist?(filename)
-      render html: File.read(filename).html_safe
-      return
-    end
-
-    render html: '', status: 404
   end
 
   def list
@@ -62,9 +65,8 @@ class SpellsController < ApplicationController
     end
 
     if searches.key? 'components'
-      searches['components'].include?('1') &&
-        !searches['components'].include?('2') &&
-        searches['components'] << '2'
+      searches['components'] << '2' if
+        searches['components'].include?(1) && searches['components'].exclude?(2)
 
       searches['components'] = searches['components'].reduce(0) { |x, y| x + y.to_i }
     end

@@ -47,7 +47,7 @@ RSpec.describe 'Feature: Delete Caster Class', js: true do
     context 'and then click Submit' do
       before do
         @old_nym = @cclass.nym
-        page.find('#delete-object-ok').click
+        page.find_by_id('delete-object-ok').click
         wait_for_dialog_close
       end
 
@@ -62,14 +62,14 @@ RSpec.describe 'Feature: Delete Caster Class', js: true do
   end
 
   def wait_for_dialog_open
-    modal = page.find(:css, '#object-delete-modal')
+    modal = page.find_by_id('object-delete-modal')
     Timeout.timeout(2) do
       loop until modal[:class].include?('show')
     end
   end
 
   def wait_for_dialog_close
-    modal = page.find(:css, '#object-delete-modal')
+    modal = page.find_by_id('object-delete-modal')
     Timeout.timeout(2) do
       loop if modal[:class].include?('show')
     end
