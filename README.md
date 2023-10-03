@@ -24,15 +24,15 @@ Current utilities:
   * assign spells to classes
 
 ### Tech
-* Ruby 2.7
-* Rails 6.1 (with `redcarpet` for Markdown support)
+* Ruby 3.1
+* Rails 7.1 (with `redcarpet` for Markdown support)
 * Bootstrap 5.0.0b1 (with `popper.js` 2.6)
 
 ### Installation
 **Note** that there is no authentication anywhere, so you probably should not deploy this outside of
 a private home network.
 
-Install ruby 2.7 via the package manager of your choice; I use `rvm`.
+Install ruby 3.1 via the package manager of your choice; I use `rvm`.
 
 `bundle install` to install ruby libraries.
 
