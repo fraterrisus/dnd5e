@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe SpellSchool do
+  # rubocop:disable Rails/I18nLocaleAssignment
   before do
     @saved_locale = I18n.locale
   end
@@ -8,6 +9,7 @@ RSpec.describe SpellSchool do
   after do
     I18n.locale = @saved_locale
   end
+  # rubocop:enable Rails/I18nLocaleAssignment
 
   # Class methods
 

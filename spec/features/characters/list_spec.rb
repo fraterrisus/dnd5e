@@ -22,13 +22,13 @@ RSpec.describe 'Feature: List Characters', js: true do
   end
 
   it 'builds the expected modals' do
-    expect(page).to have_css('#object-modal', visible: false)
-    expect(page).to have_css('#object-delete-modal', visible: false)
+    expect(page).to have_css('#object-modal', :hidden)
+    expect(page).to have_css('#object-delete-modal', :hidden)
   end
 
   it 'builds a row for every character' do
     rows = page.all(:xpath, '//tr')
-    row_ids = rows.map { |row| row[:id] }
+    row_ids = rows.pluck(:id)
     @characters.each do |char|
       expect(row_ids).to include("char-#{char.id}")
       if char.notes.present?

@@ -1,4 +1,4 @@
-class Spell < ActiveRecord::Base
+class Spell < ApplicationRecord
   has_and_belongs_to_many :caster_classes
 
   def to_asset

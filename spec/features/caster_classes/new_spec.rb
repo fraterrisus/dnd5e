@@ -52,7 +52,7 @@ RSpec.describe 'Feature: Create Caster Class', js: true do
     context 'and then click Submit' do
       before do
         fill_in('caster_class[nym]', with: 'Random')
-        page.find('#object-modal-ok').click
+        page.find_by_id('object-modal-ok').click
         wait_for_dialog_close
       end
 

@@ -1,12 +1,6 @@
 class CombatantsController < ApplicationController
   def index; end
 
-  def create
-    data = params.require(:combatant).permit(:nym, :time, :notes, :active)
-    cmb = Combatant.create(data)
-    render json: cmb
-  end
-
   def new
     @char = nil
     render :edit, layout: nil
@@ -16,6 +10,12 @@ class CombatantsController < ApplicationController
     id = params.require(:id)
     @char = Combatant.find id
     render layout: nil
+  end
+
+  def create
+    data = params.require(:combatant).permit(:nym, :time, :notes, :active)
+    cmb = Combatant.create(data)
+    render json: cmb
   end
 
   def update
@@ -40,6 +40,8 @@ class CombatantsController < ApplicationController
     end
   end
 
+  # rubocop:disable Rails/SkipsModelValidations
+  # FIXME maybe?
   def activate
     id = params.require(:id)
     Combatant.update_all(active: false)
@@ -47,6 +49,7 @@ class CombatantsController < ApplicationController
     cmb.update_column(:active, true)
     head :no_content
   end
+  # rubocop:enable Rails/SkipsModelValidations
 
   def clear
     Combatant.destroy_all

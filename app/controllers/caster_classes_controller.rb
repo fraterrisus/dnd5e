@@ -8,12 +8,6 @@ class CasterClassesController < ApplicationController
     end
   end
 
-  def create
-    p = params.require(:caster_class).permit(:nym)
-    cclass = CasterClass.create(p)
-    render json: cclass
-  end
-
   def new
     @cclass = nil
     render :edit, layout: nil
@@ -21,6 +15,12 @@ class CasterClassesController < ApplicationController
 
   def edit
     render layout: nil
+  end
+
+  def create
+    p = params.require(:caster_class).permit(:nym)
+    cclass = CasterClass.create(p)
+    render json: cclass
   end
 
   def update

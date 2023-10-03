@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Feature: List Caster Classes', js: true do
   before do
-    @cclasses = 5.times.map { create(:caster_class, :random_nym) }
+    @cclasses = create_list(:caster_class, 5, :random_nym)
 
     visit '/classes'
   end
@@ -16,9 +16,9 @@ RSpec.describe 'Feature: List Caster Classes', js: true do
   end
 
   it 'builds the expected modals' do
-    expect(page).to have_css('#object-modal', visible: false)
-    expect(page).to have_css('#object-delete-modal', visible: false)
-    expect(page).to have_css('#spells-modal', visible: false)
+    expect(page).to have_css('#object-modal', :hidden)
+    expect(page).to have_css('#object-delete-modal', :hidden)
+    expect(page).to have_css('#spells-modal', :hidden)
   end
 
   it 'displays a sorted list of caster classes' do

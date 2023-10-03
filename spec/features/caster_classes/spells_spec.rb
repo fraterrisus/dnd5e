@@ -93,7 +93,7 @@ RSpec.describe 'Feature: Create Caster Class', js: true do
 
   def find_unknown_spell_id
     known_ids = @spells_known.map(&:id)
-    @spells.map(&:id).find { |id| !known_ids.include?(id) }
+    @spells.map(&:id).find { |id| known_ids.exclude?(id) }
   end
 
   def generate_spells(n)
@@ -104,14 +104,14 @@ RSpec.describe 'Feature: Create Caster Class', js: true do
   end
 
   def wait_for_dialog_open
-    modal = page.find(:css, '#spells-modal', visible: false)
+    modal = page.find_by_id('spells-modal', visible: false)
     Timeout.timeout(2) do
       loop until modal[:class].include?('show')
     end
   end
 
   def wait_for_dialog_close
-    modal = page.find(:css, '#spells-modal', visible: false)
+    modal = page.find_by_id('spells-modal', visible: false)
     Timeout.timeout(2) do
       loop if modal[:class].include?('show')
     end

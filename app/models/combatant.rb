@@ -1,2 +1,2 @@
-class Combatant < ActiveRecord::Base
+class Combatant < ApplicationRecord
 end

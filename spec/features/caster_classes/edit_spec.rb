@@ -53,7 +53,7 @@ RSpec.describe 'Feature: Edit Caster Class', js: true do
     context 'and then click the Submit button' do
       before do
         fill_in('caster_class[nym]', with: 'Random')
-        page.find('#object-modal-ok').click
+        page.find_by_id('object-modal-ok').click
         wait_for_dialog_close
       end
 
@@ -71,14 +71,14 @@ RSpec.describe 'Feature: Edit Caster Class', js: true do
   end
 
   def wait_for_dialog_open
-    modal = page.find(:css, '#object-modal', visible: false)
+    modal = page.find_by_id('object-modal', visible: false)
     Timeout.timeout(2) do
       loop until modal[:class].include?('show')
     end
   end
 
   def wait_for_dialog_close
-    modal = page.find(:css, '#object-modal', visible: false)
+    modal = page.find_by_id('object-modal', visible: false)
     Timeout.timeout(2) do
       loop if modal[:class].include?('show')
     end

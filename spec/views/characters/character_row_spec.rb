@@ -47,7 +47,7 @@ RSpec.describe 'characters/_character_row.html.erb' do
     let(:char) { build(:character, notes: nil) }
 
     it 'prints one row' do
-      expect(rendered.scan(/<tr/).count).to eq(1)
+      expect(rendered.scan('<tr').count).to eq(1)
     end
   end
 
@@ -55,7 +55,7 @@ RSpec.describe 'characters/_character_row.html.erb' do
     let(:char) { build(:character, :with_notes) }
 
     it 'prints two rows' do
-      expect(rendered.scan(/<tr/).count).to eq(2)
+      expect(rendered.scan('<tr').count).to eq(2)
     end
   end
 end
