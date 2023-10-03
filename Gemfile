@@ -41,5 +41,4 @@ group :test do
   gem 'rspec-rails'
   gem 'rubocop-rspec'
   gem 'selenium-webdriver'
-  gem 'webdrivers'
 end
