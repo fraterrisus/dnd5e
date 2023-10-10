@@ -48,3 +48,9 @@ app/webpacker/stylesheets/bootstrap-icons.scss
 yarn-debug.log*
 /yarn-error.log
 .yarn-integrity
+
+/app/assets/builds/*
+!/app/assets/builds/.keep
+
+/public/webfonts/*
+!/public/webfonts/.keep

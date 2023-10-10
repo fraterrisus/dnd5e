@@ -12,10 +12,11 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ruby-version: ['3.1.2']
+        ruby-version: ['3.1.4']
 
     steps:
     - uses: actions/checkout@v4
+
     - name: Set up Ruby
     # To automatically get bug fixes and new Ruby versions for ruby/setup-ruby,
     # change this to (see https://github.com/ruby/setup-ruby#versioning):
@@ -27,6 +28,10 @@ jobs:
 
     - name: Rubocop
       run: bundle exec rubocop app lib spec
+
+    # Not currently necessary
+    # - name: Build ESBuild
+    #   run: yarn build
 
     # Doesn't work because rspec uses selenium-webdriver
     # - name: Run tests

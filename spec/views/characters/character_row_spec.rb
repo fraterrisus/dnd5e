@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'characters/_character_row.html.erb' do
   before do
-    render partial: 'characters/character_row', locals: { char: char }
+    render partial: 'characters/character_row', locals: { char: }
   end
 
   context 'always' do
