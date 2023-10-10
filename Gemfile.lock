@@ -109,8 +109,6 @@ GEM
       factory_bot (~> 6.2.0)
       railties (>= 5.0.0)
     ffi (1.16.2)
-    font-awesome-sass (6.4.2)
-      sassc (~> 2.0)
     foreman (0.87.2)
     globalid (1.2.1)
       activesupport (>= 6.1)
@@ -332,7 +330,6 @@ DEPENDENCIES
   cssbundling-rails
   factory_bot (~> 6.0)
   factory_bot_rails
-  font-awesome-sass (~> 6.4.2)
   foreman
   httparty (~> 0.21)
   jbuilder (~> 2.11)
