@@ -1,12 +1,14 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.1.2'
+ruby '3.1.4'
 
 gem 'rubyzip', '~> 2.3' # be intentional about the upgrade to 3.0
 
 gem 'bootsnap', '>= 1.4', require: false # boot caching, see config/boot.rb
+gem 'cssbundling-rails'
 gem 'jbuilder', '~> 2.11'
+gem 'jsbundling-rails'
 gem 'puma', '~> 6.4'
 gem 'rack', '~>3.0'
 gem 'rails', '~> 7.0'
@@ -14,7 +16,6 @@ gem 'redcarpet', '~> 3.6' # allows rendering Markdown
 gem 'rubocop-rails'
 gem 'sass-rails', '>= 6'
 gem 'sqlite3', '~> 1.4'
-gem 'webpacker', '~> 5.0'
 
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -27,6 +28,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'foreman'
   gem 'httparty', '~> 0.21'
   gem 'listen', '~> 3.3' # performance popup; https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
   gem 'nokogiri', '~> 1.14'

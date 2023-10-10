@@ -7,8 +7,8 @@ require:
 AllCops:
   Exclude:
     - 'bin/*'
-    - 'db/**/*'
     - 'config/**/*'
+    - 'db/**/*'
     - 'node_modules/**/*'
     - 'script/**/*'
   NewCops: enable
