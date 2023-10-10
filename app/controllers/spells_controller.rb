@@ -49,14 +49,14 @@ class SpellsController < ApplicationController
   end
 
   def list
-    searches = params.require('spell')
+    filters = params.require('spell')
       .permit(['utf8', 'sort_by_level', { 'caster_class_ids' => [], 'school_id' => [],
                'level' => [], 'cast_unit' => [], 'ritual' => [], 'range_unit' => [],
                'components' => [], 'duration_unit' => [], 'concentration' => [] }])
 
-    searches.delete('utf8')
+    filters.delete('utf8')
 
-    if searches.delete('sort_by_level') == '1'
+    if filters.delete('sort_by_level') == '1'
       by_level = true
       sorts = [:level, :nym]
     else
@@ -64,21 +64,21 @@ class SpellsController < ApplicationController
       sorts = [:nym]
     end
 
-    if searches.key? 'components'
-      searches['components'] << '2' if
-        searches['components'].include?(1) && searches['components'].exclude?(2)
+    if filters.key? 'components'
+      filters['components'] << '2' if
+        filters['components'].include?(1) && filters['components'].exclude?(2)
 
-      searches['components'] = searches['components'].reduce(0) { |x, y| x + y.to_i }
+      filters['components'] = filters['components'].reduce(0) { |x, y| x + y.to_i }
     end
 
-    class_ids = searches.delete 'caster_class_ids'
-    searches['caster_classes'] = { id: class_ids } if class_ids&.any?
+    class_ids = filters.delete 'caster_class_ids'
+    filters['caster_classes'] = { id: class_ids } if class_ids&.any?
 
-    @spells = Spell.includes(:caster_classes).where(searches).order(sorts)
+    @spells = Spell.includes(:caster_classes).where(filters).order(sorts)
 
     respond_to do |fmt|
       fmt.json { render json: @chars }
-      fmt.html { render layout: nil, locals: { by_level: by_level, filters: searches } }
+      fmt.html { render layout: nil, locals: { by_level:, filters: } }
     end
   end
 
