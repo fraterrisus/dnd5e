@@ -26,7 +26,8 @@ Current utilities:
 ### Tech
 * Ruby 3.1
 * Rails 7.1 (with `redcarpet` for Markdown support)
-* Bootstrap 5.0.0b1 (with `popper.js` 2.6)
+* Bootstrap 5.3.2 (with `popper.js` 2.6)
+* FontAwesome 6.4.2
 
 ### Installation
 **Note** that there is no authentication anywhere, so you probably should not deploy this outside of
@@ -36,14 +37,12 @@ Install ruby 3.1 via the package manager of your choice; I use `rvm`.
 
 `bundle install` to install ruby libraries.
 
-`rake yarn:install` to install javascript libraries. Please run this via `rake` so it can reach
-into the `bootstrap-icons` package and install the fonts in the right place. Or you can run `rake
-bootstrap:icons` yourself after running `yarn install` from the command line.
+`rake javascript:build css:build` to install node libraries and compile assets.
 
 `rake db:setup` should produce at least `db/development.sqlite3` which is probably all you need.
 
-`rails server` should present a page at `http://localhost:3000`, although you won't have any spells
-visible on the default page.
+At this point, `rails server` should present a page at `http://localhost:3000`, although you won't
+have any spells visible on the default page.
 
 ### Spells
 Technical details first: the Spells page will look for data in `public/spells` to display when you
