@@ -31,7 +31,7 @@ group :development do
   gem 'foreman'
   gem 'httparty', '~> 0.21'
   gem 'listen', '~> 3.3' # performance popup; https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
-  gem 'nokogiri', '~> 1.14'
+  gem 'nokogiri', '~> 1.16'
   gem 'rack-mini-profiler', '~> 3.0'
   gem 'spring' # https://github.com/rails/spring
   gem 'web-console', '>= 4.1.0' # insert 'console' in code to get an interactive console
