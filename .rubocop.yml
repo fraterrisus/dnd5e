@@ -12,6 +12,7 @@ AllCops:
     - 'db/**/*'
     - 'node_modules/**/*'
     - 'script/**/*'
+    - 'vendor/**/*'
   NewCops: enable
   SuggestExtensions: false
 
