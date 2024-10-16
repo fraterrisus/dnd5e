@@ -52,7 +52,7 @@ RSpec.describe 'Feature: Delete Caster Class', js: true do
       end
 
       it 'updates the list' do
-        expect(page.find('.results')).not_to have_content(@old_nym)
+        expect(page.find('.results')).to have_no_content(@old_nym)
       end
 
       it 'deletes the object' do

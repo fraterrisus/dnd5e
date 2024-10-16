@@ -14,7 +14,7 @@ RSpec.describe 'Feature: List Spells', js: true do
       end
 
       it 'does not show a tab bar' do
-        expect(page.find(:css, '.results')).not_to have_css('ul.nav-tabs')
+        expect(page.find(:css, '.results')).to have_no_css('ul.nav-tabs')
       end
 
       it 'displays the spell count' do

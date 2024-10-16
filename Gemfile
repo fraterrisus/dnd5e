@@ -46,3 +46,8 @@ group :test do
   gem 'rubocop-rspec'
   gem 'selenium-webdriver'
 end
+
+gem "rubocop-capybara", "~> 2.21"
+
+gem "rubocop-factory_bot", "~> 2.26"
+gem "rubocop-rspec_rails", "~> 2.30"
