@@ -27,7 +27,7 @@ jobs:
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
 
     - name: Rubocop
-      run: bundle exec rubocop app lib spec
+      run: bundle exec rubocop
 
     # Not currently necessary
     # - name: Build ESBuild

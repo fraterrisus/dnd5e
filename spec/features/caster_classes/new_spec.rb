@@ -25,7 +25,7 @@ RSpec.describe 'Feature: Create Caster Class', js: true do
       it 'does not update the list' do
         results = page.find('.results')
         expect(results).to have_content(@cclass.nym)
-        expect(results).not_to have_content('Random')
+        expect(results).to have_no_content('Random')
       end
     end
 

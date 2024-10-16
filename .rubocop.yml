@@ -6,12 +6,14 @@ require:
 
 AllCops:
   Exclude:
+    - 'Gemfile'
     - 'bin/*'
     - 'config/**/*'
     - 'db/**/*'
     - 'node_modules/**/*'
     - 'script/**/*'
   NewCops: enable
+  SuggestExtensions: false
 
 Layout/ElseAlignment:
   Enabled: false
