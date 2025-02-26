@@ -10,7 +10,7 @@ gem 'cssbundling-rails'
 gem 'jbuilder', '~> 2.11'
 gem 'jsbundling-rails'
 gem 'puma', '~> 6.4'
-gem 'rack', '~>3.0'
+gem 'rack', '~>3.1'
 gem 'rails', '~> 7.0'
 gem 'redcarpet', '~> 3.6' # allows rendering Markdown
 gem 'rubocop-rails'
